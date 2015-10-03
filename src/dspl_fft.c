@@ -1,19 +1,22 @@
 /*
-* Copyright 2015 Sergey Bakhurin
+* Copyright (c) 2015 Sergey Bakhurin
+* Digital Signal Processing Library [http://dsplib.org]
 *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+* This file is part of DSPL.
+* 
+* DSPL is free software: you can redistribute it and/or modify
+* it under the terms of the GNU Lesser General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+*(at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU Lesser General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 
 #include <stdlib.h>
 #include <string.h>
@@ -22,13 +25,49 @@
 
 
 
-void dspl_fft_krn (fft_t *fft; int n; int p2);
-int  dspl_fft_p2 (int n);
-int  dspl_fft_reordering (fft_t* fft, int n);
+void 	dspl_fft_krn (fft_t* pfft, int n, int p2);
+int  	dspl_fft_p2 (int n);
+void  	dspl_fft_reorder (fft_t* pfft, int n);
 
 
-
-DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t *pfft, 
+/*
+* Fast Fourier Transform.
+* This function calculates DFT by using Cooley - Tukey decimation in time algorithm
+* ------------------------------------------------------------------------------------------
+* Parameters:
+*	[in]	double *xR  -	Input signal vector real  part pointer. Vector size is [n x 1]. 
+*
+*	[in]	double *xI  - 	Input signal vector image part pointer. Vector size is [n x 1].
+*							This pointer can be NULL if DFT is calculated for a real signal
+*
+*	[in]	int n       -	DFT size (input and output vectors size).
+*
+*	[in]	fft_t* pfft	-	FFT object pointer. This object can be 
+*							calculated by dspl_fft_create function.
+*
+*	[out]   double *yR   -  DFT vector real  part pointer. Vector size is [n x 1].
+*                           Memory must be allocated.
+*     
+*	[out]	double *yI   -  DFT vector image part pointer. Vector size is [n x 1].
+*                           Memory must be allocated.
+*     
+* ------------------------------------------------------------------------------------------
+* Return:
+*    DSPL_OK         if DFT is calculted successfuly
+*
+*    DSPL_ERROR_PTR  if xR == NULL or yR == NULL or yI == NULL
+*
+*    DSPL_ERROR_SIZE if n<1.
+*	
+*	DSPL_ERROR_FFT_SIZE	if n is not radix-2
+* ------------------------------------------------------------------------------------------
+* Example: ex_dspl_fft.c
+*
+* Author:
+*    Sergey Bakhurin.                                                         www.dsplib.org    
+*
+*/
+DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, 
 											double* yR, double* yI)
 {
 	int p2;
@@ -55,7 +94,40 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t *pfft,
 
 
 
-DSPL_API int dspl_fft_create(fft_t *fft, int n)
+
+
+
+/*
+* Fast Fourier Transform object create.
+* This function calculates precalculates twiddle-factors for FFT
+* ------------------------------------------------------------------------------------------
+* Parameters:                                                        
+*	[in, out]	fft_t* 	pfft	-	FFT object pointer. 
+*						Memory for twiddle factor will be reallocated.
+*
+*	[in]   		int n  -  New FFT size 
+*     
+* ------------------------------------------------------------------------------------------
+* Return:
+*   DSPL_OK         if DFT is calculted successfuly
+*
+*	
+*	DSPL_ERROR_FFT_SIZE	if n is not power of 2
+* ------------------------------------------------------------------------------------------
+* Note:
+*	If you have calculated fft object for FFT size more than n 
+*	then you no need to recalculate it. Function will return DSPL_OK in this case, 
+*	but memory will not reallocated. So you need to clear current fft object  
+*	(dspl_fft_free) and create it again if you want to decrease allocated memory.
+*	fft object need 6*N*sizeof(double) bytes For N-points FFT algorithm.
+* 		
+* Example: ex_dspl_fft.c
+*
+* Author:
+*    Sergey Bakhurin.                                                         www.dsplib.org    
+*
+*/  
+DSPL_API int dspl_fft_create(fft_t *pfft, int n)
 {
 	double phi;
 	double dphi;
@@ -63,21 +135,21 @@ DSPL_API int dspl_fft_create(fft_t *fft, int n)
 	int n2;
 	int ind; 
 	size_t bufSize;
-	if(fft->n >= n)
+	if(pfft->n >= n)
 		return DSPL_OK;
 	if(!dspl_fft_p2(n))
 		return DSPL_ERROR_FFT_SIZE;
 	
 	dphi = M_PI;
-	bufSize = (size_t)(n*sizeof(double)));
-	fft->wR = (double*)realloc(fft->wR, bufSize);
-	fft->wI = (double*)realloc(fft->wI, bufSize);
-	fft->t0R = (double*)realloc(fft->t0R, bufSize);
-	fft->t0I = (double*)realloc(fft->t0I, bufSize);
-	fft->t1R = (double*)realloc(fft->t1R, bufSize);
-	fft->t1I = (double*)realloc(fft->t1I, bufSize);
+	bufSize = (size_t)(n*sizeof(double));
+	pfft->wR = (double*)realloc( pfft->wR, bufSize);
+	pfft->wI = (double*)realloc( pfft->wI, bufSize);
+	pfft->t0R = (double*)realloc(pfft->t0R, bufSize);
+	pfft->t0I = (double*)realloc(pfft->t0I, bufSize);
+	pfft->t1R = (double*)realloc(pfft->t1R, bufSize);
+	pfft->t1I = (double*)realloc(pfft->t1I, bufSize);
 	
-	fft->n = n;
+	pfft->n = n;
 	n2 = 1;
 	ind = 0;
 	while(n2<n)
@@ -85,8 +157,8 @@ DSPL_API int dspl_fft_create(fft_t *fft, int n)
 		phi = 0;
 		for(k = 0; k<n2; k++)
 		{
-			fft->wR[ind+k] = cos(phi);
-			fft->wI[ind+k] = sin(phi);
+			pfft->wR[ind+k] = cos(phi);
+			pfft->wI[ind+k] = sin(phi);
 			phi -= dphi;
 		}
 		ind+=n2;
@@ -99,10 +171,45 @@ DSPL_API int dspl_fft_create(fft_t *fft, int n)
 
 
 
+/*
+* Clear Fast Fourier Transform object.
+* This function clears memory for fft_t object
+* ------------------------------------------------------------------------------------------
+* Parameters:                                                        
+*	[in, out]	fft_t* 	pfft	-	FFT object pointer. 
+*						Memory for twiddle factor will be free.
+* 		
+* Example: ex_dspl_fft.c
+*
+* Author:
+*    Sergey Bakhurin.                                                         www.dsplib.org    
+*
+*/  
 
-void dspl_fft_krn(fft_t *fft; int n; int p2)
+DSPL_API void dspl_fft_free(fft_t *pfft)
 {
-	int k,p,q,q2,wi,ind0,i,ind0i, ind1i, iwi;
+	if(pfft->wR)
+		free(pfft->wR);
+	if(pfft->wI)
+		free(pfft->wI);
+	if(pfft->t0R)
+		free(pfft->t0R);
+	if(pfft->t0I)
+		free(pfft->t0I);
+	if(pfft->t1R)
+		free(pfft->t1R);
+	if(pfft->t1I)
+		free(pfft->t1I);
+}
+
+
+
+
+
+/* fft kernel */
+void dspl_fft_krn(fft_t *pfft, int n, int p2)
+{
+	int k,p,q,q2,wi,ind0,i,ind0i, ind1, ind1i, iwi;
 	double *ptr = NULL;
 	double *ptr0R = NULL, *ptr0I = NULL; 
 	double *ptr1R = NULL, *ptr1I = NULL;
@@ -114,17 +221,17 @@ void dspl_fft_krn(fft_t *fft; int n; int p2)
 	wi = 0;
 	if(p2%2)
 	{
-		ptr0R = fft->t1R;
-		ptr1R = fft->t0R;
-		ptr0I = fft->t1I;
-		ptr1I = fft->t0I;
+		ptr0R = pfft->t1R;
+		ptr1R = pfft->t0R;
+		ptr0I = pfft->t1I;
+		ptr1I = pfft->t0I;
 	}
 	else
 	{
-		ptr0R = fft->t0R;
-		ptr1R = fft->t1R;
-		ptr0I = fft->t0I;
-		ptr1I = fft->t1I;
+		ptr0R = pfft->t0R;
+		ptr1R = pfft->t1R;
+		ptr0I = pfft->t0I;
+		ptr1I = pfft->t1I;
 	}
 	while(p)
 	{
@@ -136,8 +243,8 @@ void dspl_fft_krn(fft_t *fft; int n; int p2)
 			{
 				ind1i = ind1+i;
 				iwi = wi+i;
-				zR = ptr0R[ind1i] * fft->wR[iwi] - ptr0I[ind1i] * fft->wI[iwi];
-				zI = ptr0R[ind1i] * fft->wI[iwi] - ptr0I[ind1i] * fft->wR[iwi];
+				zR = ptr0R[ind1i] * pfft->wR[iwi] - ptr0I[ind1i] * pfft->wI[iwi];
+				zI = ptr0R[ind1i] * pfft->wI[iwi] + ptr0I[ind1i] * pfft->wR[iwi];
 				ind0i = ind0+i;
 				ptr1R[ind0i] = ptr0R[ind0i] + zR;
 				ptr1I[ind0i] = ptr0I[ind0i] + zI;
@@ -152,10 +259,10 @@ void dspl_fft_krn(fft_t *fft; int n; int p2)
 		q2 = q<<1;
 		ptr = ptr0R;
 		ptr0R = ptr1R;
-		prt1R = ptr;
+		ptr1R = ptr;
 		ptr = ptr0I;
 		ptr0I = ptr1I;
-		prt1I = ptr;
+		ptr1I = ptr;
 	}
 	
 }
@@ -163,7 +270,8 @@ void dspl_fft_krn(fft_t *fft; int n; int p2)
 
 
 
-
+/* retrun power of 2 of FFT size. 
+ Return zero if n is not power of 2 */
 int dspl_fft_p2(int n)
 {
 	int n2;
@@ -183,8 +291,8 @@ int dspl_fft_p2(int n)
 
 
 
-
-int dspl_fft_reordering(fft_t* fft, int n)
+/* Bit inverse reordering for decimation in time */
+void dspl_fft_reorder(fft_t* pfft, int n)
 {
 	int i;
 	int i2;
@@ -210,23 +318,25 @@ int dspl_fft_reordering(fft_t* fft, int n)
 			for(i = 0; i < n2; i++)
 			{
 				i2 = i<<1;
-				fft->t1R[i + jn22]   = fft->t0R[i2 + jn22];
-				fft->t1I[i + jn22]   = fft->t0I[i2 + jn22];
-				fft->t1R[i + n2jn22] = fft->t0R[i2 + jn221];
-				fft->t1I[i + n2jn22] = fft->t0I[i2 + jn221]
+				pfft->t1R[i + jn22]   = pfft->t0R[i2 + jn22];
+				pfft->t1I[i + jn22]   = pfft->t0I[i2 + jn22];
+				pfft->t1R[i + n2jn22] = pfft->t0R[i2 + jn221];
+				pfft->t1I[i + n2jn22] = pfft->t0I[i2 + jn221];
 			}
 			jn22+=n22;
 		}
 		n2 >>= 1;
 		p  <<= 1;
-		ptr = fft->t0R;
-		fft->t0R = fft->t1R;
-		fft->t1R = ptr;
-		ptr = fft->t0I;
-		fft->t0I = fft->t1I;
-		fft->t1I = ptr;
+		ptr = pfft->t0R;
+		pfft->t0R = pfft->t1R;
+		pfft->t1R = ptr;
+		ptr = pfft->t0I;
+		pfft->t0I = pfft->t1I;
+		pfft->t1I = ptr;
 	}
 }
+
+
 
 
 

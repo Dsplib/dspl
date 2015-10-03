@@ -1,11 +1,29 @@
+/*
+*Copyright (c) 2015 Sergey Bakhurin
+* Digital Signal Processing Library [http://dsplib.org]
+*
+* This file is part of DSPL.
+* 
+* DSPL is free software: you can redistribute it and/or modify
+* it under the terms of the GNU Lesser General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+*(at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU Lesser General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef DSPL_H
 #define DSPL_H
 
 #include <math.h>
   
-/* DSPL VERSION */
-#define DSPL_VERSION 0x000F090C
- 
+
 /* math const definition */
 #ifndef M_PI
 #define M_PI	3.1415926535897932384626433832795
@@ -79,11 +97,14 @@ DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
 
 
 /* Fast Fourier Transform  (dspl_fft.c)*/
-DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t *pfft, 
-											double* yR, double* yI);
+DSPL_API int dspl_fft(	double* xR, double* xI, int n, fft_t *pfft, 
+						double* yR, double* yI);
 
 /* Create Fast Fourier Transform  (dspl_fft.c)*/
-DSPL_API int dspl_fft_create(fft_t *fft, int n);
+DSPL_API int dspl_fft_create(fft_t *pfft, int n);
+
+/* Create Fast Fourier Transform  (dspl_fft.c)*/
+DSPL_API void dspl_fft_free(fft_t *pfft);
 
 /* IIR filter output for real IIR filter and real signal (dspl_filter_iir.c) */
 DSPL_API int dspl_filter_iir	(double* b, double* a, int ord, double* x, int n, double* y);

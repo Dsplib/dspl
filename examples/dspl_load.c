@@ -10,6 +10,7 @@ p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_dft 				dspl_dft 			;
 p_dspl_fft				dspl_fft		    ;
 p_dspl_fft_create		dspl_fft_create		;
+p_dspl_fft_free			dspl_fft_free		;
 p_dspl_filter_iir		dspl_filter_iir	    ;
 p_dspl_get_version 		dspl_get_version 	;
 p_dspl_print_err		dspl_print_err	    ;
@@ -62,6 +63,13 @@ HINSTANCE	dspl_load()
 
 	dspl_fft_create = (p_dspl_fft_create) GetProcAddress(hInstDLL, "dspl_fft_create");
 	if(!dspl_fft_create)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	dspl_fft_free = (p_dspl_fft_free) GetProcAddress(hInstDLL, "dspl_fft_free");
+	if(!dspl_fft_free)
 	{
 		FreeLibrary(hInstDLL);
 		return NULL;		
