@@ -4,7 +4,7 @@
 #include "dspl_load.h"
 
 
-
+p_dspl_butter_norm		dspl_butter_norm	;
 p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_dft 				dspl_dft 			;
@@ -28,6 +28,14 @@ HINSTANCE	dspl_load()
 	
 	if(!hInstDLL)
 		return NULL;
+	
+	dspl_butter_norm = (p_dspl_butter_norm) GetProcAddress(hInstDLL, "dspl_butter_norm");
+	if(!dspl_butter_norm)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
 	
 	dspl_conv = (p_dspl_conv) GetProcAddress(hInstDLL, "dspl_conv");
 	if(!dspl_conv)

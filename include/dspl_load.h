@@ -23,6 +23,9 @@
 #define DSPL_LOAD_H
 
 
+/* Analog Normalized Butterworth Lowpass Filter (dspl_butter_norm.c) */
+typedef int (*p_dspl_butter_norm)	(double Rp, int ord, double* b, double* a);
+
 /* Linear convolution for real vectors  (dspl_conv.c) */
 typedef int (*p_dspl_conv) 			(double* a, int na, double* b,  int nb, double *c);
 
@@ -60,13 +63,13 @@ typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 typedef int (*p_dspl_savetxt) 		(double* x, double *y, int n, char* fn);
 
 
-
+extern p_dspl_butter_norm	dspl_butter_norm	;
 extern p_dspl_conv			dspl_conv			;         	
 extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;   				
 extern p_dspl_dft 			dspl_dft 			; 
 extern p_dspl_fft			dspl_fft		    ;
 extern p_dspl_fft_create	dspl_fft_create	    ;
-extern p_dspl_fft_free		dspl_fft_free    ;
+extern p_dspl_fft_free		dspl_fft_free		;
 extern p_dspl_filter_iir	dspl_filter_iir	    ;
 extern p_dspl_get_version 	dspl_get_version 	; 
 extern p_dspl_print_err		dspl_print_err	    ;
