@@ -137,12 +137,12 @@ DSPL_API int dspl_get_version (int printFlag);
 
 
 /* Polynom calculation (dspl_polynom.c) */
-DSPL_API int dspl_polynom(double* a, int ord, double* x, int n, double* y);
+DSPL_API int dspl_polyval(double* a, int ord, double* x, int n, double* y);
 
 
 
 /* Complex polynom calculation (dspl_polynom.c) */
-DSPL_API int dspl_polynom_cmplx(	double* aR, double* aI, int ord, 
+DSPL_API int dspl_polyval_cmplx(	double* aR, double* aI, int ord, 
 									double* xR, double* xI, int n,
 									double* yR, double* yI);
 

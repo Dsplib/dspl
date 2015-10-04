@@ -13,6 +13,8 @@ p_dspl_fft_create		dspl_fft_create		;
 p_dspl_fft_free			dspl_fft_free		;
 p_dspl_filter_iir		dspl_filter_iir	    ;
 p_dspl_get_version 		dspl_get_version 	;
+p_dspl_polyval			dspl_polyval	    ;
+p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
 p_dspl_print_err		dspl_print_err	    ;
 p_dspl_print_msg 		dspl_print_msg 	    ;
 p_dspl_savetxt			dspl_savetxt        ;
@@ -98,6 +100,24 @@ HINSTANCE	dspl_load()
 		FreeLibrary(hInstDLL);
 		return NULL;		
 	}
+	
+	
+	dspl_polyval = (p_dspl_polyval) GetProcAddress(hInstDLL, "dspl_polyval");
+	if(!dspl_polyval)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	
+	dspl_polyval_cmplx = (p_dspl_polyval_cmplx) GetProcAddress(hInstDLL, "dspl_polyval_cmplx");
+	if(!dspl_polyval_cmplx)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
 	
 	
 	dspl_print_err = (p_dspl_print_err) GetProcAddress(hInstDLL, "dspl_print_err");

@@ -23,35 +23,66 @@
 #define DSPL_LOAD_H
 
 
+
+
 /* Analog Normalized Butterworth Lowpass Filter (dspl_butter_norm.c) */
 typedef int (*p_dspl_butter_norm)	(double Rp, int ord, double* b, double* a);
 
+
+
 /* Linear convolution for real vectors  (dspl_conv.c) */
 typedef int (*p_dspl_conv) 			(double* a, int na, double* b,  int nb, double *c);
+
+
 
 /* Linear convolution for complex vectors  (dspl_conv.c) */
 typedef int (*p_dspl_conv_cmplx)	(	double* aR, double* aI, int na, 
                      					double* bR, double* bI, int nb, 
 					 					double *cR, double *cI);
 
+										
+										
 /* Discrete Fourier Transform  (dspl_dft.c) */
 typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double* yI);
+
+
 
 /* Fast Fourier Transform  (dspl_fft.c)*/
 typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, fft_t *pfft, 
 											double* yR, double* yI);
 
 
+											
 /* Create Fast Fourier Transform  (dspl_fft.c)*/
 typedef int (*p_dspl_fft_create)	(fft_t *pfft, int n);
 
+
+
 typedef void (*p_dspl_fft_free)(fft_t *pfft);
+
+
 
 /* IIR filter output for real IIR filter and real signal (dspl_filter_iir.c) */
 typedef int (*p_dspl_filter_iir)	(double* b, double* a, int ord, double* x, int n, double* y);
 
+
+
 /* Get DSPL version  (dspl_inout.c) */
 typedef int (*p_dspl_get_version) 	(int printFlag);
+
+
+
+/* Polynom calculation (dspl_polyval.c) */
+typedef int (*p_dspl_polyval)		(double* a, int ord, double* x, int n, double* y);
+
+
+
+/* Complex polynom calculation (dspl_polyval.c) */
+typedef int (*p_dspl_polyval_cmplx)	(	double* aR, double* aI, int ord, 
+										double* xR, double* xI, int n,
+										double* yR, double* yI);
+									
+										
 
 /* print error code (dspl_inout.c) */
 typedef void (*p_dspl_print_err) 	(int res, int printCR);
@@ -72,6 +103,8 @@ extern p_dspl_fft_create	dspl_fft_create	    ;
 extern p_dspl_fft_free		dspl_fft_free		;
 extern p_dspl_filter_iir	dspl_filter_iir	    ;
 extern p_dspl_get_version 	dspl_get_version 	; 
+extern p_dspl_polyval		dspl_polyval   		;
+extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
 extern p_dspl_print_msg 	dspl_print_msg 	    ;
 extern p_dspl_savetxt		dspl_savetxt        ;
