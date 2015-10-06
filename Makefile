@@ -13,8 +13,10 @@ EX_CFLAGS = -c -Wall -I $(INC_DIR) -std=c89
 DLL_OBJS=$(OBJ_DIR)/dspl_butter_norm.o \
 		$(OBJ_DIR)/dspl_conv.o \
 		$(OBJ_DIR)/dspl_dft.o \
-		$(OBJ_DIR)/dspl_filter_iir.o \
 		$(OBJ_DIR)/dspl_fft.o \
+		$(OBJ_DIR)/dspl_filter_iir.o \
+		$(OBJ_DIR)/dspl_freqs.o \
+		$(OBJ_DIR)/dspl_freqz.o \
 		$(OBJ_DIR)/dspl_inout.o \
 		$(OBJ_DIR)/dspl_polyval.o\
 		

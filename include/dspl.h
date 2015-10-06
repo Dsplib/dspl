@@ -130,6 +130,19 @@ DSPL_API void dspl_fft_free(fft_t *pfft);
 DSPL_API int dspl_filter_iir	(double* b, double* a, int ord, double* x, int n, double* y);
 
 
+/* Analog filter complex transfer function H(jw) (dspl_freqs.c) */
+DSPL_API int dspl_freqs(double* b, double* a, int ord, 
+						double* w, int n, 
+						double *hR, double* hI);
+
+
+
+/* IIR digital filter complex transfer function (dspl_freqz.c) */
+DSPL_API int dspl_freqz(double* b, double* a, int ord, 
+						double* w, int n, 
+						double *hR, double* hI);
+
+
 
 /* Get DSPL version  (dspl_inout.c) */
 DSPL_API int dspl_get_version (int printFlag);

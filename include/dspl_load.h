@@ -66,6 +66,19 @@ typedef void (*p_dspl_fft_free)(fft_t *pfft);
 typedef int (*p_dspl_filter_iir)	(double* b, double* a, int ord, double* x, int n, double* y);
 
 
+/* Analog filter complex transfer function H(jw) (dspl_freqs.c) */
+typedef int (*p_dspl_freqs)(double* b, double* a, int ord, 
+							double* w, int n, 
+							double *hR, double* hI);
+
+
+
+/* IIR digital filter complex transfer function (dspl_freqz.c) */
+typedef int (*p_dspl_freqz)(double* b, double* a, int ord, 
+							double* w, int n, 
+							double *hR, double* hI);
+
+
 
 /* Get DSPL version  (dspl_inout.c) */
 typedef int (*p_dspl_get_version) 	(int printFlag);
@@ -102,6 +115,8 @@ extern p_dspl_fft			dspl_fft		    ;
 extern p_dspl_fft_create	dspl_fft_create	    ;
 extern p_dspl_fft_free		dspl_fft_free		;
 extern p_dspl_filter_iir	dspl_filter_iir	    ;
+extern p_dspl_freqs			dspl_freqs		    ;
+extern p_dspl_freqz			dspl_freqz		    ;
 extern p_dspl_get_version 	dspl_get_version 	; 
 extern p_dspl_polyval		dspl_polyval   		;
 extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;

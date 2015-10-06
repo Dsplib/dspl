@@ -12,6 +12,8 @@ p_dspl_fft				dspl_fft		    ;
 p_dspl_fft_create		dspl_fft_create		;
 p_dspl_fft_free			dspl_fft_free		;
 p_dspl_filter_iir		dspl_filter_iir	    ;
+p_dspl_freqs			dspl_freqs		    ;
+p_dspl_freqz			dspl_freqz		    ;
 p_dspl_get_version 		dspl_get_version 	;
 p_dspl_polyval			dspl_polyval	    ;
 p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
@@ -94,6 +96,24 @@ HINSTANCE	dspl_load()
 	}
 	
 	
+	
+	dspl_freqs = (p_dspl_freqs) GetProcAddress(hInstDLL, "dspl_freqs");
+	if(!dspl_freqs)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+
+	dspl_freqs = (p_dspl_freqz) GetProcAddress(hInstDLL, "dspl_freqz");
+	if(!dspl_freqz)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+
+	
+
 	dspl_get_version = (p_dspl_get_version) GetProcAddress(hInstDLL, "dspl_get_version");
 	if(!dspl_get_version)
 	{
