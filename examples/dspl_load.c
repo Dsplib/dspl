@@ -105,7 +105,7 @@ HINSTANCE	dspl_load()
 	}
 	
 
-	dspl_freqs = (p_dspl_freqz) GetProcAddress(hInstDLL, "dspl_freqz");
+	dspl_freqz = (p_dspl_freqz) GetProcAddress(hInstDLL, "dspl_freqz");
 	if(!dspl_freqz)
 	{
 		FreeLibrary(hInstDLL);
