@@ -2,9 +2,8 @@
 *   dspl_dft function example.  
 *
 *	Task:
-*   Calculate 256 samples of complex exponent 
+*   Calculate 256-points DFT for complex exponent 
 *	s(n) = exp(2*pi*j*0.2*n), n = 0...255
-*	and calculate DFT 
 */
 
 #include <stdio.h>
@@ -28,6 +27,11 @@ int main()
 
 	/* Load dspl.dll */
 	hInstDLL = dspl_load();
+	if(!hInstDLL)
+	{
+		printf("dspl.dll Loading Error!\n");
+		return 0;
+	}
 
 	/*print current dspl.dll version */
 	dspl_get_version(1);
@@ -45,7 +49,7 @@ int main()
 	dspl_print_err(res, 1);
 
 	/* save result to ex_dspl_dft.txt */
-	dspl_print_msg("Save result to ex_dspl_dft.txt", 1, 64);
+	dspl_print_msg("Save results to ex_dspl_dft.txt", 1, 64);
 	res = dspl_savetxt(yR, yI, N, "dat/ex_dspl_dft.txt");
 	dspl_print_err(res, 1);
 

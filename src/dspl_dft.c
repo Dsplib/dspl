@@ -25,36 +25,6 @@
 
 
 
-/*
-* Discrete Fourier Transform.
-* This function calculates n-point DFT of real or complex input signal. 
-* ------------------------------------------------------------------------------------------
-* Parameters:
-*    [in]     double *xR   -  Input signal vector real  part pointer. Vector size is [n x 1]. 
-*
-*    [in]     double *xI   -  Input signal vector image part pointer. Vector size is [n x 1].
-*                             This pointer can be NULL if DFT is calculated for a real signal
-*
-*    [in]     int n        -  DFT size (input and output vectors size).
-*
-*    [out]    double *yR   -  DFT vector real  part pointer. Vector size is [n x 1].
-*                             Memory must be allocated.
-*     
-*    [out]    double *yI   -  DFT vector image part pointer. Vector size is [n x 1].
-*                             Memory must be allocated.
-*     
-* ------------------------------------------------------------------------------------------
-* Return:
-*    DSPL_OK         if DFT is calculted successfuly
-*
-*    DSPL_ERROR_PTR  if xR == NULL or yR == NULL or yI == NULL
-*
-*    DSPL_ERROR_SIZE if n<1.
-* ------------------------------------------------------------------------------------------
-* Author:
-*    Sergey Bakhurin.                                                         www.dsplib.org    
-*
-*/
 
 DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
 {
@@ -83,6 +53,7 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
             dI = sin(dphi);
             for(m = 0; m < n; m++)
             {
+				
                 yR[k] += xR[m] * eR - xI[m] * eI;
                 yI[k] += xR[m] * eI + xI[m] * eR;
                 tR = eR * dR - eI * dI;

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.10"/>
+<title>DSPL: ex_dspl_dft.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DSPL
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.10 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="modules.html"><span>Группы</span></a></li>
+      <li><a href="examples.html"><span>Примеры</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ex_dspl_dft.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment">*   dspl_dft function example.  </span></div>
+<div class="line"><span class="comment">*</span></div>
+<div class="line"><span class="comment">*   Task:</span></div>
+<div class="line"><span class="comment">*   Calculate 256-points DFT for complex exponent </span></div>
+<div class="line"><span class="comment">*   s(n) = exp(2*pi*j*0.2*n), n = 0...255</span></div>
+<div class="line"><span class="comment">*/</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;windows.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;dspl.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;dspl_load.h&quot;</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define N   256</span></div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">int</span> main()</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordtype">double</span> xR[N]; <span class="comment">/* input signal real  part vector */</span></div>
+<div class="line">    <span class="keywordtype">double</span> xI[N]; <span class="comment">/* input signal image part vector */</span></div>
+<div class="line">    <span class="keywordtype">double</span> yR[N]; <span class="comment">/* DFT real  part vector */</span></div>
+<div class="line">    <span class="keywordtype">double</span> yI[N]; <span class="comment">/* DFT image part vector */</span></div>
+<div class="line">    <span class="keywordtype">int</span> n;</div>
+<div class="line">    <span class="keywordtype">int</span> res;</div>
+<div class="line"></div>
+<div class="line">    HINSTANCE hInstDLL;</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">/* Load dspl.dll */</span></div>
+<div class="line">    hInstDLL = dspl_load();</div>
+<div class="line">    <span class="keywordflow">if</span>(!hInstDLL)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;dspl.dll Loading Error!\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> 0;</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">/*print current dspl.dll version */</span></div>
+<div class="line">    dspl_get_version(1);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">/* input signal s(n) = exp(2*pi*j*0.2*n) */</span></div>
+<div class="line">    <span class="keywordflow">for</span>(n = 0; n &lt; N; n++)</div>
+<div class="line">    {</div>
+<div class="line">        xR[n] = cos(M_2PI * (<span class="keywordtype">double</span>)n *0.2);</div>
+<div class="line">        xI[n] = sin(M_2PI * (<span class="keywordtype">double</span>)n *0.2);</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">/* DFT calculation */</span></div>
+<div class="line">    dspl_print_msg(<span class="stringliteral">&quot;DFT calculation&quot;</span>, 1, 64);   </div>
+<div class="line">    res = <a name="a0"></a><a class="code" href="group___d_f_t___g_r_o_u_p.html#gad06cf9d81ffe7bef91d54ec14212dd79">dspl_dft</a>(xR, xI, N, yR, yI);</div>
+<div class="line">    dspl_print_err(res, 1);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">/* save result to ex_dspl_dft.txt */</span></div>
+<div class="line">    dspl_print_msg(<span class="stringliteral">&quot;Save results to ex_dspl_dft.txt&quot;</span>, 1, 64);</div>
+<div class="line">    res = dspl_savetxt(yR, yI, N, <span class="stringliteral">&quot;dat/ex_dspl_dft.txt&quot;</span>);</div>
+<div class="line">    dspl_print_err(res, 1);</div>
+<div class="line"></div>
+<div class="line">    FreeLibrary(hInstDLL);</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.10
+</small></address>
+</body>
+</html>

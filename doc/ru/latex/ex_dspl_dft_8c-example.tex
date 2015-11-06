@@ -1,0 +1,64 @@
+\hypertarget{ex_dspl_dft_8c-example}{}\section{ex\+\_\+dspl\+\_\+dft.\+c}
+
+\begin{DoxyCodeInclude}
+\textcolor{comment}{/*}
+\textcolor{comment}{*   dspl\_dft function example.  }
+\textcolor{comment}{*}
+\textcolor{comment}{*   Task:}
+\textcolor{comment}{*   Calculate 256-points DFT for complex exponent }
+\textcolor{comment}{*   s(n) = exp(2*pi*j*0.2*n), n = 0...255}
+\textcolor{comment}{*/}
+
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <stdlib.h>}
+\textcolor{preprocessor}{#include <windows.h>}
+\textcolor{preprocessor}{#include "dspl.h"}
+\textcolor{preprocessor}{#include "dspl\_load.h"}
+
+\textcolor{preprocessor}{#define N   256}
+
+\textcolor{keywordtype}{int} main()
+\{
+    \textcolor{keywordtype}{double} xR[N]; \textcolor{comment}{/* input signal real  part vector */}
+    \textcolor{keywordtype}{double} xI[N]; \textcolor{comment}{/* input signal image part vector */}
+    \textcolor{keywordtype}{double} yR[N]; \textcolor{comment}{/* DFT real  part vector */}
+    \textcolor{keywordtype}{double} yI[N]; \textcolor{comment}{/* DFT image part vector */}
+    \textcolor{keywordtype}{int} n;
+    \textcolor{keywordtype}{int} res;
+
+    HINSTANCE hInstDLL;
+
+    \textcolor{comment}{/* Load dspl.dll */}
+    hInstDLL = dspl\_load();
+    \textcolor{keywordflow}{if}(!hInstDLL)
+    \{
+        printf(\textcolor{stringliteral}{"dspl.dll Loading Error!\(\backslash\)n"});
+        \textcolor{keywordflow}{return} 0;
+    \}
+
+    \textcolor{comment}{/*print current dspl.dll version */}
+    dspl\_get\_version(1);
+
+    \textcolor{comment}{/* input signal s(n) = exp(2*pi*j*0.2*n) */}
+    \textcolor{keywordflow}{for}(n = 0; n < N; n++)
+    \{
+        xR[n] = cos(M\_2PI * (\textcolor{keywordtype}{double})n *0.2);
+        xI[n] = sin(M\_2PI * (\textcolor{keywordtype}{double})n *0.2);
+    \}
+
+    \textcolor{comment}{/* DFT calculation */}
+    dspl\_print\_msg(\textcolor{stringliteral}{"DFT calculation"}, 1, 64);   
+    res = \hyperlink{group___d_f_t___g_r_o_u_p_gad06cf9d81ffe7bef91d54ec14212dd79}{dspl\_dft}(xR, xI, N, yR, yI);
+    dspl\_print\_err(res, 1);
+
+    \textcolor{comment}{/* save result to ex\_dspl\_dft.txt */}
+    dspl\_print\_msg(\textcolor{stringliteral}{"Save results to ex\_dspl\_dft.txt"}, 1, 64);
+    res = dspl\_savetxt(yR, yI, N, \textcolor{stringliteral}{"dat/ex\_dspl\_dft.txt"});
+    dspl\_print\_err(res, 1);
+
+    FreeLibrary(hInstDLL);
+    
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,77 @@
+#ifdef DOXYGEN_EN
+/*!
+	\defgroup MAIN_GROUP	DSPL library srtucture
+	
+	\defgroup SPECTRAL_GROUP	Spectral Analisis
+	\ingroup MAIN_GROUP
+	\brief	Functions for Digital Spectal Analisis. 
+	This group includes algorithms for Disctere Fourier Transform (DFT),
+	Fast Fourier Transform (FFT), window functions calculation and 
+	Power Spectrum Density (PSD) calculation.
+	
+	\defgroup DFT_GROUP	Discrete and Fast Fourier Transform algorithms
+	\ingroup SPECTRAL_GROUP
+	\brief	Functions for Digital Spectral Analisis. 
+	This group includes algorithms for Disctere Fourier Transform (DFT) and 
+	Fast Fourier Transform (FFT).
+
+	\defgroup WIN_GROUP	Window functions collection
+	\ingroup SPECTRAL_GROUP	
+	
+	
+		
+	\defgroup CONV_GROUP	Convolution and Digital filtation
+	\ingroup MAIN_GROUP
+	\brief	Functions for digital convolution and digital filtration. 
+
+	
+	\defgroup FILTER_GROUP	Convolution and Digital filtation
+	\ingroup MAIN_GROUP
+	\brief	Functions for digital convolution and digital filtration. 
+	
+	
+	\defgroup IIR_FILTER_DESIGN_GROUP	IIR Filters Design
+	\ingroup FILTER_GROUP
+	\brief	Functions for digital IIR filter design. 
+	
+	
+	\defgroup FIR_FILTER_DESIGN_GROUP	FIR Filters Design
+	\ingroup FILTER_GROUP
+	\brief	Functions for digital FIR filter design.
+	
+*/
+#elseif DOXYGEN_RU
+/*!
+	\defgroup MAIN_GROUP	Библиотека DSPL 
+	
+	\defgroup SPECTRAL_GROUP	Спектральный анализ
+	\ingroup MAIN_GROUP
+	\brief	Функции цифрового спектрального анализа.
+	В данной группе собраны функции реализующие алгоритмы дискретного преобразования Фурье (ДПФ),
+	быстрого преобразования Фурье (БПФ), функции оконного взвешивания, расчета спектральной плотности мощности. 
+	
+	\defgroup DFT_GROUP	Алгоритмы дискретного и быстрого преобразования Фурье
+	\ingroup SPECTRAL_GROUP
+	\brief	Алгоритмы дискретного и быстрого преобразования Фурье 
+	
+	\defgroup WIN_GROUP	Функции оконного взвешивания
+	\ingroup SPECTRAL_GROUP	
+	
+	
+		
+	\defgroup CONV_GROUP	Свертка и цифровая фильтрация
+	\ingroup MAIN_GROUP
+	\brief	Функции для расчета циклической и линейной сверток, а также цифровой КИХ и БИХ фильтрации. 
+
+	
+	
+	\defgroup IIR_FILTER_DESIGN_GROUP	Расчет БИХ-фильтров
+	\ingroup FILTER_GROUP
+	\brief	Функции расчета цифровых БИХ-фильтров. 
+	
+	
+	\defgroup FIR_FILTER_DESIGN_GROUP	Расчет КИХ-фильтров
+	\ingroup FILTER_GROUP
+	\brief	Функции расчета цифровых КИХ-фильтров. 
+		
+*/

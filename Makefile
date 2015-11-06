@@ -21,12 +21,14 @@ DLL_OBJS=$(OBJ_DIR)/dspl_butter_norm.o \
 		$(OBJ_DIR)/dspl_polyval.o\
 		
 
-EX_OBJS=$(OBJ_DIR)/ex_dspl_conv.o\
+EX_OBJS=$(OBJ_DIR)/ex_dspl.o\
+		$(OBJ_DIR)/ex_dspl_conv.o\
 		$(OBJ_DIR)/ex_dspl_dft.o\
 		$(OBJ_DIR)/ex_dspl_fft.o\
 		$(OBJ_DIR)/ex_dspl_polyval.o\
 
 all:	dll\
+		ex_dspl\
 		ex_dspl_conv\
 		ex_dspl_dft\
 		ex_dspl_fft\
@@ -34,6 +36,10 @@ all:	dll\
 
 dll: $(DLL_OBJS)
 	$(CC) -o $(BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) -Wl,--subsystem,windows
+
+ex_dspl:  $(OBJ_DIR)/ex_dspl.o $(OBJ_DIR)/dspl_load.o
+	$(CC) $(OBJ_DIR)/ex_dspl.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl
+
 	
 ex_dspl_conv:  $(OBJ_DIR)/ex_dspl_conv.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl_conv.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_conv
