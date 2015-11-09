@@ -36,9 +36,9 @@
 /*!
 	\ingroup DFT_GROUP
 	\fn int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
-	\brief Дискретное преобразования Фурье.
+	\brief Дискретное преобразование Фурье.
 	
-	This function calculates N-point DFT of real or complex input signal. 
+	Эта функция расчитывает N-точечное  дискретное преобразование Фурье.
 	
 	\param[in]	xR	Input signal vector real  part pointer. Vector size is [n x 1]. 
 		
