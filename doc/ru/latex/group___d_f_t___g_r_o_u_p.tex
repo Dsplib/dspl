@@ -33,25 +33,25 @@ int \hyperlink{group___d_f_t___g_r_o_u_p_gad06cf9d81ffe7bef91d54ec14212dd79}{dsp
 
 Дискретное преобразования Фурье. 
 
-This function calculates N-\/point D\+F\+T of real or complex input signal.
+Функция расчета дискретного преобразования Фурье реального или комплексного сигнала .
 
 
 \begin{DoxyParams}[1]{Аргументы}
-\mbox{\tt in}  & {\em x\+R} & Input signal vector real part pointer. Vector size is \mbox{[}n x 1\mbox{]}.\\
+\mbox{\tt in}  & {\em x\+R} & Указатель на вектор реальной части входного сигнала $ x(n) $, $ n = 0 \ldots N-1 $. Размер вектора \mbox{[}n x 1\mbox{]}.\\
 \hline
-\mbox{\tt in}  & {\em x\+I} & Input signal vector image part pointer. Vector size is \mbox{[}n x 1\mbox{]}. This pointer can be N\+U\+L\+L if D\+F\+T is calculated for a real signal\\
+\mbox{\tt in}  & {\em x\+I} & Указатель на вектор мнимой части входного сигнала $ x(n) $, $ n = 0 \ldots N-1 $. Размер вектора \mbox{[}n x 1\mbox{]}. Этот указатель может быть N\+U\+L\+L если входной сигнал является чисто вещественным.\\
 \hline
-\mbox{\tt in}  & {\em n} & D\+F\+T size (input and output vectors size).\\
+\mbox{\tt in}  & {\em n} & Размер ДПФ (Размер векторов входного и выходного сигналов $ N $).\\
 \hline
-\mbox{\tt out}  & {\em y\+R} & D\+F\+T vector real part pointer. Vector size is \mbox{[}n x 1\mbox{]}. Memory must be allocated.\\
+\mbox{\tt out}  & {\em y\+R} & Указатель на вектор реальной части Результата ДПФ $ Y(k) $, $ k = 0 \ldots N-1 $. Размер вектора \mbox{[}n x 1\mbox{]}. Память должна быть выделена.\\
 \hline
-\mbox{\tt out}  & {\em y\+I} & D\+F\+T vector image part pointer. Vector size is \mbox{[}n x 1\mbox{]}. Memory must be allocated.\\
+\mbox{\tt out}  & {\em y\+I} & Указатель на вектор мнимой части Результата ДПФ $ Y(k) $, $ k = 0 \ldots N-1 $. Размер вектора \mbox{[}n x 1\mbox{]}. Память должна быть выделена.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-D\+S\+P\+L\+\_\+\+O\+K if D\+F\+T is calculted successfuly ~\newline
- D\+S\+P\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+T\+R if x\+R == N\+U\+L\+L or y\+R == N\+U\+L\+L or y\+I == N\+U\+L\+L~\newline
- D\+S\+P\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+S\+I\+Z\+E if n$<$1.~\newline
+D\+S\+P\+L\+\_\+\+O\+K если ДПФ рассчитано успешно ~\newline
+ D\+S\+P\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+T\+R если x\+R == N\+U\+L\+L или y\+R == N\+U\+L\+L или y\+I == N\+U\+L\+L~\newline
+ D\+S\+P\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+S\+I\+Z\+E если n$<$1 ~\newline
 
 \end{DoxyReturn}
 \begin{DoxyAuthor}{Автор}

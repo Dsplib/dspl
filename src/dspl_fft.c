@@ -30,6 +30,34 @@ int  	dspl_fft_p2 (int n);
 void  	dspl_fft_reorder (fft_t* pfft, int n);
 
 
+
+DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, 
+											double* yR, double* yI)
+{
+	int p2;
+	int k;
+	size_t bufSize;
+	if(!xR || !yR || !yI)
+		return DSPL_ERROR_PTR;
+	p2 = dspl_fft_p2(n);
+	if(!p2)
+		return DSPL_ERROR_FFT_SIZE;
+	bufSize = n * sizeof(double);
+	memcpy(pfft->t0R, xR, bufSize);
+	if(xI)
+		for (k = 0; k<n; k++)
+			pfft->t0I[k] = -xI[k];
+	else		
+        memset(pfft->t0I, 0, bufSize);
+	dspl_fft_reorder(pfft, n);
+	dspl_fft_krn(pfft, n, p2);
+	memcpy(yR, pfft->t0R, bufSize);
+	for (k = 0; k<n; k++)
+		 yI[k]= -pfft->t0I[k];
+	return DSPL_OK;
+}
+
+
 /*
 * Fast Fourier Transform.
 * This function calculates DFT by using Cooley - Tukey decimation in time algorithm

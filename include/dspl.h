@@ -108,8 +108,10 @@ DSPL_API int dspl_conv_cmplx	(double* aR, double* aI, int na,
 /* Discrete Fourier Transform  (dspl_dft.c) */
 DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
 
-
-
+/* Inverse Fast Fourier Transform  (dspl_fft.c)*/
+DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, 
+											double* yR, double* yI);
+											
 /* Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API int dspl_fft(	double* xR, double* xI, int n, fft_t *pfft, 
 						double* yR, double* yI);
