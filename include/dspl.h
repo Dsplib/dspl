@@ -34,6 +34,7 @@
  	
 /* max message length */ 
 #define DSPL_MSG_LENGTH			256
+                                     
 
 #define DSPL_OK					0
 
@@ -54,6 +55,12 @@
 #define DSPL_MATRIX_TYPE		1
 #define DSPL_MAT_MAJOR_COL		0
 #define DSPL_MAT_MAJOR_ROW		1
+
+
+/* data */
+#define DSPL_DAT_REAL			0
+#define DSPL_DAT_COMPLEX		1
+
 
 
 typedef struct
@@ -170,6 +177,11 @@ DSPL_API void dspl_print_err (int res, int printCR);
 
 /* print message (dspl_inout.c) */
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
+
+
+
+/* save vectors to a binary file (dspl_inout.c) */
+DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn);
 
 
 

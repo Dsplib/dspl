@@ -103,6 +103,9 @@ typedef void (*p_dspl_print_err) 	(int res, int printCR);
 /* print message (dspl_inout.c) */
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 
+/* save vectors to a binary file (dspl_inout.c) */
+typedef int (*p_dspl_savebin) 		(double* x, double *y, int n, char* fn);
+
 /* save vectors to text file (dspl_inout.c) */
 typedef int (*p_dspl_savetxt) 		(double* x, double *y, int n, char* fn);
 
@@ -122,6 +125,7 @@ extern p_dspl_polyval		dspl_polyval   		;
 extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
 extern p_dspl_print_msg 	dspl_print_msg 	    ;
+extern p_dspl_savebin		dspl_savebin        ;
 extern p_dspl_savetxt		dspl_savetxt        ;
 
 

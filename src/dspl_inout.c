@@ -155,6 +155,35 @@ DSPL_API void dspl_print_msg(char* msg, int printTime, int msgLen)
 
 
 
+/* Save data to bin file */
+DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn)
+{
+	int k;
+	FILE* pFile = NULL;
+	
+	if(!x)
+		return DSPL_ERROR_PTR;
+	if(n < 1)
+		return DSPL_ERROR_SIZE;
+	if(!fn)
+		return DSPL_ERROR_FNAME;
+	
+	pFile = fopen(fn, "wb");
+	if(pFile == NULL)
+		return DSPL_ERROR_FOPEN;
+	
+	k = y ? DSPL_DAT_COMPLEX :  DSPL_DAT_REAL;
+	fwrite(&k, sizeof(int), 1, pFile);
+	fwrite(&n, sizeof(int), 1, pFile);
+	k = 1;
+	fwrite(&k, sizeof(int), 1, pFile);
+	fwrite(&x, sizeof(double), n, pFile);
+	if(y)
+		fwrite(&y, sizeof(double), n, pFile);		
+	fclose(pFile);
+	return DSPL_OK;	
+}
+
 
 
 
