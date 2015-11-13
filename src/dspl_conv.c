@@ -146,7 +146,7 @@ DSPL_API int dspl_conv(double* a, int na, double* b,  int nb, double *c)
 *
 */
 
-DSPL_API int dspl_conv_cmplx(double* aR, double* aI, int na, double* bR, double* bI, int nb, 
+DSPL_API int dspl_conv_cmplx(double *aR, double *aI, int na, double *bR, double *bI, int nb, 
 					double *cR, double *cI)
 {
 	double *tR;

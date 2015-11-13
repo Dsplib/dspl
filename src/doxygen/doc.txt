@@ -25,7 +25,7 @@
 	\brief	Functions for digital convolution and digital filtration. 
 
 	
-	\defgroup FILTER_GROUP	Convolution and Digital filtation
+	\defgroup CONV_GROUP	Convolution and Digital filtation
 	\ingroup MAIN_GROUP
 	\brief	Functions for digital convolution and digital filtration. 
 	
