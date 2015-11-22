@@ -3,10 +3,11 @@
 #include "dspl.h"
 #include "dspl_load.h"
 
-
+p_dspl_asinh			dspl_asinh			;
 p_dspl_butter_norm		dspl_butter_norm	;
 p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
+p_dspl_cosh 			dspl_cosh 			;
 p_dspl_dft 				dspl_dft 			;
 p_dspl_fft				dspl_fft		    ;
 p_dspl_fft_create		dspl_fft_create		;
@@ -21,7 +22,8 @@ p_dspl_print_err		dspl_print_err	    ;
 p_dspl_print_msg 		dspl_print_msg 	    ;
 p_dspl_savebin			dspl_savebin        ;
 p_dspl_savetxt			dspl_savetxt        ;
-
+p_dspl_sinh				dspl_sinh			;
+p_dspl_window			dspl_window         ;
 
 
 
@@ -33,6 +35,16 @@ HINSTANCE	dspl_load()
 	
 	if(!hInstDLL)
 		return NULL;
+	
+	
+	
+	dspl_asinh = (p_dspl_asinh) GetProcAddress(hInstDLL, "dspl_asinh");
+	if(!dspl_asinh)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
 	
 	dspl_butter_norm = (p_dspl_butter_norm) GetProcAddress(hInstDLL, "dspl_butter_norm");
 	if(!dspl_butter_norm)
@@ -56,6 +68,16 @@ HINSTANCE	dspl_load()
 		FreeLibrary(hInstDLL);
 		return NULL;		
 	}
+	
+	
+	
+	dspl_cosh = (p_dspl_cosh) GetProcAddress(hInstDLL, "dspl_cosh");
+	if(!dspl_cosh)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
 	
 	
 	dspl_dft = (p_dspl_dft) GetProcAddress(hInstDLL, "dspl_dft");
@@ -173,6 +195,26 @@ HINSTANCE	dspl_load()
 		FreeLibrary(hInstDLL);
 		return NULL;		
 	}
+	
+	
+	
+	dspl_window = (p_dspl_window) GetProcAddress(hInstDLL, "dspl_window");
+	if(!dspl_window)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	
+	
+	dspl_sinh = (p_dspl_sinh) GetProcAddress(hInstDLL, "dspl_sinh");
+	if(!dspl_sinh)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
 	
 	return hInstDLL;
 }

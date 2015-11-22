@@ -18,7 +18,10 @@ DLL_OBJS=$(OBJ_DIR)/dspl_butter_norm.o \
 		$(OBJ_DIR)/dspl_freqs.o \
 		$(OBJ_DIR)/dspl_freqz.o \
 		$(OBJ_DIR)/dspl_inout.o \
+        $(OBJ_DIR)/dspl_math_hyperbolic.o \
 		$(OBJ_DIR)/dspl_polyval.o\
+		$(OBJ_DIR)/dspl_win.o\
+
 		
 
 EX_OBJS=$(OBJ_DIR)/ex_dspl.o\

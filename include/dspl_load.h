@@ -25,6 +25,11 @@
 
 
 
+/* Arsine hyperbolic for real argument (dspl_math_hyperbolic.c) */
+typedef double (*p_dspl_asinh)(double x);
+
+
+
 /* Analog Normalized Butterworth Lowpass Filter (dspl_butter_norm.c) */
 typedef int (*p_dspl_butter_norm)	(double Rp, int ord, double* b, double* a);
 
@@ -40,6 +45,10 @@ typedef int (*p_dspl_conv_cmplx)	(	double* aR, double* aI, int na,
                      					double* bR, double* bI, int nb, 
 					 					double *cR, double *cI);
 
+										
+/* Hyperbolic cosine for real argument (dspl_math_hyperbolic.c) */
+typedef double (*p_dspl_cosh)(double x);
+										
 										
 										
 /* Discrete Fourier Transform  (dspl_dft.c) */
@@ -110,9 +119,18 @@ typedef int (*p_dspl_savebin) 		(double* x, double *y, int n, char* fn);
 typedef int (*p_dspl_savetxt) 		(double* x, double *y, int n, char* fn);
 
 
+/* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
+typedef double (*p_dspl_sinh)(double x);
+
+
+/* window function calculation (dspl_win.c)*/
+typedef int (*p_dspl_window)		(double* w, int n, int win_type, double param);
+
+extern p_dspl_asinh			dspl_asinh			;
 extern p_dspl_butter_norm	dspl_butter_norm	;
 extern p_dspl_conv			dspl_conv			;         	
-extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;   				
+extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
+extern p_dspl_cosh 			dspl_cosh 			;				
 extern p_dspl_dft 			dspl_dft 			; 
 extern p_dspl_fft			dspl_fft		    ;
 extern p_dspl_fft_create	dspl_fft_create	    ;
@@ -127,7 +145,8 @@ extern p_dspl_print_err		dspl_print_err	    ;
 extern p_dspl_print_msg 	dspl_print_msg 	    ;
 extern p_dspl_savebin		dspl_savebin        ;
 extern p_dspl_savetxt		dspl_savetxt        ;
-
+extern p_dspl_sinh			dspl_sinh			;
+extern p_dspl_window		dspl_window         ;
 
 HINSTANCE dspl_load();
 

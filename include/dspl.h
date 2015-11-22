@@ -26,10 +26,10 @@
 
 /* math const definition */
 #ifndef M_PI
-#define M_PI	3.1415926535897932384626433832795
+	#define M_PI	3.1415926535897932384626433832795
 #endif
 #ifndef M_2PI
-#define M_2PI	6.283185307179586476925286766559
+	#define M_2PI	6.283185307179586476925286766559
 #endif
  	
 /* max message length */ 
@@ -48,6 +48,7 @@
 #define DSPL_ERROR_POLY_ORD		 900
 #define DSPL_ERROR_PTR			1000
 #define DSPL_ERROR_SIZE			4000
+#define	DSPL_ERROR_WIN_TYPE		5000
 
 
 #define DSPL_MATRIX_REAL		0
@@ -62,6 +63,21 @@
 #define DSPL_DAT_COMPLEX		1
 
 
+/* window types */
+#define	DSPL_WIN_BARLETT			10
+#define	DSPL_WIN_BARLETT_HANN		20
+#define	DSPL_WIN_BLACKMAN			30	
+#define	DSPL_WIN_BLACKMAN_HARRIS	40
+#define	DSPL_WIN_BLACKMAN_NUTTAL	50
+#define	DSPL_WIN_FLAT_TOP			60		
+#define	DSPL_WIN_GAUSS				70
+#define	DSPL_WIN_HAMMING			80
+#define	DSPL_WIN_HANN				90
+#define	DSPL_WIN_LANCZOS			100
+#define	DSPL_WIN_NUTTAL				110	
+#define	DSPL_WIN_RECT				120		
+#define	DSPL_WIN_SIN				130							
+				
 
 typedef struct
 {
@@ -95,6 +111,12 @@ extern "C" {
 
 
 
+/* Arsine hyperbolic for real argument (dspl_math_hyperbolic.c) */
+DSPL_API double dspl_asinh(double x);
+
+
+
+
 /* Analog Normalized Butterworth Lowpass Filter (dspl_butter_norm.c) */
 DSPL_API int dspl_butter_norm(double Rp, int ord, double* b, double* a);
 
@@ -110,15 +132,20 @@ DSPL_API int dspl_conv_cmplx	(double* aR, double* aI, int na,
                      double* bR, double* bI, int nb, 
 					 double *cR, double *cI);
 
+
+/* Hyperbolic cosine for real argument (dspl_math_hyperbolic.c) */
+DSPL_API double dspl_cosh(double x);
 					 
 					 
 /* Discrete Fourier Transform  (dspl_dft.c) */
 DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
 
+
 /* Inverse Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, 
 											double* yR, double* yI);
-											
+		
+		
 /* Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API int dspl_fft(	double* xR, double* xI, int n, fft_t *pfft, 
 						double* yR, double* yI);
@@ -187,6 +214,16 @@ DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn);
 
 /* save vectors to text file (dspl_inout.c) */
 DSPL_API int dspl_savetxt (double* x, double *y, int n, char* fn);
+
+
+
+/* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
+DSPL_API double dspl_sinh(double x);
+
+
+
+/* window function calculation (dspl_win.c)*/
+DSPL_API int dspl_window(double* w, int n, int win_type, double param);
 
 
 
