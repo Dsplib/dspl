@@ -24,19 +24,19 @@
 #include <math.h>
 #include "dspl.h"
 
-void dspl_win_barlett(double *w, int n);
-void dspl_win_barlett_hann(double *w, int n);
+void dspl_win_bartlett(double *w, int n);
+void dspl_win_bartlett_hann(double *w, int n);
 void dspl_win_blackman(double *w, int n);
 void dspl_win_blackman_harris(double *w, int n);
-void dspl_win_blackman_nuttal(double *w, int n);
+void dspl_win_blackman_nuttall(double *w, int n);
 void dspl_win_flat_top(double *w, int n);
-void dspl_win_gauss(double *w, double sigma, int n);
+void dspl_win_gaussian(double *w, double sigma, int n);
 void dspl_win_hamming(double *w, int n);
 void dspl_win_hann(double *w, int n);
 void dspl_win_lanczos(double *w, int n);
-void dspl_win_nuttal(double *w, int n);
+void dspl_win_nuttall(double *w, int n);
 void dspl_win_rect(double *w, int n);
-void dspl_win_sin(double *w, int n);
+void dspl_win_cos(double *w, int n);
 
 
 
@@ -47,19 +47,19 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 	if(n<2)
 		return DSPL_ERROR_SIZE;
 	switch(win_type){
-		case  DSPL_WIN_BARLETT			:	dspl_win_barlett(w, n);				break; 
-		case  DSPL_WIN_BARLETT_HANN		:	dspl_win_barlett_hann(w, n);		break; 
+		case  DSPL_WIN_BARTLETT			:	dspl_win_bartlett(w, n);			break; 
+		case  DSPL_WIN_BARTLETT_HANN	:	dspl_win_bartlett_hann(w, n);		break; 
 		case  DSPL_WIN_BLACKMAN			:	dspl_win_blackman(w, n);			break; 
 		case  DSPL_WIN_BLACKMAN_HARRIS	:	dspl_win_blackman_harris(w, n);		break; 
-		case  DSPL_WIN_BLACKMAN_NUTTAL	:	dspl_win_blackman_nuttal(w, n);		break; 
+		case  DSPL_WIN_BLACKMAN_NUTTALL	:	dspl_win_blackman_nuttall(w, n);	break; 
 		case  DSPL_WIN_FLAT_TOP			:	dspl_win_flat_top(w, n);			break; 
-		case  DSPL_WIN_GAUSS			:	dspl_win_gauss(w, param, n);		break; 
+		case  DSPL_WIN_GAUSSIAN			:	dspl_win_gaussian(w, param, n);		break; 
 		case  DSPL_WIN_HAMMING			:	dspl_win_hamming(w, n);				break; 
 		case  DSPL_WIN_HANN				:	dspl_win_hann(w, n);				break; 
 		case  DSPL_WIN_LANCZOS			:	dspl_win_lanczos(w, n);				break; 
-		case  DSPL_WIN_NUTTAL			:	dspl_win_nuttal(w, n);				break; 
+		case  DSPL_WIN_NUTTALL			:	dspl_win_nuttall(w, n);				break; 
 		case  DSPL_WIN_RECT				:	dspl_win_rect(w, n);				break; 
-		case  DSPL_WIN_SIN				:	dspl_win_sin(w, n);					break;
+		case  DSPL_WIN_COS				:	dspl_win_cos(w, n);					break;
 		default 						:	return DSPL_ERROR_WIN_TYPE;			
 	}
 	return DSPL_OK;
@@ -67,7 +67,7 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 
 
 /* Barlett window */
-void dspl_win_barlett(double *w, int n)
+void dspl_win_bartlett(double *w, int n)
 {
 	double x = (double)(n-1); 
 	int i;
@@ -81,7 +81,7 @@ void dspl_win_barlett(double *w, int n)
 
 
 /* Barlett - Hann window */
-void dspl_win_barlett_hann(double *w, int n)
+void dspl_win_bartlett_hann(double *w, int n)
 {
 	double y;
 	int i;
@@ -127,7 +127,7 @@ void dspl_win_blackman_harris(double *w, int n)
 
 
 /* Blackman - Nuttul window */
-void dspl_win_blackman_nuttal(double *w, int n)
+void dspl_win_blackman_nuttall(double *w, int n)
 {
 	double y;
 	double a0 = 0.3635819;
@@ -165,14 +165,14 @@ void dspl_win_flat_top(double *w, int n)
 
 
 /* Gaussian window */
-void dspl_win_gauss(double *w, double sigma, int n)
+void dspl_win_gaussian(double *w, double alpha, int n)
 {
 	double x = (double)(n-1)*0.5; 
 	double y;
 	int i;
 	for(i = 0; i<n; i++)
 	{
-		y = ((double)i - x)/(sigma*x);
+		y = ((double)i - x)/(alpha*x);
 		w[i] = exp(-0.5*y*y);
 	}
 }
@@ -218,7 +218,7 @@ void dspl_win_lanczos(double *w, int n)
 
 
 /* Nuttal window */
-void dspl_win_nuttal(double *w, int n)
+void dspl_win_nuttall(double *w, int n)
 {
 	double y;
 	double a0 = 0.355768;
@@ -246,7 +246,7 @@ void dspl_win_rect(double *w, int n)
 
 
 /* Sine window */
-void dspl_win_sin(double *w, int n)
+void dspl_win_cos(double *w, int n)
 {
 	int i;
 	for(i = 0; i<n; i++)

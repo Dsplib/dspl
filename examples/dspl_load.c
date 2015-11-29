@@ -22,6 +22,7 @@ p_dspl_print_err		dspl_print_err	    ;
 p_dspl_print_msg 		dspl_print_msg 	    ;
 p_dspl_savebin			dspl_savebin        ;
 p_dspl_savetxt			dspl_savetxt        ;
+p_dspl_savevar			dspl_savevar		;	
 p_dspl_sinh				dspl_sinh			;
 p_dspl_window			dspl_window         ;
 
@@ -191,6 +192,14 @@ HINSTANCE	dspl_load()
 	
 	dspl_savetxt = (p_dspl_savetxt) GetProcAddress(hInstDLL, "dspl_savetxt");
 	if(!dspl_savetxt)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	dspl_savevar = (p_dspl_savevar) GetProcAddress(hInstDLL, "dspl_savevar");
+	if(!dspl_savevar)
 	{
 		FreeLibrary(hInstDLL);
 		return NULL;		

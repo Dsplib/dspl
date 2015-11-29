@@ -32,51 +32,57 @@
 	#define M_2PI	6.283185307179586476925286766559
 #endif
  	
-/* max message length */ 
-#define DSPL_MSG_LENGTH			256
+
                                      
 
-#define DSPL_OK					0
+#define DSPL_OK						0
 
 /* Error codes */
-#define	DSPL_ERROR_FFT_SIZE		  90	
-#define DSPL_ERROR_FILTER_A0	 100
-#define	DSPL_ERROR_FILTER_ORD	 120
-#define	DSPL_ERROR_FILTER_RP	 125	 
-#define DSPL_ERROR_FNAME		 200	
-#define DSPL_ERROR_FOPEN		 250
-#define DSPL_ERROR_POLY_ORD		 900
-#define DSPL_ERROR_PTR			1000
-#define DSPL_ERROR_SIZE			4000
-#define	DSPL_ERROR_WIN_TYPE		5000
+#define	DSPL_ERROR_FFT_SIZE			0x00009000	
+#define DSPL_ERROR_FILTER_A0		0x00010000
+#define	DSPL_ERROR_FILTER_ORD		0x00012000
+#define	DSPL_ERROR_FILTER_RP		0x00012500	 
+#define DSPL_ERROR_FNAME			0x00020000	
+#define DSPL_ERROR_FOPEN			0x00025000
+#define DSPL_ERROR_POLY_ORD			0x00090000
+#define DSPL_ERROR_PTR				0x00100000
+#define DSPL_ERROR_SIZE				0x00400000
+#define DSPL_ERROR_VARNAME			0x00480000
+#define	DSPL_ERROR_WIN_TYPE			0x00500000
+	
+	
+#define DSPL_MATRIX_REAL			0
+#define DSPL_MATRIX_COMPLEX			1
+#define DSPL_MATRIX_TYPE			1
+#define DSPL_MAT_MAJOR_COL			0
+#define DSPL_MAT_MAJOR_ROW			1
+	
+	
+/* data */	
+#define DSPL_DAT_REAL				0
+#define DSPL_DAT_COMPLEX			1
 
 
-#define DSPL_MATRIX_REAL		0
-#define DSPL_MATRIX_COMPLEX		1
-#define DSPL_MATRIX_TYPE		1
-#define DSPL_MAT_MAJOR_COL		0
-#define DSPL_MAT_MAJOR_ROW		1
+/* max message length */ 
+#define DSPL_MSG_LENGTH				256
 
-
-/* data */
-#define DSPL_DAT_REAL			0
-#define DSPL_DAT_COMPLEX		1
-
+/* dspl variable name length for bin file */
+#define DSPL_VARNAME_LENGTH			256
 
 /* window types */
-#define	DSPL_WIN_BARLETT			10
-#define	DSPL_WIN_BARLETT_HANN		20
-#define	DSPL_WIN_BLACKMAN			30	
-#define	DSPL_WIN_BLACKMAN_HARRIS	40
-#define	DSPL_WIN_BLACKMAN_NUTTAL	50
-#define	DSPL_WIN_FLAT_TOP			60		
-#define	DSPL_WIN_GAUSS				70
-#define	DSPL_WIN_HAMMING			80
-#define	DSPL_WIN_HANN				90
-#define	DSPL_WIN_LANCZOS			100
-#define	DSPL_WIN_NUTTAL				110	
-#define	DSPL_WIN_RECT				120		
-#define	DSPL_WIN_SIN				130							
+#define	DSPL_WIN_BARTLETT			0x00000010
+#define	DSPL_WIN_BARTLETT_HANN		0x00000020
+#define	DSPL_WIN_BLACKMAN			0x00000030	
+#define	DSPL_WIN_BLACKMAN_HARRIS	0x00000040
+#define	DSPL_WIN_BLACKMAN_NUTTALL	0x00000050
+#define	DSPL_WIN_FLAT_TOP			0x00000060		
+#define	DSPL_WIN_GAUSSIAN			0x00000070
+#define	DSPL_WIN_HAMMING			0x00000080
+#define	DSPL_WIN_HANN				0x00000090
+#define	DSPL_WIN_LANCZOS			0x00000100
+#define	DSPL_WIN_NUTTALL			0x00000110	
+#define	DSPL_WIN_RECT				0x00000120		
+#define	DSPL_WIN_COS				0x00000130							
 				
 
 typedef struct
@@ -206,20 +212,16 @@ DSPL_API void dspl_print_err (int res, int printCR);
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
 
 
-
-/* save vectors to a binary file (dspl_inout.c) */
-DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn);
-
-
-
 /* save vectors to text file (dspl_inout.c) */
 DSPL_API int dspl_savetxt (double* x, double *y, int n, char* fn);
 
 
+/* save variable to bin file (dspl_inout.c)*/
+DSPL_API int dspl_savevar(double* x, double* y, int n, char* vn, char* fn);
+
 
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_sinh(double x);
-
 
 
 /* window function calculation (dspl_win.c)*/

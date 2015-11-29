@@ -112,15 +112,14 @@ typedef void (*p_dspl_print_err) 	(int res, int printCR);
 /* print message (dspl_inout.c) */
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 
-/* save vectors to a binary file (dspl_inout.c) */
-typedef int (*p_dspl_savebin) 		(double* x, double *y, int n, char* fn);
-
 /* save vectors to text file (dspl_inout.c) */
 typedef int (*p_dspl_savetxt) 		(double* x, double *y, int n, char* fn);
 
+/* save variable to bin file (dspl_inout.c)*/
+typedef int (*p_dspl_savevar)		(double* x, double* y, int n, char* vn, char* fn);
 
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
-typedef double (*p_dspl_sinh)(double x);
+typedef double (*p_dspl_sinh)		(double x);
 
 
 /* window function calculation (dspl_win.c)*/
@@ -143,8 +142,8 @@ extern p_dspl_polyval		dspl_polyval   		;
 extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
 extern p_dspl_print_msg 	dspl_print_msg 	    ;
-extern p_dspl_savebin		dspl_savebin        ;
 extern p_dspl_savetxt		dspl_savetxt        ;
+extern p_dspl_savevar		dspl_savevar		;	
 extern p_dspl_sinh			dspl_sinh			;
 extern p_dspl_window		dspl_window         ;
 

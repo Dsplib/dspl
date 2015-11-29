@@ -1,0 +1,57 @@
+
+#ifdef DOXYGEN_EN
+
+/*
+* Get DSPL version.
+* This function return DSPL version
+* ------------------------------------------------------------------------------------------
+* Parameters:
+*	[in] 	int printFlag -	Print DSPL version to console. 
+*
+* ------------------------------------------------------------------------------------------
+* Author:
+*	Sergey Bakhurin. 														www.dsplib.org	
+*
+*/
+DSPL_API int dspl_get_version(int printFlag)
+
+
+/*!
+	\ingroup IN_OUT_GROUP
+	\fn  int dspl_get_version(int printFlag)
+	\brief Get DSPL version.
+
+	
+	This function return DSPL version
+	
+	\param[in]	printFlag	Print DSPL version to console. 
+							DSPL version will be printed if `printFlag` is 1. 
+		
+	
+	\return
+	DSPL version
+	
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+#elseif DOXYGEN_RU
+/*!
+	\ingroup IN_OUT_GROUP
+	\fn  int dspl_get_version(int printFlag)
+	\brief Функция возвращает версию библиотеки DSPL
+    
+	\param[in]	printFlag	Флаг вывода текущей версии в консоль. 
+							Если `printFlag==1`, тогда функция выведет теущую версию библиотеки в консоль  
+		
+	
+	\return
+	Верия библиотеки DSPL в формате 0x00YYMMDD, где YY - год, MM - месяц и DD - день компиляции библиотеки.
+	Например 0x000F0B16 соответствует версии 15.11.24 
+	
+	\author
+		Бахурин Сергей.                                                         
+		www.dsplib.org    
+*/
+
+#endif
