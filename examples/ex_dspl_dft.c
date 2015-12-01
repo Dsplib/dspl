@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <windows.h>
 #include "dspl.h"
-#include "dspl_load.h"
 
 #define N	256
 
@@ -48,9 +47,13 @@ int main()
 	res = dspl_dft(xR, xI, N, yR, yI);
 	dspl_print_err(res, 1);
 
-	/* save result to ex_dspl_dft.txt */
-	dspl_print_msg("Save results to ex_dspl_dft.txt", 1, 64);
-	res = dspl_savetxt(yR, yI, N, "dat/ex_dspl_dft.txt");
+	/* save result to ex_dspl_dft.bin */
+	dspl_print_msg("Save input signal vector to ex_dspl_dft.bin", 1, 64);
+	res = dspl_savevar(xR, xI, N, "xin", "dat/ex_dspl_dft.bin");
+	dspl_print_err(res, 1);
+	
+	dspl_print_msg("Save DFT vector to ex_dspl_dft.bin", 1, 64);
+	res = dspl_savevar(yR, yI, N, "xout", "dat/ex_dspl_dft.bin");
 	dspl_print_err(res, 1);
 
 	FreeLibrary(hInstDLL);

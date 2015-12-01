@@ -70,6 +70,7 @@
 #define DSPL_VARNAME_LENGTH			256
 
 /* window types */
+#define DSPL_WIN_MASK				0x0000FFFF
 #define	DSPL_WIN_BARTLETT			0x00000010
 #define	DSPL_WIN_BARTLETT_HANN		0x00000020
 #define	DSPL_WIN_BLACKMAN			0x00000030	
@@ -83,6 +84,10 @@
 #define	DSPL_WIN_NUTTALL			0x00000110	
 #define	DSPL_WIN_RECT				0x00000120		
 #define	DSPL_WIN_COS				0x00000130							
+
+#define DSPL_WIN_TYPE_MASK			0x000F0000
+#define DSPL_WIN_SYMMETRIC			0x00000000
+#define DSPL_WIN_PERIODIC			0x00010000
 				
 
 typedef struct
@@ -109,7 +114,8 @@ typedef struct
 
 
 #ifdef DLL_EXPORT
-	#define DSPL_API	__declspec(dllexport)
+
+#define DSPL_API	__declspec(dllexport)
 
 #ifdef __cplusplus
 extern "C" {
@@ -233,7 +239,136 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param);
 }
 #endif
 
-#endif
+#else
+	
+
+/* Arsine hyperbolic for real argument (dspl_math_hyperbolic.c) */
+typedef double (*p_dspl_asinh)(double x);
+
+
+
+/* Analog Normalized Butterworth Lowpass Filter (dspl_butter_norm.c) */
+typedef int (*p_dspl_butter_norm)	(double Rp, int ord, double* b, double* a);
+
+
+
+/* Linear convolution for real vectors  (dspl_conv.c) */
+typedef int (*p_dspl_conv) 			(double* a, int na, double* b,  int nb, double *c);
+
+
+
+/* Linear convolution for complex vectors  (dspl_conv.c) */
+typedef int (*p_dspl_conv_cmplx)	(	double* aR, double* aI, int na, 
+                     					double* bR, double* bI, int nb, 
+					 					double *cR, double *cI);
+
+										
+/* Hyperbolic cosine for real argument (dspl_math_hyperbolic.c) */
+typedef double (*p_dspl_cosh)(double x);
+										
+										
+										
+/* Discrete Fourier Transform  (dspl_dft.c) */
+typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double* yI);
+
+
+
+/* Fast Fourier Transform  (dspl_fft.c)*/
+typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, fft_t *pfft, 
+											double* yR, double* yI);
+
+
+											
+/* Create Fast Fourier Transform  (dspl_fft.c)*/
+typedef int (*p_dspl_fft_create)	(fft_t *pfft, int n);
+
+
+
+typedef void (*p_dspl_fft_free)(fft_t *pfft);
+
+
+
+/* IIR filter output for real IIR filter and real signal (dspl_filter_iir.c) */
+typedef int (*p_dspl_filter_iir)	(double* b, double* a, int ord, double* x, int n, double* y);
+
+
+/* Analog filter complex transfer function H(jw) (dspl_freqs.c) */
+typedef int (*p_dspl_freqs)(double* b, double* a, int ord, 
+							double* w, int n, 
+							double *hR, double* hI);
+
+
+
+/* IIR digital filter complex transfer function (dspl_freqz.c) */
+typedef int (*p_dspl_freqz)(double* b, double* a, int ord, 
+							double* w, int n, 
+							double *hR, double* hI);
+
+
+
+/* Get DSPL version  (dspl_inout.c) */
+typedef int (*p_dspl_get_version) 	(int printFlag);
+
+
+
+/* Polynom calculation (dspl_polyval.c) */
+typedef int (*p_dspl_polyval)		(double* a, int ord, double* x, int n, double* y);
+
+
+
+/* Complex polynom calculation (dspl_polyval.c) */
+typedef int (*p_dspl_polyval_cmplx)	(	double* aR, double* aI, int ord, 
+										double* xR, double* xI, int n,
+										double* yR, double* yI);
+									
+										
+
+/* print error code (dspl_inout.c) */
+typedef void (*p_dspl_print_err) 	(int res, int printCR);
+
+/* print message (dspl_inout.c) */
+typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
+
+/* save vectors to text file (dspl_inout.c) */
+typedef int (*p_dspl_savetxt) 		(double* x, double *y, int n, char* fn);
+
+/* save variable to bin file (dspl_inout.c)*/
+typedef int (*p_dspl_savevar)		(double* x, double* y, int n, char* vn, char* fn);
+
+/* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
+typedef double (*p_dspl_sinh)		(double x);
+
+
+/* window function calculation (dspl_win.c)*/
+typedef int (*p_dspl_window)		(double* w, int n, int win_type, double param);
+
+extern p_dspl_asinh			dspl_asinh			;
+extern p_dspl_butter_norm	dspl_butter_norm	;
+extern p_dspl_conv			dspl_conv			;         	
+extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
+extern p_dspl_cosh 			dspl_cosh 			;				
+extern p_dspl_dft 			dspl_dft 			; 
+extern p_dspl_fft			dspl_fft		    ;
+extern p_dspl_fft_create	dspl_fft_create	    ;
+extern p_dspl_fft_free		dspl_fft_free		;
+extern p_dspl_filter_iir	dspl_filter_iir	    ;
+extern p_dspl_freqs			dspl_freqs		    ;
+extern p_dspl_freqz			dspl_freqz		    ;
+extern p_dspl_get_version 	dspl_get_version 	; 
+extern p_dspl_polyval		dspl_polyval   		;
+extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
+extern p_dspl_print_err		dspl_print_err	    ;
+extern p_dspl_print_msg 	dspl_print_msg 	    ;
+extern p_dspl_savetxt		dspl_savetxt        ;
+extern p_dspl_savevar		dspl_savevar		;	
+extern p_dspl_sinh			dspl_sinh			;
+extern p_dspl_window		dspl_window         ;
+
+HINSTANCE dspl_load();
+
+
+
+#endif /* ifdef DLL_EXPORT */
 
 #endif
 

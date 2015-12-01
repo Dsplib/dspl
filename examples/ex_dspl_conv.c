@@ -3,8 +3,6 @@
 #include <windows.h>
 #include "dspl.h"
 
-#include "dspl_load.h"
-
 
 int main()
 {

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <windows.h>
 #include "dspl.h"
-#include "dspl_load.h"
+
 
 #define N	256
 

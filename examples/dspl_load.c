@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include "dspl.h"
-#include "dspl_load.h"
+
 
 p_dspl_asinh			dspl_asinh			;
 p_dspl_butter_norm		dspl_butter_norm	;

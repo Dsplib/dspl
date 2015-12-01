@@ -24,7 +24,7 @@
 #include <math.h>
 #include "dspl.h"
 
-void dspl_win_bartlett(double *w, int n);
+void dspl_win_bartlett(double *w, int n, int win_type);
 void dspl_win_bartlett_hann(double *w, int n);
 void dspl_win_blackman(double *w, int n);
 void dspl_win_blackman_harris(double *w, int n);
@@ -46,8 +46,8 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 		return DSPL_ERROR_PTR;
 	if(n<2)
 		return DSPL_ERROR_SIZE;
-	switch(win_type){
-		case  DSPL_WIN_BARTLETT			:	dspl_win_bartlett(w, n);			break; 
+	switch(win_type & DSPL_WIN_MASK){
+		case  DSPL_WIN_BARTLETT			:	dspl_win_bartlett(w, n, win_type);			break; 
 		case  DSPL_WIN_BARTLETT_HANN	:	dspl_win_bartlett_hann(w, n);		break; 
 		case  DSPL_WIN_BLACKMAN			:	dspl_win_blackman(w, n);			break; 
 		case  DSPL_WIN_BLACKMAN_HARRIS	:	dspl_win_blackman_harris(w, n);		break; 
@@ -67,10 +67,16 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 
 
 /* Barlett window */
-void dspl_win_bartlett(double *w, int n)
+void dspl_win_bartlett(double *w, int n, int win_type)
 {
-	double x = (double)(n-1); 
+	double x; 
 	int i;
+	if((win_type & DSPL_WIN_TYPE_MASK) == DSPL_WIN_SYMMETRIC)
+		x = (double)(n-1);
+
+	if((win_type & DSPL_WIN_TYPE_MASK) == DSPL_WIN_PERIODIC)
+		x = (double)n;
+
 	for(i = 0; i < n; i++)
 	{
 		w[i] = 2.0 / x * (x * 0.5-fabs((double)i - x * 0.5));

@@ -72,4 +72,3 @@ $(DLL_OBJS): $(INC_DIR)/dspl.h
 
 $(EX_OBJS): $(INC_DIR)/dspl.h
 
-$(EX_OBJS): $(INC_DIR)/dspl_load.h
