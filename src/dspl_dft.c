@@ -86,8 +86,4 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
     return DSPL_OK;
 }
 
-
-
-
-
-
+/*kuku*/
