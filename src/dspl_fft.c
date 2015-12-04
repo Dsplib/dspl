@@ -76,7 +76,7 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft,
 *	[out]   double *yR   -  DFT vector real  part pointer. Vector size is [n x 1].
 *                           Memory must be allocated.
 *     
-*	[out]	double *yI   -  DFT vector image part pointer. Vector size is [n x 1].
+*	param[out]	double *yI   -  DFT vector image part pointer. Vector size is [n x 1].
 *                           Memory must be allocated.
 *     
 * ------------------------------------------------------------------------------------------
@@ -363,8 +363,3 @@ void dspl_fft_reorder(fft_t* pfft, int n)
 		pfft->t1I = ptr;
 	}
 }
-
-
-
-
-
