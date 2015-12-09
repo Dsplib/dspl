@@ -58,12 +58,80 @@ fft object need 6*N*sizeof(double) bytes For N-points FFT algorithm.
 
 
 #elseif DOXYGEN_RU
+
 /*!
-	\ingroup DFT_GROUP
+\ingroup DFT_GROUP
+\fn int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
+ 		
+\brief Быстрое преобразование Фурье
+Функция рассчитывает БПФ по основанию 2 с использованием алгоритма с прореживанием по времени.
+	
+\param[in]	xR		Указатель на вектор реальной части входного сигнала. Размер вектора [n x 1]. 
+
+\param[in]	xI  	Указатель на вектор мнимой части входного сигнала. Размер вектора [n x 1]. Этот указатель может быть NULL если входной сигнал чисто вещественный. 
+
+\param[in]	 n		Размер БПФ (размер входных и выходных векторов).
+
+\param[in]	pfft	Указатель на объект БПФ. Объект БПФ это структура, которая хранит поворотные коэффициенты и промежуточные результаты БПФ. Объект должен быть  однократно заполнен фунцией dspl_fft_create перед вызовом  функций БПФ и должен быть очищен функцией dspl_fft_free перед выходом.
+
+\param[out]		yR  Указатель на вектор реальной части БПФ. Размер вектора [n x 1]. Память должна быть выделена заранее.
  
+\param[out]	yI Указатель на вектор мнимой части БПФ. Размер вектора [n x 1]. Память должна быть выделена заранее.
+ 
+\return
+   DSPL_OK  если БПФ рассчитано успешно
+	 DSPL_ERROR_PTR  если xR == NULL или yR == NULL или yI == NULL
+DSPL_ERROR_SIZE если n<1.
+DSPL_ERROR_FFT_SIZE	если n не целая степень 2.
+	
 */
 
 
+
+/*!
+\fn int dspl_fft_create(fft_t *pfft, int n)
+\brief Создать объект БПФ.
+
+Функция рассчитывает поворотные коэффициенты и создает массивы промежуточных вычислений. Объект создается под фиксированный размер БПФ.
+создали
+
+\param[in, out]	 	pfft	 указатель на объект БПФ. Память под поворотные коэффициенты и промежуточные вычисления будет выделена.
+
+\param	[in]   	 n   Новый размер БПФ 
+
+
+\return
+ DSPL_OK         объект создан успешно
+DSPL_ERROR_FFT_SIZE	размер БПФ не равен степени 2.
+
+
+\note
+Объект можно использовать для  БПФ меньшего размера. 
+Функция вернет DSPL_OK но размер не будет изменен. Например 
+
+
+fft_t fft;
+
+memset(&fft, 0, sizeof(fft_t));
+res = dspl_fft_create(&fft, 512);
+
+res = dspl_fft_create(&fft, 128);
+
+В результате объект БПФ будет продолжать хранить данные для 512 точечного БПФ.
+
+
+
+
+If you have calculated fft object for FFT size more than n 
+	then you no need to recalculate it. Function will return DSPL_OK in this case, 
+but memory will 
+
+
+ object  
+(dspl_fft_free) and create it again if you want to decrease allocated memory.
+fft object need 6*N*sizeof(double) bytes For N-points FFT algorithm.
+
+*/
 
 
 

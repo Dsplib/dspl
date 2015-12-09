@@ -29,8 +29,8 @@ int main()
 	/* input signal s(n) = exp(2*pi*j*0.2*n) */
 	for(n = 0; n < N; n++)
 	{
-		xR[n] = floor(1E6 * cos(M_2PI * (double)n *0.2)) * 1E-6;
-		xI[n] = floor(1E6 * sin(M_2PI * (double)n *0.2)) * 1E-6;
+		xR[n] =  cos(M_2PI * (double)n *0.2);
+		xI[n] =  sin(M_2PI * (double)n *0.2);
 	}
 
 
@@ -49,14 +49,10 @@ int main()
 
 	dspl_print_err(res, 1);
 	
-	/* Save input signal to ex_dspl_fft_in.txt */
-	dspl_print_msg("Save result to ex_dspl_fft_in.txt", 1, 64);
-	res = dspl_savetxt(xR, xI, N, "dat/ex_dspl_fft_in.txt");
-    dspl_print_err(res, 1);
-	
-	/* Save result to ex_dspl_fft_out.txt */
-	dspl_print_msg("Save result to ex_dspl_fft_out.txt", 1, 64);
-	res = dspl_savetxt(yR, yI, N, "dat/ex_dspl_fft_out.txt");
+	/* Save input signal to ex_dspl_fft_in.bin*/
+	dspl_print_msg("Save result to ex_dspl_fft.bin", 1, 64);
+	res = dspl_savevar(xR, xI, N, "xin",  "dat/ex_dspl_fft.bin");
+	res = dspl_savevar(yR, yI, N, "xout", "dat/ex_dspl_fft.bin");
     dspl_print_err(res, 1);
 	
 	/* Clear FFT object memory */
