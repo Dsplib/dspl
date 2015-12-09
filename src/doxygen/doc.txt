@@ -11,7 +11,7 @@
 	
 	\defgroup DFT_GROUP	Discrete and Fast Fourier Transform algorithms
 	\ingroup SPECTRAL_GROUP
-	\brief	Functions for Digital Spectral Analisis. 
+		
 	This group includes algorithms for Disctere Fourier Transform (DFT) and 
 	Fast Fourier Transform (FFT).
 
@@ -22,22 +22,26 @@
 		
 	\defgroup CONV_GROUP	Convolution and Digital filtation
 	\ingroup MAIN_GROUP
-	\brief	Functions for digital convolution and digital filtration. 
+	
+	Functions for digital convolution and digital filtration. 
 
 	
 	\defgroup FILTER_GROUP	Convolution and Digital filtation
 	\ingroup MAIN_GROUP
-	\brief	Functions for digital convolution and digital filtration. 
+	
+	Functions for digital convolution and digital filtration. 
 	
 	
 	\defgroup IIR_FILTER_DESIGN_GROUP	IIR Filters Design
 	\ingroup FILTER_GROUP
-	\brief	Functions for digital IIR filter design. 
+	
+	Functions for digital IIR filter design. 
 	
 	
 	\defgroup FIR_FILTER_DESIGN_GROUP	FIR Filters Design
 	\ingroup FILTER_GROUP
-	\brief	Functions for digital FIR filter design.
+	
+	Functions for digital FIR filter design.
 
 
 	\defgroup IN_OUT_GROUP Input - output functions

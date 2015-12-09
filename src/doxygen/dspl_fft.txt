@@ -1,36 +1,37 @@
 
 #ifdef DOXYGEN_EN
 /*!
-	\ingroup DFT_GROUP
-	\fn int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
- 	
-	
-	\brief Fast Fourier Transform.
-	This function calculates DFT by using Cooley - Tukey decimation in time algorithm.
-	
-	\param[in]	xR		Input signal vector real  part pointer. Vector size is [n x 1]. 
+\ingroup DFT_GROUP
+\fn int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
 
-\param[in]	xI  	Input signal vector image part pointer. Vector size is [n x 1].		This pointer can be NULL if FFT is calculated for a real signal
+
+\brief Fast Fourier Transform.
+This function calculates DFT by using Cooley - Tukey decimation in time algorithm.
+
+\param[in]	xR		Input signal vector real  part pointer. Vector size is `[n x 1]`. 
+
+\param[in]	xI  	Input signal vector image part pointer. Vector size is `[n x 1]`.		This pointer can be `NULL` if FFT is calculated for a real signal
 
 \param[in]	 n		FFT size (input and output vectors size).
 
-\param[in]		pfft		FFT object pointer. This object can be calculated by dspl_fft_create function.
+\param[in]		pfft		FFT object pointer. This object can be calculated by `dspl_fft_create` function.
 
-\param[out]		yR  FFT vector real  part pointer. Vector size is [n x 1].Memory must be allocated.
+\param[out]		yR  FFT vector real  part pointer. Vector size is `[n x 1]`. Memory must be allocated.
  
-\param[out]	yI FFT vector image part pointer. Vector size is [n x 1]. Memory must be allocated.
+\param[out]	yI FFT vector image part pointer. Vector size is `[n x 1]`. Memory must be allocated.
 
 \return
-   DSPL_OK  if DFT is calculted successfuly
-	 DSPL_ERROR_PTR  if xR == NULL or yR == NULL or yI == NULL
-DSPL_ERROR_SIZE if n<1.
-DSPL_ERROR_FFT_SIZE	if n is not radix-2
+`DSPL_OK  if FFT is calculted successfuly
+`DSPL_ERROR_PTR`  if `xR == NULL` or `yR == NULL` or `yI == NULL`
+`DSPL_ERROR_SIZE` if `n<1`.
+`DSPL_ERROR_FFT_SIZE`	if `n` is not radix-2
 	
 */
 
 
 
 /*!
+\ingroup DFT_GROUP
 \fn int dspl_fft_create(fft_t *pfft, int n)
 \brief Fast Fourier Transform object create.
 
@@ -39,22 +40,40 @@ This function calculates precalculates twiddle-factors for FFT
 \param[in, out]	 	pfft	 FFT object pointer. 
 Memory for twiddle factor will be reallocated.
 
-\param	[in]   		int n   New FFT size 
+\param	[in]   		 n   New FFT size 
 
 
 \return
  DSPL_OK         if FFT object is calculted successfuly
-DSPL_ERROR_FFT_SIZE	if n is not power of 2
+`DSPL_ERROR_FFT_SIZE`	if `n` is not power of 2
 
 
 \note
-If you have calculated fft object for FFT size more than n 
-	then you no need to recalculate it. Function will return DSPL_OK in this case, 
-but memory will not reallocated. So you need to clear current fft object  
-(dspl_fft_free) and create it again if you want to decrease allocated memory.
-fft object need 6*N*sizeof(double) bytes For N-points FFT algorithm.
+If you have calculated fft object for FFT size more than `n`
+	then you no need to recalculate it. Function will return `DSPL_OK` in this case, 
+but memory will not reallocated. So you need to clear current FFT object  
+(`dspl_fft_free`) and create it again if you want to decrease allocated memory.
+fft object need `6*N*sizeof(double)` bytes For N-points FFT algorithm.
 
 */
+
+
+/*!
+\ingroup DFT_GROUP
+\fn void dspl_fft_free(fft_t *pfft)
+\brief Clear Fast Fourier Transform object.
+
+This function clears memory for `fft_t` object
+\param [in, out] 	pfft	-	FFT object pointer. Memory for twiddle factor will be free.
+ 		
+\example
+ex_dspl_fft.c
+
+\author
+    Sergey Bakhurin.                                                         www.dsplib.org    
+*/  
+
+
 
 
 #elseif DOXYGEN_RU
@@ -66,29 +85,35 @@ fft object need 6*N*sizeof(double) bytes For N-points FFT algorithm.
 \brief Быстрое преобразование Фурье
 Функция рассчитывает БПФ по основанию 2 с использованием алгоритма с прореживанием по времени.
 	
-\param[in]	xR		Указатель на вектор реальной части входного сигнала. Размер вектора [n x 1]. 
+\param[in]	xR		Указатель на вектор реальной части входного сигнала. Размер вектора `[n x 1]`. 
 
-\param[in]	xI  	Указатель на вектор мнимой части входного сигнала. Размер вектора [n x 1]. Этот указатель может быть NULL если входной сигнал чисто вещественный. 
+\param[in]	xI  	Указатель на вектор мнимой части входного сигнала. Размер вектора `[n x 1]`. Этот указатель может быть NULL если входной сигнал чисто вещественный. 
 
 \param[in]	 n		Размер БПФ (размер входных и выходных векторов).
 
-\param[in]	pfft	Указатель на объект БПФ. Объект БПФ это структура, которая хранит поворотные коэффициенты и промежуточные результаты БПФ. Объект должен быть  однократно заполнен фунцией dspl_fft_create перед вызовом  функций БПФ и должен быть очищен функцией dspl_fft_free перед выходом.
+\param[in]	pfft	Указатель на объект БПФ. Объект БПФ это структура, которая хранит поворотные коэффициенты и промежуточные результаты БПФ. Объект должен быть  однократно заполнен фунцией `dspl_fft_create` перед вызовом  функций БПФ и должен быть очищен функцией `dspl_fft_free` перед выходом.
 
-\param[out]		yR  Указатель на вектор реальной части БПФ. Размер вектора [n x 1]. Память должна быть выделена заранее.
+\param[out]		yR  Указатель на вектор реальной части БПФ. Размер вектора `[n x 1]`. Память должна быть выделена заранее.
  
-\param[out]	yI Указатель на вектор мнимой части БПФ. Размер вектора [n x 1]. Память должна быть выделена заранее.
+\param[out]	yI Указатель на вектор мнимой части БПФ. Размер вектора `[n x 1]`. Память должна быть выделена заранее.
  
 \return
-   DSPL_OK  если БПФ рассчитано успешно
-	 DSPL_ERROR_PTR  если xR == NULL или yR == NULL или yI == NULL
-DSPL_ERROR_SIZE если n<1.
-DSPL_ERROR_FFT_SIZE	если n не целая степень 2.
+`DSPL_OK`  если БПФ рассчитано успешно. <BR>
+`DSPL_ERROR_PTR`  если `xR == NULL` или `yR == NULL` или `yI == NULL`. <BR>
+`DSPL_ERROR_SIZE` если `n<1`.<BR>
+`DSPL_ERROR_FFT_SIZE`	если `n` не целая степень 2.<BR>
+
+\author
+Бахурин Сергей.                                                         
+www.dsplib.org 
+	
 	
 */
 
 
 
 /*!
+\ingroup DFT_GROUP
 \fn int dspl_fft_create(fft_t *pfft, int n)
 \brief Создать объект БПФ.
 
@@ -97,41 +122,56 @@ DSPL_ERROR_FFT_SIZE	если n не целая степень 2.
 
 \param[in, out]	 	pfft	 указатель на объект БПФ. Память под поворотные коэффициенты и промежуточные вычисления будет выделена.
 
-\param	[in]   	 n   Новый размер БПФ 
-
+\param	[in]   	 n   Новый размер БПФ. Новый размер БПФ должен быть равен целой степени 2. 
 
 \return
- DSPL_OK         объект создан успешно
-DSPL_ERROR_FFT_SIZE	размер БПФ не равен степени 2.
+`DSPL_OK`         объект создан успешно.<BR>
+`DSPL_ERROR_FFT_SIZE`	размер БПФ не равен степени 2.<BR>
 
 
 \note
-Объект можно использовать для  БПФ меньшего размера. 
-Функция вернет DSPL_OK но размер не будет изменен. Например 
-
-
+Объект можно использовать для БПФ меньшего размера. 
+Функция вернет DSPL_OK но размер не будет изменен.<BR>
+Пример 1. 
+\code
 fft_t fft;
-
 memset(&fft, 0, sizeof(fft_t));
 res = dspl_fft_create(&fft, 512);
-
 res = dspl_fft_create(&fft, 128);
+\endcode
+В результате объект БПФ будет продолжать хранить данные для 512 точечного БПФ.<BR>
+Если вы хотите сократить занимаюмую память, то необходимо сначала удалить текущий объект функцией dspl_fft_free, а после создать объект еще раз для меньшего размера БПФ.<BR>
+Пример 2.
+\code
+fft_t fft;
+memset(&fft, 0, sizeof(fft_t));
+res = dspl_fft_create(&fft, 512);
+dspl_fft_free(&fft);
+res = dspl_fft_create(&fft, 128);
+\endcode
+БПФ объект занимает 6*N*sizeof(double) байт для N-точечного БПФ.
 
-В результате объект БПФ будет продолжать хранить данные для 512 точечного БПФ.
-
-
-
-
-If you have calculated fft object for FFT size more than n 
-	then you no need to recalculate it. Function will return DSPL_OK in this case, 
-but memory will 
-
-
- object  
-(dspl_fft_free) and create it again if you want to decrease allocated memory.
-fft object need 6*N*sizeof(double) bytes For N-points FFT algorithm.
+\author
+Бахурин Сергей.                                                         
+www.dsplib.org 
 
 */
+
+
+/*!
+\ingroup DFT_GROUP
+\fn void dspl_fft_free(fft_t *pfft)
+\brief Очистить структуру объекта БПФ
+
+Эта функция очищает все массивы поворотных коэффициентов и промежуточных результатов `fft_t` объекта
+\param [in, out] 	pfft	Указатель на объект БПФ. Память массивов поворотных коэффициентов и промежуточных результатов будет очищена.
+ 		
+\example ex_dspl_fft.c
+
+\author
+Бахурин Сергей.                                                         
+www.dsplib.org 
+*/  
 
 
 

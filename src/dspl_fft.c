@@ -30,7 +30,7 @@ int  	dspl_fft_p2 (int n);
 void  	dspl_fft_reorder (fft_t* pfft, int n);
 
 
-
+/* inverse FFT */
 DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, 
 											double* yR, double* yI)
 {
@@ -59,41 +59,7 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft,
 
 
 /*
-* Fast Fourier Transform.
-* This function calculates DFT by using Cooley - Tukey decimation in time algorithm
-* ------------------------------------------------------------------------------------------
-* Parameters:
-*	[in]	double *xR  -	Input signal vector real  part pointer. Vector size is [n x 1]. 
-*
-*	[in]	double *xI  - 	Input signal vector image part pointer. Vector size is [n x 1].
-*							This pointer can be NULL if DFT is calculated for a real signal
-*
-*	[in]	int n       -	DFT size (input and output vectors size).
-*
-*	[in]	fft_t* pfft	-	FFT object pointer. This object can be 
-*							calculated by dspl_fft_create function.
-*
-*	[out]   double *yR   -  DFT vector real  part pointer. Vector size is [n x 1].
-*                           Memory must be allocated.
-*     
-*	param[out]	double *yI   -  DFT vector image part pointer. Vector size is [n x 1].
-*                           Memory must be allocated.
-*     
-* ------------------------------------------------------------------------------------------
-* Return:
-*    DSPL_OK         if DFT is calculted successfuly
-*
-*    DSPL_ERROR_PTR  if xR == NULL or yR == NULL or yI == NULL
-*
-*    DSPL_ERROR_SIZE if n<1.
-*	
-*	DSPL_ERROR_FFT_SIZE	if n is not radix-2
-* ------------------------------------------------------------------------------------------
-* Example: ex_dspl_fft.c
-*
-* Author:
-*    Sergey Bakhurin.                                                         www.dsplib.org    
-*
+ Fast Fourier Transform.
 */
 DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, 
 											double* yR, double* yI)
@@ -127,33 +93,6 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t* pfft,
 
 /*
 * Fast Fourier Transform object create.
-* This function calculates precalculates twiddle-factors for FFT
-* ------------------------------------------------------------------------------------------
-* Parameters:                                                        
-*	[in, out]	fft_t* 	pfft	-	FFT object pointer. 
-*						Memory for twiddle factor will be reallocated.
-*
-*	[in]   		int n  -  New FFT size 
-*     
-* ------------------------------------------------------------------------------------------
-* Return:
-*   DSPL_OK         if DFT is calculted successfuly
-*
-*	
-*	DSPL_ERROR_FFT_SIZE	if n is not power of 2
-* ------------------------------------------------------------------------------------------
-* Note:
-*	If you have calculated fft object for FFT size more than n 
-*	then you no need to recalculate it. Function will return DSPL_OK in this case, 
-*	but memory will not reallocated. So you need to clear current fft object  
-*	(dspl_fft_free) and create it again if you want to decrease allocated memory.
-*	fft object need 6*N*sizeof(double) bytes For N-points FFT algorithm.
-* 		
-* Example: ex_dspl_fft.c
-*
-* Author:
-*    Sergey Bakhurin.                                                         www.dsplib.org    
-*
 */  
 DSPL_API int dspl_fft_create(fft_t *pfft, int n)
 {

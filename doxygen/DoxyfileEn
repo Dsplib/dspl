@@ -58,7 +58,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = E:\dsplib.org\dspl\doc
+OUTPUT_DIRECTORY       = ../doc/ru
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
@@ -91,7 +91,7 @@ ALLOW_UNICODE_NAMES    = NO
 # Ukrainian and Vietnamese.
 # The default value is: English.
 
-OUTPUT_LANGUAGE        = English
+OUTPUT_LANGUAGE        = Russian
 
 # If the BRIEF_MEMBER_DESC tag is set to YES, doxygen will include brief member
 # descriptions after the members that are listed in the file and class
@@ -775,7 +775,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = E:\dsplib.org\dspl\src
+INPUT                  = ../src
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -890,7 +890,7 @@ EXCLUDE_SYMBOLS        =
 # that contain example code fragments that are included (see the \include
 # command).
 
-EXAMPLE_PATH           = E:\dsplib.org\dspl\examples
+EXAMPLE_PATH           = ../examples
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp and
@@ -1133,7 +1133,7 @@ HTML_FILE_EXTENSION    = .html
 # of the possible markers and block names see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_HEADER            = 
+HTML_HEADER            = header_ru.html
 
 # The HTML_FOOTER tag can be used to specify a user-defined HTML footer for each
 # generated HTML page. If the tag is left blank doxygen will generate a standard
@@ -1143,7 +1143,7 @@ HTML_HEADER            =
 # that doxygen normally uses.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_FOOTER            = 
+HTML_FOOTER            = footer_ru.html
 
 # The HTML_STYLESHEET tag can be used to specify a user-defined cascading style
 # sheet that is used by each HTML page. It can be used to fine-tune the look of
@@ -1155,7 +1155,7 @@ HTML_FOOTER            =
 # obsolete.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_STYLESHEET        = 
+HTML_STYLESHEET        = doxystylesheet.css
 
 # The HTML_EXTRA_STYLESHEET tag can be used to specify additional user-defined
 # cascading style sheets that are included after the standard style sheets
@@ -1487,7 +1487,7 @@ EXT_LINKS_IN_WINDOW    = NO
 # Minimum value: 8, maximum value: 50, default value: 10.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-FORMULA_FONTSIZE       = 12
+FORMULA_FONTSIZE       = 14
 
 # Use the FORMULA_TRANPARENT tag to determine whether or not the images
 # generated for formulas are transparent PNGs. Transparent PNGs are not
@@ -1509,7 +1509,7 @@ FORMULA_TRANSPARENT    = YES
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-USE_MATHJAX            = NO
+USE_MATHJAX            = YES
 
 # When MathJax is enabled you can set the default output format to be used for
 # the MathJax output. See the MathJax site (see:
@@ -1519,7 +1519,7 @@ USE_MATHJAX            = NO
 # The default value is: HTML-CSS.
 # This tag requires that the tag USE_MATHJAX is set to YES.
 
-MATHJAX_FORMAT         = HTML-CSS
+MATHJAX_FORMAT         = SVG
 
 # When MathJax is enabled you need to specify the location relative to the HTML
 # output directory using the MATHJAX_RELPATH option. The destination directory
@@ -1532,7 +1532,7 @@ MATHJAX_FORMAT         = HTML-CSS
 # The default value is: http://cdn.mathjax.org/mathjax/latest.
 # This tag requires that the tag USE_MATHJAX is set to YES.
 
-MATHJAX_RELPATH        = http://cdn.mathjax.org/mathjax/latest
+MATHJAX_RELPATH        = http://dsplib.org/mathjax/
 
 # The MATHJAX_EXTENSIONS tag can be used to specify one or more MathJax
 # extension names that should be enabled during MathJax rendering. For example
@@ -1568,7 +1568,7 @@ MATHJAX_CODEFILE       =
 # The default value is: YES.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-SEARCHENGINE           = YES
+SEARCHENGINE           = NO
 
 # When the SERVER_BASED_SEARCH tag is enabled the search engine will be
 # implemented using a web server instead of a web client using Javascript. There
@@ -1769,14 +1769,14 @@ USE_PDFLATEX           = YES
 # The default value is: NO.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_BATCHMODE        = NO
+LATEX_BATCHMODE        = YES
 
 # If the LATEX_HIDE_INDICES tag is set to YES then doxygen will not include the
 # index chapters (such as File Index, Compound Index, etc.) in the output.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_HIDE_INDICES     = NO
+LATEX_HIDE_INDICES     = YES
 
 # If the LATEX_SOURCE_CODE tag is set to YES then doxygen will include source
 # code with syntax highlighting in the LaTeX output.
@@ -1786,7 +1786,7 @@ LATEX_HIDE_INDICES     = NO
 # The default value is: NO.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_SOURCE_CODE      = NO
+LATEX_SOURCE_CODE      = YES
 
 # The LATEX_BIB_STYLE tag can be used to specify the style to use for the
 # bibliography, e.g. plainnat, or ieeetr. See
@@ -2068,7 +2068,7 @@ INCLUDE_FILE_PATTERNS  =
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
 PREDEFINED             = DSPL_API= \
-                         DOXYGEN_EN
+                         DOXYGEN_RU
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
