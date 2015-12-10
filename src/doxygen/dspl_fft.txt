@@ -1,5 +1,36 @@
 
 #ifdef DOXYGEN_EN
+
+/*!
+\ingroup DFT_GROUP
+\fn int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
+
+
+\brief Inverse Fast Fourier Transform.
+This function calculates IFFT by using Cooley - Tukey decimation in time algorithm.
+
+\param[in]	xR		Input spectrum vector real  part pointer. Vector size is `[n x 1]`. 
+
+\param[in]	xI  	Input spectrum vector image part pointer. Vector size is `[n x 1]`.		This pointer can be `NULL` if IFFT is calculated for a real spectrum.
+
+\param[in]	 n		FFT size (input and output vectors size).
+
+\param[in]		pfft		FFT object pointer. This object can be calculated by `dspl_fft_create` function.
+
+\param[out]		yR  IFFT vector real  part pointer. Vector size is `[n x 1]`. Memory must be allocated.
+ 
+\param[out]	yI IFFT vector image part pointer. Vector size is `[n x 1]`. Memory must be allocated.
+
+\return
+`DSPL_OK  if FFT is calculted successfuly
+`DSPL_ERROR_PTR`  if `xR == NULL` or `yR == NULL` or `yI == NULL`
+`DSPL_ERROR_SIZE` if `n<1`.
+`DSPL_ERROR_FFT_SIZE`	if `n` is not radix-2
+	
+*/
+
+
+
 /*!
 \ingroup DFT_GROUP
 \fn int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
@@ -77,6 +108,38 @@ ex_dspl_fft.c
 
 
 #elseif DOXYGEN_RU
+/*!
+\ingroup DFT_GROUP
+\fn int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
+ 		
+\brief Обратное Быстрое преобразование Фурье
+Функция рассчитывает ОБПФ по основанию 2 с использованием алгоритма с прореживанием по времени.
+	
+\param[in]	xR		Указатель на вектор реальной части входного спектра. Размер вектора `[n x 1]`. 
+
+\param[in]	xI  	Указатель на вектор мнимой части входного спекта. Размер вектора `[n x 1]`. Этот указатель может быть NULL если входной сигнал чисто вещественный. 
+
+\param[in]	 n		Размер БПФ (размер входных и выходных векторов).
+
+\param[in]	pfft	Указатель на объект БПФ. Объект БПФ это структура, которая хранит поворотные коэффициенты и промежуточные результаты БПФ. Объект должен быть  однократно заполнен фунцией `dspl_fft_create` перед вызовом  функций БПФ и должен быть очищен функцией `dspl_fft_free` перед выходом.
+
+\param[out]		yR  Указатель на вектор реальной части ОБПФ. Размер вектора `[n x 1]`. Память должна быть выделена заранее.
+ 
+\param[out]	yI Указатель на вектор мнимой части ОБПФ. Размер вектора `[n x 1]`. Память должна быть выделена заранее.
+ 
+\return
+`DSPL_OK`  если БПФ рассчитано успешно. <BR>
+`DSPL_ERROR_PTR`  если `xR == NULL` или `yR == NULL` или `yI == NULL`. <BR>
+`DSPL_ERROR_SIZE` если `n<1`.<BR>
+`DSPL_ERROR_FFT_SIZE`	если `n` не целая степень 2.<BR>
+
+\author
+Бахурин Сергей.                                                         
+www.dsplib.org 
+	
+	
+*/
+
 
 /*!
 \ingroup DFT_GROUP

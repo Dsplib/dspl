@@ -1,31 +1,18 @@
-% this file is dspl_fft verification
-
 clear all; close all; clc;
+% Load bin file
+out = load_dat("../dat/ex_dspl_fft.bin");
 
-pkg load signal;
+for(k = 1 : length(out))
+	eval([out{k}.vn(1:end-1) " = out{" num2str(k) "}.dat;"]);
+endfor
 
-% load input signal and fft result
-in = load("../dat/ex_dspl_fft_in.txt");
-x = in(:,1) + 1i* in(:,2);
-out = load("../dat/ex_dspl_fft_out.txt");
-y = out(:,1) + 1i* out(:,2);
+clear k, out; 
 
-% calculate fft
-t = tic;
-for k = 1:10000
-  z = fft(x);
-end
-toc(t)
+z = fft(xin);
+N = length(xin);
 
-N = length(y);
+freq = (0:N-1)/N;
 
-% plot real fft result from dspl_fft (variable y)
-% and calculated by octave (Matlab) 
-figure; plot(1:N, real(y),1:N, real(z));
-
-% plot image fft result from dspl_fft (variable y)
-% and calculated by octave (Matlab) 
-figure; plot(1:N, imag(y),1:N, imag(z));
-
-% plot error
-figure; plot(1:N, abs((y-z)./abs(y)));
+figure; 
+subplot(211); plot(freq, abs(xout), freq, abs(z) );
+subplot(212); plot(freq, abs(xout - z)./max(abs(z)) );
