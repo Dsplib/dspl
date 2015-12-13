@@ -4,7 +4,7 @@
 
 
 p_dspl_asinh			dspl_asinh			;
-p_dspl_butter_norm		dspl_butter_norm	;
+p_dspl_butter_ap		dspl_butter_ap	;
 p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_cosh 			dspl_cosh 			;
@@ -20,6 +20,7 @@ p_dspl_polyval			dspl_polyval	    ;
 p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
 p_dspl_print_err		dspl_print_err	    ;
 p_dspl_print_msg 		dspl_print_msg 	    ;
+p_dspl_savebin			dspl_savebin		;
 p_dspl_savetxt			dspl_savetxt        ;
 p_dspl_savevar			dspl_savevar		;	
 p_dspl_sinh				dspl_sinh			;
@@ -46,8 +47,8 @@ HINSTANCE	dspl_load()
 	}
 	
 	
-	dspl_butter_norm = (p_dspl_butter_norm) GetProcAddress(hInstDLL, "dspl_butter_norm");
-	if(!dspl_butter_norm)
+	dspl_butter_ap = (p_dspl_butter_ap) GetProcAddress(hInstDLL, "dspl_butter_ap");
+	if(!dspl_butter_ap)
 	{
 		FreeLibrary(hInstDLL);
 		return NULL;		
@@ -178,6 +179,14 @@ HINSTANCE	dspl_load()
 		return NULL;		
 	}
 	
+		
+	
+	dspl_savebin = (p_dspl_savebin) GetProcAddress(hInstDLL, "dspl_savebin");
+	if(!dspl_savebin)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
 	
 	
 	

@@ -62,7 +62,7 @@
 *	Sergey Bakhurin. 														www.dsplib.org	
 *
 */
-DSPL_API int dspl_butter_norm(double Rp, int ord, double* b, double* a)
+DSPL_API int dspl_butter_ap(double Rp, int ord, double* b, double* a)
 {
 	double ep;
 	double p[3] = {0.0, 0.0, 1.0};
@@ -105,7 +105,7 @@ DSPL_API int dspl_butter_norm(double Rp, int ord, double* b, double* a)
 	}
 	else
 	{
-		/* all poles are TCOMPLEX if filter order is even   */
+		/* all poles are complex if filter order is even   */
 		acc[0] = 1.0;
 		k = 1;
 	}

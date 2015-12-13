@@ -147,31 +147,44 @@ DSPL_API void dspl_print_msg(char* msg, int printTime, int msgLen)
 	printf("%s", msgout);
 }
 
+
+
+
+DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn)
+{
+	int k;
+	FILE* pFile = NULL;
+	
+	if(!x)
+		return DSPL_ERROR_PTR;
+	if(n < 1)
+		return DSPL_ERROR_SIZE;
+	if(!fn)
+		return DSPL_ERROR_FNAME;
+	
+	pFile = fopen(fn, "wb");
+	if(pFile == NULL)
+		return DSPL_ERROR_FOPEN;
+	
+	k = y ? DSPL_DAT_COMPLEX : DSPL_DAT_REAL;
+	fwrite(&k, sizeof(int), 1, pFile);
+	fwrite(&n, sizeof(int), 1, pFile);
+	k = 1; 
+	fwrite(&k, sizeof(int), 1, pFile);
+	fwrite(x, sizeof(double), n, pFile);
+	if(y)
+		fwrite(y, sizeof(double), n, pFile);
+		
+	fclose(pFile);
+	return DSPL_OK;
+	
+	
+}
+
+
+
 /*
-* Save data to text file.
-* Result file has format
-* x[0]	y[0]
-* x[1]	y[1]
-* ...
-* x[n-1]	y[n-1]
-*
-* ------------------------------------------------------------------------------------------
-* Parameters:
-*
-*	double* x	-	First array pointer. Vector size is [n x 1].
-* 
-*	double* y	-	Second array pointer. Vector size is [n x 1]. Can be NULL. 
-*					Text file will contain only x vector if y == NULL
-*
-*	int n		-	Input vector size
-*
-*	char* fn 	-	File name
-*
-* ------------------------------------------------------------------------------------------
-* 
-* Author:
-*	Sergey Bakhurin. 														www.dsplib.org	
-*
+ Save data to text file.
 */
 DSPL_API int dspl_savetxt(double* x, double *y, int n, char* fn)
 {
