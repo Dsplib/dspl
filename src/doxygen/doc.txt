@@ -19,15 +19,14 @@
 	\ingroup SPECTRAL_GROUP	
 	
 	
-		
-	\defgroup CONV_GROUP	Convolution and Digital filtation
-	\ingroup MAIN_GROUP
-	
-	Functions for digital convolution and digital filtration. 
 
 	
-	\defgroup FILTER_GROUP	Convolution and Digital filtation
+	\defgroup FILTER_GROUP	Convolution, digital filtation and filter design.
 	\ingroup MAIN_GROUP
+	
+			
+	\defgroup FILTER_CONV_GROUP	Convolution and digital filtation
+	\ingroup FILTER_GROUP
 	
 	Functions for digital convolution and digital filtration. 
 	
@@ -43,6 +42,21 @@
 	
 	Functions for digital FIR filter design.
 
+	
+		
+	\defgroup SPEC_MATH_GROUP	Special math functions
+	\ingroup MAIN_GROUP
+	
+	\defgroup SPEC_MATH_COMMON_GROUP	Basic functions of real and complex arguments.
+	\ingroup SPEC_MATH_GROUP
+	
+	\defgroup SPEC_MATH_TRIG_GROUP Trigonometric and hyperbolic functions.
+	\ingroup SPEC_MATH_GROUP
+	
+	\defgroup SPEC_MATH_ELLIP_GROUP Elliptic functions of real and complex arguments.
+	\ingroup SPEC_MATH_GROUP
+
+	
 
 	\defgroup IN_OUT_GROUP Input - output functions
 	\ingroup MAIN_GROUP
@@ -68,11 +82,15 @@
 	
 	
 		
-	\defgroup FILTER_GROUP	Свертка и цифровая фильтрация
+	\defgroup FILTER_GROUP	Цифровая фильтрация. Синтез и анализ цифровых фильтров.
 	\ingroup MAIN_GROUP
 	
+	
+	\defgroup FILTER_CONV_GROUP	Свертка и цифровая фильтрация
+	\ingroup FILTER_GROUP
+	
 	Функции для расчета циклической и линейной сверток, а также цифровой КИХ и БИХ фильтрации. 
-
+	
 	
 	
 	\defgroup IIR_FILTER_DESIGN_GROUP	Расчет БИХ-фильтров
@@ -85,6 +103,19 @@
 	\ingroup FILTER_GROUP
 	
 	Функции расчета цифровых КИХ-фильтров.
+	
+	
+	\defgroup SPEC_MATH_GROUP	Специальные математические функции
+	\ingroup MAIN_GROUP
+	
+	\defgroup SPEC_MATH_COMMON_GROUP	Базовые математические функции.
+	\ingroup SPEC_MATH_GROUP
+	
+	\defgroup SPEC_MATH_TRIG_GROUP Тригонометрические и гиперболические функции вещественного и копмплексного аргумента.
+	\ingroup SPEC_MATH_GROUP
+	
+	\defgroup SPEC_MATH_ELLIP_GROUP Эллиптические функции вещественного и комплексного аргумента.
+	\ingroup SPEC_MATH_GROUP
 
  
 	\defgroup IN_OUT_GROUP Функции ввода - вывода данных

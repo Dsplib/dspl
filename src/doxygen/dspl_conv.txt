@@ -1,6 +1,6 @@
 #ifdef DOXYGEN_EN
 /*!
-\ingroup CONV_GROUP
+\ingroup FILTER_CONV_GROUP
 \fn int dspl_conv(double* a, int na, double* b,  int nb, double *c)
 \brief Linear convolution for real input vectors.
 
@@ -33,7 +33,7 @@
 */
 
 /*!
-\ingroup CONV_GROUP
+\ingroup FILTER_CONV_GROUP
 \fn int dspl_conv_cmplx(double* aR, double* aI, int na, double* bR, double* bI, int nb, double *cR, double *cI)
 \brief Linear convolution for real input vectors.
 
@@ -78,7 +78,7 @@
 
 #elseif DOXYGEN_RU
 /*!
-\ingroup CONV_GROUP
+\ingroup FILTER_CONV_GROUP
 \fn int dspl_conv(double* a, int na, double* b,  int nb, double *c)
 \brief Линейная свертка двух вещественных векторов
 
@@ -116,7 +116,7 @@
 
 
 /*!
-\ingroup CONV_GROUP
+\ingroup FILTER_CONV_GROUP
 \fn int dspl_conv_cmplx(double* aR, double* aI, int na, double* bR, double* bI, int nb, double *cR, double *cI)
 \brief Линейная свертка двух комплексных векторов
 

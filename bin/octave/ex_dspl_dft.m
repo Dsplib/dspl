@@ -16,3 +16,5 @@ freq = (0:N-1)/N;
 figure; 
 subplot(211); plot(freq, abs(xout), freq, abs(z) );
 subplot(212); plot(freq, abs(xout - z) );
+
+fprintf("hello");
