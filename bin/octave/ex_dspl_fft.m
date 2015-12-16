@@ -1,18 +1,30 @@
 clear all; close all; clc;
 % Load bin file
-out = load_dat("../dat/ex_dspl_fft.bin");
 
-for(k = 1 : length(out))
-	eval([out{k}.vn(1:end-1) " = out{" num2str(k) "}.dat;"]);
-endfor
 
-clear k, out; 
+[x, n, m] = dspl_readbin("../dat/ex_dspl_fft_in.bin");
+[y, n, m] = dspl_readbin("../dat/ex_dspl_fft_out.bin");
+[z, n, m] = dspl_readbin("../dat/ex_dspl_ifft_out.bin");
 
-z = fft(xin);
-N = length(xin);
 
-freq = (0:N-1)/N;
+
+Y = fft(x);
+Z = ifft(Y);
+
+freq = (0:n-1)/n;
+t  = 0:n-1;
+
 
 figure; 
-subplot(211); plot(freq, abs(xout), freq, abs(z) );
-subplot(212); plot(freq, abs(xout - z)./max(abs(z)) );
+subplot(211); plot(freq, abs(y), freq, abs(Y) );
+subplot(212); plot(freq, abs(y - Y)./max(abs(Y)));
+
+
+figure; 
+subplot(221); plot(t, real(x), t, real(z), t, real(Z) );
+subplot(222); plot(t, real(x - z), t, real(x-Z));
+
+subplot(223); plot(t, imag(x), t, imag(z), t, imag(Z) );
+subplot(224); plot(t, imag(x - z), t, imag(x-Z));
+
+

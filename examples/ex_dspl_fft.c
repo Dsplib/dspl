@@ -13,17 +13,31 @@
 
 int main()
 {
+	/* input signal */
 	double xR[N];
 	double xI[N];
+	
+	/* FFT */
 	double yR[N];
 	double yI[N];
-	int n;
-	int res;
+	
+	/* IFFT */
+	double zR[N];
+	double zI[N];
+	
+	/* fft object structure */
 	fft_t	fft;
+	
+	/* dspl handle */
 	HINSTANCE hInstDLL;
-
+	
+	int n;
+	
+	
+	/* load DSPL */
 	hInstDLL = dspl_load();
 
+	/* print DSPL version */
 	dspl_get_version(1);
 
 	/* input signal s(n) = exp(2*pi*j*0.2*n) */
@@ -34,29 +48,27 @@ int main()
 	}
 
 
-	/*	FFT create. We can create FFT object one time in 
-		the begining and use it for many FFT calculation*/
+	/*FFT create. We can create FFT object one time in 
+	the beginning and use it for many FFT calculation*/
 	memset(&fft, 0, sizeof(fft_t));
-	dspl_print_msg("Create FFT", 1, 64);
-	res = dspl_fft_create(&fft, N);
-	dspl_print_err(res, 1);
+	dspl_fft_create(&fft, N);
 	
-	/*  10000 times 256-points FFT calculation 
-		We no need to recalculate FFT object */
-	dspl_print_msg("FFT calculation", 1, 64);
-	for(n = 0; n<10000; n++)
-		res = dspl_fft(xR, xI, N, &fft, yR, yI);
+	/*256-points FFT calculation */
+	dspl_fft(xR, xI, N, &fft, yR, yI);
 
-	dspl_print_err(res, 1);
-	
-	/* Save input signal to ex_dspl_fft_in.bin*/
-	dspl_print_msg("Save result to ex_dspl_fft.bin", 1, 64);
-	res = dspl_savevar(xR, xI, N, "xin",  "dat/ex_dspl_fft.bin");
-	res = dspl_savevar(yR, yI, N, "xout", "dat/ex_dspl_fft.bin");
-    dspl_print_err(res, 1);
+	/*256-points IFFT calculation 
+	We no need to recalculate FFT object */
+	dspl_ifft(yR, yI, N, &fft, zR, zI);
 	
 	/* Clear FFT object memory */
 	dspl_fft_free(&fft);
+	
+	/* save input signal, FFT and IFFT to the bin-files */
+	dspl_writebin(xR, xI, n, "dat/ex_dspl_fft_in.bin");
+	dspl_writebin(yR, yI, n, "dat/ex_dspl_fft_out.bin");
+	dspl_writebin(zR, zI, n, "dat/ex_dspl_ifft_out.bin");
+		
+	/* clear dspl handle */
 	FreeLibrary(hInstDLL);
 	
 	return 0;

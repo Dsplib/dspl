@@ -4,11 +4,12 @@
 
 
 p_dspl_asinh			dspl_asinh			;
-p_dspl_butter_ap		dspl_butter_ap	;
+p_dspl_butter_ap		dspl_butter_ap		;
 p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_cosh 			dspl_cosh 			;
 p_dspl_dft 				dspl_dft 			;
+p_dspl_ifft				dspl_ifft		    ;
 p_dspl_fft				dspl_fft		    ;
 p_dspl_fft_create		dspl_fft_create		;
 p_dspl_fft_free			dspl_fft_free		;
@@ -20,12 +21,10 @@ p_dspl_polyval			dspl_polyval	    ;
 p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
 p_dspl_print_err		dspl_print_err	    ;
 p_dspl_print_msg 		dspl_print_msg 	    ;
-p_dspl_savebin			dspl_savebin		;
-p_dspl_savetxt			dspl_savetxt        ;
-p_dspl_savevar			dspl_savevar		;	
 p_dspl_sinh				dspl_sinh			;
 p_dspl_window			dspl_window         ;
-
+p_dspl_writebin			dspl_writebin		;
+p_dspl_writetxt			dspl_writetxt        ;
 
 
 
@@ -87,6 +86,17 @@ HINSTANCE	dspl_load()
 		FreeLibrary(hInstDLL);
 		return NULL;		
 	}
+	
+	
+	
+	dspl_ifft = (p_dspl_ifft) GetProcAddress(hInstDLL, "dspl_ifft");
+	if(!dspl_ifft)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
 	
 	
 	dspl_fft = (p_dspl_fft) GetProcAddress(hInstDLL, "dspl_fft");
@@ -180,35 +190,28 @@ HINSTANCE	dspl_load()
 	}
 	
 		
-	
-	dspl_savebin = (p_dspl_savebin) GetProcAddress(hInstDLL, "dspl_savebin");
-	if(!dspl_savebin)
-	{
-		FreeLibrary(hInstDLL);
-		return NULL;		
-	}
-	
-	
-	
-	dspl_savetxt = (p_dspl_savetxt) GetProcAddress(hInstDLL, "dspl_savetxt");
-	if(!dspl_savetxt)
-	{
-		FreeLibrary(hInstDLL);
-		return NULL;		
-	}
-	
-	
-	dspl_savevar = (p_dspl_savevar) GetProcAddress(hInstDLL, "dspl_savevar");
-	if(!dspl_savevar)
-	{
-		FreeLibrary(hInstDLL);
-		return NULL;		
-	}
-	
-	
+		
 	
 	dspl_window = (p_dspl_window) GetProcAddress(hInstDLL, "dspl_window");
 	if(!dspl_window)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	
+	dspl_writebin = (p_dspl_writebin) GetProcAddress(hInstDLL, "dspl_writebin");
+	if(!dspl_writebin)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	
+	dspl_writetxt = (p_dspl_writetxt) GetProcAddress(hInstDLL, "dspl_writetxt");
+	if(!dspl_writetxt)
 	{
 		FreeLibrary(hInstDLL);
 		return NULL;		

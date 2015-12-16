@@ -1,5 +1,5 @@
 clear all; close all; clc;
-
+graphics_toolkit("gnuplot");
 out = load_dat("../dat/ex_dspl_dft.bin");
 
 for(k = 1 : length(out))

@@ -66,15 +66,15 @@ DSPL_API int dspl_get_version(int printFlag)
 	Sergey Bakhurin. 	www.dsplib.org	
 	
 	\return
-	DSPL_OK if file was saved succesfully.
+	DSPL_OK if file has been saved successfully.
 	DSPL_ERROR_PTR if `x==NULL`.
 	DSPL_ERROR_SIZE if `n<1`.
 	DSPL_ERROR_FNAME if `fn==NULL`.
 	DSPL_ERROR_FOPEN if file `fn` cannot be created.
 	
 	\note 
-	This function rounds datas for saving. 
-	So this finction cannot be used for accuracy verification
+	This function rounds data for saving. 
+	So this function cannot be used for accuracy verification
 
 */
 
@@ -117,7 +117,7 @@ DSPL_API int dspl_get_version(int printFlag)
 	\param[in] x	Указатель на первый вектор. Размер вектора `[n x 1]`.
  
 	\param[in] y	Указатель на второй вектор. Размер вектора  `[n x 1]`. Может быть `NULL`. 
-					Файл будет содержать только один столбец соответсвующий вектору `x` если `y == NULL`
+					Файл будет содержать только один столбец соответствующий вектору `x` если `y == NULL`
 
 	\param[in] n	Размер входных векторов
 

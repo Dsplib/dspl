@@ -30,9 +30,6 @@
 /* DSPL VERSION */
 #define DSPL_VERSION 0x000F0B16
 
-/* write a varible to a bin-file */ 
-void dspl_writevar(FILE* pFile, double* x, double* y, int n, char* vn);
-
 
 /*
 * Get DSPL version.
@@ -150,7 +147,14 @@ DSPL_API void dspl_print_msg(char* msg, int printTime, int msgLen)
 
 
 
-DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn)
+
+
+
+
+/*
+ Save data to bin file.
+*/
+DSPL_API int dspl_writebin(double* x, double *y, int n, char* fn)
 {
 	int k;
 	FILE* pFile = NULL;
@@ -165,7 +169,6 @@ DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn)
 	pFile = fopen(fn, "wb");
 	if(pFile == NULL)
 		return DSPL_ERROR_FOPEN;
-	
 	k = y ? DSPL_DAT_COMPLEX : DSPL_DAT_REAL;
 	fwrite(&k, sizeof(int), 1, pFile);
 	fwrite(&n, sizeof(int), 1, pFile);
@@ -174,19 +177,14 @@ DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn)
 	fwrite(x, sizeof(double), n, pFile);
 	if(y)
 		fwrite(y, sizeof(double), n, pFile);
-		
 	fclose(pFile);
-	return DSPL_OK;
-	
-	
+	return DSPL_OK;	
 }
-
-
 
 /*
  Save data to text file.
 */
-DSPL_API int dspl_savetxt(double* x, double *y, int n, char* fn)
+DSPL_API int dspl_writetxt(double* x, double *y, int n, char* fn)
 {
 	int k;
 	FILE* pFile = NULL;
@@ -210,72 +208,5 @@ DSPL_API int dspl_savetxt(double* x, double *y, int n, char* fn)
 	fclose(pFile);
 	return DSPL_OK;	
 }
-
-
-
-/* save variable to bin file */
-DSPL_API int dspl_savevar(double* x, double* y, int n, char* vn, char* fn) 
-{
-	int varCount;
-	FILE* pFile;
-	
-	if(!x)
-		return DSPL_ERROR_PTR;
-	if(n < 1)
-		return DSPL_ERROR_SIZE;
-	if(!vn)
-		return DSPL_ERROR_VARNAME;
-	if(!fn)
-		return DSPL_ERROR_FNAME;
-	pFile = fopen(fn, "rb");
-	if(!pFile)
-	{
-		pFile = fopen(fn, "wb");
-		varCount = 1;
-		fwrite(&varCount, sizeof(int), 1, pFile);
-		dspl_writevar(pFile, x, y, n, vn);
-		fclose(pFile);
-	}
-	else
-	{
-		fread(&varCount, sizeof(int), 1, pFile);
-		fclose(pFile);
-		varCount++;
-		pFile = fopen(fn, "ab");
-		dspl_writevar(pFile, x, y, n, vn);
-		fclose(pFile);
-		
-		pFile = fopen(fn, "rb+");
-		fseek(pFile, 0, SEEK_SET);
-		fwrite(&varCount, sizeof(int), 1, pFile);
-		fclose(pFile);
-		
-	}
-	return DSPL_OK;
-	
-}
-
-
-/* write variable to a bin file */
-void dspl_writevar(FILE* pFile, double* x, double* y, int n, char* vn)
-{
-	int k;
-	char varName[DSPL_VARNAME_LENGTH];
-	
-	memset(varName, 0, DSPL_VARNAME_LENGTH);
-	memcpy(varName, vn, strlen(vn));
-	
-	k = y ? DSPL_DAT_COMPLEX : DSPL_DAT_REAL;
-	fwrite(&k, sizeof(int), 1, pFile);
-	fwrite(&n, sizeof(int), 1, pFile);
-	k = 1; 
-	fwrite(&k, sizeof(int), 1, pFile);
-	fwrite(varName, sizeof(char), DSPL_VARNAME_LENGTH, pFile);
-	fwrite(x, sizeof(double), n, pFile);
-	if(y)
-		fwrite(y, sizeof(double), n, pFile);
-}
-
-
 
 

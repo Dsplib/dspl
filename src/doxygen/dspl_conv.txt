@@ -62,7 +62,7 @@
 					This pointer can be NULL if aI and bI are NULL pointers
                                                                     
 \return
-`DSPL_OK` 		if convolution is calculted successfuly
+`DSPL_OK` 		if convolution is calculated successfully
 
 `DSPL_ERROR_PTR` if pointer are wrong. This situation can be if:
                  `aR` is `NULL` or `bR` is `NULL` or `cR` is NULL.
@@ -151,7 +151,7 @@
 				быть `NULL` только в случае если `aI == NULL` и `bI == NULL` 
 				(оба входных вектора чисто вещественные). В противном случае 
 				если хотя бы один входной вектор имеет мнимую часть, то память 
-				должна быть выделена и укзатель не может быть `NULL`.
+				должна быть выделена и указатель не может быть `NULL`.
                                                                     
 \return
 `DSPL_OK`	если свертка расчитана успешно

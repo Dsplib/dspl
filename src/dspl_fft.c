@@ -36,6 +36,7 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft,
 {
 	int p2;
 	int k;
+	double invn;
 	size_t bufSize;
 	if(!xR || !yR || !yI)
 		return DSPL_ERROR_PTR;
@@ -51,9 +52,13 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft,
         memset(pfft->t0I, 0, bufSize);
 	dspl_fft_reorder(pfft, n);
 	dspl_fft_krn(pfft, n, p2);
-	memcpy(yR, pfft->t0R, bufSize);
+	invn = 1.0 / (double) n;
 	for (k = 0; k<n; k++)
-		 yI[k]= -pfft->t0I[k];
+	{
+		yR[k]=  invn * pfft->t0R[k];
+		yI[k]= -invn * pfft->t0I[k];	
+	}	
+	 
 	return DSPL_OK;
 }
 
@@ -96,8 +101,8 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t* pfft,
 */  
 DSPL_API int dspl_fft_create(fft_t *pfft, int n)
 {
-	double phi;
-	double dphi;
+	long double phi;
+	long double dphi;
 	int k;
 	int n2;
 	int ind; 
@@ -124,8 +129,8 @@ DSPL_API int dspl_fft_create(fft_t *pfft, int n)
 		phi = 0;
 		for(k = 0; k<n2; k++)
 		{
-			pfft->wR[ind+k] = cos(phi);
-			pfft->wI[ind+k] = sin(phi);
+			pfft->wR[ind+k] = (double)cos(phi);
+			pfft->wI[ind+k] = (double)sin(phi);
 			phi -= dphi;
 		}
 		ind+=n2;
@@ -139,18 +144,18 @@ DSPL_API int dspl_fft_create(fft_t *pfft, int n)
 
 
 /*
-* Clear Fast Fourier Transform object.
-* This function clears memory for fft_t object
-* ------------------------------------------------------------------------------------------
-* Parameters:                                                        
-*	[in, out]	fft_t* 	pfft	-	FFT object pointer. 
-*						Memory for twiddle factor will be free.
-* 		
-* Example: ex_dspl_fft.c
-*
-* Author:
-*    Sergey Bakhurin.                                                         www.dsplib.org    
-*
+	Clear Fast Fourier Transform object.
+	This function clears memory for fft_t object
+	------------------------------------------------------------------------------------------
+	Parameters:                                                        
+		[in, out]	fft_t* 	pfft	-	FFT object pointer. 
+							Memory for twiddle factor will be free.
+			
+	Example: ex_dspl_fft.c
+	
+	Author:
+	Sergey Bakhurin.                                                         www.dsplib.org    
+	
 */  
 
 DSPL_API void dspl_fft_free(fft_t *pfft)

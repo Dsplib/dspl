@@ -218,17 +218,6 @@ DSPL_API void dspl_print_err (int res, int printCR);
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
 
 
-/* save vectors to bin file (dspl_inout.c) */
-DSPL_API int dspl_savebin(double* x, double *y, int n, char* fn);
-
-
-/* save vectors to text file (dspl_inout.c) */
-DSPL_API int dspl_savetxt (double* x, double *y, int n, char* fn);
-
-
-/* save variable to bin file (dspl_inout.c)*/
-DSPL_API int dspl_savevar(double* x, double* y, int n, char* vn, char* fn);
-
 
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_sinh(double x);
@@ -236,6 +225,13 @@ DSPL_API double dspl_sinh(double x);
 
 /* window function calculation (dspl_win.c)*/
 DSPL_API int dspl_window(double* w, int n, int win_type, double param);
+
+
+/* save vectors to text file (dspl_inout.c) */
+DSPL_API int dspl_writebin (double* x, double *y, int n, char* fn);
+
+/* save vectors to text file (dspl_inout.c) */
+DSPL_API int dspl_writetxt (double* x, double *y, int n, char* fn);
 
 
 
@@ -251,7 +247,7 @@ typedef double (*p_dspl_asinh)(double x);
 
 
 
-/* Analog Normalized Butterworth Lowpass Filter (dspl_butter_norm.c) */
+/* Analog Normalized Butterworth Lowpass Filter (dspl_filter_ap.c) */
 typedef int (*p_dspl_butter_ap)	(double Rp, int ord, double* b, double* a);
 
 
@@ -276,7 +272,12 @@ typedef double (*p_dspl_cosh)(double x);
 typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double* yI);
 
 
+/* Inverse Fast Fourier Transform  (dspl_fft.c)*/
+typedef int (*p_dspl_ifft)			(double* xR, double* xI, int n, fft_t* pfft, 
+											double* yR, double* yI);
+		
 
+		
 /* Fast Fourier Transform  (dspl_fft.c)*/
 typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, fft_t *pfft, 
 											double* yR, double* yI);
@@ -334,16 +335,6 @@ typedef void (*p_dspl_print_err) 	(int res, int printCR);
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 
 
-/* save vectors to bin file (dspl_inout.c) */
-typedef int (*p_dspl_savebin)(double* x, double *y, int n, char* fn);
-
-
-/* save vectors to text file (dspl_inout.c) */
-typedef int (*p_dspl_savetxt) 		(double* x, double *y, int n, char* fn);
-
-/* save variable to bin file (dspl_inout.c)*/
-typedef int (*p_dspl_savevar)		(double* x, double* y, int n, char* vn, char* fn);
-
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_sinh)		(double x);
 
@@ -351,12 +342,23 @@ typedef double (*p_dspl_sinh)		(double x);
 /* window function calculation (dspl_win.c)*/
 typedef int (*p_dspl_window)		(double* w, int n, int win_type, double param);
 
+
+/* save vectors to text file (dspl_inout.c) */
+typedef int (*p_dspl_writebin) 		(double* x, double *y, int n, char* fn);
+
+
+/* save vectors to text file (dspl_inout.c) */
+typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
+
+
+
 extern p_dspl_asinh			dspl_asinh			;
 extern p_dspl_butter_ap		dspl_butter_ap		;
 extern p_dspl_conv			dspl_conv			;         	
 extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
 extern p_dspl_cosh 			dspl_cosh 			;				
 extern p_dspl_dft 			dspl_dft 			; 
+extern p_dspl_ifft			dspl_ifft		    ;
 extern p_dspl_fft			dspl_fft		    ;
 extern p_dspl_fft_create	dspl_fft_create	    ;
 extern p_dspl_fft_free		dspl_fft_free		;
@@ -368,11 +370,10 @@ extern p_dspl_polyval		dspl_polyval   		;
 extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
 extern p_dspl_print_msg 	dspl_print_msg 	    ;
-extern p_dspl_savebin		dspl_savebin     	;
-extern p_dspl_savetxt		dspl_savetxt        ;
-extern p_dspl_savevar		dspl_savevar		;	
 extern p_dspl_sinh			dspl_sinh			;
 extern p_dspl_window		dspl_window         ;
+extern p_dspl_writebin		dspl_writebin     	;
+extern p_dspl_writetxt		dspl_writetxt        ;
 
 HINSTANCE dspl_load();
 

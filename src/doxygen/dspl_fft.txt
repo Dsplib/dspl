@@ -22,7 +22,7 @@ This function calculates IFFT by using Cooley - Tukey decimation in time algorit
 \param[out]	yI IFFT vector image part pointer. Vector size is `[n x 1]`. Memory must be allocated.
 
 \return
-`DSPL_OK  if FFT is calculted successfuly
+`DSPL_OK  if FFT is calculated successfully
 `DSPL_ERROR_PTR`  if `xR == NULL` or `yR == NULL` or `yI == NULL`
 `DSPL_ERROR_SIZE` if `n<1`.
 `DSPL_ERROR_FFT_SIZE`	if `n` is not radix-2
