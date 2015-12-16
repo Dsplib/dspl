@@ -66,7 +66,7 @@ This function calculates DFT by using Cooley - Tukey decimation in time algorith
 \fn int dspl_fft_create(fft_t *pfft, int n)
 \brief Fast Fourier Transform object create.
 
-This function calculates precalculates twiddle-factors for FFT
+This function calculates  twiddle-factors for FFT
 
 \param[in, out]	 	pfft	 FFT object pointer. 
 Memory for twiddle factor will be reallocated.
@@ -75,7 +75,7 @@ Memory for twiddle factor will be reallocated.
 
 
 \return
- DSPL_OK         if FFT object is calculted successfuly
+ DSPL_OK         if FFT object is calculated successfully
 `DSPL_ERROR_FFT_SIZE`	if `n` is not power of 2
 
 
@@ -117,7 +117,7 @@ ex_dspl_fft.c
 	
 \param[in]	xR		Указатель на вектор реальной части входного спектра. Размер вектора `[n x 1]`. 
 
-\param[in]	xI  	Указатель на вектор мнимой части входного спекта. Размер вектора `[n x 1]`. Этот указатель может быть NULL если входной сигнал чисто вещественный. 
+\param[in]	xI  	Указатель на вектор мнимой части входного спектра. Размер вектора `[n x 1]`. Этот указатель может быть NULL если входной сигнал чисто вещественный. 
 
 \param[in]	 n		Размер БПФ (размер входных и выходных векторов).
 

@@ -1,0 +1,92 @@
+#ifdef DOXYGEN_EN
+
+/*!
+\ingroup FILTER_CONV_GROUP
+\fn int dspl_filter_iir(double* b, double* a, int ord, double* x, int n, double* y)
+\brief IIR filter output for real filter coefficients and real signals.
+ 
+ Function Calculates IIR filter output. IIR filter transfer function is
+\f[
+	H(z) = \frac{\sum_{n = 0}^{N-1} b_n \cdot z^{-n}}
+	{1+{\frac{1}{a_0}}\sum_{m = 1}^{M-1} a_m \cdot z^{-n}},
+\f]
+	here \f$a_0\f$ cannot be zero, \f$N=M=\f$`ord`.
+
+	\param[in] 	b		IIR filter transfer function numerator coefficients pointer. 
+							Vector size is `[ord + 1 x 1]`. 
+
+	\param[in] 	a		IIR filter transfer function denominator coefficients pointer. 
+							Vector size is `[ord + 1 x 1]`. This pointer can be `NULL`. 
+							Filter becomes FIR in this case with impulse response 
+							corresponds to vector `b`
+							 
+	\param[in]	ord		Filter order.
+
+	\param[in] 	x		Input signal pointer. Vector size is `[n x 1]`. 
+   
+	\param[in]	n		Input signal vector length.
+                                                                       
+	\param[out]	 y		IIR filter output vector pointer. Vector size is `[n x  1]`.	
+							Memory must be allocated.
+	\return
+	`DSPL_OK` 		if filter output is calculated successfully. <BR>
+	`DSPL_ERROR_PTR`	if pointer are wrong. This situation can be if:
+					`b` is `NULL` or `x` is `NULL` or `y` is `NULL`.<BR>
+	`DSPL_ERROR_SIZE` if `ord < 1` or `n < 1`.<BR>
+	`DSPL_ERROR_FILTER_A0` if `a[0]` is zero.<BR>
+
+	\author
+	Sergey Bakhurin. 
+	www.dsplib.org	
+
+*/
+
+
+
+
+
+
+#elseif DOXYGEN_RU
+/*!
+\ingroup FILTER_CONV_GROUP
+\fn int dspl_filter_iir(double* b, double* a, int ord, double* x, int n, double* y)
+\brief Фильтрация вещественного сигнала вещественным БИХ-фильтром
+
+ Функция рассчитывает выход фильтра заданнго выражением
+\f[
+	H(z) = \frac{\sum_{n = 0}^{N-1} b_n \cdot z^{-n}}
+	{1+{\frac{1}{a_0}}\sum_{m = 1}^{M-1} a_m \cdot z^{-n}},
+\f]
+	где \f$a_0\f$ не может быть 0, \f$N=M=\f$`ord`.
+
+	\param[in] 	b		Указатель на вектор коэффициентов числителя фильтра IIR 
+							Vector size is `[ord + 1 x 1]`. 
+
+	\param[in] 	a		Указатель на вектор коэффициентов числителя фильтра IIR.
+						Размер вектора `[ord + 1 x 1]`. Этот указатель может быть `NULL`, 
+						тогда фильтрация производится без использования рекурсивной части
+							 
+	\param[in]	ord		Порядок фильтра.
+
+	\param[in] 	x		Указатель на вектор отсчетов входного сигнала. Размер вектора `[n x 1]`. 
+   
+	\param[in]	n		Длина входного сигнала
+                                                                       
+	\param[out]	 y		Указатель на выход . Размер вектора `[n x  1]`.	
+						Память должна быть выделена заранее
+	\return
+	`DSPL_OK` 		Если фильтрация произведена успешно. <BR>
+	`DSPL_ERROR_PTR`	Ошибка указателя:
+					`b==NULL` или `x==NULL` или `y==NULL`.<BR>
+	`DSPL_ERROR_SIZE` Ошибка порядка фильтра `ord < 1` или `n < 1`.<BR>
+	`DSPL_ERROR_FILTER_A0` Ошибка `a[0] == 0` .<BR>
+
+	\author
+	Бахурин Сергей 
+	www.dsplib.org	
+
+*/
+
+
+
+#endif
