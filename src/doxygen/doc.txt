@@ -1,18 +1,18 @@
 #ifdef DOXYGEN_EN
 /*!
-	\defgroup MAIN_GROUP	DSPL library srtucture
+	\defgroup MAIN_GROUP	DSPL library structure
 	
-	\defgroup SPECTRAL_GROUP	Spectral Analisis
+	\defgroup SPECTRAL_GROUP	Spectral Analysis
 	\ingroup MAIN_GROUP
 		
-	This group includes algorithms for Disctere Fourier Transform (DFT),
+	This group includes algorithms for Discrete Fourier Transform (DFT),
 	Fast Fourier Transform (FFT), window functions calculation and 
 	Power Spectrum Density (PSD) calculation.
 	
 	\defgroup DFT_GROUP	Discrete and Fast Fourier Transform algorithms
 	\ingroup SPECTRAL_GROUP
 		
-	This group includes algorithms for Disctere Fourier Transform (DFT) and 
+	This group includes algorithms for Discrete Fourier Transform (DFT) and 
 	Fast Fourier Transform (FFT).
 
 	\defgroup WIN_GROUP	Window functions collection
@@ -21,11 +21,11 @@
 	
 
 	
-	\defgroup FILTER_GROUP	Convolution, digital filtation and filter design.
+	\defgroup FILTER_GROUP	Convolution, digital filtration and filter design.
 	\ingroup MAIN_GROUP
 	
 			
-	\defgroup FILTER_CONV_GROUP	Convolution and digital filtation
+	\defgroup FILTER_CONV_GROUP	Convolution and digital filtration
 	\ingroup FILTER_GROUP
 	
 	Functions for digital convolution and digital filtration. 

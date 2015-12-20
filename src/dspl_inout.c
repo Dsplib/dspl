@@ -172,7 +172,7 @@ DSPL_API int dspl_writebin(double* x, double *y, int n, char* fn)
 	k = y ? DSPL_DAT_COMPLEX : DSPL_DAT_REAL;
 	fwrite(&k, sizeof(int), 1, pFile);
 	fwrite(&n, sizeof(int), 1, pFile);
-	k = 1; 
+	k = 1;
 	fwrite(&k, sizeof(int), 1, pFile);
 	fwrite(x, sizeof(double), n, pFile);
 	if(y)
