@@ -1,5 +1,5 @@
 ﻿/*
-*Copyright (c) 2015 Sergey Bakhurin
+*Copyright (c) 2015, 2016 Sergey Bakhurin
 * Digital Signal Processing Library [http://dsplib.org]
 *
 * This file is part of DSPL.
@@ -37,35 +37,7 @@ void dspl_conv_real_krn(double* a, int na, double* b, int nb, double* c);
 
 
 
-/*
-* Linear convolution for real input vectors.
-* This function calculates a linear convolution of two vectors. 
-* ------------------------------------------------------------------------------------------
-* Parameters:
-*	[in] 	double *a	-	First input vector pointer. Vector size is [na x 1]. 
-*
-*	[in]	int		na	-	First vector length.
-*
-*	[in] 	double *bR	-	Second input vector pointer. Vector size is [nb x 1]. 
-*   
-*	[in]	int		nb	-	Second vector length.
-*                                                                       
-*	[out]	double *c	-	Linear convolution vector real  part pointer. 
-*							Vector size is [na + nb - 1  x  1].	Memory must be allocated.
-*                                                                    
-* ------------------------------------------------------------------------------------------
-* Return:
-*	DSPL_OK 		if convolution is calculted successfuly
-*
-*	DSPL_ERROR_PTR	if pointer are wrong. This situation can be if:
-*					a is NULL or b is NULL or c is NULL.
-*
-*	DSPL_ERROR_SIZE if na<1 or nb < 1.
-* ------------------------------------------------------------------------------------------
-* Author:
-*	Sergey Bakhurin. 														www.dsplib.org	
-*
-*/
+/* Doxygen RU, EN*/
 DSPL_API int dspl_conv(double* a, int na, double* b,  int nb, double *c)
 {
 	double *t;
@@ -105,47 +77,7 @@ DSPL_API int dspl_conv(double* a, int na, double* b,  int nb, double *c)
 
 
 
-/*
-* Linear convolution for complex input vectors.
-* This function calculates a linear convolution of two vectors. 
-* ------------------------------------------------------------------------------------------
-* Parameters:
-*	[in] 	double *aR	-	First input vector real  part pointer. Vector size is [na x 1]. 
-*
-*	[in] 	double *aI	-	First input vector image part pointer. Vector size is [na x 1].
-*							This pointer can be NULL if 'a' is real vector
-*   
-*	[in]	int		na	-	First vector length.
-*
-*	[in] 	double *bR	-	Second input vector real  part pointer. Vector size is [nb x 1]. 
-*
-*	[in] 	double *bI	-	Second input vector image part pointer. Vector size is [nb x 1].
-*							This pointer can be NULL if 'b' is real vector
-*   
-*	[in]	int		nb	-	Second vector length.
-*                                                                       
-*	[out]	double *cR	-	Linear convolution vector real  part pointer. 
-*							Vector size is [na + nb - 1  x  1].	Memory must be allocated.
-* 	
-*	[out]	double *cI	-	Linear convolution vector real  part pointer. 
-*							Vector size is [na + nb - 1  x  1].	Memory must be allocated.
-*							This pointer can be NULL if aI and bI are NULL pointers
-* 	                                                                          
-* ------------------------------------------------------------------------------------------
-* Return:
-*	DSPL_OK 		if convolution is calculted successfuly
-*
-*	DSPL_ERROR_PTR	if pointer are wrong. This situation can be if:
-					aR is NULL or bR is NULL or cR is NULL.
-					cI is NULL if aI or bI isn't NULL 
-*
-*	DSPL_ERROR_SIZE if na<1 or nb < 1.
-* ------------------------------------------------------------------------------------------
-* Author:
-*	Sergey Bakhurin. 														www.dsplib.org	
-*
-*/
-
+/* Doxygen RU, EN*/
 DSPL_API int dspl_conv_cmplx(double *aR, double *aI, int na, double *bR, double *bI, int nb, 
 					double *cR, double *cI)
 {

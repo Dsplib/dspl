@@ -2,9 +2,6 @@
 
 clear all; close all; clc;
 
-pkg load signal;
-
-
 aR = [1.0, 2.0, -1.0, 0.5];
 aI = [-1.0, 1.0, -2.0, -2.0];
 

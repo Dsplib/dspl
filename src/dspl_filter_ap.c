@@ -1,5 +1,5 @@
 /*
-*Copyright (c) 2015 Sergey Bakhurin
+*Copyright (c) 2015, 2016 Sergey Bakhurin
 * Digital Signal Processing Library [http://dsplib.org]
 *
 * This file is part of DSPL.
@@ -24,44 +24,6 @@
 #include "dspl.h"
 
 
-
-/*
-* Analog Normalized Butterworth Low-pass Filter Calculation
-* Function calculates 
-* 
-* 		  b[0] + b[1]*s + b[2]*s^2 + ... + b[ord]*s^ord
-* H(s) = ---------------------------------------------------
-* 		  a[0] + a[1]*s + a[2]*s^2 + ... + a[ord]*s^ord
-* 
-* of analog lowpass Batterworth filter with pass frequency wp = 1 rad/sec.  
-* ------------------------------------------------------------------------------------------
-* Parameters:
-*	[in]	double Rp	-	Passband distortion (dB). |H(j*1)| = Rp dB for s = j*1. 
-*  
-*	[in]	int ord		-	Filter order. Filter numerator and denominator 
-*					  
-*	[out]	double* b	- 	H(s) numerator	coefficients vector b[0] + b[1]*s + b[2]*s^2... 
-*							Memory must be allocated.
-*
-*	[out]	double* a	- 	H(s) denominator coefficients vector a[0] + a[1]*s +a[2]*s^2 ...
-*							Memory must be allocated 
-* 	                                                                          
-* ------------------------------------------------------------------------------------------
-* Return:
-*	DSPL_OK 		if filter output is calculted successfuly
-*
-*	DSPL_ERROR_PTR	if pointer are wrong. This situation can be if:
-*					b is NULL or x is NULL or y is NULL.
-*
-*
-*	DSPL_ERROR_SIZE if ord < 1 or n < 1.
-*
-*	DSPL_ERROR_FILTER_A0 if a[0] is zero.
-* ------------------------------------------------------------------------------------------
-* Author:
-*	Sergey Bakhurin. 														www.dsplib.org	
-*
-*/
 DSPL_API int dspl_butter_ap(double Rp, int ord, double* b, double* a)
 {
 	double ep;

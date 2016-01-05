@@ -1,11 +1,9 @@
 clear all; close all; clc;
 % Load bin file
 
-
 [x, n, m] = dspl_readbin("../dat/ex_dspl_fft_in.bin");
 [y, n, m] = dspl_readbin("../dat/ex_dspl_fft_out.bin");
 [z, n, m] = dspl_readbin("../dat/ex_dspl_ifft_out.bin");
-
 
 
 Y = fft(x);
@@ -13,7 +11,6 @@ Z = ifft(Y);
 
 freq = (0:n-1)/n;
 t  = 0:n-1;
-
 
 figure; 
 subplot(211); plot(freq, abs(y), freq, abs(Y) );

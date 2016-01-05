@@ -1,5 +1,5 @@
 /*
-*Copyright (c) 2015 Sergey Bakhurin
+*Copyright (c) 2015, 2016 Sergey Bakhurin
 * Digital Signal Processing Library [http://dsplib.org]
 *
 * This file is part of DSPL.
@@ -25,7 +25,7 @@
 
 
 
-
+/* Doxygen RU, EN*/
 DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
 {
     int k;
@@ -85,5 +85,3 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
     }
     return DSPL_OK;
 }
-
-/*kuku*/

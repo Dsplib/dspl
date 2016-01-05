@@ -5,59 +5,82 @@
 	\fn int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Discrete Fourier Transform.
 	
-	This function calculates N-point DFT of real or complex input signal. 
+	This function calculates $n$-point DFT of real or complex input signal
+	\f[
+		Y(k) = \sum_{m = 0}^{n-1} x(m) \cdot 
+		\exp \left( -j \cdot \frac{2\pi}{n} \cdot m \cdot k \right),
+	\f]
 	
-	\param[in]	xR	Input signal vector real  part pointer. Vector size is [n x 1]. 
+	\param[in]	xR	Input signal vector real  part pointer. 
+					Vector size is `[n x 1]`. 
 		
-	\param[in]	xI	Input signal vector image part pointer. Vector size is [n x 1].
-					This pointer can be NULL if DFT is calculated for a real signal
+	\param[in]	xI	Input signal vector image part pointer. 
+					Vector size is `[n x 1]`.
+					This pointer can be `NULL` if DFT is calculated for a real signal
 	
 	\param[in]	n	DFT size (input and output vectors size).
 	
-	\param[out]	yR	DFT vector real  part pointer. Vector size is [n x 1].
+	\param[out]	yR	DFT vector real  part pointer. 
+					Vector size is `[n x 1]`.
 					Memory must be allocated.
 	
-	\param[out]	yI	DFT vector image part pointer. Vector size is [n x 1].
+	\param[out]	yI	DFT vector image part pointer. 
+					Vector size is `[n x 1]`.
 					Memory must be allocated.
 		
 	
 	\return
-	DSPL_OK         if DFT is calculted successfuly <BR>
-	DSPL_ERROR_PTR  if xR == NULL or yR == NULL or yI == NULL<BR>
-	DSPL_ERROR_SIZE if n<1.<BR>
+	DSPL_OK         if DFT is calculated successfully. <BR>
+	DSPL_ERROR_PTR  if `xR == NULL` or `yR == NULL` or `yI == NULL`.<BR>
+	DSPL_ERROR_SIZE if `n<1`.<BR>
 	
+	\note
+		This function uses naive DFT calculation method. 
+		You can use FFT algorithms if you need to calculate DFT more faster.
+		
 	\author
 		Sergey Bakhurin.                                                         
 		www.dsplib.org 
 	
 	\example ex_dspl_dft.c   
 */
+
+
+
+
+
+
+
 #elseif DOXYGEN_RU
 /*!
 	\ingroup DFT_GROUP
 	\fn int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Дискретное преобразование Фурье.
 	
-	Функция расчитывает \f$ n \f$-точечное  дискретное преобразование Фурье вещественного или 
-	комплексного сигнала \f$ x(m) \f$, \f$ m = 0 \ldots n-1 \f$.
+	Функция расчитывает \f$ n \f$-точечное  дискретное преобразование Фурье 
+	вещественного или комплексного сигнала \f$ x(m) \f$, \f$ m = 0 \ldots n-1 \f$.
 	\f[
-		Y(k) = \sum_{m = 0}^{n-1} x(m) \cdot \exp \left( -j \cdot \frac{2\pi}{n} \cdot m \cdot k \right),
+		Y(k) = \sum_{m = 0}^{n-1} x(m) \cdot 
+		\exp \left( -j \cdot \frac{2\pi}{n} \cdot m \cdot k \right),
 	\f]
 	где \f$ k = 0 \ldots n-1 \f$.
 	
-	\param[in]	xR	Указатель на вектор реальной части входного сигнала \f$x(m)\f$, \f$ m = 0 \ldots n-1 \f$. 
-					Размер вектора `[n x 1]`. 
+	\param[in]	xR	Указатель на вектор реальной части входного сигнала \f$x(m)\f$, 
+					\f$ m = 0 \ldots n-1 \f$. Размер вектора `[n x 1]`. 
 		
-	\param[in]	xI	Указатель на вектор мнимой части входного сигнала \f$x(m)\f$, \f$ m = 0 \ldots n-1 \f$.
-					Размер вектора `[n x 1]`. Этот указатель может быть `NULL` если входной сигнал чисто вещественный.
+	\param[in]	xI	Указатель на вектор мнимой части входного сигнала \f$x(m)\f$, 
+					\f$ m = 0 \ldots n-1 \f$. Размер вектора `[n x 1]`. Этот указатель 
+					может быть `NULL` если входной сигнал чисто вещественный.
 	
 	\param[in]	n	Размер ДПФ \f$n\f$ (размер векторов входного сигнала и результата ДПФ)
 	
-	\param[out]	yR	Указатель на вектор реальной части результата ДПФ \f$Y(k)\f$, \f$ k = 0 \ldots n-1 \f$. 
-					Размер вектора `[n x 1]`. Память должна быть веделена.
+	\param[out]	yR	Указатель на вектор реальной части результата ДПФ \f$Y(k)\f$, 
+					\f$ k = 0 \ldots n-1 \f$. Размер вектора `[n x 1]`. 
+					Память должна быть выделена.
 	
-	\param[out]	yI	Указатель на вектор реальной части результата ДПФ \f$Y(k)\f$, \f$ k = 0 \ldots n-1 \f$. 
-					Размер вектора `[n x 1]`. Память должна быть веделена.
+	\param[out]	yI	Указатель на вектор реальной части результата ДПФ \f$Y(k)\f$, 
+					\f$ k = 0 \ldots n-1 \f$. Размер вектора `[n x 1]`. 
+					Память должна быть выделена.
 	
 	\return
 	`DSPL_OK`         если ДПФ рассчитана успешно <BR>
@@ -68,8 +91,10 @@
 		Бахурин Сергей.                                                         
 		www.dsplib.org 
 	\note
-	Данная функция выполняет расчет ДПФ наивным методом и требует \f$ n^2 \f$ комплексных умножений.
-	Для увеличения скорости рассчета рекомендуется использовать алгоритмы быстрого преобразования Фурье.
+	Данная функция выполняет расчет ДПФ наивным методом 
+	и требует \f$ n^2 \f$ комплексных умножений.
+	Для увеличения скорости рассчета рекомендуется 
+	использовать алгоритмы быстрого преобразования Фурье.
 	\example ex_dspl_dft.c   
 */
 

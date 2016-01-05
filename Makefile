@@ -25,6 +25,7 @@ DLL_OBJS=$(OBJ_DIR)/dspl_conv.o \
 		
 
 EX_OBJS=$(OBJ_DIR)/ex_dspl.o\
+		$(OBJ_DIR)/ex_dspl_butter_ap.o\
 		$(OBJ_DIR)/ex_dspl_conv.o\
 		$(OBJ_DIR)/ex_dspl_dft.o\
 		$(OBJ_DIR)/ex_dspl_fft.o\
@@ -32,6 +33,7 @@ EX_OBJS=$(OBJ_DIR)/ex_dspl.o\
 
 all:	dll\
 		ex_dspl\
+		ex_dspl_butter_ap\
 		ex_dspl_conv\
 		ex_dspl_dft\
 		ex_dspl_fft\
@@ -43,6 +45,10 @@ dll: $(DLL_OBJS)
 ex_dspl:  $(OBJ_DIR)/ex_dspl.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl
 
+
+ex_dspl_butter_ap: $(OBJ_DIR)/ex_dspl_butter_ap.o $(OBJ_DIR)/dspl_load.o
+	$(CC) $(OBJ_DIR)/ex_dspl_butter_ap.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_butter_ap
+	
 	
 ex_dspl_conv:  $(OBJ_DIR)/ex_dspl_conv.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl_conv.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_conv
@@ -55,7 +61,7 @@ ex_dspl_dft: $(OBJ_DIR)/ex_dspl_dft.o $(OBJ_DIR)/dspl_load.o
 ex_dspl_fft: $(OBJ_DIR)/ex_dspl_fft.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl_fft.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_fft
 
-
+	
 ex_dspl_polyval: $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_polyval
 
