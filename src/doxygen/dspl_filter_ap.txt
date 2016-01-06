@@ -36,10 +36,82 @@
 		Sergey Bakhurin. 
 		www.dsplib.org	
 
+		
+	\example ex_dspl_butter_ap.c
+	There is example of analog Butterworth filter prototype calculation.
+	This program calculates Butterworth filter order 3 with 1 rad/s cutoff frequency and
+	3 dB passband  ripple.<BR>
+	In addition this program calculates filter magnitude \f$ |H(j\omega)|^2 \f$ and write it to
+	the `dat/ex_dspl_butter_ap.txt` file.<BR>
+	Program result: <BR>
+	\verbatim
+	Filter coefficients:
+        b[0] = 1.00238  a[0] = 1.00238
+        b[1] = 0.00000  a[1] = 2.00317
+        b[2] = 0.00000  a[2] = 2.00158
+        b[3] = 0.00000  a[3] = 1.00000
+	\endverbatim
+	Filter magnitude from `dat/ex_dspl_butter_ap.txt`:
+	\image html ex_dspl_butter_ap.png	
 */
 
 
 
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
+	
+	\brief Analog Chebyshev type 1 filter prototype.
+	
+	Function calculates Analog Chebyshev type 1 filter transfer function \f$H(s)\f$ coefficients.
+	Filter has order `ord`  cutoff frequency 1 rad/s with distortion level `-Rp` dB in passband 
+	(from 0 rad/s to 1 rad/s). Chebyshev type 1 filter magnitude is equiripple in passband.
+	
+	\param[in]	Rp	Filter passband distortions dB.
+					Distortions level from 0 rad/s to 1 rad/s. 
+					Must be positive.
+					
+	\param[in]	ord Filter order. 
+					Transfer function  \f$H(s)\f$ numerator and denominator 
+					coefficients number is `ord+1`.
+					
+	\param[out]	b 	Transfer function  \f$H(s)\f$ numerator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					Memory must be allocated.
+										
+	\param[out]	a 	Transfer function  \f$H(s)\f$ denominator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					Memory must be allocated.
+					
+	\return
+		`DSPL_OK`				Filter is calculated successfully .<BR>
+		`DSPL_ERROR_FILTER_RP`	Parameter `Rp` must be positive. <BR>
+		`DSPL_ERROR_FILTER_ORD`	Filter order must be positive.<BR>
+		`DSPL_ERROR_PTR`		Pointers `b` and `a` cannot be as `NULL`.<BR>
+
+	\author
+		Sergey Bakhurin. 
+		www.dsplib.org	
+
+		
+	\example ex_dspl_cheby1_ap.c
+	There is example of analog Chebyshev type 1 filter prototype calculation.
+	This program calculates Chebyshev type 1 filter order 3 with 1 rad/s cutoff frequency and
+	3 dB passband  ripple.<BR>
+	In addition this program calculates filter magnitude \f$ |H(j\omega)|^2 \f$ and write it to
+	the `dat/ex_dspl_cheby1_ap.txt` file.<BR>
+	Program result: <BR>
+	\verbatim
+	Filter coefficients:
+        b[0] = 0.25059  a[0] = -0.25059
+        b[1] = 0.00000  a[1] = 0.75000
+        b[2] = 0.00000  a[2] = 0.00000
+        b[3] = 0.00000  a[3] = 1.00000
+	\endverbatim
+	Filter magnitude from `dat/ex_dspl_cheby1_ap.txt`:
+	\image html ex_dspl_cheby1_ap.png	
+*/
 
 
 
@@ -104,6 +176,72 @@
 	\image html ex_dspl_butter_ap.png
 					
 */
+
+
+
+
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
+	
+	\brief Аналоговый ФНЧ прототип фильтра Чебышёва первого рода.
+	
+	Функция рассчитывает коэффициенты передаточной характеристики \f$H(s)\f$
+	аналогового ФНЧ Чебышёва первого рода порядка `ord` с частотой среза 1 рад/с по уровню \f$-R_p\f$ дБ. Особенностью фильтра Чебышёва первого рода являются равноволновые пульсации
+	АЧХ в полосе пропускания.
+	
+	\param[in]	Rp	Неравномерность АЧХ в полосе пропускания (дБ).
+					Параметр задает уровень искажений в полосе от 0 до 1 рад/с.
+					Значение должно быть положительным.
+					
+	\param[in]	ord Порядок фильтра. Количество коэффициентов числителя и знаменателя передаточной
+					функции \f$H(s)\f$ равно `ord+1`.
+					
+	\param[out]	b 	Указатель на вектор коэффициентов числителя передаточной функции \f$H(s)\f$.
+					Размер вектора `[ord+1 x 1]`.
+					Память должна быть выделена.
+										
+	\param[out]	a 	Указатель на вектор коэффициентов знаменателя передаточной функции \f$H(s)\f$.
+					Размер вектора `[ord+1 x 1]`.
+					Память должна быть выделена.
+					
+	\return
+		`DSPL_OK`				Фильтр рассчитан успешно.<BR>
+		`DSPL_ERROR_FILTER_RP`	Неверно задан параметр `Rp`. 
+								Параметр `Rp` должен быть больше нуля.<BR>
+		`DSPL_ERROR_FILTER_ORD`	Порядок фильтра должен быть положительным.<BR>
+		`DSPL_ERROR_PTR`		Ошибка указателя. Указатели `b` и `a` не должны быть `NULL`.<BR>
+
+		
+	\author
+	Бахурин Сергей
+	www.dsplib.org	
+		
+		
+	\example ex_dspl_cheby1_ap.c
+	Пример расчета аналогового ФНЧ-прототипа фильтра Чебышёва первого рода и его 
+	амплитудно-частотной характеристики. <BR>
+	В данном примере рассчитывает фильтр аналоговый ФНЧ Чебышёва первого рода 
+	3-го порядка с частотой среза 1 рад/с и с неравномерностью 
+	АЧХ в полосе от 0 до 1 рад/с равной 3 дБ. <BR>
+	Кроме того производится рассчет АЧХ полученного фильтра и результат сохраняется в файл 
+	`dat/ex_dspl_cheby1_ap.txt`.<BR>
+	Результат работы программы: <BR>
+	\verbatim
+	Filter coefficients:
+        b[0] = 0.25059  a[0] = -0.25059
+        b[1] = 0.00000  a[1] = 0.75000
+        b[2] = 0.00000  a[2] = 0.00000
+        b[3] = 0.00000  a[3] = 1.00000
+	\endverbatim
+	Результат АЧХ построенная по данным из файла `dat/ex_dspl_cheby1_ap.txt`:
+	\image html ex_dspl_cheby1_ap.png
+					
+*/
+
+
+
 
 #endif
 

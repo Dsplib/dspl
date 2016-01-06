@@ -5,6 +5,7 @@
 
 p_dspl_asinh			dspl_asinh			;
 p_dspl_butter_ap		dspl_butter_ap		;
+p_dspl_cheby1_ap		dspl_cheby1_ap		;
 p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_cosh 			dspl_cosh 			;
@@ -48,6 +49,14 @@ HINSTANCE	dspl_load()
 	
 	dspl_butter_ap = (p_dspl_butter_ap) GetProcAddress(hInstDLL, "dspl_butter_ap");
 	if(!dspl_butter_ap)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	dspl_cheby1_ap = (p_dspl_cheby1_ap) GetProcAddress(hInstDLL, "dspl_cheby1_ap");
+	if(!dspl_cheby1_ap)
 	{
 		FreeLibrary(hInstDLL);
 		return NULL;		

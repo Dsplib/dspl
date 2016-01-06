@@ -1,0 +1,66 @@
+#ifdef DOXYGEN_EN
+/*!
+	\mainpage DSPL - Digital signal processing library
+	
+	DSPL - Open source library for digital signal processing. DSPL includes follow algorithm groups: <BR>
+	
+	<ul>
+	<li>\ref DFT_GROUP </li>
+	<li>\ref WIN_GROUP </li>
+	<li>\ref FILTER_CONV_GROUP </li>
+	<li>\ref IIR_FILTER_DESIGN_GROUP </li>
+	<li>\ref FIR_FILTER_DESIGN_GROUP </li>
+	<li>\ref FILTER_ANALYSIS_GROUP </li>
+	<li>\ref SPEC_MATH_GROUP </li>
+	<li>\ref IN_OUT_GROUP </li>
+	</ul>
+	
+	
+	<BR>
+	
+	DSPL is dynamic link library (dspl.dll) 
+	under <a href = "http://www.gnu.org/licenses/lgpl.html">LGPL v3</a>  license and can be used in an open source and commercial software.
+	
+	<BR>
+	<BR>
+	
+	DSPL is open source C - library. <BR>
+	You can get DSPL source code  on <a href = "https://github.com/Dsplib/dspl">GitHub</a>.<BR>
+		
+*/
+#elseif DOXYGEN_RU
+/*!
+	\mainpage DSPL - библиотека алгоритмов цифровой обработки сигналов.
+	
+	DSPL - свободная библиотека алгоритмов цифровой обработки сигналов, 
+	включающая в себя следующие группы алгоритмов: <BR>
+	
+	<ul>
+	<li>\ref DFT_GROUP </li>
+	<li>\ref WIN_GROUP </li>
+	<li>\ref FILTER_CONV_GROUP </li>
+	<li>\ref IIR_FILTER_DESIGN_GROUP </li>
+	<li>\ref FIR_FILTER_DESIGN_GROUP </li>
+	<li>\ref FILTER_ANALYSIS_GROUP </li>
+	<li>\ref SPEC_MATH_GROUP </li>
+	<li>\ref IN_OUT_GROUP </li>
+	</ul>
+	
+	
+	<BR>
+	
+	DSPL распространяется в виде библиотеки динамической линковки (dspl.dll) 
+	под лицензией <a href = "http://www.gnu.org/licenses/lgpl.html">LGPL v3</a> и можеть быть использована как в свободных приложениях, так и в закрытых коммерческих приложениях при соблюдении 
+	условий лицензии <a href = "http://www.gnu.org/licenses/lgpl.html">LGPL v3</a>.
+	
+	<BR>
+	<BR>
+	
+	DSPL - библиотека с открытым исходным кодом, написанная на языке Си. <BR>
+	Исходные коды библиотеки доступны на <a href = "https://github.com/Dsplib/dspl">GitHub</a>.<BR>
+	Вы также можете внести свой вклад в развитие данной библиотеки. Присоединяйтесь!
+	
+	
+	
+
+*/

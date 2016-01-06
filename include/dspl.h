@@ -129,9 +129,12 @@ DSPL_API double dspl_asinh(double x);
 
 
 
-/* Analog Normalized Butterworth Lowpass Filter (dspl_butter_norm.c) */
+/* Analog Butterworth Filter prototype (dspl_filter_ap.c) */
 DSPL_API int dspl_butter_ap(double Rp, int ord, double* b, double* a);
 
+
+/* Analog Chebyshev type 1 Filter prototype (dspl_filter_ap.c) */
+DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a);
 
 
 /* Linear convolution for real vectors  (dspl_conv.c) */
@@ -247,9 +250,12 @@ typedef double (*p_dspl_asinh)(double x);
 
 
 
-/* Analog Normalized Butterworth Lowpass Filter (dspl_filter_ap.c) */
+/* Analog  Butterworth Filter prototype (dspl_filter_ap.c) */
 typedef int (*p_dspl_butter_ap)	(double Rp, int ord, double* b, double* a);
 
+
+/* Analog Chebyshev type 1 Filter prototype (dspl_filter_ap.c) */
+typedef int (*p_dspl_cheby1_ap) (double Rp, int ord, double* b, double* a);
 
 
 /* Linear convolution for real vectors  (dspl_conv.c) */
@@ -354,6 +360,7 @@ typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
 
 extern p_dspl_asinh			dspl_asinh			;
 extern p_dspl_butter_ap		dspl_butter_ap		;
+extern p_dspl_cheby1_ap		dspl_cheby1_ap		;
 extern p_dspl_conv			dspl_conv			;         	
 extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
 extern p_dspl_cosh 			dspl_cosh 			;				
