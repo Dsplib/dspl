@@ -26,13 +26,13 @@
 
 
 /*
-* Real polynom calculation
-* Function calculates a polynom 
+* Real polynomial calculation
+* Function calculates a polynomial 
 * 
 * y(x) = a0 + a1*x + a2*x^2 + a3*x^3 + ... aord*x^ord.
 * 
 * for vector argument x. Output is vector y which contains polynom value for each x
-* This function use follow polynom facotization:
+* This function use follow polynomial factorization:
 *
 * y(x) = a[0] + x*(a[1] + x*(a[2] + x*(... x*(a[ord-1] + x*a[ord]) ...))) 
 *

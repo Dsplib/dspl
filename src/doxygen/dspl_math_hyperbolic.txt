@@ -1,0 +1,136 @@
+
+#ifdef DOXYGEN_EN
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_asinh(double x)
+	\brief Inverse hyperbolic sine of real argument
+	
+	Function calculates inverse hyperbolic sine. 
+	\f[
+		\text{asinh}(x) = \log \left(x +\sqrt{x^2+1}\right)
+	\f]
+	
+	\param[in]	x	Inverse hyperbolic sine
+					real argument.
+					
+	\return	
+		Inverse hyperbolic sine for real argument `x`.
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_cosh(double x)
+	\brief Hyperbolic cosine of real argument
+	
+	Function calculates hyperbolic cosine. 
+	\f[
+		\text{cosh}(x) = \frac{\exp(x) + \exp(-x)}{2}
+	\f]
+	
+	\param[in]	x	Hyperbolic cosine
+					real argument.
+					
+	\return	
+		Hyperbolic cosine for real argument `x`.
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/
+
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_sinh(double x)
+	\brief Hyperbolic sine of real argument
+	
+	Function calculates hyperbolic sine. 
+	\f[
+		\text{sinh}(x) = \frac{\exp(x) - \exp(-x)}{2}
+	\f]
+	
+	\param[in]	x	Hyperbolic sine
+					real argument.
+					
+	\return	
+		Hyperbolic sine for real argument `x`.
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/
+
+
+
+
+
+
+#elseif DOXYGEN_RU
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_asinh(double x)
+	\brief Обратный гиперболический синус
+	
+	Функция расчета обратного гиперболического синуса вещественного аргумента. 
+	\f[
+		\text{asinh}(x) = \log \left(x +\sqrt{x^2+1}\right)
+	\f]
+	
+	\param[in]	x	Вещественный аргумент функции 
+					обратного гиперболического синуса.
+					
+	\return	
+		Значение функции обратного гиперболического синуса 
+		вещественного аргумента `x`.
+	\author
+		Бахурин Сергей.                                                         
+		www.dsplib.org 	
+*/
+
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_cosh(double x)
+	\brief Гиперболический косинус вещественного аргумента
+	
+	Функция расчета гиперболического косинуса вещественного аргумента. 
+	\f[
+		\text{cosh}(x) = \frac{\exp(x) + \exp(-x)}{2}
+	\f]
+	
+	\param[in]	x	Вещественный аргумент функции 
+					гиперболического косинуса.
+					
+	\return	
+		Значение функции гиперболического косинуса 
+		вещественного аргумента `x`.
+	\author
+		Бахурин Сергей.                                                         
+		www.dsplib.org 	
+*/
+
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_sinh(double x)
+	\brief Гиперболический синус вещественного аргумента
+	
+	Функция расчета гиперболического синуса вещественного аргумента. 
+	\f[
+		\text{sinh}(x) = \frac{\exp(x) - \exp(-x)}{2}
+	\f]
+	
+	\param[in]	x	Вещественный аргумент функции 
+					гиперболического синуса.
+					
+	\return	
+		Значение функции гиперболического синуса 
+		вещественного аргумента `x`.
+	\author
+		Бахурин Сергей.                                                         
+		www.dsplib.org 	
+*/
+
+
+#endif
