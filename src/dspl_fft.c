@@ -38,7 +38,7 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft,
 	int k;
 	double invn;
 	size_t bufSize;
-	if(!xR || !yR || !yI)
+	if(!xR || !yR)
 		return DSPL_ERROR_PTR;
 	p2 = dspl_fft_p2(n);
 	if(!p2)
@@ -53,11 +53,15 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft,
 	dspl_fft_reorder(pfft, n);
 	dspl_fft_krn(pfft, n, p2);
 	invn = 1.0 / (double) n;
-	for (k = 0; k<n; k++)
-	{
-		yR[k]=  invn * pfft->t0R[k];
-		yI[k]= -invn * pfft->t0I[k];	
-	}	
+	if(yI)
+		for (k = 0; k<n; k++)
+		{
+			yR[k]=  invn * pfft->t0R[k];
+			yI[k]= -invn * pfft->t0I[k];	
+		}	
+	else
+		for (k = 0; k<n; k++)
+			yR[k]=  invn * pfft->t0R[k];
 	 
 	return DSPL_OK;
 }

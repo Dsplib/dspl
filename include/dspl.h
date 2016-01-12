@@ -41,7 +41,8 @@
 #define	DSPL_ERROR_FFT_SIZE			0x00009000	
 #define DSPL_ERROR_FILTER_A0		0x00010000
 #define	DSPL_ERROR_FILTER_ORD		0x00012000
-#define	DSPL_ERROR_FILTER_RP		0x00012500	 
+#define	DSPL_ERROR_FILTER_RP		0x00012500	
+#define	DSPL_ERROR_FILTER_RS		0x00012550 
 #define DSPL_ERROR_FNAME			0x00020000	
 #define DSPL_ERROR_FOPEN			0x00025000
 #define DSPL_ERROR_POLY_ORD			0x00090000
@@ -135,6 +136,10 @@ DSPL_API int dspl_butter_ap(double Rp, int ord, double* b, double* a);
 
 /* Analog Chebyshev type 1 Filter prototype (dspl_filter_ap.c) */
 DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a);
+
+
+/* Analog Chebyshev type 2 Filter prototype (dspl_filter_ap.c) */
+DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
 
 
 /* Linear convolution for real vectors  (dspl_conv.c) */
@@ -258,6 +263,10 @@ typedef int (*p_dspl_butter_ap)	(double Rp, int ord, double* b, double* a);
 typedef int (*p_dspl_cheby1_ap) (double Rp, int ord, double* b, double* a);
 
 
+/* Analog Chebyshev type 2 Filter prototype (dspl_filter_ap.c) */
+typedef int (*p_dspl_cheby2_ap) (double Rp, int ord, double* b, double* a);
+
+
 /* Linear convolution for real vectors  (dspl_conv.c) */
 typedef int (*p_dspl_conv) 			(double* a, int na, double* b,  int nb, double *c);
 
@@ -361,6 +370,7 @@ typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
 extern p_dspl_asinh			dspl_asinh			;
 extern p_dspl_butter_ap		dspl_butter_ap		;
 extern p_dspl_cheby1_ap		dspl_cheby1_ap		;
+extern p_dspl_cheby2_ap		dspl_cheby2_ap		;
 extern p_dspl_conv			dspl_conv			;         	
 extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
 extern p_dspl_cosh 			dspl_cosh 			;				

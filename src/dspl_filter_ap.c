@@ -171,3 +171,84 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
 
 
 
+
+DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
+{
+	double es, *acc, *bcc, alpha, beta, sigma, omega, sh, ch, so2;
+	double p[3] = {0.0, 0.0, 1.0}, q[3] = {0.0, 0.0, 1.0}, gain;
+	int r, L, n, kp;
+	
+	if(Rs < 0 || Rs == 0)
+		return DSPL_ERROR_FILTER_RS;
+	if(ord < 1)
+		return DSPL_ERROR_FILTER_ORD;
+	if(!b || !a)
+		return DSPL_ERROR_PTR;
+	
+	acc = (double*)malloc((ord+1)*sizeof(double));
+	bcc = (double*)malloc((ord+1)*sizeof(double));
+
+	memset(acc, 0,  (ord+1)*sizeof(double));
+	memset(bcc, 0,  (ord+1)*sizeof(double));
+	memset(a,   0,  (ord+1)*sizeof(double));
+	memset(b,   0,  (ord+1)*sizeof(double));
+
+	es = sqrt(pow(10.0, Rs*0.1) - 1.0);
+	r = ord % 2;
+	L = (int)((ord-r)/2);
+
+	beta = dspl_asinh(es)/(double)ord;
+
+	sh = dspl_sinh(beta);
+	ch = dspl_cosh(beta);
+
+	bcc[0] = 1.0;
+	/* first pole according to filter order */
+	if(r)
+	{
+		/* we have one real pole if filter order is odd  */
+		acc[0] = 1.0/sh;
+		acc[1] = 1.0;
+		kp = 2;
+	}
+	else
+	{
+		/* all poles are TCOMPLEX if filter order is even  */
+		acc[0] = 1.0;
+		kp = 1;
+	}
+
+	/* coeff calculation */
+	for(n = 0; n < L; n++)
+	{
+		alpha = M_PI*(double)(2*n+1)/(double)(2*ord);
+		
+		sigma = sh*sin(alpha);
+		omega = ch*cos(alpha);
+
+		so2 = 1.0 / (sigma*sigma+omega*omega);
+
+		q[0] = 1.0/(cos(alpha)*cos(alpha));		
+		p[0] = so2;
+		p[1] = 2.0*sigma*so2;
+
+		dspl_conv(p, 3, acc, kp, a);
+		dspl_conv(q, 3, bcc, kp, b);
+		kp+=2;
+		memcpy(acc, a,  kp * sizeof(double));
+		memcpy(bcc, b,  kp * sizeof(double));
+	}
+
+	gain = b[0] / a[0];
+	for(n = 0; n < ord+1; n++)
+		b[n] /= gain;
+
+	free(acc);
+	free(bcc);
+	
+	return DSPL_OK;
+}
+
+
+
+
