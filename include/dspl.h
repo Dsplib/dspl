@@ -139,7 +139,7 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a);
 
 
 /* Analog Chebyshev type 2 Filter prototype (dspl_filter_ap.c) */
-DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
+DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a);
 
 
 /* Linear convolution for real vectors  (dspl_conv.c) */
