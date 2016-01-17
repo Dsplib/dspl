@@ -24,7 +24,7 @@
 #include "dspl.h"
 
 
-
+/* freqz function */
 
 DSPL_API int dspl_freqz(double* b, double* a, int ord, 
 						double* w, int n, 
