@@ -311,3 +311,64 @@ void dspl_fft_reorder(fft_t* pfft, int n)
 		pfft->t1I = ptr;
 	}
 }
+
+
+DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* yI)
+{
+	int n2, r;
+	int k;
+	double tmp;
+	double *buf;
+	
+	if(!xR || !yR || (!xI && yI) || (!yI && xI))
+		return DSPL_ERROR_PTR;
+	if(n<1)
+		return DSPL_ERROR_SIZE;
+	r = n%2;
+	if(!r)
+	{
+		n2 = n>>1;
+		if(xI)
+		{
+			for(k = 0; k < n2; k++)
+			{
+				tmp = xR[k];
+				yR[k] = xR[k+n2];
+				yR[k+n2] = tmp;
+				
+				tmp = xI[k];
+				yI[k] = xI[k+n2];
+				yI[k+n2] = tmp;
+				
+			}
+		}
+		else
+		{
+			for(k = 0; k < n2; k++)
+			{
+				tmp = xR[k];
+				yR[k] = xR[k+n2];
+				yR[k+n2] = tmp;
+			}
+			
+		}
+	}
+	else
+	{
+		n2 = (n-1) >> 1;
+		buf = (double*) malloc(n2*sizeof(double));
+		memcpy(buf, xR, n2*sizeof(double));
+		memcpy(yR, xR+n2, (n2+1)*sizeof(double));
+		memcpy(yR+n2+1, buf, n2*sizeof(double));
+		
+		if(xI)
+		{
+			memcpy(buf, xI, n2*sizeof(double));
+			memcpy(yI, xI+n2, (n2+1)*sizeof(double));
+			memcpy(yI+n2+1, buf, n2*sizeof(double));			
+		}
+		free(buf);
+	}
+			
+	return DSPL_OK;
+}

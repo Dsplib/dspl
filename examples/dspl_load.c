@@ -7,6 +7,7 @@ p_dspl_asinh			dspl_asinh			;
 p_dspl_butter_ap		dspl_butter_ap		;
 p_dspl_cheby1_ap		dspl_cheby1_ap		;
 p_dspl_cheby2_ap		dspl_cheby2_ap		;
+p_dspl_compos			dspl_compos			;
 p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_cosh 			dspl_cosh 			;
@@ -15,6 +16,7 @@ p_dspl_ifft				dspl_ifft		    ;
 p_dspl_fft				dspl_fft		    ;
 p_dspl_fft_create		dspl_fft_create		;
 p_dspl_fft_free			dspl_fft_free		;
+p_dspl_fft_shift		dspl_fft_shift		;
 p_dspl_filter_iir		dspl_filter_iir	    ;
 p_dspl_freqs			dspl_freqs		    ;
 p_dspl_freqz			dspl_freqz		    ;
@@ -66,6 +68,15 @@ HINSTANCE	dspl_load()
 	
 	dspl_cheby2_ap = (p_dspl_cheby2_ap) GetProcAddress(hInstDLL, "dspl_cheby2_ap");
 	if(!dspl_cheby2_ap)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	
+	dspl_compos = (p_dspl_compos) GetProcAddress(hInstDLL, "dspl_compos");
+	if(!dspl_compos)
 	{
 		FreeLibrary(hInstDLL);
 		return NULL;		
@@ -139,6 +150,15 @@ HINSTANCE	dspl_load()
 		FreeLibrary(hInstDLL);
 		return NULL;		
 	}
+	
+	
+	dspl_fft_shift = (p_dspl_fft_shift) GetProcAddress(hInstDLL, "dspl_fft_shift");
+	if(!dspl_fft_shift)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
 	
 
 	dspl_filter_iir = (p_dspl_filter_iir) GetProcAddress(hInstDLL, "dspl_filter_iir");

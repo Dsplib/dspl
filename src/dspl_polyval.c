@@ -26,7 +26,7 @@
 
 
 /*
-* Real polynomial calculation
+* 
 * Function calculates a polynomial 
 * 
 * y(x) = a0 + a1*x + a2*x^2 + a3*x^3 + ... aord*x^ord.
@@ -53,7 +53,7 @@
 * 	                                                                          
 * ------------------------------------------------------------------------------------------
 * Return:
-*	DSPL_OK 		if filter output is calculted successfuly
+*	DSPL_OK 		if filter output is calculated successfully
 *
 *	DSPL_ERROR_PTR	if pointer are wrong. This situation can be if:
 *					a is NULL or x is NULL or y is NULL.

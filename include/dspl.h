@@ -146,6 +146,11 @@ DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a);
 DSPL_API int dspl_conv (double* a, int na, double* b,  int nb, double *c);
 
 
+/* Rational composition  (dspl_compos.c) */
+DSPL_API int dspl_compos(	double *b, double *a, int n, 
+							double *c, double *d, int p, 
+							double *beta, double *alpha);
+							
 
 /* Linear convolution for complex vectors  (dspl_conv.c) */
 DSPL_API int dspl_conv_cmplx	(double* aR, double* aI, int na, 
@@ -179,6 +184,10 @@ DSPL_API int dspl_fft_create(fft_t *pfft, int n);
 
 /* Create Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API void dspl_fft_free(fft_t *pfft);
+
+
+/* DFT shift  (dspl_fft.c)*/
+DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* yI);
 
 
 
@@ -267,6 +276,13 @@ typedef int (*p_dspl_cheby1_ap) (double Rp, int ord, double* b, double* a);
 typedef int (*p_dspl_cheby2_ap) (double Rp, int ord, double* b, double* a);
 
 
+/* Rational composition  (dspl_compos.c) */
+typedef int (*p_dspl_compos)(	double *b, double *a, int n, 
+								double *c, double *d, int p, 
+								double *beta, double *alpha);
+							
+							
+							
 /* Linear convolution for real vectors  (dspl_conv.c) */
 typedef int (*p_dspl_conv) 			(double* a, int na, double* b,  int nb, double *c);
 
@@ -305,6 +321,9 @@ typedef int (*p_dspl_fft_create)	(fft_t *pfft, int n);
 
 
 typedef void (*p_dspl_fft_free)(fft_t *pfft);
+
+
+typedef int(*p_dspl_fft_shift)(double* xR, double* xI, int n, double* yR, double* yI);
 
 
 
@@ -371,6 +390,7 @@ extern p_dspl_asinh			dspl_asinh			;
 extern p_dspl_butter_ap		dspl_butter_ap		;
 extern p_dspl_cheby1_ap		dspl_cheby1_ap		;
 extern p_dspl_cheby2_ap		dspl_cheby2_ap		;
+extern p_dspl_compos		dspl_compos			;
 extern p_dspl_conv			dspl_conv			;         	
 extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
 extern p_dspl_cosh 			dspl_cosh 			;				
@@ -379,6 +399,7 @@ extern p_dspl_ifft			dspl_ifft		    ;
 extern p_dspl_fft			dspl_fft		    ;
 extern p_dspl_fft_create	dspl_fft_create	    ;
 extern p_dspl_fft_free		dspl_fft_free		;
+extern p_dspl_fft_shift		dspl_fft_shift		;
 extern p_dspl_filter_iir	dspl_filter_iir	    ;
 extern p_dspl_freqs			dspl_freqs		    ;
 extern p_dspl_freqz			dspl_freqz		    ;
