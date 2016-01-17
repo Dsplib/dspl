@@ -31,10 +31,9 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
     int k;
     int m;
     double eR, eI;
-    double dR, dI;
-    double tR, tI;
     double divn;
-    double dphi;         
+    double dphi;
+    double phi;         
 
     if(!xR || !yR ||!yI)
         return DSPL_ERROR_PTR;
@@ -47,19 +46,14 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
         for(k = 0; k < n; k++)
         {
             yR[k] = yI[k] = 0.0;
-            eR = 1.0;
             dphi = -2.0 * M_PI * divn * (double)k;
-            dR = cos(dphi);
-            dI = sin(dphi);
             for(m = 0; m < n; m++)
             {
-				
+            	phi  = dphi*(double)m;
+				eR = cos(phi);
+				eI = sin(phi);
                 yR[k] += xR[m] * eR - xI[m] * eI;
                 yI[k] += xR[m] * eI + xI[m] * eR;
-                tR = eR * dR - eI * dI;
-                tI = eR * dI + eI * dR;
-                eR = tR;
-                eI = tI;
             }    
         }
     }
@@ -68,18 +62,14 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
         for(k = 0; k < n; k++)
         {
             yR[k] = yI[k] = 0.0;
-            eR = 1.0;
             dphi = -2.0 * M_PI * divn * (double)k;
-            dR = cos(dphi);
-            dI = sin(dphi);
             for(m = 0; m < n; m++)
             {
+            	phi  = dphi*(double)m;
+				eR = cos(phi);
+				eI = sin(phi);
                 yR[k] += xR[m] * eR;
                 yI[k] += xR[m] * eI;
-                tR = eR * dR - eI * dI;
-                tI = eR * dI + eI * dR;
-                eR = tR;
-                eI = tI;
             }    
         }
     }

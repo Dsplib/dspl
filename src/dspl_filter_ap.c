@@ -61,26 +61,26 @@ DSPL_API int dspl_butter_ap(double Rp, int ord, double* b, double* a)
 	if(r)
 	{
 		/* we have one real pole if filter order is odd */
-		acc[0] = alpha;
-		acc[1] = 1.0;
+		a[0] = alpha;
+		a[1] = 1.0;
 		k = 2;
 	}
 	else
 	{
 		/* all poles are complex if filter order is even   */
-		acc[0] = 1.0;
+		a[0] = 1.0;
 		k = 1;
 	}
 	
 	/* coeff calculation */
 	for(n = 0; n < L; n++)
 	{
+		memcpy(acc, a, k*sizeof(double));
 		teta = M_PI*(double)(2*n + 1)/(double)(2*ord);
 		p[0] = alpha * alpha;
 		p[1] = 2.0 * alpha * sin(teta);
 		dspl_conv(p, 3, acc, k, a);
 		k+=2;
-		memcpy(acc, a, k*sizeof(double));
 	}
 
 	free(acc);
@@ -135,15 +135,15 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
 	if(r)
 	{ 
 		/* we have one real pole if filter order is odd */
-		acc[0] = -shbeta;
-		acc[1] = 1.0;
+		a[0] = -shbeta;
+		a[1] = 1.0;
 		k = 2;
 		gain = shbeta;
 	}
 	else
 	{
 		/* all poles are complex if filter order is even   */
-		acc[0] = 1.0;
+		a[0] = 1.0;
 		k = 1;
 		gain = 1.0/sqrt(1.0 + ep*ep);
 	}
@@ -152,6 +152,7 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
 	/* coeff calculation */
 	for(n = 0; n < L; n++)
 	{
+		memcpy(acc, a, k*sizeof(double));
 		alpha = M_PI*(double)(2*n + 1)/(double)(2*ord);
 		sigma = -sin(alpha)*shbeta;
 		omega =  cos(alpha)*chbeta;
@@ -162,7 +163,6 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
 		
 		dspl_conv(p, 3, acc, k, a);
 		k+=2;
-		memcpy(acc, a, k*sizeof(double));
 	}
 	b[0] = gain;
 	free(acc);
@@ -174,8 +174,11 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
 
 DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
 {
-	double es, *acc, *bcc, alpha, beta, sigma, omega, sh, ch, so2;
-	double p[3] = {0.0, 0.0, 1.0}, q[3] = {0.0, 0.0, 1.0}, gain;
+	double es, *acc = NULL, *bcc = NULL;
+	double alpha, beta, sigma, omega, sh, ch, so2;
+	double p[3] = {0.0, 0.0, 1.0};
+	double q[3] = {0.0, 0.0, 1.0};
+	double gain;
 	int r, L, n, kp;
 	
 	if(Rs < 0 || Rs == 0)
@@ -202,25 +205,28 @@ DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
 	sh = dspl_sinh(beta);
 	ch = dspl_cosh(beta);
 
-	bcc[0] = 1.0;
+	b[0] = 1.0;
 	/* first pole according to filter order */
 	if(r)
 	{
 		/* we have one real pole if filter order is odd  */
-		acc[0] = 1.0/sh;
-		acc[1] = 1.0;
+		a[0] = 1.0/sh;
+		a[1] = 1.0;
 		kp = 2;
 	}
 	else
 	{
 		/* all poles are TCOMPLEX if filter order is even  */
-		acc[0] = 1.0;
+		a[0] = 1.0;
 		kp = 1;
 	}
 
 	/* coeff calculation */
 	for(n = 0; n < L; n++)
 	{
+		memcpy(acc, a,  kp * sizeof(double));
+		memcpy(bcc, b,  kp * sizeof(double));
+
 		alpha = M_PI*(double)(2*n+1)/(double)(2*ord);
 		
 		sigma = sh*sin(alpha);
@@ -235,8 +241,7 @@ DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
 		dspl_conv(p, 3, acc, kp, a);
 		dspl_conv(q, 3, bcc, kp, b);
 		kp+=2;
-		memcpy(acc, a,  kp * sizeof(double));
-		memcpy(bcc, b,  kp * sizeof(double));
+		
 	}
 
 	gain = b[0] / a[0];
