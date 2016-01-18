@@ -39,12 +39,12 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 
 	if (!a || !b || !c || !d || !beta || !alpha)
 		return DSPL_ERROR_PTR;
-	if(n < 1 || p < 1)
+	if(n < 0 || p < 0)
 		return DSPL_ERROR_SIZE;
 
-	k2   = (n-1)*(p-1)+1; 
+	k2   = (n*p)+1; 
 	k2s  = k2*sizeof(double);	/* alpha and beta size			*/
-	nk2s = n*k2*sizeof(double); /* num, den, ndn and ndd size	*/
+	nk2s = (n+1)*k2*sizeof(double); /* num, den, ndn and ndd size	*/
 
 	num = (double*)malloc(nk2s);
 	den = (double*)malloc(nk2s);
@@ -63,29 +63,29 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 	num[0] = den[0] = 1.0;
 	pn = 0;
 	ln = 1;
-	for(i = 1; i < n; i++)
+	for(i = 1; i < n+1; i++)
 	{
 		dspl_conv(num+pn, ln, c, p, num+pn+k2);
 		dspl_conv(den+pn, ln, d, p, den+pn+k2);
 		pn += k2;
-		ln += p - 1;
+		ln += p;
 	}
 
 	pn = 0; 
-	pd = (n - 1)*k2;
+	pd = n*k2;
 	ln = 1;
 	ld = k2;
 
-	for (i = 0; i < n; i++)
+	for (i = 0; i < n+1; i++)
 	{
 		dspl_conv(num + pn, ln, den + pd, ld, ndn + i*k2);
-		ln += p - 1;
-		ld -= p - 1;
+		ln += p;
+		ld -= p;
 		pn += k2;
 		pd -= k2;
 	}
 
-	for (i = 0; i < n; i++)
+	for (i = 0; i < n+1; i++)
 	{
 		for (k = 0; k < k2; k++)
 		{

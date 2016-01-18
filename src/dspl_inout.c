@@ -82,15 +82,40 @@ DSPL_API void dspl_print_err(int res, int printCR)
 		case DSPL_OK:
 			printf("OK");
 			break;
+			
+			
+		case DSPL_ERROR_FFT_SIZE:
+			printf("ERROR: FFT size must be power of two!");
+			break;
+		case DSPL_ERROR_FILTER_A0:	
+			printf("ERROR: IIR filter coefficient a[0] cannot be zero!");
+			break;
+		case DSPL_ERROR_FILTER_ORD:	
+			printf("ERROR: filter order must be more than zero!");
+			break;
+		case DSPL_ERROR_FILTER_RP:	
+			printf("ERROR: filter Rp parameter must be more than zero!");
+			break;
+		case DSPL_ERROR_FILTER_RS:
+			printf("ERROR: filter Rs parameter must be more than zero!");
+			break;
+		case DSPL_ERROR_FNAME:	
+			printf("ERROR: file name is wrong!");
+			break;
+		case DSPL_ERROR_FOPEN:
+			printf("ERROR: cannot to open file!");
+			break;		
+		case DSPL_ERROR_POLY_ORD:	
+			printf("ERROR: polynomial order must be more than zero!");
+			break;
 		case DSPL_ERROR_PTR:
 			printf("ERROR: pointer is wrong!");
 			break;
 		case DSPL_ERROR_SIZE:
-			printf("ERROR: input arrray size is wrong!");
-			break;
-		case DSPL_ERROR_FILTER_A0:
-			printf("ERROR: IIR filter coefficient a[0] cannot be zero!");
-			break;
+			printf("ERROR: input array size is wrong!");
+			break;			
+		case DSPL_ERROR_WIN_TYPE:		
+			
 		default:
 			printf("Unknown error");		
 	}
