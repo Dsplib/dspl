@@ -56,17 +56,14 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 	memset(ndn,   0, nk2s);
 	memset(ndd,   0, nk2s);
 
-	
-	memset(alpha, 0, k2s);
-	memset(beta,  0, k2s);
-
+	                                
 	num[0] = den[0] = 1.0;
 	pn = 0;
 	ln = 1;
 	for(i = 1; i < n+1; i++)
 	{
-		dspl_conv(num+pn, ln, c, p, num+pn+k2);
-		dspl_conv(den+pn, ln, d, p, den+pn+k2);
+		dspl_conv(num+pn, ln, c, p+1, num+pn+k2);
+		dspl_conv(den+pn, ln, d, p+1, den+pn+k2);
 		pn += k2;
 		ln += p;
 	}
@@ -93,10 +90,15 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 			ndn[i*k2 + k] *= b[i];
 		}
 	}
+
 		
+
+	memset(alpha, 0, k2s);
+	memset(beta,  0, k2s);
+
 	for (k = 0; k < k2; k++)
 	{
-		for (i = 0; i < n; i++)
+		for (i = 0; i < n+1; i++)
 		{
 			beta[k]  += ndn[i*k2 + k];
 			alpha[k] += ndd[i*k2 + k];

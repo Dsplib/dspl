@@ -45,8 +45,63 @@
 */
 
 
+/*!
+	\ingroup SPEC_MATH_COMMON_GROUP
+	\fn int dspl_polyval_cmplx(	double* aR, double* aI, int ord, 
+								double* xR, double* xI, int n,
+								double* yR, double* yI)
+	\brief Complex values polynomial calculation
+	
+	Function calculates a \f$N-\f$ th order polynomial \f$P_N(x)\f$
+	\f[
+		P_N(x) = a_0 + a_1 \cdot x + a_2 \cdot x^2 + a_3*x^3 + ... a_N*x^N.
+	\f]
+	for vector argument `x`. Output is vector `y` which contains polynomial values for each x
+	This function uses Horner's polynomial factorization:
+	\f[
+		P_N(x) = a_0 + x \cdot (a_1 + x \cdot (a_2 + \cdot ( \ldots x \cdot (a_{N-1} + x\cdot a_N) \ldots ))) 
+	\f]
+	
+	\param[in]	aR		Polynomial coefficients real part vector pointer. 
+						Vector size is `[ord+1 x 1]`.
+						Coefficient `a[0]` corresponds to \f$a_0\f$ polynomial coefficient
+						
+	\param[in]	aI		Polynomial coefficients image part vector pointer. 
+						Vector size is `[ord+1 x 1]`.
+						Coefficient `a[0]` corresponds to \f$a_0\f$ polynomial coefficient
+	
+	\param[in]	ord		Polynomial order\f$N\f$. 
+					  
+	\param[in]	xR		Polynomial argument real part vector pointer. 
+						Vector size is `[n x 1]`.
+						Polynomial will be calculated for all `x` values.
+					
+	\param[in]	xI		Polynomial argument image part vector pointer. 
+						Vector size is `[n x 1]`.
+						Polynomial will be calculated for all `x` values.
+	
+	\param[in]	n		Polynomial argument vector size. 		
+	
+	\param[out]	yR	 	Polynomial real part values for all arguments `x`. 
+						Vector size is `[n x 1]`
+						Memory must be allocated.
+	
+	\param[out]	yI	 	Polynomial image part values for all arguments `x`. 
+						Vector size is `[n x 1]`
+						Memory must be allocated.
 
+	\return
+		`DSPL_OK` 			Polynomial is calculated successfully. <BR>	
+		`DSPL_ERROR_PTR`	Pointers `aR`, `xR` and `yR` cannot to be as `NULL`. <BR>
+							Pointer `yI` can be `NULL` only if `aI` and `xI` are `NULL`.
+ 		`DSPL_ERROR_SIZE` 	Argument vector size is wrong (`n < 1`). <BR>	
+		`DSPL_ERROR_POLY_ORD` Polynomial order less than 0. <BR>
+		
+	\author
+		Sergey Bakhurin. 
+		www.dsplib.org	                                                               
 
+*/
 
 
 
@@ -96,5 +151,72 @@
 	
 
 */
+
+
+/*!
+ 	\ingroup SPEC_MATH_COMMON_GROUP
+	\fn int dspl_polyval_cmplx(	double* aR, double* aI, int ord, 
+								double* xR, double* xI, int n,
+								double* yR, double* yI)
+	\brief Расчет комплексного полинома
+	
+	Функция рассчитывает полином \f$P_N(x)\f$  \f$N-\f$ого порядка комплексного аргумента
+	аргумента, заданного вектором `x`.
+		\f[
+		P_N(x) = a_0 + a_1 \cdot x + a_2 \cdot x^2 + a_3*x^3 + ... a_N*x^N.
+	\f]
+	Для расчета используется формула Горнера:
+	\f[
+		P_N(x) = a_0 + x \cdot (a_1 + x \cdot (a_2 + \cdot ( \ldots x \cdot (a_{N-1} + x\cdot a_N) \ldots ))) 
+	\f]
+	
+	\param[in]	aR		Указатель на вектор реальной части коэффициентов полинома. 
+						Размер вектора `[ord+1 x 1]`.
+						Коэффициент `aR[0]` соответствует коэффициенту полинома \f$a_0\f$.
+	
+	\param[in]	aI		Указатель на вектор мнимой части коэффициентов полинома. 
+						Размер вектора `[ord+1 x 1]`.
+						Коэффициент `aI[0]` соответствует коэффициенту полинома \f$a_0\f$.
+	
+	\param[in]	ord		Порядок полинома \f$N\f$. 
+					  
+	\param[in]	xR		Указатель на вектор реальной части аргумента полинома. 
+						Размер вектора `[n x 1]`.
+						Значения полинома будут расчитаны для всех 
+						значений аргумента вектора `x`.
+						
+	\param[in]	xI		Указатель на вектор мнимой части аргумента полинома. 
+						Размер вектора `[n x 1]`.
+						Значения полинома будут расчитаны для всех 
+						значений аргумента вектора `x`.
+						
+	\param[in]	n		Размер вектора агрумента полинома. 		
+	
+	\param[out]	yR	 	Указатель вектор реальной части значения 
+						полинома для аргумента `x`. 
+						Размер вектора `[n x 1]`
+						Память должна быть выделена.
+
+	\param[out]	yI	 	Указатель вектор реальной части значения 
+						полинома для аргумента `x`. 
+						Размер вектора `[n x 1]`
+						Память должна быть выделена.
+					
+	\return
+		`DSPL_OK` 			Полином расчитан успешно. <BR>	
+		`DSPL_ERROR_PTR`	Ошибка указателя. 
+							Указатели `aR`, `xR` и `yR` не могут быть `NULL`. <BR>	
+							Указатель `yI` не может быть `NULL` 
+							если `aI` не `NULL` или `xI` не `NULL`. 
+		`DSPL_ERROR_SIZE` 	Ошибка размера вектора (`n < 1`). <BR>	
+		`DSPL_ERROR_POLY_ORD` Порядок полинома должен быть выше 0. <BR>
+		
+	\author
+		Бахурин Сергей. 
+		www.dsplib.org	                                                               
+	
+
+*/
+
 
 #endif
