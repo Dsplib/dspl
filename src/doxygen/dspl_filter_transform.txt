@@ -1,0 +1,38 @@
+
+#ifdef DOXYGEN_EN
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_ap2bpass(double* b, double* a, int n, 
+						   double wp0, double wp1, 
+						   double* beta, double* alpha)
+	\brief  Analog low-pass prototype frequency transformation to band-pass 
+			filter with wp0 .. wp1 pass-band
+			
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+
+
+
+
+
+
+
+#elseif DOXYGEN_RU
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_ap2bpass(double* b, double* a, int n, 
+						   double wp0, double wp1, 
+						   double* beta, double* alpha)
+	\brief  Частотное преобразование аналогового ФНЧ прототипа
+			в полосовой фильтр с полосой пропускания `[wp0...wp1]`.
+	
+	
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+
+*/
+
+#endif

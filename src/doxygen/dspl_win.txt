@@ -1,0 +1,32 @@
+
+#ifdef DOXYGEN_EN
+/*!
+	\ingroup WIN_GROUP
+	\fn int dspl_window(double* w, int n, int win_type, double param)
+	\brief window function calculation
+	
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+
+
+
+
+
+
+
+#elseif DOXYGEN_RU
+/*!
+	\ingroup WIN_GROUP
+	\fn int dspl_window(double* w, int n, int win_type, double param)
+	\brief Расчет оконной функции
+	
+	
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+
+*/
+
+#endif

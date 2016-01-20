@@ -16,6 +16,7 @@ DLL_OBJS=$(OBJ_DIR)/dspl_compos.o \
 		$(OBJ_DIR)/dspl_fft.o \
 		$(OBJ_DIR)/dspl_filter_ap.o \
 		$(OBJ_DIR)/dspl_filter_iir.o \
+		$(OBJ_DIR)/dspl_filter_transform.o \
 		$(OBJ_DIR)/dspl_freqs.o \
 		$(OBJ_DIR)/dspl_freqz.o \
 		$(OBJ_DIR)/dspl_inout.o \

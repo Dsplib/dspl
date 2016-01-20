@@ -28,7 +28,7 @@
 
 
 /* DSPL VERSION */
-#define DSPL_VERSION 0x00100105
+#define DSPL_VERSION 0x00100114
 
 
 /*

@@ -3,6 +3,11 @@
 #include "dspl.h"
 
 
+
+p_dspl_ap2bpass			dspl_ap2bpass		;
+p_dspl_ap2bstop			dspl_ap2bstop		;
+p_dspl_ap2high			dspl_ap2high		;
+p_dspl_ap2low			dspl_ap2low			;
 p_dspl_asinh			dspl_asinh			;
 p_dspl_butter_ap		dspl_butter_ap		;
 p_dspl_cheby1_ap		dspl_cheby1_ap		;
@@ -39,7 +44,38 @@ HINSTANCE	dspl_load()
 	
 	if(!hInstDLL)
 		return NULL;
+
 	
+	dspl_ap2bpass = (p_dspl_ap2bpass) GetProcAddress(hInstDLL, "dspl_ap2bpass");
+	if(!dspl_ap2bpass)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	dspl_ap2bstop = (p_dspl_ap2bstop) GetProcAddress(hInstDLL, "dspl_ap2bstop");
+	if(!dspl_ap2bstop)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	dspl_ap2high = (p_dspl_ap2high) GetProcAddress(hInstDLL, "dspl_ap2high");
+	if(!dspl_ap2high)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
+	
+	dspl_ap2low = (p_dspl_ap2low) GetProcAddress(hInstDLL, "dspl_ap2low");
+	if(!dspl_ap2low)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
 	
 	
 	dspl_asinh = (p_dspl_asinh) GetProcAddress(hInstDLL, "dspl_asinh");

@@ -43,6 +43,7 @@
 #define	DSPL_ERROR_FILTER_ORD		0x00012000
 #define	DSPL_ERROR_FILTER_RP		0x00012500	
 #define	DSPL_ERROR_FILTER_RS		0x00012550 
+#define	DSPL_ERROR_FILTER_WP		0x00012560 
 #define DSPL_ERROR_FNAME			0x00020000	
 #define DSPL_ERROR_FOPEN			0x00025000
 #define DSPL_ERROR_POLY_ORD			0x00090000
@@ -65,9 +66,6 @@
 
 /* max message length */ 
 #define DSPL_MSG_LENGTH				256
-
-/* dspl variable name length for bin file */
-#define DSPL_VARNAME_LENGTH			256
 
 /* window types */
 #define DSPL_WIN_MASK				0x0000FFFF
@@ -123,6 +121,30 @@ extern "C" {
 
 
 
+/* Analog low-pass prototype frequency transformation to band-pass 
+filter with wp0 .. wp1 pass-band   (dspl_filter_transform.c) */
+DSPL_API int dspl_ap2bpass(double* b, double* a, int n, 
+						   double wp0, double wp1, 
+						   double* beta, double* alpha);
+
+/* Analog low-pass prototype frequency transformation to band-stop 
+filter with ws0 .. ws1 stop-band   (dspl_filter_transform.c) */
+DSPL_API int dspl_ap2bstop(double* b, double* a, int n, 
+						   double ws0, double ws1, 
+						   double* beta, double* alpha);
+						   
+/* Analog low-pass prototype frequency transformation to high-pass 
+filter with wp cutoff frequency   (dspl_filter_transform.c) */
+DSPL_API int dspl_ap2high(double* b, double* a, int n, double wp, 
+						 double* beta, double* alpha);
+						 
+						   
+/* Analog low-pass prototype frequency transformation to low-pass 
+filter with wp cutoff frequency    (dspl_filter_transform.c) */
+DSPL_API int dspl_ap2low(double* b, double* a, int n, double wp, 
+						 double* beta, double* alpha);
+						 
+						 
 /* Arsine hyperbolic for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_asinh(double x);
 
@@ -257,6 +279,30 @@ DSPL_API int dspl_writetxt (double* x, double *y, int n, char* fn);
 
 #else
 	
+/* Analog low-pass prototype frequency transformation to band-pass 
+filter with wp0 .. wp1 pass-band   (dspl_filter_transform.c) */
+typedef int (*p_dspl_ap2bpass)(double* b, double* a, int n, 
+						   double wp0, double wp1, 
+						   double* beta, double* alpha);
+
+/* Analog low-pass prototype frequency transformation to band-stop 
+filter with ws0 .. ws1 stop-band   (dspl_filter_transform.c) */
+typedef int (*p_dspl_ap2bstop)(double* b, double* a, int n, 
+						   double ws0, double ws1, 
+						   double* beta, double* alpha);
+						   
+/* Analog low-pass prototype frequency transformation to high-pass 
+filter with wp cutoff frequency   (dspl_filter_transform.c) */
+typedef int (*p_dspl_ap2high)(double* b, double* a, int n, double wp, 
+						 double* beta, double* alpha);
+						 
+
+
+/* Analog low-pass prototype frequency transformation to low-pass 
+filter with wp cutoff frequency   (dspl_filter_transform.c) */
+typedef int (*p_dspl_ap2low)(double* b, double* a, int n, double wp, 
+							 double* beta, double* alpha);
+						 
 
 /* Arsine hyperbolic for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_asinh)(double x);
@@ -385,6 +431,11 @@ typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
 
 
 
+
+extern p_dspl_ap2bpass		dspl_ap2bpass		;
+extern p_dspl_ap2bstop		dspl_ap2bstop		;
+extern p_dspl_ap2high		dspl_ap2high		;
+extern p_dspl_ap2low		dspl_ap2low			;
 extern p_dspl_asinh			dspl_asinh			;
 extern p_dspl_butter_ap		dspl_butter_ap		;
 extern p_dspl_cheby1_ap		dspl_cheby1_ap		;
@@ -410,7 +461,7 @@ extern p_dspl_print_msg 	dspl_print_msg 	    ;
 extern p_dspl_sinh			dspl_sinh			;
 extern p_dspl_window		dspl_window         ;
 extern p_dspl_writebin		dspl_writebin     	;
-extern p_dspl_writetxt		dspl_writetxt        ;
+extern p_dspl_writetxt		dspl_writetxt       ;
 
 HINSTANCE dspl_load();
 
