@@ -31,6 +31,7 @@ p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
 p_dspl_print_err		dspl_print_err	    ;
 p_dspl_print_msg 		dspl_print_msg 	    ;
 p_dspl_sinh				dspl_sinh			;
+p_dspl_unwrap			dspl_unwrap			;
 p_dspl_window			dspl_window         ;
 p_dspl_writebin			dspl_writebin		;
 p_dspl_writetxt			dspl_writetxt        ;
@@ -265,7 +266,14 @@ HINSTANCE	dspl_load()
 	}
 	
 		
-		
+	
+	dspl_unwrap = (p_dspl_unwrap) GetProcAddress(hInstDLL, "dspl_window");
+	if(!dspl_window)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
+	
 	
 	dspl_window = (p_dspl_window) GetProcAddress(hInstDLL, "dspl_window");
 	if(!dspl_window)

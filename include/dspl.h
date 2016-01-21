@@ -49,6 +49,7 @@
 #define DSPL_ERROR_POLY_ORD			0x00090000
 #define DSPL_ERROR_PTR				0x00100000
 #define DSPL_ERROR_SIZE				0x00400000
+#define DSPL_ERROR_UNWRAP			0x00450000
 #define	DSPL_ERROR_WIN_TYPE			0x00500000
 	
 	
@@ -260,6 +261,8 @@ DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_sinh(double x);
 
+/* unwrap function (dspl_unwrap.c)*/
+DSPL_API int dspl_unwrap(double* phi,  int n, double lev, double mar);
 
 /* window function calculation (dspl_win.c)*/
 DSPL_API int dspl_window(double* w, int n, int win_type, double param);
@@ -417,7 +420,7 @@ typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_sinh)		(double x);
 
-
+typedef int (*p_dspl_unwrap)(double* phi,  int n, double lev, double mar);
 /* window function calculation (dspl_win.c)*/
 typedef int (*p_dspl_window)		(double* w, int n, int win_type, double param);
 
@@ -459,6 +462,7 @@ extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
 extern p_dspl_print_msg 	dspl_print_msg 	    ;
 extern p_dspl_sinh			dspl_sinh			;
+extern p_dspl_unwrap		dspl_unwrap			;
 extern p_dspl_window		dspl_window         ;
 extern p_dspl_writebin		dspl_writebin     	;
 extern p_dspl_writetxt		dspl_writetxt       ;

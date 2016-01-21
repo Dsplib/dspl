@@ -22,6 +22,7 @@ DLL_OBJS=$(OBJ_DIR)/dspl_compos.o \
 		$(OBJ_DIR)/dspl_inout.o \
         $(OBJ_DIR)/dspl_math_hyperbolic.o \
 		$(OBJ_DIR)/dspl_polyval.o\
+		$(OBJ_DIR)/dspl_unwrap.o\
 		$(OBJ_DIR)/dspl_win.o\
 
 		
