@@ -11,15 +11,19 @@ xmode = log,
 log ticks with fixed point,
 xmin = 0.01,
 xmax = 100,
-ymin = -10,
-ymax = 5,
+ymin = -9.92,
+ymax = 3.64, 
+ytick={3.141593, 0, -3.141592, -6.2831853, -9.42477797},
+yticklabels = {$\pi$, $0$, $-\pi$, $-2\pi$, $-3\pi$},
 grid = both,
-every major grid/.style={black!30, opacity=0.5},
+every major grid/.style={black!30, =0.5},
 every minor grid/.style={black!10, opacity=0.5},
-minor tick num=3]
-
+minor tick num=3,
+legend pos=south west]                
 \addplot[blue] table {../dat/ex_dspl_phase.txt};
 \addplot[red ] table {../dat/ex_dspl_unwrap.txt};
+
+\legend{$\Phi(\omega)$,Unwrap $\Phi(\omega)$};
 \end{axis}
 
 

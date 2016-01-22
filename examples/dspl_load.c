@@ -267,9 +267,10 @@ HINSTANCE	dspl_load()
 	
 		
 	
-	dspl_unwrap = (p_dspl_unwrap) GetProcAddress(hInstDLL, "dspl_window");
-	if(!dspl_window)
+	dspl_unwrap = (p_dspl_unwrap) GetProcAddress(hInstDLL, "dspl_unwrap");
+	if(!dspl_unwrap)
 	{
+		printf("dspl_unwrap function loading error!\n");
 		FreeLibrary(hInstDLL);
 		return NULL;		
 	}

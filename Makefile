@@ -36,7 +36,8 @@ EX_OBJS=$(OBJ_DIR)/ex_dspl.o\
 		$(OBJ_DIR)/ex_dspl_dft.o\
 		$(OBJ_DIR)/ex_dspl_fft.o\
 		$(OBJ_DIR)/ex_dspl_polyval.o\
-
+		$(OBJ_DIR)/ex_dspl_unwrap.o\
+		
 all:	dll\
 		ex_dspl\
 		ex_dspl_butter_ap\
@@ -47,6 +48,10 @@ all:	dll\
 		ex_dspl_dft\
 		ex_dspl_fft\
 		ex_dspl_polyval\
+		ex_dspl_unwrap\
+		
+		
+		
 
 dll: $(DLL_OBJS)
 	$(CC) -o $(BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) -Wl,--subsystem,windows
@@ -86,7 +91,11 @@ ex_dspl_fft: $(OBJ_DIR)/ex_dspl_fft.o $(OBJ_DIR)/dspl_load.o
 ex_dspl_polyval: $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_polyval
 
+ex_dspl_unwrap: $(OBJ_DIR)/ex_dspl_unwrap.o $(OBJ_DIR)/dspl_load.o
+	$(CC) $(OBJ_DIR)/ex_dspl_unwrap.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_unwrap
 
+	
+	
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 	$(CC) $(DLL_CFLAGS) -c $< -o $@

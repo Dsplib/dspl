@@ -31,7 +31,7 @@ DSPL_API int dspl_unwrap(double* phi,  int n, double lev, double mar)
 	double d;
 	double th;
 	int k;
-	int flag;
+	int flag = 1;
 	if(!phi)
 		return DSPL_ERROR_PTR;
 	if(n<1)
@@ -42,9 +42,10 @@ DSPL_API int dspl_unwrap(double* phi,  int n, double lev, double mar)
 	while(flag)
 	{
 		flag = 0;
+		a[0] = a[1] = 0.0;
 		for(k = 0; k<n-1; k++)
 		{
-			d = phi[n+1] - phi[n];
+			d = phi[k+1] - phi[k];
 			if( d > th)
 			{
 				a[0] -= lev;
@@ -55,9 +56,10 @@ DSPL_API int dspl_unwrap(double* phi,  int n, double lev, double mar)
 				a[0] += lev;	
 				flag = 1;				
 			}
-			phi[n]+=a[1];
+			phi[k]+=a[1];
 			a[1] = a[0];		
 		}
+		phi[n-1]+=a[1];
 	}
 	return DSPL_OK;
 }
