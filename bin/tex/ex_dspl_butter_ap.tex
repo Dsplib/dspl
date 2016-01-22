@@ -5,21 +5,21 @@
 \begin{document}
 \begin{tikzpicture}[show background rectangle]
 \begin{axis}[
+title=Filter magnitude,
 xlabel={$\omega$, rad/s},
-ylabel={$\Phi(\omega)$, rad},
+ylabel={$|H(j \omega)|^2$, dB},
 xmode = log,
 log ticks with fixed point,
 xmin = 0.01,
 xmax = 100,
-ymin = -10,
+ymin = -130,
 ymax = 5,
 grid = both,
 every major grid/.style={black!30, opacity=0.5},
 every minor grid/.style={black!10, opacity=0.5},
 minor tick num=3]
 
-\addplot[blue] table {../dat/ex_dspl_phase.txt};
-\addplot[red ] table {../dat/ex_dspl_unwrap.txt};
+\addplot[blue] table {../dat/ex_dspl_butter_ap.txt};
 \end{axis}
 
 
