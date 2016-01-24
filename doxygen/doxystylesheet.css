@@ -1,21 +1,23 @@
 /* The standard CSS for doxygen 1.8.10 */
-
+/*
 body, table, div, p, dl {
 	font: 400 14px/22px Roboto,sans-serif;
 }
-
+D:\dsplib.org\dspl\dspl\doxygen\doxystylesheet.css*/
 /* @group Heading Levels */
 
 h1.groupheader {
 	font-size: 150%;
 }
 
+/*
 .title {
 	font: 400 14px/28px Roboto,sans-serif;
 	font-size: 150%;
 	font-weight: bold;
 	margin: 10px 2px;
 }
+*/
 
 h2.groupheader {
 	border-bottom: 1px solid #879ECB;
@@ -118,11 +120,11 @@ a {
 .contents a:visited {
 	color: #4665A2;
 }
-
+/*
 a:hover {
 	text-decoration: underline;
 }
-
+*/
 a.qindex {
 	font-weight: bold;
 }
@@ -264,13 +266,13 @@ div.groupText {
 	margin-left: 16px;
 	font-style: italic;
 }
-
+/*
 body {
 	background-color: white;
 	color: black;
         margin: 0;
 }
-
+*/
 div.contents {
 	margin-top: 10px;
 	margin-left: 12px;

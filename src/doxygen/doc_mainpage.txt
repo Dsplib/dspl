@@ -4,16 +4,16 @@
 	
 	DSPL - Open source library for digital signal processing. DSPL includes follow algorithm groups: <BR>
 	
-	<ul>
-	<li>\ref DFT_GROUP </li>
-	<li>\ref WIN_GROUP </li>
-	<li>\ref FILTER_CONV_GROUP </li>
-	<li>\ref IIR_FILTER_DESIGN_GROUP </li>
-	<li>\ref FIR_FILTER_DESIGN_GROUP </li>
-	<li>\ref FILTER_ANALYSIS_GROUP </li>
-	<li>\ref SPEC_MATH_GROUP </li>
-	<li>\ref IN_OUT_GROUP </li>
-	</ul>
+	
+	\ref DFT_GROUP <BR>
+	\ref WIN_GROUP <BR>
+	\ref FILTER_CONV_GROUP <BR>
+	\ref IIR_FILTER_DESIGN_GROUP <BR>
+	\ref FIR_FILTER_DESIGN_GROUP <BR>
+	\ref FILTER_ANALYSIS_GROUP <BR>
+	\ref SPEC_MATH_GROUP <BR>
+	\ref IN_OUT_GROUP <BR>
+	
 	
 	
 	<BR>
@@ -35,16 +35,16 @@
 	DSPL - свободная библиотека алгоритмов цифровой обработки сигналов, 
 	включающая в себя следующие группы алгоритмов: <BR>
 	
-	<ul>
-	<li>\ref DFT_GROUP </li>
-	<li>\ref WIN_GROUP </li>
-	<li>\ref FILTER_CONV_GROUP </li>
-	<li>\ref IIR_FILTER_DESIGN_GROUP </li>
-	<li>\ref FIR_FILTER_DESIGN_GROUP </li>
-	<li>\ref FILTER_ANALYSIS_GROUP </li>
-	<li>\ref SPEC_MATH_GROUP </li>
-	<li>\ref IN_OUT_GROUP </li>
-	</ul>
+	
+	\ref DFT_GROUP <BR>
+	\ref WIN_GROUP <BR>
+	\ref FILTER_CONV_GROUP <BR>
+	\ref IIR_FILTER_DESIGN_GROUP <BR>
+	\ref FIR_FILTER_DESIGN_GROUP <BR>
+	\ref FILTER_ANALYSIS_GROUP <BR>
+	\ref SPEC_MATH_GROUP <BR>
+	\ref IN_OUT_GROUP <BR>
+	 
 	
 	
 	<BR>
