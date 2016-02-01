@@ -17,6 +17,7 @@ p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_cosh 			dspl_cosh 			;
 p_dspl_dft 				dspl_dft 			;
+p_dspl_goertzel			dspl_goertzel		;
 p_dspl_ifft				dspl_ifft		    ;
 p_dspl_fft				dspl_fft		    ;
 p_dspl_fft_create		dspl_fft_create		;
@@ -154,6 +155,14 @@ HINSTANCE	dspl_load()
 		return NULL;		
 	}
 	
+	
+	
+	dspl_goertzel = (p_dspl_goertzel) GetProcAddress(hInstDLL, "dspl_goertzel");
+	if(!dspl_goertzel)
+	{
+		FreeLibrary(hInstDLL);
+		return NULL;		
+	}
 	
 	
 	dspl_ifft = (p_dspl_ifft) GetProcAddress(hInstDLL, "dspl_ifft");

@@ -188,6 +188,12 @@ DSPL_API double dspl_cosh(double x);
 DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
 
 
+/* Goertzel Algorithm for Discrete Fourier Transform  (dspl_goertzel.c) */
+DSPL_API int dspl_goertzel(	double *xR, double *xI, int n, 
+							int *ind, int k, 
+							double *yR, double *yI);
+
+
 /* Inverse Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, 
 											double* yR, double* yI);
@@ -351,6 +357,13 @@ typedef double (*p_dspl_cosh)(double x);
 typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double* yI);
 
 
+
+/* Goertzel Algorithm for Discrete Fourier Transform  (dspl_goertzel.c) */
+typedef int (*p_dspl_goertzel)(	double *xR, double *xI, int n, 
+							int *ind, int k, 
+							double *yR, double *yI);
+
+							
 /* Inverse Fast Fourier Transform  (dspl_fft.c)*/
 typedef int (*p_dspl_ifft)			(double* xR, double* xI, int n, fft_t* pfft, 
 											double* yR, double* yI);
@@ -446,7 +459,8 @@ extern p_dspl_cheby2_ap		dspl_cheby2_ap		;
 extern p_dspl_compos		dspl_compos			;
 extern p_dspl_conv			dspl_conv			;         	
 extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
-extern p_dspl_cosh 			dspl_cosh 			;				
+extern p_dspl_cosh 			dspl_cosh 			;	
+extern p_dspl_goertzel		dspl_goertzel		;			
 extern p_dspl_dft 			dspl_dft 			; 
 extern p_dspl_ifft			dspl_ifft		    ;
 extern p_dspl_fft			dspl_fft		    ;
