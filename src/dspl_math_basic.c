@@ -22,4 +22,32 @@
 #include <math.h>
 #include "dspl.h"
 
+
+DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x)
+{
+	double dx;
+	
+	if(n < 2)
+		return DSPL_ERROR_SIZE;
+	if(!x)
+		return DSPL_ERROR_PTR;
+
+	if(type == DSPL_SYMMETRIC)
+	{
+		dx = (x1 - x0)/(double)(n-1);
+		x[0] = x0;
+		for(k = 1; k < n; k++)
+			x[k] = x[k-1] + dx;
+	}
+	
+	if(type == DSPL_PERIODIC)
+	{
+		dx = (x1 - x0)/(double)(n-1);
+		x[0] = x0;
+		for(k = 1; k < n; k++)
+			x[k] = x[k-1] + dx;
+	}
+	return DSPL_OK;
+	
+}
               

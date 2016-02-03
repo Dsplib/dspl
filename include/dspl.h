@@ -68,6 +68,12 @@
 /* max message length */ 
 #define DSPL_MSG_LENGTH				256
 
+
+#define DSPL_SYMMETRIC				0x00000000
+#define DSPL_PERIODIC				0x00010000
+
+
+
 /* window types */
 #define DSPL_WIN_MASK				0x0000FFFF
 #define	DSPL_WIN_BARTLETT			0x00000010
@@ -85,8 +91,8 @@
 #define	DSPL_WIN_COS				0x00000130							
 
 #define DSPL_WIN_TYPE_MASK			0x000F0000
-#define DSPL_WIN_SYMMETRIC			0x00000000
-#define DSPL_WIN_PERIODIC			0x00010000
+#define DSPL_WIN_SYMMETRIC			DSPL_SYMMETRIC
+#define DSPL_WIN_PERIODIC			DSPL_PERIODIC
 				
 
 typedef struct
@@ -240,6 +246,9 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
 /* Get DSPL version  (dspl_inout.c) */
 DSPL_API int dspl_get_version (int printFlag);
 
+
+
+DSPL_API  dspl_linspace(double x0, double x1, int n, int type, double* x);
 
 
 /* Polynom calculation (dspl_polynom.c) */
@@ -409,7 +418,7 @@ typedef int (*p_dspl_freqz)(double* b, double* a, int ord,
 /* Get DSPL version  (dspl_inout.c) */
 typedef int (*p_dspl_get_version) 	(int printFlag);
 
-
+typedef int (*pdspl_linspace)(double x0, double x1, int n, int type, double* x);
 
 /* Polynom calculation (dspl_polyval.c) */
 typedef int (*p_dspl_polyval)		(double* a, int ord, double* x, int n, double* y);
@@ -470,7 +479,8 @@ extern p_dspl_fft_shift		dspl_fft_shift		;
 extern p_dspl_filter_iir	dspl_filter_iir	    ;
 extern p_dspl_freqs			dspl_freqs		    ;
 extern p_dspl_freqz			dspl_freqz		    ;
-extern p_dspl_get_version 	dspl_get_version 	; 
+extern p_dspl_get_version 	dspl_get_version 	;
+extern p_dspl_linspace 		dspl_linspace 
 extern p_dspl_polyval		dspl_polyval   		;
 extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
