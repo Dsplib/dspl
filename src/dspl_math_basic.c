@@ -26,7 +26,7 @@
 DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x)
 {
 	double dx;
-	
+	int k;
 	if(n < 2)
 		return DSPL_ERROR_SIZE;
 	if(!x)
@@ -42,12 +42,41 @@ DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x)
 	
 	if(type == DSPL_PERIODIC)
 	{
-		dx = (x1 - x0)/(double)(n-1);
+		dx = (x1 - x0)/(double)n;
 		x[0] = x0;
 		for(k = 1; k < n; k++)
 			x[k] = x[k-1] + dx;
 	}
-	return DSPL_OK;
+	return DSPL_OK;	
+}
+
+
+DSPL_API int dspl_logspace(double x0, double x1, int n, int type, double* x)
+{
+	double mx, a, b;
+	int k;
+	if(n < 2)
+		return DSPL_ERROR_SIZE;
+	if(!x)
+		return DSPL_ERROR_PTR;
+
+	a = pow(10.0, x0);
+	b = pow(10.0, x1);
+	if(type == DSPL_SYMMETRIC)
+	{
+		mx = pow(b/a, 1.0/(double)(n-1));
+		x[0] = a;
+		for(k = 1; k < n; k++)
+			x[k] = x[k-1] * mx;
+	}
 	
+	if(type == DSPL_PERIODIC)
+	{
+		mx = pow(b/a, 1.0/(double)n);
+		x[0] = a;
+		for(k = 1; k < n; k++)
+			x[k] = x[k-1] * mx;
+	}
+	return DSPL_OK;	
 }
               

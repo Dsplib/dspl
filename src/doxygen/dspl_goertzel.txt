@@ -1,7 +1,7 @@
 
 #ifdef DOXYGEN_EN
 /*!
-
+	\ingroup DFT_GROUP
 	\fn int dspl_goertzel(double *xR, double *xI, int n, int *ind, int k, double *yR, double *yI)
 	\brief Goertzel algorithm of discrete Fourier transform
 	

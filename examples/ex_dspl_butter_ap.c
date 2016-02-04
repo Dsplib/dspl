@@ -22,7 +22,6 @@ int main()
 	HINSTANCE hDSPL;	/* DSPL.DLL handle */
 	
 	int n;
-	double tw;
 		
 	/* load DSPL */
 	hDSPL = dspl_load();
@@ -39,13 +38,9 @@ int main()
 		printf("\tb[%d] = %.5f\ta[%d] = %.5f\n", n, b[n], n, a[n]);
 
 		
-	/* fill angular freq. vector from 0.01 rad/s to 100 rad/s*/
-	w[0] = 0.01;
-	tw = pow(1E4, 1.0/(double)N);
-	for(n = 1; n < N; n++)
-		w[n] =  w[n-1] * tw;		
-	
-	
+	/* fill angular freq. vector from 0.01 rad/s to 100 rad/s */
+	dspl_logspace(-2.0, 2.0, N, DSPL_SYMMETRIC, w);		
+
 	/* calculate filter frequency response */
 	dspl_freqs(b, a, ORD, w, N, hR, hI);
 	

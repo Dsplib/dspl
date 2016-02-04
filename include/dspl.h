@@ -247,11 +247,15 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
 DSPL_API int dspl_get_version (int printFlag);
 
 
+/* fill vector x as linear from x0 to x1  (dspl_math_basic.c)*/
+DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x);
 
-DSPL_API  dspl_linspace(double x0, double x1, int n, int type, double* x);
+
+/* fill vector x in logarithmic scale from 10^x0 to 10^x1  (dspl_math_basic.c)*/
+DSPL_API int dspl_logspace(double x0, double x1, int n, int type, double* x);
 
 
-/* Polynom calculation (dspl_polynom.c) */
+/* Polynomial calculation (dspl_polynom.c) */
 DSPL_API int dspl_polyval(double* a, int ord, double* x, int n, double* y);
 
 
@@ -414,11 +418,19 @@ typedef int (*p_dspl_freqz)(double* b, double* a, int ord,
 							double *hR, double* hI);
 
 
-
 /* Get DSPL version  (dspl_inout.c) */
 typedef int (*p_dspl_get_version) 	(int printFlag);
 
-typedef int (*pdspl_linspace)(double x0, double x1, int n, int type, double* x);
+
+/* fill vector x as linear from x0 to x1 (dspl_math_basic.c)*/
+typedef int (*p_dspl_linspace)(double x0, double x1, int n, int type, double* x);
+
+
+
+/* fill vector x in logarithmic from 10^x0 to 10^x1 (dspl_math_basic.c) */
+typedef int (*p_dspl_logspace)(double x0, double x1, int n, int type, double* x);
+
+
 
 /* Polynom calculation (dspl_polyval.c) */
 typedef int (*p_dspl_polyval)		(double* a, int ord, double* x, int n, double* y);
@@ -480,7 +492,8 @@ extern p_dspl_filter_iir	dspl_filter_iir	    ;
 extern p_dspl_freqs			dspl_freqs		    ;
 extern p_dspl_freqz			dspl_freqz		    ;
 extern p_dspl_get_version 	dspl_get_version 	;
-extern p_dspl_linspace 		dspl_linspace 
+extern p_dspl_linspace 		dspl_linspace 		;
+extern p_dspl_logspace 		dspl_logspace 		;
 extern p_dspl_polyval		dspl_polyval   		;
 extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
