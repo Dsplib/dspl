@@ -8,22 +8,22 @@
 	\brief  Analog low-pass prototype frequency transformation to a band-pass 
 			filter with `[wp0 ... wp1]` pass-band.
 
-	Function transforms analog prototype filter transfer function \f$ H_{text{ap}}(s) \f$ 
+	Function transforms analog prototype filter transfer function \f$ H_{\text{ap}}(s) \f$ 
 	to  a band-pass filter transfer function \f$ H(s) \f$:
 
 	\f[
-		 H(s) = H_{text{ap}} \left(\frac{s^2 + w^2_0}{B \cdot s}  \right), 
+		 H(s) = H_{\text{ap}} \left(\frac{s^2 + w^2_0}{B \cdot s}  \right), 
 	\f]
  
     here \f$w^2_0 =  \f$ `wp0 * wp1`, \f$wB =  \f$`wp1 - wp0`.
 
     Result band-pass filter order is `2*n`.
 
-    \param[in]	b 		Analog prototype \f$ H_{text{ap}}(s) \f$ numerator
+    \param[in]	b 		Analog prototype \f$ H_{\text{ap}}(s) \f$ numerator
     					coefficients vector pointer.
     					Vector size is `[n+1 x 1]`.	
 
-    \param[in]	a 		Analog prototype \f$ H_{text{ap}}(s) \f$ denominator
+    \param[in]	a 		Analog prototype \f$ H_{\text{ap}}(s) \f$ denominator
     					coefficients vector pointer.
     					Vector size is `[n+1 x 1]`.
 
@@ -37,11 +37,11 @@
 
 
 	\param[out]	beta 	Analog band-pass filter \f$ H(s) \f$ numerator
-    					coefficients vector pointer.
+    					coefficients vector pointer after transformation.
     					Vector size is `[2n+1 x 1]`.	
 
     \param[out]	alpha 	Analog band-pass filter \f$ H(s) \f$ denominator
-    					coefficients vector pointer.
+    					coefficients vector pointer after transformation.
     					Vector size is `[2n+1 x 1]`.
 	\return
 		`DSPL_OK` if filter has been transformed  successfully or code of error otherwise. 
@@ -62,22 +62,22 @@
 	\brief  Analog low-pass prototype frequency transformation to a band-stop 
 			filter with `[wp0 ... wp1]` stop-band.
 
-	Function transforms analog prototype filter transfer function \f$ H_{text{ap}}(s) \f$ 
+	Function transforms analog prototype filter transfer function \f$ H_{\text{ap}}(s) \f$ 
 	to  a band-stop  filter transfer function \f$ H(s) \f$:
 
 	\f[
-		 H(s) = H_{text{ap}} \left(\frac{B \cdot s}{s^2 + w^2_0}  \right), 
+		 H(s) = H_{\text{ap}} \left(\frac{B \cdot s}{s^2 + w^2_0}  \right), 
 	\f]
  
     here \f$w^2_0 =  \f$ `wp0 * wp1`, \f$wB =  \f$`wp1 - wp0`.
 
     Result band-stop filter order is `2*n`.
 
-    \param[in]	b 		Analog prototype \f$ H_{text{ap}}(s) \f$ numerator
+    \param[in]	b 		Analog prototype \f$ H_{\text{ap}}(s) \f$ numerator
     					coefficients vector pointer.
     					Vector size is `[n+1 x 1]`.	
 
-    \param[in]	a 		Analog prototype \f$ H_{text{ap}}(s) \f$ denominator
+    \param[in]	a 		Analog prototype \f$ H_{\text{ap}}(s) \f$ denominator
     					coefficients vector pointer.
     					Vector size is `[n+1 x 1]`.
 
@@ -91,11 +91,11 @@
 
 
 	\param[out]	beta 	Analog band-stop filter \f$ H(s) \f$ numerator
-    					coefficients vector pointer.
+    					coefficients vector pointer after transformation.
     					Vector size is `[2n+1 x 1]`.	
 
     \param[out]	alpha 	Analog band-stop filter \f$ H(s) \f$ denominator
-    					coefficients vector pointer.
+    					coefficients vector pointer after transformation.
     					Vector size is `[2n+1 x 1]`.
 	\return
 		`DSPL_OK` if filter has been transformed  successfully or code of error otherwise. 
@@ -113,20 +113,20 @@
 	\brief  Analog low-pass prototype frequency transformation to a high-pass 
 			filter with `wp` cutoff.
 
-	Function transforms analog prototype filter transfer function \f$ H_{text{ap}}(s) \f$ 
+	Function transforms analog prototype filter transfer function \f$ H_{\text{ap}}(s) \f$ 
 	to  a high-pass  filter transfer function \f$ H(s) \f$:
 
 	\f[
-		 H(s) = H_{text{ap}} \left(\frac{w_p}{s}  \right), 
+		 H(s) = H_{\text{ap}} \left(\frac{w_p}{s}  \right), 
 	\f]
  
-    Result band-stop filter order is `n`.
+    Result high-pass filter order is `n`.
 
-    \param[in]	b 		Analog prototype \f$ H_{text{ap}}(s) \f$ numerator
+    \param[in]	b 		Analog prototype \f$ H_{\text{ap}}(s) \f$ numerator
     					coefficients vector pointer.
     					Vector size is `[n+1 x 1]`.	
 
-    \param[in]	a 		Analog prototype \f$ H_{text{ap}}(s) \f$ denominator
+    \param[in]	a 		Analog prototype \f$ H_{\text{ap}}(s) \f$ denominator
     					coefficients vector pointer.
     					Vector size is `[n+1 x 1]`.
 
@@ -136,12 +136,58 @@
 	\param[in]	wp		High-pass cutoff frequency  (rad/s) after transformation
 
 
-	\param[out]	beta 	Analog band-stop filter \f$ H(s) \f$ numerator
+	\param[out]	beta 	Analog high-pass filter \f$ H(s) \f$ numerator
+    					coefficients vector pointer after transformation.
+    					Vector size is `[n+1 x 1]`.	
+
+    \param[out]	alpha 	Analog high-pass filter \f$ H(s) \f$ denominator
+    					coefficients vector pointer after transformation.
+    					Vector size is `[n+1 x 1]`.
+	\return
+		`DSPL_OK` if filter has been transformed  successfully or code of error otherwise. 
+			
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_ap2low(double* b, double* a, int n, 
+						   double wp, double* beta, double* alpha)
+	\brief  Analog low-pass prototype frequency transformation to a low-pass 
+			filter with `wp` cutoff. 
+
+	Function transforms analog prototype filter transfer function \f$ H_{\text{ap}}(s) \f$ 
+	to  a low-pass  filter transfer function \f$ H(s) \f$:
+
+	\f[
+		 H(s) = H_{\text{ap}} \left(\frac{s}{w_p}  \right), 
+	\f]
+ 
+    Result low-pass filter order is `n`.
+
+    \param[in]	b 		Analog prototype \f$ H_{\text{ap}}(s) \f$ numerator
     					coefficients vector pointer.
     					Vector size is `[n+1 x 1]`.	
 
-    \param[out]	alpha 	Analog band-stop filter \f$ H(s) \f$ denominator
+    \param[in]	a 		Analog prototype \f$ H_{\text{ap}}(s) \f$ denominator
     					coefficients vector pointer.
+    					Vector size is `[n+1 x 1]`.
+
+ 	\param[in]	n		Analog prototype filter order
+
+
+	\param[in]	wp		Low-pass cutoff frequency  (rad/s) after transformation
+
+
+	\param[out]	beta 	Analog low-pass filter \f$ H(s) \f$ numerator
+    					coefficients vector pointer after transformation.
+    					Vector size is `[n+1 x 1]`.	
+
+    \param[out]	alpha 	Analog low-pass filter \f$ H(s) \f$ denominator
+    					coefficients vector pointer after transformation.
     					Vector size is `[n+1 x 1]`.
 	\return
 		`DSPL_OK` if filter has been transformed  successfully or code of error otherwise. 
@@ -166,11 +212,11 @@
 	\brief  Частотное преобразование аналогового ФНЧ прототипа
 			в полосовой фильтр с полосой пропускания `[wp0...wp1]`.
 	
-	Функция преобразует передаточную функцию \f$ H_{text{ap}}(s) \f$ в передаточную
+	Функция преобразует передаточную функцию \f$ H_{\text{ap}}(s) \f$ в передаточную
 	характеристику полосового фильтра  \f$ H(s) \f$ путем подстановки:
 
 	\f[
-		 H(s) = H_{text{ap}} \left(\frac{s^2 + w^2_0}{B \cdot s}  \right), 
+		 H(s) = H_{\text{ap}} \left(\frac{s^2 + w^2_0}{B \cdot s}  \right), 
 	\f]
  
     где \f$w^2_0 =  \f$ `wp0 * wp1`, \f$wB =  \f$`wp1 - wp0`.
@@ -178,11 +224,11 @@
     В результате получается полосовой фильтр порядка `2*n`.
 
     \param[in]	b 		Указатель на вектор коэффициентов числителя передаточной
-    					характеристики аналогового ФНЧ прототипа \f$ H_{text{ap}}(s) \f$.
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
     					Размер вектора `[n+1 x 1]`.	
 
     \param[in]	a 		Указатель на вектор коэффициентов знаменателя передаточной
-    					характеристики аналогового ФНЧ прототипа \f$ H_{text{ap}}(s) \f$.
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
     					Размер вектора `[n+1 x 1]`.
 
  	\param[in]	n		Порядок аналогового фильтра прототипа
@@ -220,11 +266,11 @@
 	\brief  Частотное преобразование аналогового ФНЧ прототипа
 			в режекторный фильтр с полосой заграждения `[wp0...wp1]`.
 	
-	Функция преобразует передаточную функцию \f$ H_{text{ap}}(s) \f$ в передаточную
+	Функция преобразует передаточную функцию \f$ H_{\text{ap}}(s) \f$ в передаточную
 	характеристику режекторный фильтра  \f$ H(s) \f$ путем подстановки:
 
 	\f[
-		 H(s) = H_{text{ap}} \left(\frac{B \cdot s}{s^2 + w^2_0}  \right), 
+		 H(s) = H_{\text{ap}} \left(\frac{B \cdot s}{s^2 + w^2_0}  \right), 
 	\f]
  
     где \f$w^2_0 =  \f$ `wp0 * wp1`, \f$wB =  \f$`wp1 - wp0`.
@@ -232,11 +278,11 @@
     В результате получается режекторный фильтр порядка `2*n`.
 
     \param[in]	b 		Указатель на вектор коэффициентов числителя передаточной
-    					характеристики аналогового ФНЧ прототипа \f$ H_{text{ap}}(s) \f$.
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
     					Размер вектора `[n+1 x 1]`.	
 
     \param[in]	a 		Указатель на вектор коэффициентов знаменателя передаточной
-    					характеристики аналогового ФНЧ прототипа \f$ H_{text{ap}}(s) \f$.
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
     					Размер вектора `[n+1 x 1]`.
 
  	\param[in]	n		Порядок аналогового фильтра прототипа
@@ -274,21 +320,21 @@
 	\brief  Частотное преобразование аналогового ФНЧ прототипа
 			в фильтр верхних частот с частой среза `wp` рад/с.
 	
-	Функция преобразует передаточную функцию \f$ H_{text{ap}}(s) \f$ в передаточную
+	Функция преобразует передаточную функцию \f$ H_{\text{ap}}(s) \f$ в передаточную
 	характеристику ФВЧ  \f$ H(s) \f$ путем подстановки:
 
 	\f[
-		 H(s) = H_{text{ap}} \left(\frac{w_p}{s}  \right), 
+		 H(s) = H_{\text{ap}} \left(\frac{w_p}{s}  \right), 
 	\f]
 
     В результате получается ФВЧ порядка `n`.
 
     \param[in]	b 		Указатель на вектор коэффициентов числителя передаточной
-    					характеристики аналогового ФНЧ прототипа \f$ H_{text{ap}}(s) \f$.
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
     					Размер вектора `[n+1 x 1]`.	
 
     \param[in]	a 		Указатель на вектор коэффициентов знаменателя передаточной
-    					характеристики аналогового ФНЧ прототипа \f$ H_{text{ap}}(s) \f$.
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
     					Размер вектора `[n+1 x 1]`.
 
  	\param[in]	n		Порядок аналогового фильтра прототипа
@@ -304,6 +350,58 @@
 
     \param[out]	alpha 	Указатель на вектор коэффициентов числителя передаточной
     					характеристики ФВЧ \f$ H(s) \f$.
+    					Размер вектора `[n+1 x 1]`.
+    \return
+		`DSPL_OK` Если преобразование было произведено успешно. 
+					В противном случае код ошибки.
+					
+    \author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+
+*/
+
+
+
+
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_ap2low(double* b, double* a, int n, 
+						double wp, double* beta, double* alpha)
+	\brief  Частотное преобразование аналогового ФНЧ прототипа
+			в фильтр нижних частот с частой среза `wp` рад/с.
+	
+	Функция преобразует передаточную функцию \f$ H_{\text{ap}}(s) \f$ в передаточную
+	характеристику ФНЧ  \f$ H(s) \f$ путем подстановки:
+
+	\f[
+		 H(s) = H_{\text{ap}} \left(\frac{s}{w_p}  \right), 
+	\f]
+
+    В результате получается ФНЧ порядка `n`.
+
+    \param[in]	b 		Указатель на вектор коэффициентов числителя передаточной
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
+    					Размер вектора `[n+1 x 1]`.	
+
+    \param[in]	a 		Указатель на вектор коэффициентов знаменателя передаточной
+    					характеристики аналогового ФНЧ прототипа \f$ H_{\text{ap}}(s) \f$.
+    					Размер вектора `[n+1 x 1]`.
+
+ 	\param[in]	n		Порядок аналогового фильтра прототипа
+
+
+	\param[in]	wp		Частота среза (рад/с) ФНЧ после преобразования
+
+
+
+	\param[out]	beta 	Указатель на вектор коэффициентов числителя передаточной
+    					характеристики ФНЧ \f$ H(s) \f$ после преобразования.
+    					Размер вектора `[n+1 x 1]`.	
+
+    \param[out]	alpha 	Указатель на вектор коэффициентов числителя передаточной
+    					характеристики ФНЧ \f$ H(s) \f$ после преобразования.
     					Размер вектора `[n+1 x 1]`.
     \return
 		`DSPL_OK` Если преобразование было произведено успешно. 

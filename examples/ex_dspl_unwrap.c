@@ -8,7 +8,7 @@
 #define ORD	6
 
 /* frequency response vector size */
-#define N	1000
+#define N	4000
 
 
 int main()
@@ -36,11 +36,7 @@ int main()
 	dspl_print_err(res, 1);
 		
 	/* fill angular freq. vector from 0.01 rad/s to 100 rad/s*/
-	w[0] = 0.01;
-	tw = pow(1E4, 1.0/(double)N);
-	for(n = 1; n < N; n++)
-		w[n] =  w[n-1] * tw;		
-	
+	dspl_logspace(-2, 2, N, DSPL_SYMMETRIC,  w);	
 	
 	/* calculate filter frequency response */
 	printf("Frequency response calculation............");

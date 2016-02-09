@@ -21,6 +21,8 @@ DLL_OBJS=$(OBJ_DIR)/dspl_compos.o \
 		$(OBJ_DIR)/dspl_freqs.o \
 		$(OBJ_DIR)/dspl_freqz.o \
 		$(OBJ_DIR)/dspl_inout.o \
+		$(OBJ_DIR)/dspl_linspace.o\
+		$(OBJ_DIR)/dspl_logspace.o\
         $(OBJ_DIR)/dspl_math_basic.o \
         $(OBJ_DIR)/dspl_math_hyperbolic.o \
 		$(OBJ_DIR)/dspl_polyval.o\
@@ -38,6 +40,7 @@ EX_OBJS=$(OBJ_DIR)/ex_dspl.o\
 		$(OBJ_DIR)/ex_dspl_dft.o\
 		$(OBJ_DIR)/ex_dspl_goertzel.o\
 		$(OBJ_DIR)/ex_dspl_fft.o\
+		$(OBJ_DIR)/ex_dspl_linspace.o\
 		$(OBJ_DIR)/ex_dspl_polyval.o\
 		$(OBJ_DIR)/ex_dspl_unwrap.o\
 		
@@ -51,6 +54,7 @@ all:	dll\
 		ex_dspl_dft\
 		ex_dspl_goertzel\
 		ex_dspl_fft\
+		ex_dspl_linspace\
 		ex_dspl_polyval\
 		ex_dspl_unwrap\
 		
@@ -95,7 +99,12 @@ ex_dspl_goertzel: $(OBJ_DIR)/ex_dspl_goertzel.o $(OBJ_DIR)/dspl_load.o
 ex_dspl_fft: $(OBJ_DIR)/ex_dspl_fft.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl_fft.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_fft
 
+
+ex_dspl_linspace: $(OBJ_DIR)/ex_dspl_linspace.o $(OBJ_DIR)/dspl_load.o
+	$(CC) $(OBJ_DIR)/ex_dspl_linspace.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_linspace
+
 	
+
 ex_dspl_polyval: $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o
 	$(CC) $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_polyval
 

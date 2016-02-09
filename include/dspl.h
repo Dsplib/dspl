@@ -454,7 +454,9 @@ typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_sinh)		(double x);
 
+/* Unwrap phase response */
 typedef int (*p_dspl_unwrap)(double* phi,  int n, double lev, double mar);
+
 /* window function calculation (dspl_win.c)*/
 typedef int (*p_dspl_window)		(double* w, int n, int win_type, double param);
 
