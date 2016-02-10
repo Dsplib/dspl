@@ -22,19 +22,17 @@ int main()
 	int n;
 	int res;
 
-	HINSTANCE hInstDLL;
+	HINSTANCE hDSPL;
 
-	/* Load dspl.dll */
-	hInstDLL = dspl_load();
-	if(!hInstDLL)
+	/* load DSPL */
+	hDSPL = dspl_load();
+	if(!hDSPL)
 	{
-		printf("dspl.dll Loading Error!\n");
+		printf("dspl.dll loading ERROR!\n");
 		return 0;
 	}
-
-	/*print current dspl.dll version */
-	dspl_get_version(1);
-
+	
+	
 	/* input signal s(n) = exp(2*pi*j*0.2*n) */
 	for(n = 0; n < N; n++)
 	{
@@ -48,7 +46,7 @@ int main()
 	dspl_print_err(res, 1);
 
 
-	FreeLibrary(hInstDLL);
+	FreeLibrary(hDSPL);
 	
 	return 0;
 }

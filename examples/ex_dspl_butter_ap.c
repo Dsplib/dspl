@@ -25,9 +25,12 @@ int main()
 		
 	/* load DSPL */
 	hDSPL = dspl_load();
-
-	/* print DSPL version */
-	dspl_get_version(1);
+	if(!hDSPL)
+	{
+		printf("dspl.dll loading ERROR!\n");
+		return 0;
+	}
+	
 
 	/* Butterworth filter analog prototype calculation */
 	dspl_butter_ap(3.0, ORD, b, a);

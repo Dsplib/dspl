@@ -12,14 +12,16 @@ int main()
 	int k;
 	int res;
 
-	HINSTANCE hInstDLL;
+	HINSTANCE hDSPL;
 
-	hInstDLL = dspl_load();
-
-
-
-	dspl_get_version(1);
-
+	/* load DSPL */
+	hDSPL = dspl_load();
+	if(!hDSPL)
+	{
+		printf("dspl.dll loading ERROR!\n");
+		return 0;
+	}
+	
 
 	dspl_print_msg("Linear convolution", 1, 64);
 
@@ -32,7 +34,7 @@ int main()
 	for(k = 0; k < 4; k++)
 		printf("c[%d] = %.4f\n",k,cR[k]);
 
-	FreeLibrary(hInstDLL);
+	FreeLibrary(hDSPL);
 	
     
 	return 0;

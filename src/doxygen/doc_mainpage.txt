@@ -60,7 +60,8 @@
 	Исходные коды библиотеки доступны на <a href = "https://github.com/Dsplib/dspl">GitHub</a>.<BR>
 	Вы также можете внести свой вклад в развитие данной библиотеки. Присоединяйтесь!
 	
-	
-	
+	Смотрите также:<BR>
+	\ref page_begin_use <BR> 
+	\ref page_begin_dev <BR>
 
 */

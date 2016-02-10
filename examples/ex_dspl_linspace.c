@@ -12,11 +12,11 @@ int main()
 	double x[N];
 	int k;
 	
-	/* Load dspl.dll */
+	/* load DSPL */
 	hDSPL = dspl_load();
 	if(!hDSPL)
 	{
-		printf("dspl.dll Loading Error!\n");
+		printf("dspl.dll loading ERROR!\n");
 		return 0;
 	}
 

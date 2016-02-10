@@ -29,17 +29,19 @@ int main()
 	fft_t	fft;
 	
 	/* dspl handle */
-	HINSTANCE hInstDLL;
+	HINSTANCE hDSPL;
 	
 	int n;
 	
 	
 	/* load DSPL */
-	hInstDLL = dspl_load();
-
-	/* print DSPL version */
-	dspl_get_version(1);
-
+	hDSPL = dspl_load();
+	if(!hDSPL)
+	{
+		printf("dspl.dll loading ERROR!\n");
+		return 0;
+	}
+	
 	/* input signal s(n) = exp(2*pi*j*0.2*n) */
 	for(n = 0; n < N; n++)
 	{
@@ -69,7 +71,7 @@ int main()
 	dspl_writebin(zR, zI, n, "dat/ex_dspl_ifft_out.bin");
 		
 	/* clear dspl handle */
-	FreeLibrary(hInstDLL);
+	FreeLibrary(hDSPL);
 	
 	return 0;
 }

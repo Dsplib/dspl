@@ -13,14 +13,12 @@ int main()
 	hInstDLL = dspl_load();
 	if(!hInstDLL)
 	{
-		printf("dspl.dll Loading Error!\n");
+		printf("dspl.dll loading ERROR!\n");
 		return 0;
 	}
 
-	
-	/*print current dspl.dll version */
-	dspl_get_version(1);
-	
+	printf("dspl.dll has been loaded successfully!\n");
+		
 	FreeLibrary(hInstDLL);
 	
 	return 0;

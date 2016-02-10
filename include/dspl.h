@@ -243,7 +243,7 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
 
 
 
-/* Get DSPL version  (dspl_inout.c) */
+/* Get DSPL version  (dspl.c) */
 DSPL_API int dspl_get_version (int printFlag);
 
 

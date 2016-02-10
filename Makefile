@@ -10,7 +10,8 @@ EX_CFLAGS = -c -Wall -I $(INC_DIR) -std=c89
 
 
 
-DLL_OBJS=$(OBJ_DIR)/dspl_compos.o \
+DLL_OBJS=$(OBJ_DIR)/dspl.o\
+		$(OBJ_DIR)/dspl_compos.o \
 		$(OBJ_DIR)/dspl_conv.o \
 		$(OBJ_DIR)/dspl_dft.o \
 		$(OBJ_DIR)/dspl_goertzel.o \

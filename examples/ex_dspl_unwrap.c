@@ -22,14 +22,15 @@ int main()
 	HINSTANCE hDSPL;	/* DSPL.DLL handle */
 	
 	int n, res;
-	double tw;
 		
 	/* load DSPL */
 	hDSPL = dspl_load();
-
-	/* print DSPL version */
-	dspl_get_version(1);
-
+	if(!hDSPL)
+	{
+		printf("dspl.dll loading ERROR!\n");
+		return 0;
+	}
+	
 	/* Butterworth filter analog prototype calculation */
 	printf("Butterworth analog LPF prototype..........");
 	res = dspl_butter_ap(3.0, ORD, b, a);

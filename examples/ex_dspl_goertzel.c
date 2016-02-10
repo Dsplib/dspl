@@ -30,13 +30,13 @@ int main()
 	
 	int n, p;
 	
-	HINSTANCE hInstDLL;
+	HINSTANCE hDSPL;
 
-	/* Load dspl.dll */
-	hInstDLL = dspl_load();
-	if(!hInstDLL)
+	/* load DSPL */
+	hDSPL = dspl_load();
+	if(!hDSPL)
 	{
-		printf("dspl.dll Loading Error!\n");
+		printf("dspl.dll loading ERROR!\n");
 		return 0;
 	}
 
@@ -75,7 +75,7 @@ int main()
 	}
 	
 	
-	FreeLibrary(hInstDLL);
+	FreeLibrary(hDSPL);
 	
 	return 0;
 }

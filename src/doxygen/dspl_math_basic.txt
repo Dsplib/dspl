@@ -63,9 +63,6 @@
 
 
 
-
-
-#ifdef DOXYGEN_EN
 /*!
 	\ingroup SPEC_MATH_COMMON_GROUP
 	\fn int dspl_logspace(double x0, double x1, int n, int type, double* x)

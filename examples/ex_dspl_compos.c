@@ -21,14 +21,16 @@ int main()
 	
 	HINSTANCE hDSPL;	/* DSPL.DLL handle */
 	
-	int n, res;
+	int n;
 		
 	/* load DSPL */
 	hDSPL = dspl_load();
-
-	/* print DSPL version */
-	dspl_get_version(1);
-
+	if(!hDSPL)
+	{
+		printf("dspl.dll loading ERROR!\n");
+		return 0;
+	}
+	
 	/* Chebyshev type 2 filter analog prototype calculation */
 	dspl_compos(b,a,N, d,c,M, f, e);
 	

@@ -20,11 +20,15 @@ int main()
 	
 	int res;
 	
-	HINSTANCE hInstDLL;
+	HINSTANCE hDSPL;
 
-	hInstDLL = dspl_load();
-
-	dspl_get_version(1);
+	/* load DSPL */
+	hDSPL = dspl_load();
+	if(!hDSPL)
+	{
+		printf("dspl.dll loading ERROR!\n");
+		return 0;
+	}
 
 	dspl_print_msg("Real polynom calculation", 1, 64);
 	res = dspl_polyval(aR, 3, &xR, 1, &yR);
@@ -41,7 +45,7 @@ int main()
 	else
 		dspl_print_err(res, 1);
 	
-	FreeLibrary(hInstDLL);
+	FreeLibrary(hDSPL);
 	
 	return 0;
 }
