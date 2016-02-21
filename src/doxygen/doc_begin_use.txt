@@ -7,16 +7,83 @@
 /*! 
 	\page page_begin_use Быстрый старт использования библиотеки dspl.dll
 	\tableofcontents
-	Leading text.
-	\section sec An example section
-	This page contains the subsections \ref subsection1 and \ref subsection2.
-	For more info see page.
-	\subsection subsection1 The first subsection
-	Text.
-	\subsection subsection2 The second subsection
-	More text.
+
+	\section sec_mingw Использование компилятора GCC	
+	\subsection subsection_mingw_prep Установка компилятора GCC в системе Windows.
+	Компилятор <a href = "http://mingw-w64.org/doku.php">Mingw64</a> 
+	используется для работы с GCC в системе Windows. 
+	Mingw64 поддерживает как 32-битные, так и 64-битные системы Windows.
+	
+	Установка Mingw64 довольна проста.
+	
+	1) Необходимо скачать архив с готовой сборкой компилятора. 
+	
+	<a href = "https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/i686-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">Ссылка для скачивания 32-битной версии компилятора</a>
+	
+	<a href ="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/x86_64-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">Ссылка для скачивания 64-битной версии компилятора</a>
+	
+	2) Распаковать архив в дирикторию `C:\mingw32`. 
+	Для распаковки архива рекомендуется использовать пакет <a href = "http://www.7-zip.org/">7-zip</a>. 
+	В результате в дириктории `C:\mingw32\bin` будут находится исполняемые утилиты компилятора.
+	
+	3) Необходимо добавить путь к дириктории C:\mingw32\bin в системную переменную `PATH`.
+	Для этого необходимо:
+	
+	В меню <B>Пуск</B> щелкните правой кнопкой мыши пункт <B>Компьютер</B>.
+	
+	В контекстном меню выберите <B>Свойства</B>.
+	
+	В диалоговом окне <B>Система</B> выберите <B>Дополнительные параметры системы</B>.
+	
+	На вкладке <B>Дополнительно</B> диалогового окна <B>Свойства системы</B> 
+	нажмите кнопку <B>Переменные среды</B>.
+
+	В поле <B>Системные переменные</B> диалогового окна <B>Переменные среды</B> прокрутите список до переменной <B>Path</B>, а затем выберите ее.
+	
+	Нажмите нижнюю из двух кнопок <B>Изменить</B> в этом диалоговом окне.
+	
+	В диалоговом окне <B>Изменение системной переменной</B> прокрутите строку в поле <B>Значение переменной</B>
+	до конца и добавьте точку с запятой (;).
+	
+	Добавьте новый путь `C:\mingw32\bin` после точки с запятой.
+	
+	Нажмите кнопку <B>ОК</B> в трех последовательных диалоговых окнах, 
+	а затем закройте диалоговое окно <B>Система</B>.
+	
+	На этом установка Mingw64 окончена. Однако для удобства работы рекомендуется установить дополнительный
+	набор утилит и файловый менеджер <a href = "https://www.farmanager.com/index.php?l=ru">Far Manager</a>.
+	
+	
+		
+	
+	
+	
+	\subsection subsection_mingw_utils Установка дополнительных утилит и файлового менеджера Far manager
+	
+	Кроме компилятора для работы рекомендуется установить дополнительный набор <a href="https://sourceforge.net/projects/unxutils/">UnxUtils</a>. Для этого необходимо:
+	
+	1) Скачать архив  
+	<a href = "https://sourceforge.net/projects/unxutils/files/latest/download">UnxUtils.zip</a>
+	
+	2) Распаковать его в дирикторию `C:\unxutils`. В результате в дириктории `C:\unxutils\wbin` 
+	будет много различных полезных утилит.
+	
+	3) Прописать путь `C:\unxutils\wbin` в системной переменной `PATH` аналогично пути к компилятору Mingw64.
+	
+	Для удобства работы с командной строкой рекомендуется установить файловый менеджер <a href = "https://www.farmanager.com/index.php?l=ru">Far Manager</a>. Установщик можно скачать с сайта разработчика.
+
+	Таким образом мы имеем установленный компилятор, набор дополнительных утилит и файловый менеждер для работы 
+	с командной строкой.
+	
+	
+	
+	
+	
+	
+	
+	
+	\section sec_vc Использование компилятора Microsoft
 */
 	
 	
 
-*/
