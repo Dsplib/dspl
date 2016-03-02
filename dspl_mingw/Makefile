@@ -23,3 +23,5 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 
 $(OBJS): $(INC_DIR)/dspl.h
 
+clean: 
+	rm $(OBJ_DIR)/*.o

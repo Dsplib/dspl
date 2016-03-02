@@ -218,8 +218,9 @@ void dspl_win_flat_top(double *w, int n, int win_type)
 /* Gaussian window */
 void dspl_win_gaussian(double *w, double alpha, int n, int win_type)
 {
-	double x = (double)(n-1)*0.5; 
+	double x; 
 	double y;
+	double sigma;
 	int i;
 	
 	if((win_type & DSPL_WIN_SYM_MASK) == DSPL_WIN_SYMMETRIC)
@@ -227,10 +228,10 @@ void dspl_win_gaussian(double *w, double alpha, int n, int win_type)
 
 	if((win_type & DSPL_WIN_SYM_MASK) == DSPL_WIN_PERIODIC)
 		x = (double)(n)*0.5;
-	
+	sigma = alpha / x;
 	for(i = 0; i<n; i++)
 	{
-		y = ((double)i - x)/(alpha*x);
+		y = ((double)i - x)*sigma;
 		w[i] = exp(-0.5*y*y);
 	}
 }
