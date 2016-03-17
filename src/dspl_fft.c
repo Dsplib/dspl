@@ -24,7 +24,7 @@
 #include "dspl.h"
 
 
-
+int 	dspl_fft_create_p2(fft_t *pfft, int n, int *p2);
 void 	dspl_fft_krn (fft_t* pfft, int n, int p2);
 int  	dspl_fft_p2 (int n);
 void  	dspl_fft_reorder (fft_t* pfft, int n);
@@ -40,9 +40,13 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft,
 	size_t bufSize;
 	if(!xR || !yR)
 		return DSPL_ERROR_PTR;
-	p2 = dspl_fft_p2(n);
-	if(!p2)
-		return DSPL_ERROR_FFT_SIZE;
+	
+	k = dspl_fft_create_p2(pfft, n, &p2);
+	
+	if(k!=DSPL_OK)
+		return k;
+	
+	
 	bufSize = n * sizeof(double);
 	memcpy(pfft->t0R, xR, bufSize);
 	if(xI)
@@ -77,9 +81,10 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t* pfft,
 	size_t bufSize;
 	if(!xR || !yR || !yI)
 		return DSPL_ERROR_PTR;
-	p2 = dspl_fft_p2(n);
-	if(!p2)
-		return DSPL_ERROR_FFT_SIZE;
+	k = dspl_fft_create_p2(pfft, n, &p2);
+	
+	if(k!=DSPL_OK)
+		return k;
 	bufSize = n * sizeof(double);
 	memcpy(pfft->t0R, xR, bufSize);
 	if(xI)
@@ -115,6 +120,57 @@ DSPL_API int dspl_fft_create(fft_t *pfft, int n)
 		return DSPL_OK;
 	if(!dspl_fft_p2(n))
 		return DSPL_ERROR_FFT_SIZE;
+	
+	dphi = M_PI;
+	bufSize = (size_t)(n*sizeof(double));
+	pfft->wR = (double*)realloc( pfft->wR, bufSize);
+	pfft->wI = (double*)realloc( pfft->wI, bufSize);
+	pfft->t0R = (double*)realloc(pfft->t0R, bufSize);
+	pfft->t0I = (double*)realloc(pfft->t0I, bufSize);
+	pfft->t1R = (double*)realloc(pfft->t1R, bufSize);
+	pfft->t1I = (double*)realloc(pfft->t1I, bufSize);
+	
+	pfft->n = n;
+	n2 = 1;
+	ind = 0;
+	while(n2<n)
+	{
+		phi = 0;
+		for(k = 0; k<n2; k++)
+		{
+			pfft->wR[ind+k] = (double)cos(phi);
+			pfft->wI[ind+k] = (double)sin(phi);
+			phi -= dphi;
+		}
+		ind+=n2;
+		n2<<=1;
+		dphi*=0.5;		
+	}
+	return DSPL_OK;
+}
+
+
+
+
+
+
+
+int dspl_fft_create_p2(fft_t *pfft, int n, int *p2)
+{
+	long double phi;
+	long double dphi;
+	int k;
+	int n2;
+	int ind; 
+	size_t bufSize;
+	
+	k = dspl_fft_p2(n);
+	if(!k)
+		return DSPL_ERROR_FFT_SIZE;
+	
+	if(pfft->n >= n)
+		return DSPL_OK;
+	
 	
 	dphi = M_PI;
 	bufSize = (size_t)(n*sizeof(double));
