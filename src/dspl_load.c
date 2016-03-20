@@ -46,10 +46,12 @@ HINSTANCE	dspl_load()
 	HINSTANCE hInstDLL;
 	hInstDLL = LoadLibrary("dspl.dll");
 	
+	printf("1\n");
 	if(!hInstDLL)
+	{
 		return NULL;
-
-	
+	}
+	printf("2\n");
 	dspl_ap2bpass = (p_dspl_ap2bpass) GetProcAddress(hInstDLL, "dspl_ap2bpass");
 	if(!dspl_ap2bpass)
 	{
@@ -57,7 +59,7 @@ HINSTANCE	dspl_load()
 		return NULL;		
 	}
 	
-	
+	printf("3\n");
 	dspl_ap2bstop = (p_dspl_ap2bstop) GetProcAddress(hInstDLL, "dspl_ap2bstop");
 	if(!dspl_ap2bstop)
 	{
@@ -97,7 +99,7 @@ HINSTANCE	dspl_load()
 		return NULL;		
 	}
 	
-	
+
 	dspl_cheby1_ap = (p_dspl_cheby1_ap) GetProcAddress(hInstDLL, "dspl_cheby1_ap");
 	if(!dspl_cheby1_ap)
 	{
@@ -188,6 +190,7 @@ HINSTANCE	dspl_load()
 	dspl_fft_create = (p_dspl_fft_create) GetProcAddress(hInstDLL, "dspl_fft_create");
 	if(!dspl_fft_create)
 	{
+		
 		FreeLibrary(hInstDLL);
 		return NULL;		
 	}

@@ -79,12 +79,13 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, fft_t* pfft,
 {
 	int p2;
 	size_t bufSize;
+	int res;
 	if(!xR || !yR || !yI)
 		return DSPL_ERROR_PTR;
-	k = dspl_fft_create_p2(pfft, n, &p2);
+	res = dspl_fft_create_p2(pfft, n, &p2);
 	
-	if(k!=DSPL_OK)
-		return k;
+	if(res!=DSPL_OK)
+		return res;
 	bufSize = n * sizeof(double);
 	memcpy(pfft->t0R, xR, bufSize);
 	if(xI)

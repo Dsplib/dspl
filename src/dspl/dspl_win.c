@@ -69,7 +69,7 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 /* Barlett window */
 void dspl_win_bartlett(double *w, int n, int win_type)
 {
-	double x; 
+	double x = 0.0; 
 	int i;
 	if((win_type & DSPL_WIN_SYM_MASK) == DSPL_WIN_SYMMETRIC)
 		x = (double)(n-1);
@@ -90,7 +90,7 @@ void dspl_win_bartlett(double *w, int n, int win_type)
 void dspl_win_bartlett_hann(double *w, int n, int win_type)
 {
 	double y;
-	double x;
+	double x = 0.0;
 	int i;
 	
 	if((win_type & DSPL_WIN_SYM_MASK) == DSPL_WIN_SYMMETRIC)
@@ -113,7 +113,7 @@ void dspl_win_bartlett_hann(double *w, int n, int win_type)
 void dspl_win_blackman(double *w, int n, int win_type)
 {
 	double y;
-	double x;
+	double x = 0.0;
 	int i;
 	
 	if((win_type & DSPL_WIN_SYM_MASK) == DSPL_WIN_SYMMETRIC)
@@ -136,7 +136,7 @@ void dspl_win_blackman(double *w, int n, int win_type)
 void dspl_win_blackman_harris(double *w, int n, int win_type)
 {
 	double y;
-	double x;
+	double x  = 0.0;
 	double a0 = 0.35875;
 	double a1 = 0.48829;
 	double a2 = 0.14128;
@@ -163,7 +163,7 @@ void dspl_win_blackman_harris(double *w, int n, int win_type)
 void dspl_win_blackman_nuttall(double *w, int n, int win_type)
 {
 	double y;
-	double x;
+	double x  = 0.0;
 	double a0 = 0.3635819;
 	double a1 = 0.4891775;
 	double a2 = 0.1365995;
@@ -191,7 +191,7 @@ void dspl_win_blackman_nuttall(double *w, int n, int win_type)
 void dspl_win_flat_top(double *w, int n, int win_type)
 {
 	double y;
-	double x;
+	double x  = 0.0;
 	double a0 = 1.0;
 	double a1 = 1.93;
 	double a2 = 1.29;
@@ -218,7 +218,7 @@ void dspl_win_flat_top(double *w, int n, int win_type)
 /* Gaussian window */
 void dspl_win_gaussian(double *w, double alpha, int n, int win_type)
 {
-	double x; 
+	double x = 0.0; 
 	double y;
 	double sigma;
 	int i;
@@ -242,7 +242,7 @@ void dspl_win_gaussian(double *w, double alpha, int n, int win_type)
 /* Hamming window */
 void dspl_win_hamming(double *w, int n, int win_type)
 {
-	double x;
+	double x = 0.0;
 	double y;
 	int i;
 	
@@ -265,7 +265,7 @@ void dspl_win_hamming(double *w, int n, int win_type)
 /* Hann window */
 void dspl_win_hann(double *w, int n, int win_type)
 {
-	double x;
+	double x = 0.0;
 	double y;
 	int i;
 	
@@ -289,7 +289,7 @@ void dspl_win_hann(double *w, int n, int win_type)
 void dspl_win_lanczos(double *w, int n, int win_type)
 {
 	double y;
-	double x; 
+	double x = 0.0; 
 	int i;
 	
 	if((win_type & DSPL_WIN_SYM_MASK) == DSPL_WIN_SYMMETRIC)
@@ -315,7 +315,7 @@ void dspl_win_lanczos(double *w, int n, int win_type)
 void dspl_win_nuttall(double *w, int n, int win_type)
 {
 	double y;
-	double x;
+	double x  = 0.0;
 	double a0 = 0.355768;
 	double a1 = 0.487396;
 	double a2 = 0.144232;
@@ -352,7 +352,7 @@ void dspl_win_rect(double *w, int n)
 void dspl_win_cos(double *w, int n, int win_type)
 {
 	double y;
-	double x;
+	double x = 0.0;
 	int i;
 	
 	if((win_type & DSPL_WIN_SYM_MASK) == DSPL_WIN_SYMMETRIC)

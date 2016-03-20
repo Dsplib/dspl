@@ -1,128 +1,114 @@
 CC      = gcc
-INC_DIR = include
-SRC_DIR = src
-EX_DIR  = examples
+INC_DIR = src
+OBJ_DIR = obj
+
+
+DLL_SRC_DIR  = src/dspl
+
+DLL_OBJ_DIR  = obj/dspl
+
+DLL_BIN_DIR  = bin/dspl
+
+
+EXE_SRC_DIR  = src/examples
+EXE_OBJ_DIR  = obj/examples
+EXE_BIN_DIR  = bin/examples
+
+VER_SRC_DIR  = src/verification
+VER_OBJ_DIR  = obj/verification
+VER_BIN_DIR  = bin/verification
+
+
 BIN_DIR = bin
 OBJ_DIR = obj
 
-DLL_CFLAGS = -c -Wall -D DLL_EXPORT -I $(INC_DIR) -std=c89
-EX_CFLAGS = -c -Wall -I $(INC_DIR) -std=c89
+DLL_CFLAGS  = -c -Wall -O3 -D DLL_EXPORT -I$(INC_DIR)
+EXE_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
+VER_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
+
+
+DLL_OBJS=	$(DLL_OBJ_DIR)/dspl.o\
+			$(DLL_OBJ_DIR)/dspl_compos.o\
+			$(DLL_OBJ_DIR)/dspl_conv.o\
+			$(DLL_OBJ_DIR)/dspl_dft.o\
+			$(DLL_OBJ_DIR)/dspl_goertzel.o\
+			$(DLL_OBJ_DIR)/dspl_fft.o\
+			$(DLL_OBJ_DIR)/dspl_filter_ap.o\
+			$(DLL_OBJ_DIR)/dspl_filter_iir.o\
+			$(DLL_OBJ_DIR)/dspl_filter_transform.o\
+			$(DLL_OBJ_DIR)/dspl_freqs.o\
+			$(DLL_OBJ_DIR)/dspl_freqz.o\
+			$(DLL_OBJ_DIR)/dspl_inout.o\
+			$(DLL_OBJ_DIR)/dspl_linspace.o\
+			$(DLL_OBJ_DIR)/dspl_logspace.o\
+			$(DLL_OBJ_DIR)/dspl_math_basic.o\
+			$(DLL_OBJ_DIR)/dspl_math_hyperbolic.o\
+			$(DLL_OBJ_DIR)/dspl_polyval.o\
+			$(DLL_OBJ_DIR)/dspl_unwrap.o\
+			$(DLL_OBJ_DIR)/dspl_win.o\
+
+			
 
 
 
-DLL_OBJS=$(OBJ_DIR)/dspl.o\
-		$(OBJ_DIR)/dspl_compos.o \
-		$(OBJ_DIR)/dspl_conv.o \
-		$(OBJ_DIR)/dspl_dft.o \
-		$(OBJ_DIR)/dspl_goertzel.o \
-		$(OBJ_DIR)/dspl_fft.o \
-		$(OBJ_DIR)/dspl_filter_ap.o \
-		$(OBJ_DIR)/dspl_filter_iir.o \
-		$(OBJ_DIR)/dspl_filter_transform.o \
-		$(OBJ_DIR)/dspl_freqs.o \
-		$(OBJ_DIR)/dspl_freqz.o \
-		$(OBJ_DIR)/dspl_inout.o \
-		$(OBJ_DIR)/dspl_linspace.o\
-		$(OBJ_DIR)/dspl_logspace.o\
-        $(OBJ_DIR)/dspl_math_basic.o \
-        $(OBJ_DIR)/dspl_math_hyperbolic.o \
-		$(OBJ_DIR)/dspl_polyval.o\
-		$(OBJ_DIR)/dspl_unwrap.o\
-		$(OBJ_DIR)/dspl_win.o\
 
-		
-
-EX_OBJS=$(OBJ_DIR)/ex_dspl.o\
-		$(OBJ_DIR)/ex_dspl_butter_ap.o\
-		$(OBJ_DIR)/ex_dspl_cheby1_ap.o\
-		$(OBJ_DIR)/ex_dspl_cheby2_ap.o\
-		$(OBJ_DIR)/ex_dspl_compos.o\
-		$(OBJ_DIR)/ex_dspl_conv.o\
-		$(OBJ_DIR)/ex_dspl_dft.o\
-		$(OBJ_DIR)/ex_dspl_goertzel.o\
-		$(OBJ_DIR)/ex_dspl_fft.o\
-		$(OBJ_DIR)/ex_dspl_linspace.o\
-		$(OBJ_DIR)/ex_dspl_polyval.o\
-		$(OBJ_DIR)/ex_dspl_unwrap.o\
+EXE_BINS=	$(EXE_BIN_DIR)/ex_dspl.exe\
+			$(EXE_BIN_DIR)/ex_dspl_butter_ap.exe\
+			$(EXE_BIN_DIR)/ex_dspl_cheby1_ap.exe\
+			$(EXE_BIN_DIR)/ex_dspl_cheby2_ap.exe\
+			$(EXE_BIN_DIR)/ex_dspl_compos.exe\
+			$(EXE_BIN_DIR)/ex_dspl_conv.exe\
+			$(EXE_BIN_DIR)/ex_dspl_dft.exe\
+			$(EXE_BIN_DIR)/ex_dspl_goertzel.exe\
+			$(EXE_BIN_DIR)/ex_dspl_fft.exe\
+			$(EXE_BIN_DIR)/ex_dspl_linspace.exe\
+			$(EXE_BIN_DIR)/ex_dspl_polyval.exe\
+			$(EXE_BIN_DIR)/ex_dspl_unwrap.exe\
+			
+			
+			
+			
 		
 all:	dll\
-		ex_dspl\
-		ex_dspl_butter_ap\
-		ex_dspl_cheby1_ap\
-		ex_dspl_cheby2_ap\
-		ex_dspl_compos\
-		ex_dspl_conv\
-		ex_dspl_dft\
-		ex_dspl_goertzel\
-		ex_dspl_fft\
-		ex_dspl_linspace\
-		ex_dspl_polyval\
-		ex_dspl_unwrap\
-		
-		
-		
-
-dll: $(DLL_OBJS)
-	$(CC) -o $(BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) -Wl,--subsystem,windows
-
-ex_dspl:  $(OBJ_DIR)/ex_dspl.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl
+		$(EXE_BINS)\
 
 
-ex_dspl_butter_ap: $(OBJ_DIR)/ex_dspl_butter_ap.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_butter_ap.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_butter_ap
+
+
+# DSPL.DLL compile	
+dll:$(DLL_OBJS)
+	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) -Wl,--subsystem,windows
+	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) -Wl,--subsystem,windows
 	
 
-ex_dspl_cheby1_ap: $(OBJ_DIR)/ex_dspl_cheby1_ap.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_cheby1_ap.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_cheby1_ap
 	
-
-ex_dspl_cheby2_ap: $(OBJ_DIR)/ex_dspl_cheby2_ap.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_cheby2_ap.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_cheby2_ap
-
-
-ex_dspl_compos:  $(OBJ_DIR)/ex_dspl_compos.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_compos.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_compos
-      	
-
-ex_dspl_conv:  $(OBJ_DIR)/ex_dspl_conv.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_conv.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_conv
-
-		
-ex_dspl_dft: $(OBJ_DIR)/ex_dspl_dft.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_dft.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_dft
-
-
-ex_dspl_goertzel: $(OBJ_DIR)/ex_dspl_goertzel.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_goertzel.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_goertzel
-
-
-ex_dspl_fft: $(OBJ_DIR)/ex_dspl_fft.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_fft.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_fft
-
-
-ex_dspl_linspace: $(OBJ_DIR)/ex_dspl_linspace.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_linspace.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_linspace
-
-	
-
-ex_dspl_polyval: $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_polyval.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_polyval
-
-ex_dspl_unwrap: $(OBJ_DIR)/ex_dspl_unwrap.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/ex_dspl_unwrap.o $(OBJ_DIR)/dspl_load.o -o $(BIN_DIR)/ex_dspl_unwrap
-
-	
-	
-
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
+$(DLL_OBJ_DIR)/%.o:$(DLL_SRC_DIR)/%.c
 	$(CC) $(DLL_CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/%.o:$(EX_DIR)/%.c
-	$(CC) $(EX_CFLAGS) -c $< -o $@
+	
+#$(DLL_OBJS) : $(INC_DIR)/dspl.h
 
 
-$(DLL_OBJS): $(INC_DIR)/dspl.h
 
-$(EX_OBJS): $(INC_DIR)/dspl.h
 
+	
+
+$(EXE_BIN_DIR)/%.exe: $(EXE_OBJ_DIR)/%.o $(OBJ_DIR)/dspl_load.o
+	$(CC) $(OBJ_DIR)/dspl_load.o $< -o $@
+
+$(EXE_OBJ_DIR)/%.o:$(EXE_SRC_DIR)/%.c
+	$(CC) $(EXE_CFLAGS)  $< -o $@
+
+$(OBJ_DIR)/dspl_load.o:$(INC_DIR)/dspl_load.c
+	$(CC) $(EXE_CFLAGS)  $(INC_DIR)/dspl_load.c -o $(OBJ_DIR)/dspl_load.o
+
+
+
+#$(EXE_BINS): $(INC_DIR)/dspl.h
+
+
+clean:
+	rm -f $(DLL_OBJ_DIR)/*.o
+	rm -f $(EXE_OBJ_DIR)/*.o
+	rm -f $(VER_OBJ_DIR)/*.o
+	rm -f $(OBJ_DIR)/*.o
