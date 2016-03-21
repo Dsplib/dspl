@@ -7,6 +7,7 @@
 int main()
 {
 
+
 	HINSTANCE hInstDLL;
 
 	/* Load dspl.dll */

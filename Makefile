@@ -4,9 +4,7 @@ OBJ_DIR = obj
 
 
 DLL_SRC_DIR  = src/dspl
-
 DLL_OBJ_DIR  = obj/dspl
-
 DLL_BIN_DIR  = bin/dspl
 
 
@@ -27,8 +25,7 @@ EXE_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 VER_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 
 
-DLL_OBJS=	$(DLL_OBJ_DIR)/dspl.o\
-			$(DLL_OBJ_DIR)/dspl_compos.o\
+DLL_OBJS=	$(DLL_OBJ_DIR)/dspl_compos.o\
 			$(DLL_OBJ_DIR)/dspl_conv.o\
 			$(DLL_OBJ_DIR)/dspl_dft.o\
 			$(DLL_OBJ_DIR)/dspl_goertzel.o\
@@ -41,6 +38,7 @@ DLL_OBJS=	$(DLL_OBJ_DIR)/dspl.o\
 			$(DLL_OBJ_DIR)/dspl_inout.o\
 			$(DLL_OBJ_DIR)/dspl_linspace.o\
 			$(DLL_OBJ_DIR)/dspl_logspace.o\
+			$(DLL_OBJ_DIR)/dspl_main.o\
 			$(DLL_OBJ_DIR)/dspl_math_basic.o\
 			$(DLL_OBJ_DIR)/dspl_math_hyperbolic.o\
 			$(DLL_OBJ_DIR)/dspl_polyval.o\
@@ -48,11 +46,26 @@ DLL_OBJS=	$(DLL_OBJ_DIR)/dspl.o\
 			$(DLL_OBJ_DIR)/dspl_win.o\
 
 			
+RES_OBJ = $(DLL_OBJ_DIR)/resource.o			
+
+			
+EXE_OBJS=	$(EXE_BIN_DIR)/ex_dspl.o\
+			$(EXE_BIN_DIR)/ex_dspl_butter_ap.o\
+			$(EXE_BIN_DIR)/ex_dspl_cheby1_ap.o\
+			$(EXE_BIN_DIR)/ex_dspl_cheby2_ap.o\
+			$(EXE_BIN_DIR)/ex_dspl_compos.o\
+			$(EXE_BIN_DIR)/ex_dspl_conv.o\
+			$(EXE_BIN_DIR)/ex_dspl_dft.o\
+			$(EXE_BIN_DIR)/ex_dspl_goertzel.o\
+			$(EXE_BIN_DIR)/ex_dspl_fft.o\
+			$(EXE_BIN_DIR)/ex_dspl_linspace.o\
+			$(EXE_BIN_DIR)/ex_dspl_polyval.o\
+			$(EXE_BIN_DIR)/ex_dspl_unwrap.o\			
+			
 
 
 
-
-EXE_BINS=	$(EXE_BIN_DIR)/ex_dspl.exe\
+EXE_FILES=	$(EXE_BIN_DIR)/ex_dspl.exe\
 			$(EXE_BIN_DIR)/ex_dspl_butter_ap.exe\
 			$(EXE_BIN_DIR)/ex_dspl_cheby1_ap.exe\
 			$(EXE_BIN_DIR)/ex_dspl_cheby2_ap.exe\
@@ -66,45 +79,46 @@ EXE_BINS=	$(EXE_BIN_DIR)/ex_dspl.exe\
 			$(EXE_BIN_DIR)/ex_dspl_unwrap.exe\
 			
 			
+COMMON_OBJS = $(OBJ_DIR)/dspl.o\
 			
 			
 		
-all:	dll\
-		$(EXE_BINS)\
+all:	$(EXE_BIN_DIR)/dspl.dll\
+		$(EXE_FILES)\
 
 
 
 
 # DSPL.DLL compile	
-dll:$(DLL_OBJS)
-	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) -Wl,--subsystem,windows
-	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) -Wl,--subsystem,windows
-	
+$(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
+	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
+
+
+$(RES_OBJ):$(DLL_SRC_DIR)/resource.rc
+	windres -i $(DLL_SRC_DIR)/resource.rc -o $(RES_OBJ)
 
 	
 $(DLL_OBJ_DIR)/%.o:$(DLL_SRC_DIR)/%.c
 	$(CC) $(DLL_CFLAGS) -c $< -o $@
 
 	
-#$(DLL_OBJS) : $(INC_DIR)/dspl.h
 
 
-
-
-	
-
-$(EXE_BIN_DIR)/%.exe: $(EXE_OBJ_DIR)/%.o $(OBJ_DIR)/dspl_load.o
-	$(CC) $(OBJ_DIR)/dspl_load.o $< -o $@
+$(EXE_BIN_DIR)/%.exe: $(EXE_OBJ_DIR)/%.o  $(COMMON_OBJS)
+	$(CC) $(OBJ_DIR)/dspl.o $< -o $@
 
 $(EXE_OBJ_DIR)/%.o:$(EXE_SRC_DIR)/%.c
 	$(CC) $(EXE_CFLAGS)  $< -o $@
 
-$(OBJ_DIR)/dspl_load.o:$(INC_DIR)/dspl_load.c
-	$(CC) $(EXE_CFLAGS)  $(INC_DIR)/dspl_load.c -o $(OBJ_DIR)/dspl_load.o
+$(OBJ_DIR)/%.o:$(INC_DIR)/%.c
+	$(CC) $(EXE_CFLAGS)  -c $< -o $@
 
 
 
-#$(EXE_BINS): $(INC_DIR)/dspl.h
+$(DLL_OBJS):	 $(INC_DIR)/dspl.h
+$(EXE_OBJS):	 $(INC_DIR)/dspl.h
+$(EXE_FILES):	 $(INC_DIR)/dspl.h
+$(COMMON_OBJS):	 $(INC_DIR)/dspl.h
 
 
 clean:
