@@ -1,9 +1,9 @@
 clear all; close all; clc;
 % Load bin file
 
-[x, n, m] = dspl_readbin("../dat/ex_dspl_fft_in.bin");
-[y, n, m] = dspl_readbin("../dat/ex_dspl_fft_out.bin");
-[z, n, m] = dspl_readbin("../dat/ex_dspl_ifft_out.bin");
+[x, n, m] = dspl_readbin("../dat/dspl_fft/fft_in.bin");
+[y, n, m] = dspl_readbin("../dat/dspl_fft/fft_out.bin");
+[z, n, m] = dspl_readbin("../dat/dspl_fft/ifft_out.bin");
 
 
 Y = fft(x);

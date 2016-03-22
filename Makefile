@@ -49,18 +49,6 @@ DLL_OBJS=	$(DLL_OBJ_DIR)/dspl_compos.o\
 RES_OBJ = $(DLL_OBJ_DIR)/resource.o			
 
 			
-EXE_OBJS=	$(EXE_BIN_DIR)/ex_dspl.o\
-			$(EXE_BIN_DIR)/ex_dspl_butter_ap.o\
-			$(EXE_BIN_DIR)/ex_dspl_cheby1_ap.o\
-			$(EXE_BIN_DIR)/ex_dspl_cheby2_ap.o\
-			$(EXE_BIN_DIR)/ex_dspl_compos.o\
-			$(EXE_BIN_DIR)/ex_dspl_conv.o\
-			$(EXE_BIN_DIR)/ex_dspl_dft.o\
-			$(EXE_BIN_DIR)/ex_dspl_goertzel.o\
-			$(EXE_BIN_DIR)/ex_dspl_fft.o\
-			$(EXE_BIN_DIR)/ex_dspl_linspace.o\
-			$(EXE_BIN_DIR)/ex_dspl_polyval.o\
-			$(EXE_BIN_DIR)/ex_dspl_unwrap.o\			
 			
 
 
@@ -73,25 +61,33 @@ EXE_FILES=	$(EXE_BIN_DIR)/ex_dspl.exe\
 			$(EXE_BIN_DIR)/ex_dspl_conv.exe\
 			$(EXE_BIN_DIR)/ex_dspl_dft.exe\
 			$(EXE_BIN_DIR)/ex_dspl_goertzel.exe\
-			$(EXE_BIN_DIR)/ex_dspl_fft.exe\
 			$(EXE_BIN_DIR)/ex_dspl_linspace.exe\
 			$(EXE_BIN_DIR)/ex_dspl_polyval.exe\
 			$(EXE_BIN_DIR)/ex_dspl_unwrap.exe\
 			
+
 			
+VER_FILES = $(VER_BIN_DIR)/ver_dspl_fft.exe\
+  
+
 COMMON_OBJS = $(OBJ_DIR)/dspl.o\
 			
 			
 		
 all:	$(EXE_BIN_DIR)/dspl.dll\
+		$(VER_BIN_DIR)/dspl.dll\
 		$(EXE_FILES)\
-
+		$(VER_FILES)\
 
 
 
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
+
+$(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
+	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
+
 
 
 $(RES_OBJ):$(DLL_SRC_DIR)/resource.rc
@@ -110,14 +106,29 @@ $(EXE_BIN_DIR)/%.exe: $(EXE_OBJ_DIR)/%.o  $(COMMON_OBJS)
 $(EXE_OBJ_DIR)/%.o:$(EXE_SRC_DIR)/%.c
 	$(CC) $(EXE_CFLAGS)  $< -o $@
 
+
+
+$(VER_BIN_DIR)/%.exe: $(VER_OBJ_DIR)/%.o  $(COMMON_OBJS)
+	$(CC) $(OBJ_DIR)/dspl.o $< -o $@
+
+$(VER_OBJ_DIR)/%.o:$(VER_SRC_DIR)/%.c
+	$(CC) $(EXE_CFLAGS)  $< -o $@
+
+
+
+
+
 $(OBJ_DIR)/%.o:$(INC_DIR)/%.c
 	$(CC) $(EXE_CFLAGS)  -c $< -o $@
 
 
 
-$(DLL_OBJS):	 $(INC_DIR)/dspl.h
+$(DLL_OBJS):	 $(INC_DIR)/dspl.h  
+
 $(EXE_OBJS):	 $(INC_DIR)/dspl.h
+
 $(EXE_FILES):	 $(INC_DIR)/dspl.h
+
 $(COMMON_OBJS):	 $(INC_DIR)/dspl.h
 
 
@@ -126,3 +137,7 @@ clean:
 	rm -f $(EXE_OBJ_DIR)/*.o
 	rm -f $(VER_OBJ_DIR)/*.o
 	rm -f $(OBJ_DIR)/*.o
+	rm -f $(EXE_BIN_DIR)/*.exe
+	rm -f $(EXE_BIN_DIR)/*.dll
+	rm -f $(VER_BIN_DIR)/*.exe
+	rm -f $(VER_BIN_DIR)/*.dll

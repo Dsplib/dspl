@@ -66,9 +66,9 @@ int main()
 	dspl_fft_free(&fft);
 	
 	/* save input signal, FFT and IFFT to the bin-files */
-	dspl_writebin(xR, xI, n, "dat/ex_dspl_fft_in.bin");
-	dspl_writebin(yR, yI, n, "dat/ex_dspl_fft_out.bin");
-	dspl_writebin(zR, zI, n, "dat/ex_dspl_ifft_out.bin");
+	dspl_writebin(xR, xI, n, "dat/dspl_fft/fft_in.bin");
+	dspl_writebin(yR, yI, n, "dat/dspl_fft/fft_out.bin");
+	dspl_writebin(zR, zI, n, "dat/dspl_fft/ifft_out.bin");
 		
 	/* clear dspl handle */
 	FreeLibrary(hDSPL);
