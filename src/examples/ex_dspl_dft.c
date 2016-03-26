@@ -45,7 +45,6 @@ int main()
 	res = dspl_dft(xR, xI, N, yR, yI);
 	dspl_print_err(res, 1);
 
-
 	FreeLibrary(hDSPL);
 	
 	return 0;

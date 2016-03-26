@@ -64,6 +64,9 @@ DSPL_API void dspl_print_err(int res, int printCR)
 		case DSPL_ERROR_FILTER_RS:
 			printf("ERROR: filter Rs parameter must be more than zero!");
 			break;
+		case DSPL_ERROR_FILTER_WP:
+			printf("ERROR: filter passband parameter is wrong!");
+			break;
 		case DSPL_ERROR_FNAME:	
 			printf("ERROR: file name is wrong!");
 			break;
@@ -78,7 +81,10 @@ DSPL_API void dspl_print_err(int res, int printCR)
 			break;
 		case DSPL_ERROR_SIZE:
 			printf("ERROR: input array size is wrong!");
-			break;			
+			break;
+		case DSPL_ERROR_UNWRAP:
+			printf("ERROR: unwrap level or margin is wrong!");
+			break;
 		case DSPL_ERROR_WIN_TYPE:		
 			
 		default:
