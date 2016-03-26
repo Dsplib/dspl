@@ -1,0 +1,127 @@
+% \begin{figure}[ht!]
+%\begin{center}
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{fig_header.tex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+
+\draw[->,thick] (-7.5cm,	0cm)		-- +(16.5cm, 0cm)	node[below] {$t$};
+
+\begin{scope}[red]
+
+\draw [-, thin, dashed] (-7cm, 0cm) -- (-7cm, 1cm);  
+\draw [-, thin, dashed, name path=signal_left] (-7cm, 1cm) sin (-6.5cm, 1.5cm) cos (-6cm, 1cm) sin (-5.5cm, 0.5cm) 
+  cos (-5cm, 1cm) sin (-4.5cm, 1.5cm) cos (-4cm, 1cm) sin (-3.5cm, 0.5cm) cos (-3cm, 1cm) ; 
+\draw [-, thin, dashed] (-3cm, 0cm) -- (-3cm, 1cm);
+
+\path [name path=d00] (-6.75cm, 0cm) -- (-6.75cm, 2cm);
+\path [name path=d01] (-6.25cm, 0cm) -- (-6.25cm, 2cm);
+\path [name path=d02] (-5.75cm, 0cm) -- (-5.75cm, 2cm);
+\path [name path=d03] (-5.25cm, 0cm) -- (-5.25cm, 2cm);
+\path [name path=d04] (-4.75cm, 0cm) -- (-4.75cm, 2cm);
+\path [name path=d05] (-4.25cm, 0cm) -- (-4.25cm, 2cm);
+\path [name path=d06] (-3.75cm, 0cm) -- (-3.75cm, 2cm);
+\path [name path=d07] (-3.25cm, 0cm) -- (-3.25cm, 2cm);
+
+\draw [-, name intersections={of=d00 and signal_left, by=x}, thick] (-6.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);  
+\draw [-, name intersections={of=d01 and signal_left, by=x}, thick] (-6.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d02 and signal_left, by=x}, thick] (-5.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d03 and signal_left, by=x}, thick] (-5.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d04 and signal_left, by=x}, thick] (-4.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d05 and signal_left, by=x}, thick] (-4.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d06 and signal_left, by=x}, thick] (-3.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d07 and signal_left, by=x}, thick] (-3.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+
+\end{scope}
+
+
+
+\draw [-, thin, dashed] (-2cm, 0cm) -- (-2cm, 1cm);
+\draw [-, thin, dashed, name path=signal_center] (-2cm, 1cm) sin (-1.5cm, 1.5cm) cos (-1cm, 1cm) sin (-0.5cm, 0.5cm) 
+  cos (0cm, 1cm) sin (0.5cm, 1.5cm) cos (1cm, 1cm) sin (1.5cm, 0.5cm) cos (2cm, 1cm) ;
+\draw [-, thin, dashed] (2cm, 0cm) -- (2cm, 1cm);
+
+
+\path [name path=d10] (-1.75cm, 0cm) -- (-1.75cm, 2cm);
+\path [name path=d11] (-1.25cm, 0cm) -- (-1.25cm, 2cm);
+\path [name path=d12] (-0.75cm, 0cm) -- (-0.75cm, 2cm);
+\path [name path=d13] (-0.25cm, 0cm) -- (-0.25cm, 2cm);
+\path [name path=d14] ( 0.25cm, 0cm) -- ( 0.25cm, 2cm);
+\path [name path=d15] ( 0.75cm, 0cm) -- ( 0.75cm, 2cm);
+\path [name path=d16] ( 1.25cm, 0cm) -- ( 1.25cm, 2cm);
+\path [name path=d17] ( 1.75cm, 0cm) -- ( 1.75cm, 2cm);
+
+\draw [-, name intersections={of = d10 and signal_center, by=x}, thick] (-1.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);  
+\draw [-, name intersections={of = d11 and signal_center, by=x}, thick] (-1.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of = d12 and signal_center, by=x}, thick] (-0.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of = d13 and signal_center, by=x}, thick] (-0.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of = d14 and signal_center, by=x}, thick] ( 0.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of = d15 and signal_center, by=x}, thick] ( 0.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of = d16 and signal_center, by=x}, thick] ( 1.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of = d17 and signal_center, by=x}, thick] ( 1.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+
+\draw [-, thin] (-7cm, 0cm) -- (-7cm, -1cm);
+\draw [-, thin] (-2cm, 0cm) -- (-2cm, -1cm);
+\draw [-, thin] ( 3cm, 0cm) -- ( 3cm, -1cm);
+\draw [-, thin] ( 8cm, 0cm) -- ( 8cm, -1cm);
+
+\draw[<->, thin] (-7cm, -0.7cm) -- (-2cm, -0.7cm) node[above, midway]{$T$};
+\draw[<->, thin] (-2cm, -0.7cm) -- ( 3cm, -0.7cm) node[above, midway]{$T$};
+\draw[<->, thin] ( 3cm, -0.7cm) -- ( 8cm, -0.7cm) node[above, midway]{$T$};
+
+
+\begin{scope}[red]
+
+\draw [-, thin, dashed] (3cm, 0cm) -- (3cm, 1cm); 
+\draw [-, thin, dashed, name path=signal_right] (3cm, 1cm) sin (3.5cm, 1.5cm) cos (4cm, 1cm) sin (4.5cm, 0.5cm) 
+  cos (5cm, 1cm) sin (5.5cm, 1.5cm) cos (6cm, 1cm) sin (6.5cm, 0.5cm) cos (7cm, 1cm) ;
+\draw [-, thin, dashed] (7cm, 0cm) -- (7cm, 1cm);
+
+
+\path [name path=d20] ( 3.25cm, 0cm) -- ( 3.25cm, 2cm);
+\path [name path=d21] ( 3.75cm, 0cm) -- ( 3.75cm, 2cm);
+\path [name path=d22] ( 4.25cm, 0cm) -- ( 4.25cm, 2cm);
+\path [name path=d23] ( 4.75cm, 0cm) -- ( 4.75cm, 2cm);
+\path [name path=d24] ( 5.25cm, 0cm) -- ( 5.25cm, 2cm);
+\path [name path=d25] ( 5.75cm, 0cm) -- ( 5.75cm, 2cm);
+\path [name path=d26] ( 6.25cm, 0cm) -- ( 6.25cm, 2cm);
+\path [name path=d27] ( 6.75cm, 0cm) -- ( 6.75cm, 2cm);
+
+\draw [-, name intersections={of=d20 and signal_right, by=x}, thick] ( 3.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d21 and signal_right, by=x}, thick] ( 3.75cm, 0cm) -- (x); \fill (x) circle(0.07cm); 
+\draw [-, name intersections={of=d22 and signal_right, by=x}, thick] ( 4.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d23 and signal_right, by=x}, thick] ( 4.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d24 and signal_right, by=x}, thick] ( 5.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d25 and signal_right, by=x}, thick] ( 5.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d26 and signal_right, by=x}, thick] ( 6.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+\draw [-, name intersections={of=d27 and signal_right, by=x}, thick] ( 6.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
+
+
+
+\draw [-, thin, dashed] (8cm, 0cm) -- (8cm, 1cm); 
+\draw [-, thin, dashed, name path=signal_resid] (8cm, 1cm) sin (8.5cm, 
+1.5cm);
+
+\path [name path=d30] ( 8.25cm, 0cm) -- ( 8.25cm, 2cm);
+
+\draw [-, name intersections={of=d30 and signal_resid, by=x}, thick] ( 8.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);  
+
+ 
+\end{scope}
+ 
+\end{tikzpicture}
+
+\end {document}
+  
+%\caption{Повторение выборки дискретного сигнала во времени}\label{dft:fig2}
+%\end{center}
+%\end{figure}
+
+
+

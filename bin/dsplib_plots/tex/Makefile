@@ -1,0 +1,42 @@
+LATEX      = pdflatex
+FIG_DIR    = fig
+
+
+FIG	=	fig/dft_fig1.pdf\
+		fig/dft_fig2.pdf\
+		fig/dft_fig3.pdf\
+		fig/dft_fig4.pdf\
+		fig/dft_freq_fig1.pdf\
+		fig/dft_freq_fig2.pdf\
+		fig/dft_freq_fig3.pdf\
+		fig/dft_freq_fig4.pdf\
+		fig/dft_prop_fig1.pdf\
+		fig/dft_prop_fig2.pdf\
+		fig/dft_prop_fig3.pdf\
+		fig/dft_prop_fig4.pdf\
+
+
+		
+all: figures clean
+
+	
+figures: $(FIG)	
+		
+
+#DFT
+fig/%.pdf:%.tex 	
+	$(LATEX)  $< -output-directory=$(FIG_DIR) $@
+  
+	
+
+clean:
+	rm -f  *.aux
+	rm -f  *.bbl
+	rm -f  *.log
+	rm -f  *.toc
+	rm -f  *.blg
+	rm -f  fig/*.aux 
+	rm -f  fig/*.bbl
+	rm -f  fig/*.log
+	rm -f  fig/*.toc
+	rm -f  fig/*.blg
