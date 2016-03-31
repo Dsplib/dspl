@@ -54,13 +54,6 @@
 #define	DSPL_ERROR_WIN_TYPE			0x00500000
 	
 	
-#define DSPL_MATRIX_REAL			0
-#define DSPL_MATRIX_COMPLEX			1
-#define DSPL_MATRIX_TYPE			1
-#define DSPL_MAT_MAJOR_COL			0
-#define DSPL_MAT_MAJOR_ROW			1
-	
-	
 /* data */	
 #define DSPL_DAT_REAL				0
 #define DSPL_DAT_COMPLEX			1
@@ -92,29 +85,6 @@
 #define DSPL_WIN_SYMMETRIC			DSPL_SYMMETRIC
 #define DSPL_WIN_PERIODIC			DSPL_PERIODIC
 				
-
-typedef struct
-{
-	int row;
-	int col;
-	int type;
-	int ord;
-	double *pR;
-	double *pI;           
-} matrix_t;
-
-
-typedef struct
-{
-	double *wR;
-	double *wI;
-	double *t0R;
-	double *t0I;
-	double *t1R;
-	double *t1I;
-	int n;
-} fft_t;
-
 
 #ifdef DLL_EXPORT
 
@@ -199,23 +169,11 @@ DSPL_API int dspl_goertzel(	double *xR, double *xI, int n,
 
 
 /* Inverse Fast Fourier Transform  (dspl_fft.c)*/
-DSPL_API int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, 
-											double* yR, double* yI);
+DSPL_API int dspl_ifft(double* xR, double* xI, int n, double* yR, double* yI);
 		
 		
 /* Fast Fourier Transform  (dspl_fft.c)*/
-DSPL_API int dspl_fft(	double* xR, double* xI, int n, fft_t *pfft, 
-						double* yR, double* yI);
-
-						
-						
-/* Create Fast Fourier Transform  (dspl_fft.c)*/
-DSPL_API int dspl_fft_create(fft_t *pfft, int n);
-
-
-
-/* Create Fast Fourier Transform  (dspl_fft.c)*/
-DSPL_API void dspl_fft_free(fft_t *pfft);
+DSPL_API int dspl_fft(	double* xR, double* xI, int n, double* yR, double* yI);
 
 
 /* DFT shift  (dspl_fft.c)*/
@@ -376,24 +334,14 @@ typedef int (*p_dspl_goertzel)(	double *xR, double *xI, int n,
 
 							
 /* Inverse Fast Fourier Transform  (dspl_fft.c)*/
-typedef int (*p_dspl_ifft)			(double* xR, double* xI, int n, fft_t* pfft, 
-											double* yR, double* yI);
+typedef int (*p_dspl_ifft)			(double* xR, double* xI, int n, double* yR, double* yI);
 		
 
 		
 /* Fast Fourier Transform  (dspl_fft.c)*/
-typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, fft_t *pfft, 
-											double* yR, double* yI);
-
+typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, double* yR, double* yI);
 
 											
-/* Create Fast Fourier Transform  (dspl_fft.c)*/
-typedef int (*p_dspl_fft_create)	(fft_t *pfft, int n);
-
-
-
-typedef void (*p_dspl_fft_free)(fft_t *pfft);
-
 
 typedef int(*p_dspl_fft_shift)(double* xR, double* xI, int n, double* yR, double* yI);
 
@@ -485,8 +433,6 @@ extern p_dspl_goertzel		dspl_goertzel		;
 extern p_dspl_dft 			dspl_dft 			; 
 extern p_dspl_ifft			dspl_ifft		    ;
 extern p_dspl_fft			dspl_fft		    ;
-extern p_dspl_fft_create	dspl_fft_create	    ;
-extern p_dspl_fft_free		dspl_fft_free		;
 extern p_dspl_fft_shift		dspl_fft_shift		;
 extern p_dspl_filter_iir	dspl_filter_iir	    ;
 extern p_dspl_freqs			dspl_freqs		    ;

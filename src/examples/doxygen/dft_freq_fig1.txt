@@ -1,0 +1,42 @@
+﻿#ifdef DOXYGEN_EN
+/*!
+		
+*/
+#elseif DOXYGEN_RU
+
+
+/*! 
+	\page ex_list Примеры испльзования функций DSPL
+	-\subpage spectral 
+	                         
+	
+	
+	
+*/
+
+
+
+ /*! 
+	\page spectral Цифровой спектральный анализ
+	-\subpage dft_freq_fig1 
+	                         
+	
+	
+	
+*/
+
+
+
+/*! 
+	\page dft_freq_fig1 Индексация и перестановка спектральных отсчетов ДПФ. Рисунок 1.
+	Данная программа рассчитывает данные для построения рисунка 1. 
+	
+	\include dft_freq_fig1.c
+	                         
+	
+	
+	
+*/
+	
+	
+

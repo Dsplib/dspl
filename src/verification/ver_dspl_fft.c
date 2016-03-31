@@ -9,7 +9,7 @@
 #include "dspl.h"
 
 
-#define N	256
+#define N	128
 
 int main()
 {
@@ -24,9 +24,6 @@ int main()
 	/* IFFT */
 	double zR[N];
 	double zI[N];
-	
-	/* fft object structure */
-	fft_t	fft;
 	
 	/* dspl handle */
 	HINSTANCE hDSPL;
@@ -50,21 +47,13 @@ int main()
 	}
 
 
-	/*FFT create. We can create FFT object one time in 
-	the beginning and use it for many FFT calculation*/
-	memset(&fft, 0, sizeof(fft_t));
-	dspl_fft_create(&fft, N);
-	
 	/*256-points FFT calculation */
-	dspl_fft(xR, xI, N, &fft, yR, yI);
+	dspl_fft(xR, xI, N, yR, yI);
 
 	/*256-points IFFT calculation 
 	We no need to recalculate FFT object */
-	dspl_ifft(yR, yI, N, &fft, zR, zI);
-	
-	/* Clear FFT object memory */
-	dspl_fft_free(&fft);
-	
+	dspl_ifft(yR, yI, N, zR, zI);	
+
 	/* save input signal, FFT and IFFT to the bin-files */
 	dspl_writebin(xR, xI, n, "dat/dspl_fft/fft_in.bin");
 	dspl_writebin(yR, yI, n, "dat/dspl_fft/fft_out.bin");

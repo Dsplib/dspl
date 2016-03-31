@@ -16,9 +16,6 @@ VER_SRC_DIR  = src/verification
 VER_OBJ_DIR  = obj/verification
 VER_BIN_DIR  = bin/verification
 
-PLT_SRC_DIR  = src/dsplib_plots
-PLT_OBJ_DIR  = obj/dsplib_plots
-PLT_BIN_DIR  = bin/dsplib_plots
 
 BIN_DIR = bin
 OBJ_DIR = obj
@@ -28,7 +25,8 @@ EXE_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 VER_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 
 
-DLL_OBJS=	$(DLL_OBJ_DIR)/dspl_compos.o\
+DLL_OBJS=	$(DLL_OBJ_DIR)/dspl_cconv.o\
+			$(DLL_OBJ_DIR)/dspl_compos.o\
 			$(DLL_OBJ_DIR)/dspl_conv.o\
 			$(DLL_OBJ_DIR)/dspl_dft.o\
 			$(DLL_OBJ_DIR)/dspl_goertzel.o\
@@ -56,25 +54,14 @@ RES_OBJ = $(DLL_OBJ_DIR)/resource.o
 
 
 
-EXE_FILES=	$(EXE_BIN_DIR)/ex_dspl.exe\
-			$(EXE_BIN_DIR)/ex_dspl_butter_ap.exe\
-			$(EXE_BIN_DIR)/ex_dspl_cheby1_ap.exe\
-			$(EXE_BIN_DIR)/ex_dspl_cheby2_ap.exe\
-			$(EXE_BIN_DIR)/ex_dspl_compos.exe\
-			$(EXE_BIN_DIR)/ex_dspl_conv.exe\
-			$(EXE_BIN_DIR)/ex_dspl_dft.exe\
-			$(EXE_BIN_DIR)/ex_dspl_goertzel.exe\
-			$(EXE_BIN_DIR)/ex_dspl_linspace.exe\
-			$(EXE_BIN_DIR)/ex_dspl_polyval.exe\
-			$(EXE_BIN_DIR)/ex_dspl_unwrap.exe\
+EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
+			$(EXE_BIN_DIR)/dft_freq_fig4.exe\
 			
 
 			
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_fft.exe\
 
 
-PLT_FILES =	$(PLT_BIN_DIR)/dft_freq_fig1.exe\
-			$(PLT_BIN_DIR)/dft_freq_fig4.exe\
 				 
  
 
@@ -84,12 +71,9 @@ COMMON_OBJS = $(OBJ_DIR)/dspl.o\
 		
 all:	$(EXE_BIN_DIR)/dspl.dll\
 		$(VER_BIN_DIR)/dspl.dll\
-		$(PLT_BIN_DIR)/dspl.dll\
 		$(EXE_FILES)\
 		$(VER_FILES)\
-		$(PLT_FILES)\
-
-
+		
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
@@ -98,8 +82,6 @@ $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
 
 
-$(PLT_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(PLT_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
 
 
 
@@ -129,14 +111,6 @@ $(VER_OBJ_DIR)/%.o:$(VER_SRC_DIR)/%.c
 
 
 
-$(PLT_BIN_DIR)/%.exe: $(PLT_OBJ_DIR)/%.o  $(COMMON_OBJS)
-	$(CC) $(OBJ_DIR)/dspl.o $< -o $@
-
-$(PLT_OBJ_DIR)/%.o:$(PLT_SRC_DIR)/%.c
-	$(CC) $(EXE_CFLAGS)  $< -o $@
-
-
-
 
 
 $(OBJ_DIR)/%.o:$(INC_DIR)/%.c
@@ -151,8 +125,6 @@ $(EXE_FILES):	 $(INC_DIR)/dspl.h
 
 $(VER_FILES):	 $(INC_DIR)/dspl.h
 
-$(PLT_FILES):	 $(INC_DIR)/dspl.h
-
 
 $(COMMON_OBJS):	 $(INC_DIR)/dspl.h
 
@@ -161,11 +133,8 @@ clean:
 	rm -f $(DLL_OBJ_DIR)/*.o
 	rm -f $(EXE_OBJ_DIR)/*.o
 	rm -f $(VER_OBJ_DIR)/*.o
-	rm -f $(PLT_OBJ_DIR)/*.o
 	rm -f $(OBJ_DIR)/*.o
 	rm -f $(EXE_BIN_DIR)/*.exe
 	rm -f $(EXE_BIN_DIR)/*.dll
 	rm -f $(VER_BIN_DIR)/*.exe
 	rm -f $(VER_BIN_DIR)/*.dll
-	rm -f $(PLT_BIN_DIR)/*.exe
-	rm -f $(PLT_BIN_DIR)/*.dll

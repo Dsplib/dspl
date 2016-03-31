@@ -17,17 +17,23 @@
 * You should have received a copy of the GNU Lesser General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
 #include "dspl.h"
+#include "dspl_main.h"
 
 
+/* global FFT Object */
+fft_t fftObj;
 
+
+/* global Convolution Object */
+conv_t convObj;
 
 /* DSPL VERSION */
-#define DSPL_VERSION 0x00100301
+#define DSPL_VERSION 0x00100401
 
 
 /*
@@ -63,7 +69,9 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 {
 	switch( fdwReason ){
 		case DLL_PROCESS_ATTACH:
-				dspl_get_version(1);
+			dspl_get_version(1);				
+			memset(&fftObj,  0, sizeof(fft_t));
+			memset(&convObj, 0, sizeof(conv_t));
 			break;
 		case DLL_THREAD_ATTACH:         
 
@@ -72,7 +80,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 
 			break;
 		case DLL_PROCESS_DETACH:
-
+			dspl_fft_free();
+			dspl_conv_free();
 			break;    
 	}    
 	return TRUE;  

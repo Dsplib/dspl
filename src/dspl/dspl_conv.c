@@ -81,8 +81,8 @@ DSPL_API int dspl_conv(double* a, int na, double* b,  int nb, double *c)
 DSPL_API int dspl_conv_cmplx(double *aR, double *aI, int na, double *bR, double *bI, int nb, 
 					double *cR, double *cI)
 {
-	double *tR;
-	double *tI;
+	double *tR = NULL;
+	double *tI = NULL;
 	size_t bufsize;	
 	int fR = 0;
 	int fI = 0;

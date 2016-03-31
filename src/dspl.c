@@ -19,8 +19,6 @@ p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 p_dspl_cosh 			dspl_cosh 			;
 p_dspl_dft 				dspl_dft 			;
 p_dspl_fft				dspl_fft		    ;
-p_dspl_fft_create		dspl_fft_create		;
-p_dspl_fft_free			dspl_fft_free		;
 p_dspl_fft_shift		dspl_fft_shift		;
 p_dspl_filter_iir		dspl_filter_iir	    ;
 p_dspl_freqs			dspl_freqs		    ;
@@ -137,17 +135,6 @@ HINSTANCE	dspl_load()
 		goto error_proc;
 	
 
-	func_name = "dspl_fft_create";
-	dspl_fft_create = (p_dspl_fft_create) GetProcAddress(hDSPL, func_name);
-	if(!dspl_fft_create)
-		goto error_proc;
-	
-	
-	func_name = "dspl_fft_free";
-	dspl_fft_free = (p_dspl_fft_free) GetProcAddress(hDSPL, func_name);
-	if(!dspl_fft_free)
-		goto error_proc;
-	
 	
 	func_name = "dspl_fft_shift";
 	dspl_fft_shift = (p_dspl_fft_shift) GetProcAddress(hDSPL, func_name);

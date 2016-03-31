@@ -1,24 +1,42 @@
-LATEX    = pdflatex
-OUT_DIR  = out
-TMP_DIR  = tmp
-
-LATEX_FLAGS = -output-directory=$(OUT_DIR) -aux-directory=$(TMP_DIR)
+LATEX      = pdflatex
+FIG_DIR    = fig
 
 
-all:	ex_dspl_butter_ap.pdf\
-		ex_dspl_cheby1_ap.pdf\
-		ex_dspl_cheby2_ap.pdf\
-		ex_dspl_unwrap.pdf\
+FIG	=	fig/dft_fig1.pdf\
+		fig/dft_fig2.pdf\
+		fig/dft_fig3.pdf\
+		fig/dft_fig4.pdf\
+		fig/dft_freq_fig1.pdf\
+		fig/dft_freq_fig2.pdf\
+		fig/dft_freq_fig3.pdf\
+		fig/dft_freq_fig4.pdf\
+		fig/dft_prop_fig1.pdf\
+		fig/dft_prop_fig2.pdf\
+		fig/dft_prop_fig3.pdf\
+		fig/dft_prop_fig4.pdf\
+
+
+		
+all: figures clean
+
 	
-ex_dspl_butter_ap.pdf:ex_dspl_butter_ap.tex
-	$(LATEX) $(LATEX_FLAGS) ex_dspl_butter_ap.tex	
+figures: $(FIG)	
+		
+
+#DFT
+fig/%.pdf:%.tex 	
+	$(LATEX)  $< -output-directory=$(FIG_DIR) $@
+  
 	
-ex_dspl_cheby1_ap.pdf:ex_dspl_cheby1_ap.tex
-	$(LATEX) $(LATEX_FLAGS) ex_dspl_cheby1_ap.tex
 
-ex_dspl_cheby2_ap.pdf:ex_dspl_cheby2_ap.tex
-	$(LATEX) $(LATEX_FLAGS) ex_dspl_cheby2_ap.tex
-
-ex_dspl_unwrap.pdf:ex_dspl_unwrap.tex
-	$(LATEX) $(LATEX_FLAGS) ex_dspl_unwrap.tex
-
+clean:
+	rm -f  *.aux
+	rm -f  *.bbl
+	rm -f  *.log
+	rm -f  *.toc
+	rm -f  *.blg
+	rm -f  fig/*.aux 
+	rm -f  fig/*.bbl
+	rm -f  fig/*.log
+	rm -f  fig/*.toc
+	rm -f  fig/*.blg
