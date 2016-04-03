@@ -5,11 +5,16 @@
 #elseif DOXYGEN_RU
 
 /*! 
-	\page page_begin_use Быстрый старт использования библиотеки dspl.dll
+	\page page_begin_use 
+	\ingroup GETTING_START
+
+
+
+	\section page_begin_use_dll Быстрый старт использования библиотеки dspl.dll
 	\tableofcontents
 
-	\section sec_mingw Использование компилятора GCC	
-	\subsection subsection_mingw_prep Установка компилятора GCC в системе Windows.
+	\subsection sec_mingw Использование компилятора GCC	
+	\subsubsection subsection_mingw_prep Установка компилятора GCC в системе Windows.
 	Компилятор <a href = "http://mingw-w64.org/doku.php">Mingw64</a> 
 	используется для работы с GCC в системе Windows. 
 	Mingw64 поддерживает как 32-битные, так и 64-битные системы Windows.
@@ -26,7 +31,7 @@
 	Для распаковки архива рекомендуется использовать пакет <a href = "http://www.7-zip.org/">7-zip</a>. 
 	В результате в директории `C:\mingw32\bin` будут находится исполняемые утилиты компилятора.
 	
-	3) Необходимо добавить путь к директории C:\mingw32\bin в системную переменную `PATH`.
+	3) Необходимо добавить путь к директории `C:\mingw32\bin` в системную переменную `PATH`.
 	Для этого необходимо:
 	
 	В меню <B>Пуск</B> щелкните правой кнопкой мыши пункт <B>Компьютер</B>.
@@ -58,7 +63,7 @@
 	
 	
 	
-	\subsection subsection_mingw_utils Установка дополнительных утилит и файлового менеджера Far manager
+	\subsubsection subsection_mingw_utils Установка дополнительных утилит и файлового менеджера Far manager
 	
 	Кроме компилятора для работы рекомендуется установить дополнительный набор <a href="https://sourceforge.net/projects/unxutils/">UnxUtils</a>. Для этого необходимо:
 	
@@ -76,7 +81,7 @@
 	с командной строкой.
 	
 	
-	\subsection subsection_mingw_compile Использование dspl.dll
+	\subsubsection subsection_mingw_compile Использование dspl.dll
 
 	После того как компилятор и все необходимые утилиты установлены, можно использовать их для компиляции программ
 	цифровой обработки сигналов.
@@ -87,7 +92,7 @@
 
 	\image html dspl_gcc_structure.png	
 
-	Директория `bin` содержит библиотеку  `dspl.dll`. В эту же директорию будет помещен выполняемый`.exe` файл после компиляции проекта
+	Директория `bin` содержит библиотеку  `dspl.dll`. В эту же директорию будет помещен выполняемый `.exe` файл после компиляции проекта
 
 	Директория `obj` пустая. В эту директорию будут помещены объектные `.o` файлы после компиляции проекта
 	

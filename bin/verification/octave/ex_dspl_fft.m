@@ -24,9 +24,9 @@ subplot(212); plot(freq, abs(y - Y)./max(abs(Y)));
 
 figure; 
 subplot(221); plot(t, real(x), t, real(z), t, real(Z) );
-subplot(222); plot(t, real(x - z), t, real(x-Z));
+subplot(222); plot(t, real(x - z),'r', t, real(x-Z));
 
 subplot(223); plot(t, imag(x), t, imag(z), t, imag(Z) );
-subplot(224); plot(t, imag(x - z), t, imag(x-Z));
+subplot(224); plot(t, imag(x - z),'r', t, imag(x-Z));
 
 

@@ -1,29 +1,63 @@
+
+#ifdef DOXYGEN_EN
+
+/*!
+		
+*/
+
+#elseif DOXYGEN_RU
+
+/*! 
+	\example dft_freq_fig4.c                                        
+	Данная программа рассчитывает данные для построения рисунка 4
+	раздела 
+	<a href = "http://ru.dsplib.org/content/dft_freq.html">
+	Индексация и перестановка спектральных отсчетов дискретного преобразования Фурье
+	</a>.<BR>
+	Программа рассчитывает ДПФ \f$S(k)\f$ сигнала
+	\f[ 
+		s(n) = \exp \left( j \cdot 2\pi \cdot n \cdot \frac{f_0}{F_\textrm{s}} \right),
+	\f]
+	где \f$f_0 = -20\f$ Гц, \f$F_\textrm{s} = 120\f$ Гц,  \f$n = 0\ldots N-1\f$, 
+	\f$N = 30\f$. <BR>
+	Рассчитанное ДПФ подвергается перестановке спектральных отсчетов для 
+	корректного отображения отрицательных частот.<BR>
+	После этого рассчитывается амплитудный спектр \f$|S(k)|\f$, 
+	который сохраняется в файл `dat/dft_freq_fig4.txt` 
+	для построения графика.<BR>	
+*/
+
+#endif
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include "dspl.h"
 
+
+/* DFT size */
 #define N 30
 
 int main()
 {
 
-	HINSTANCE hDSPL;
+	HINSTANCE hDSPL;		/* dspl handle 				*/
+	void* pdspl = NULL;		/* dspl object pointer 		*/
+	double sR[N];			/* input signal real part 	*/
+	double sI[N];			/* input signal image part 	*/
 
-	double sR[N];
-	double sI[N];
+	double SR[N];			/* DFT real part 			*/
+	double SI[N];			/* DFT image part 			*/
 
-	double SR[N];
-	double SI[N];
-
-	double S[N];
-	double k[N];
-	double frq[N];
-
-	int n;	
-    double f0 = -20E3;
-    double Fs = 120E3;
-
+	double S[N];			/* Spectrum magnitude  		*/
+	double k[N];			/* indexes 					*/	
+	
+    double f0 = -20;		/* signal frequency (Hz) 	*/	
+    double Fs = 120;		/* Sample rate (Hz) 		*/
+	
+	int n;
 
     /* Load dspl.dll */
 	hDSPL = dspl_load();
@@ -33,29 +67,38 @@ int main()
 		return 0;
 	}
 
+	/* DSPL object create */
+	dspl_obj_create(&pdspl);
+
+	/* s(n) = exp(j*2*pi*f0*(0:N-1)/Fs) */
 	for(n = 0; n < N; n++)
 	{
 		sR[n] = cos(M_2PI * f0 * (double)n / Fs);
 		sI[n] = sin(M_2PI * f0 * (double)n / Fs);
 	}
 
-
+	/* DFT calculation */
 	dspl_dft(sR, sI, N, SR, SI);
+	
+	/* Move the frequency 0 to the center of the spectrum */
 	dspl_fft_shift(SR, SI, N, SR, SI);
 
+	/* Spectrum magnitude and indexes calculation */
 	for(n = 0; n < N; n++)
 	{
 		S[n] = sqrt(SR[n]*SR[n] + SI[n]*SI[n]);
 		k[n] = (double)n;
-		frq[n] = -Fs*0.5 + (double)n * Fs/(double)N;
-		printf("f[%.2d] = %7.3f", n, frq[n]);
-		printf("S[%.2d] = %7.3f\n", n, S[n]);
+
 	}
 
+	/* Save spectrum magnitude to dat/dft_freq_fig4.txt file */
 	dspl_writetxt(k,S,N,"dat/dft_freq_fig4.txt");
 
-
+	/* destroy DSPL object */
+	dspl_obj_free(&pdspl);
 		
+		
+	/* clear dspl handle */	
 	FreeLibrary(hDSPL);
 	
 	return 0;

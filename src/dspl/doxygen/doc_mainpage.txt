@@ -62,6 +62,5 @@
 	
 	Смотрите также:<BR>
 	\ref page_begin_use <BR> 
-	\ref page_begin_dev <BR>
 
 */

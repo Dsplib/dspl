@@ -3,7 +3,7 @@
 
 /*!
 	\ingroup DFT_GROUP
-	\fn int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
+	\fn int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)
 	
 	
 	\brief Inverse Fast Fourier Transform.
@@ -18,9 +18,11 @@
 	
 	\param[in]	 n		FFT size (input and output vectors size).
 	
-	\param[in]	pfft	FFT object pointer. 
-						This object can be calculated by `dspl_fft_create` function.
 	
+	\param[in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
+						This object can be created by `dspl_obj_create` function before using
+						and should be destoyed by `dspl_obj_free` bafore exit.
+
 	\param[out]	yR  	IFFT vector real  part pointer. 
 						Vector size is `[n x 1]`. 
 						Memory must be allocated.
@@ -46,7 +48,7 @@
 
 /*!
 	\ingroup DFT_GROUP
-	\fn int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
+	\fn int dspl_fft(double* xR, double* xI, int n, void* psdpl, double* yR, double* yI)
 
 
 	\brief Fast Fourier Transform.
@@ -62,8 +64,9 @@
 
 	\param[in]	 n		FFT size (input and output vectors size).
 
-	\param[in]	pfft	FFT object pointer. 
-						This object can be calculated by `dspl_fft_create` function.
+	\param[in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
+						This object can be created by `dspl_obj_create` function before using
+						and should be destoyed by `dspl_obj_free` bafore exit.
 
 	\param[out]	yR  	FFT vector real  part pointer. 
 						Vector size is `[n x 1]`. 
@@ -86,7 +89,7 @@
 
 
 
-/*!
+/**********
 	\ingroup DFT_GROUP
 	\fn int dspl_fft_create(fft_t *pfft, int n)
 	\brief Fast Fourier Transform object create.
@@ -117,7 +120,7 @@
 */
 
 
-/*!
+/****
 	\ingroup DFT_GROUP
 	\fn void dspl_fft_free(fft_t *pfft)
 	\brief Clear Fast Fourier Transform object.
@@ -141,7 +144,7 @@
 #elseif DOXYGEN_RU
 /*!
 	\ingroup DFT_GROUP
-	\fn int dspl_ifft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
+	\fn int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)
 			
 	\brief Обратное Быстрое преобразование Фурье
 	Функция рассчитывает ОБПФ по основанию 2 с использованием алгоритма с прореживанием по времени.
@@ -155,12 +158,12 @@
 	
 	\param[in]	 n		Размер БПФ (размер входных и выходных векторов).
 	
-	\param[in]	pfft	Указатель на объект БПФ. Объект БПФ это структура, 
-						которая хранит поворотные коэффициенты и промежуточные результаты БПФ. 
-						Объект должен быть  однократно заполнен функцией `dspl_fft_create` 
-						перед вызовом  функций БПФ и должен быть очищен 
-						функцией `dspl_fft_free` перед выходом.
+	\param[in]	pdspl	Указатель на объект DSPL. 
+						Объект DSPL это внутренняя структура, которая хранит необходимые данные для алгоритмов библиотеки.
+						Объект DSPL должен быть  однократно заполнен функцией `dspl_obj_create` после связывания с DSPL, 
+						и должен быть очищен функцией `dspl_obj_free` перед выходом.
 	
+
 	\param[out]	yR  	Указатель на вектор реальной части ОБПФ. 
 						Размер вектора `[n x 1]`. 
 						Память должна быть выделена заранее.
@@ -186,7 +189,7 @@
 
 /*!
 	\ingroup DFT_GROUP
-	\fn int dspl_fft(double* xR, double* xI, int n, fft_t* pfft, double* yR, double* yI)
+	\fn int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)
 			
 	\brief Быстрое преобразование Фурье
 	Функция рассчитывает БПФ по основанию 2 с использованием алгоритма с прореживанием по времени.
@@ -200,12 +203,10 @@
 	
 	\param[in]	 n		Размер БПФ (размер входных и выходных векторов).
 	
-	\param[in]	pfft	Указатель на объект БПФ. 
-						Объект БПФ это структура, которая хранит поворотные коэффициенты 
-						и промежуточные результаты БПФ. 
-						Объект должен быть  однократно заполнен функцией `dspl_fft_create` 
-						перед вызовом  функций БПФ и должен быть очищен 
-						функцией `dspl_fft_free` перед выходом.
+	\param[in]	pdspl	Указатель на объект DSPL. 
+						Объект DSPL это внутренняя структура, которая хранит необходимые данные для алгоритмов библиотеки.
+						Объект DSPL должен быть  однократно заполнен функцией `dspl_obj_create` после связывания с DSPL, 
+						и должен быть очищен функцией `dspl_obj_free` перед выходом.
 	
 	\param[out]	yR  	Указатель на вектор реальной части БПФ. 
 						Размер вектора `[n x 1]`. 
@@ -228,7 +229,7 @@
 
 
 
-/*!
+/**********************************************
 	\ingroup DFT_GROUP
 	\fn int dspl_fft_create(fft_t *pfft, int n)
 	\brief Создать объект БПФ.
@@ -277,24 +278,6 @@
 */
 
 
-/*!
-	\ingroup DFT_GROUP
-	\fn void dspl_fft_free(fft_t *pfft)
-	\brief Очистить структуру объекта БПФ
-	
-	Эта функция очищает все массивы поворотных коэффициентов 
-	и промежуточных результатов `fft_t` объекта.
-	
-	\param [in, out] 	pfft	Указатель на объект БПФ. 
-								Память массивов поворотных коэффициентов 
-								и промежуточных результатов будет очищена.
-			
-	\example ex_dspl_fft.c
-	
-	\author
-	Бахурин Сергей.                                                         
-	www.dsplib.org 
-*/
 
 /*!
 	\ingroup DFT_GROUP

@@ -9,7 +9,7 @@
 #include "dspl.h"
 
 
-#define N	128
+#define N	1024
 
 int main()
 {
@@ -29,7 +29,7 @@ int main()
 	HINSTANCE hDSPL;
 	
 	int n;
-	
+	void *pdspl = NULL;
 	
 	/* load DSPL */
 	hDSPL = dspl_load();
@@ -38,7 +38,9 @@ int main()
 		printf("dspl.dll loading ERROR!\n");
 		return 0;
 	}
+		
 	
+
 	/* input signal s(n) = exp(2*pi*j*0.2*n) */
 	for(n = 0; n < N; n++)
 	{
@@ -47,18 +49,26 @@ int main()
 	}
 
 
-	/*256-points FFT calculation */
-	dspl_fft(xR, xI, N, yR, yI);
+	while(1)
+	{
+		dspl_obj_create(&pdspl);
+	
+		/*256-points FFT calculation */
+		dspl_fft(xR, xI, N, pdspl,  yR, yI);
+			
+		/*256-points IFFT calculation 
+		We no need to recalculate FFT object */
+		dspl_ifft(yR, yI, N, pdspl, zR, zI);	
 
-	/*256-points IFFT calculation 
-	We no need to recalculate FFT object */
-	dspl_ifft(yR, yI, N, zR, zI);	
-
-	/* save input signal, FFT and IFFT to the bin-files */
-	dspl_writebin(xR, xI, n, "dat/dspl_fft/fft_in.bin");
-	dspl_writebin(yR, yI, n, "dat/dspl_fft/fft_out.bin");
-	dspl_writebin(zR, zI, n, "dat/dspl_fft/ifft_out.bin");
-		
+		/* save input signal, FFT and IFFT to the bin-files */
+		dspl_writebin(xR, xI, n, "dat/dspl_fft/fft_in.bin");
+		dspl_writebin(yR, yI, n, "dat/dspl_fft/fft_out.bin");
+		dspl_writebin(zR, zI, n, "dat/dspl_fft/ifft_out.bin");
+			
+		//printf("obj = %.8x\n", obj);	
+		dspl_obj_free(&pdspl);
+	}
+	//printf("obj = %.8x\n", obj);
 	/* clear dspl handle */
 	FreeLibrary(hDSPL);
 	

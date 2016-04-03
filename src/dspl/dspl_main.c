@@ -25,15 +25,9 @@
 #include "dspl_main.h"
 
 
-/* global FFT Object */
-fft_t fftObj;
-
-
-/* global Convolution Object */
-conv_t convObj;
 
 /* DSPL VERSION */
-#define DSPL_VERSION 0x00100401
+#define DSPL_VERSION 0x00100402
 
 
 /*
@@ -65,23 +59,64 @@ DSPL_API int dspl_get_version(int printFlag)
 
 
 
+DSPL_API int dspl_obj_create(void **obj)
+{
+	dspl_t *pdspl;
+	if(!obj || (*obj))
+		return DSPL_ERROR_PTR;
+
+	(*obj) = (void*)malloc(sizeof(dspl_t));
+	
+	memset(*obj, 0, sizeof(dspl_t));
+	
+	pdspl = (dspl_t*)(*obj);
+	
+	pdspl->pfft   = (fft_t*)malloc (sizeof(fft_t));
+	memset(pdspl->pfft, 0, sizeof(fft_t));
+		
+	
+	pdspl->pconv = (conv_t*) malloc (sizeof(conv_t));	
+	memset(pdspl->pconv, 0, sizeof(conv_t));
+
+	return DSPL_OK;
+}
+
+
+
+
+DSPL_API int dspl_obj_free(void **obj)
+{
+	dspl_t *pdspl;
+	if(!obj)
+		return DSPL_ERROR_PTR;
+	if((*obj) == NULL)
+		return DSPL_OK;
+	pdspl = (dspl_t*)(*obj);
+	dspl_fft_free(pdspl->pfft);
+	
+	free(pdspl->pfft);
+	free(pdspl->pconv);
+	
+	free(*obj);
+	*obj = NULL;
+	
+	return DSPL_OK;
+}
+
+
+
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)  
 {
-	switch( fdwReason ){
-		case DLL_PROCESS_ATTACH:
-			dspl_get_version(1);				
-			memset(&fftObj,  0, sizeof(fft_t));
-			memset(&convObj, 0, sizeof(conv_t));
+	switch( fdwReason )
+	{
+		case DLL_PROCESS_ATTACH:			
 			break;
-		case DLL_THREAD_ATTACH:         
-
+		case DLL_THREAD_ATTACH: 
 			break;        
 		case DLL_THREAD_DETACH:
-
 			break;
 		case DLL_PROCESS_DETACH:
-			dspl_fft_free();
-			dspl_conv_free();
 			break;    
 	}    
 	return TRUE;  

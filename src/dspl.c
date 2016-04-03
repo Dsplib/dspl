@@ -27,7 +27,9 @@ p_dspl_get_version 		dspl_get_version 	;
 p_dspl_goertzel			dspl_goertzel		;
 p_dspl_ifft				dspl_ifft		    ;
 p_dspl_linspace			dspl_linspace		;
-p_dspl_logspace			dspl_logspace		;		
+p_dspl_logspace			dspl_logspace		;
+p_dspl_obj_create		dspl_obj_create		; 
+p_dspl_obj_free			dspl_obj_free		; 		
 p_dspl_polyval			dspl_polyval	    ;
 p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
 p_dspl_print_err		dspl_print_err	    ;
@@ -187,6 +189,20 @@ HINSTANCE	dspl_load()
 	func_name = "dspl_logspace";
 	dspl_logspace = (p_dspl_logspace) GetProcAddress(hDSPL, func_name);
 	if(!dspl_logspace)
+		goto error_proc;
+	
+	
+	
+	func_name = "dspl_obj_create";
+	dspl_obj_create = (p_dspl_obj_create) GetProcAddress(hDSPL, func_name);
+	if(!dspl_obj_create)
+		goto error_proc;
+	
+	
+	
+	func_name = "dspl_obj_free";
+	dspl_obj_free = (p_dspl_obj_free) GetProcAddress(hDSPL, func_name);
+	if(!dspl_obj_free)
 		goto error_proc;
 	
 	

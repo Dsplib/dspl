@@ -2,6 +2,9 @@
 /*!
 	\defgroup MAIN_GROUP	DSPL library structure
 	
+	\defgroup GETTING_START Getting Start
+	\ingroup MAIN_GROUP
+	
 	\defgroup SPECTRAL_GROUP	Spectral Analysis
 	\ingroup MAIN_GROUP
 		
@@ -71,6 +74,11 @@
 /*!
 	\defgroup MAIN_GROUP	Библиотека DSPL 
 	
+	\defgroup GETTING_START Быстрый старт использования библиотеки DSPL
+	\ingroup MAIN_GROUP
+	
+
+
 	\defgroup SPECTRAL_GROUP	Спектральный анализ
 	\ingroup MAIN_GROUP
 	

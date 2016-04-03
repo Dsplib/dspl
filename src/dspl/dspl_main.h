@@ -27,22 +27,16 @@ typedef struct
 } conv_t;
 
 
-
-
-/* global FFT Object */
-extern fft_t fftObj;
-
-
-/* global Convolution Object */
-extern conv_t convObj;
+typedef struct
+{
+	fft_t	*pfft;
+	conv_t	*pconv;	
+} dspl_t;
 
 
 
-int  	dspl_conv_create(int n);
-void 	dspl_conv_free();
-
-int  	dspl_fft_create(int n, int *p2);
-void 	dspl_fft_free();
+int dspl_fft_create(int n, fft_t *pfft, int *p2);
+void	dspl_fft_free(fft_t *pfft);
 int  	dspl_fft_p2 (int n);
 
 #endif
