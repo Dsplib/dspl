@@ -14,8 +14,17 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/dft_prop_fig2.pdf\
 		fig/dft_prop_fig3.pdf\
 		fig/dft_prop_fig4.pdf\
-
-
+		fig/fft_introduction_fig1.pdf\
+		fig/fft_introduction_fig2.pdf\
+		fig/fft_introduction_fig3.pdf\
+		fig/fft_dec_in_time_fig1.pdf\
+		fig/fft_dec_in_time_fig2.pdf\
+		fig/fft_dec_in_time_fig3.pdf\
+		fig/fft_dec_in_time_fig4.pdf\
+		fig/fft_dec_in_freq_fig1.pdf\
+		fig/fft_dec_in_freq_fig2.pdf\
+		fig/fft_dec_in_freq_fig3.pdf\
+		fig/fft_dec_in_freq_fig4.pdf\
 		
 all: figures clean
 

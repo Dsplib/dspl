@@ -5,6 +5,9 @@
 	\defgroup GETTING_START Getting Start
 	\ingroup MAIN_GROUP
 	
+	\defgroup DSPL_OBJECT DSPL object description 
+	\ingroup MAIN_GROUP
+	
 	\defgroup SPECTRAL_GROUP	Spectral Analysis
 	\ingroup MAIN_GROUP
 		
@@ -77,7 +80,14 @@
 	\defgroup GETTING_START Быстрый старт использования библиотеки DSPL
 	\ingroup MAIN_GROUP
 	
-
+	\defgroup DSPL_OBJECT Описание объекта DSPL 
+	\ingroup MAIN_GROUP
+	
+	Объект DSPL это указатель `void*` на область памяти, выделяемой для хранения промежуточных данных DSPL.<BR>
+	Некоторые функции требуют в качестве входного параметра объект DSPL для более высокой вычислительной эффективности. 
+	Объект должен быть создан один раз для каждого потока приложения до первого использования и должен быть удален перед завершением приложения или потока.
+	При этом, DSPL самостоятельно увеличивает размер области памяти для объекта.	
+	
 
 	\defgroup SPECTRAL_GROUP	Спектральный анализ
 	\ingroup MAIN_GROUP

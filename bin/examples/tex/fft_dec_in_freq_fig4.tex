@@ -1,0 +1,262 @@
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{fig_header.tex}
+
+
+\begin {document}
+%\begin{figure}[ht!]
+%	\begin{center}
+		
+		\begin{tikzpicture}		
+
+
+\draw[thin,gray,dashed,fill=vlgreen] (4.25, 0.5) rectangle (11.25, -3.4);		
+\draw[thin,gray,dashed,fill=vlgreen] (4.25,-3.6) rectangle (11.25, -7.5);	
+
+
+\draw[thin,gray, dashed,fill=vlyellow] (8.25, 0.3) rectangle (11, -1.3);		
+\draw[thin,gray,dashed,fill=vlyellow] (8.25,-1.7) rectangle (11, -3.3);	
+\draw[thin,gray,dashed,fill=vlyellow] (8.25, -3.7) rectangle (11, -5.3);		
+\draw[thin,gray,dashed,fill=vlyellow] (8.25,-5.7) rectangle (11, -7.3);	
+
+ \node(s0) at (0,  0)  [none, left] {$s(0)$};
+ \node(s1) at (0, -1)  [none, left] {$s(1)$};
+ \node(s2) at (0, -2)  [none, left] {$s(2)$};
+ \node(s3) at (0, -3)  [none, left] {$s(3)$};
+ \node(s4) at (0, -4)  [none, left] {$s(4)$};
+ \node(s5) at (0, -5)  [none, left] {$s(5)$};
+ \node(s6) at (0, -6)  [none, left] {$s(6)$};
+ \node(s7) at (0, -7)  [none, left] {$s(7)$};
+  
+ \node(pnt00) at (2,  0) [pnt]  {};
+ \node(pnt01) at (2, -1) [pnt]  {};
+ \node(pnt02) at (2, -2) [pnt]  {};
+ \node(pnt03) at (2, -3) [pnt]  {};
+ \node(pnt04) at (2, -4) [pnt]  {};
+ \node(pnt05) at (2, -5) [pnt]  {};
+ \node(pnt06) at (2, -6) [pnt]  {};
+ \node(pnt07) at (2, -7) [pnt]  {};
+ 
+ 
+ \draw[->, blue] (s0) -- (pnt00);
+ \draw[->, blue] (s1) -- (pnt01);
+ \draw[->, blue] (s2) -- (pnt02);
+ \draw[->, blue] (s3) -- (pnt03);
+ \draw[->, red ] (s4) -- (pnt04);
+ \draw[->, red ] (s5) -- (pnt05);
+ \draw[->, red ] (s6) -- (pnt06);
+ \draw[->, red ] (s7) -- (pnt07);
+ 
+ 
+ \draw[->, blue ] (0.5, 0) -- (pnt04);
+ \draw[->, blue ] (0.5,-1) -- (pnt05);
+ \draw[->, blue ] (0.5,-2) -- (pnt06);
+ \draw[->, blue ] (0.5,-3) -- (pnt07); 
+ \draw[->, red  ] (0.5,-4) -- (pnt00);
+ \draw[->, red  ] (0.5,-5) -- (pnt01);
+ \draw[->, red  ] (0.5,-6) -- (pnt02);
+ \draw[->, red  ] (0.5,-7) -- (pnt03);
+ 
+ \draw[blue] node at (0.5, 0) {\textbullet} ;
+ \draw[blue] node at (0.5,-1) {\textbullet} ;
+ \draw[blue] node at (0.5,-2) {\textbullet} ;
+ \draw[blue] node at (0.5,-3) {\textbullet} ;
+ \draw[red ] node at (0.5,-4) {\textbullet} ;
+ \draw[red ] node at (0.5,-5) {\textbullet} ;
+ \draw[red ] node at (0.5,-6) {\textbullet} ;
+ \draw[red ] node at (0.5,-7) {\textbullet} ;
+ 
+ 
+ 
+
+ \node(x0) at (4,  0)  [none, left] {$x_0(0)$};
+ \node(x1) at (4, -1)  [none, left] {$x_0(1)$};
+ \node(x2) at (4, -2)  [none, left] {$x_0(2)$};
+ \node(x3) at (4, -3)  [none, left] {$x_0(3)$};
+ \node(x4) at (4, -4)  [none, left] {$x_1(0)$};
+ \node(x5) at (4, -5)  [none, left] {$x_1(1)$};
+ \node(x6) at (4, -6)  [none, left] {$x_1(2)$};
+ \node(x7) at (4, -7)  [none, left] {$x_1(3)$}; 
+ 
+ \draw[->] (pnt00) -- (x0);
+ \draw[->] (pnt01) -- (x1);
+ \draw[->] (pnt02) -- (x2);
+ \draw[->] (pnt03) -- (x3);
+ \draw[->] (pnt04) node[above right]{$W_8^0$} -- (x4);
+ \draw[->] (pnt05) node[above right]{$W_8^1$}  -- (x5);
+ \draw[->] (pnt06) node[above right]{$W_8^2$}  -- (x6);
+ \draw[->] (pnt07) node[above right]{$W_8^3$}  -- (x7);
+ 
+
+ 
+ \node(pnt10) at (6,  0) [pnt]  {};
+ \node(pnt11) at (6, -1) [pnt]  {};
+ \node(pnt12) at (6, -2) [pnt]  {};
+ \node(pnt13) at (6, -3) [pnt]  {};
+ \node(pnt20) at (6, -4) [pnt]  {};
+ \node(pnt21) at (6, -5) [pnt]  {};
+ \node(pnt22) at (6, -6) [pnt]  {};
+ \node(pnt23) at (6, -7) [pnt]  {};
+ 
+
+ \draw[->, blue] (x0) -- (pnt10);
+ \draw[->, blue] (x1) -- (pnt11);
+ \draw[->, red ] (x2) -- (pnt12);
+ \draw[->, red ] (x3) -- (pnt13);
+ \draw[->, blue] (x4) -- (pnt20);
+ \draw[->, blue] (x5) -- (pnt21);
+ \draw[->, red ] (x6) -- (pnt22);
+ \draw[->, red ] (x7) -- (pnt23);
+ 
+ 
+ 
+ \draw[->, blue ] (4.5, 0) -- (pnt12);
+ \draw[->, blue ] (4.5,-1) -- (pnt13);
+ \draw[->, red  ] (4.5,-2) -- (pnt10);
+ \draw[->, red  ] (4.5,-3) -- (pnt11); 
+ \draw[->, blue ] (4.5,-4) -- (pnt22);
+ \draw[->, blue ] (4.5,-5) -- (pnt23);
+ \draw[->, red  ] (4.5,-6) -- (pnt20);
+ \draw[->, red  ] (4.5,-7) -- (pnt21);
+ 
+ \draw[blue] node at (4.5, 0) {\textbullet} ;
+ \draw[blue] node at (4.5,-1) {\textbullet} ;
+ \draw[red ] node at (4.5,-2) {\textbullet} ;
+ \draw[red ] node at (4.5,-3) {\textbullet} ;
+ \draw[blue] node at (4.5,-4) {\textbullet} ;
+ \draw[blue] node at (4.5,-5) {\textbullet} ;
+ \draw[red ] node at (4.5,-6) {\textbullet} ;
+ \draw[red ] node at (4.5,-7) {\textbullet} ;
+ 
+ 
+ 
+ \node(z0) at (8,  0)  [none, left] {$x_{00}(0)$};
+ \node(z1) at (8, -1)  [none, left] {$x_{00}(1)$};
+ \node(z2) at (8, -2)  [none, left] {$x_{01}(0)$};
+ \node(z3) at (8, -3)  [none, left] {$x_{01}(1)$};
+ \node(z4) at (8, -4)  [none, left] {$x_{10}(0)$};
+ \node(z5) at (8, -5)  [none, left] {$x_{10}(1)$};
+ \node(z6) at (8, -6)  [none, left] {$x_{11}(0)$};
+ \node(z7) at (8, -7)  [none, left] {$x_{11}(1)$}; 
+ 
+ 
+ \draw[->] (pnt10) -- (z0);
+ \draw[->] (pnt11) -- (z1);
+ \draw[->] (pnt12) node[above right]{$W_4^0$}-- (z2);
+ \draw[->] (pnt13) node[above right]{$W_4^1$}-- (z3);
+ \draw[->] (pnt20) -- (z4);
+ \draw[->] (pnt21) -- (z5);
+ \draw[->] (pnt22) node[above right]{$W_4^0$}  -- (z6);
+ \draw[->] (pnt23) node[above right]{$W_4^1$}  -- (z7);
+ 
+ 
+  
+ \node(pnt30) at (10,  0) [pnt]  {};
+ \node(pnt31) at (10, -1) [pnt]  {};
+ \node(pnt32) at (10, -2) [pnt]  {};
+ \node(pnt33) at (10, -3) [pnt]  {};
+ \node(pnt34) at (10, -4) [pnt]  {};
+ \node(pnt35) at (10, -5) [pnt]  {};
+ \node(pnt36) at (10, -6) [pnt]  {};
+ \node(pnt37) at (10, -7) [pnt]  {};
+
+ 
+ \draw[->, blue] (z0) -- (pnt30);
+ \draw[->, red ] (z1) -- (pnt31);
+ \draw[->, blue] (z2) -- (pnt32);
+ \draw[->, red ] (z3) -- (pnt33);
+ \draw[->, blue] (z4) -- (pnt34);
+ \draw[->, red ] (z5) -- (pnt35);
+ \draw[->, blue] (z6) -- (pnt36);
+ \draw[->, red ] (z7) -- (pnt37);
+ 
+ 
+ 
+ \draw[->, blue] (8.5, 0) -- (pnt31);
+ \draw[->, red ] (8.5,-1) -- (pnt30);
+ \draw[->, blue] (8.5,-2) -- (pnt33);
+ \draw[->, red ] (8.5,-3) -- (pnt32); 
+ \draw[->, blue] (8.5,-4) -- (pnt35);
+ \draw[->, red ] (8.5,-5) -- (pnt34);
+ \draw[->, blue] (8.5,-6) -- (pnt37);
+ \draw[->, red ] (8.5,-7) -- (pnt36);
+ 
+ \draw[blue] node at (8.5, 0) {\textbullet} ;
+ \draw[red ] node at (8.5,-1) {\textbullet} ;
+ \draw[blue] node at (8.5,-2) {\textbullet} ;
+ \draw[red ] node at (8.5,-3) {\textbullet} ;
+ \draw[blue] node at (8.5,-4) {\textbullet} ;
+ \draw[red ] node at (8.5,-5) {\textbullet} ;
+ \draw[blue] node at (8.5,-6) {\textbullet} ;
+ \draw[red ] node at (8.5,-7) {\textbullet} ;
+ 
+ 
+
+ 
+ 
+ 
+ \node(q00) at (12.5,  0)  [none, left] {$S(0)$};
+ \node(q04) at (12.5, -1)  [none, left] {$S(4)$};
+ \node(q02) at (12.5, -2)  [none, left] {$S(2)$};
+ \node(q06) at (12.5, -3)  [none, left] {$S(6)$};
+ \node(q01) at (12.5, -4)  [none, left] {$S(1)$};
+ \node(q05) at (12.5, -5)  [none, left] {$S(5)$};
+ \node(q03) at (12.5, -6)  [none, left] {$S(3)$};
+ \node(q07) at (12.5, -7)  [none, left] {$S(7)$};
+ 
+ 
+ \draw[->] (pnt30) -- (q00);
+ \draw[->] (pnt31) node[above right]{$W_2^0$} -- (q04);
+ \draw[->] (pnt32) -- (q02);
+ \draw[->] (pnt33) node[above right]{$W_2^0$}-- (q06);
+ \draw[->] (pnt34) -- (q01);
+ \draw[->] (pnt35) node[above right]{$W_2^0$}-- (q05);
+ \draw[->] (pnt36)  -- (q03);
+ \draw[->] (pnt37) node[above right]{$W_2^0$}  -- (q07);
+ 
+ 
+ \node(q10) at (14.5,  0)  [none, left] {$S(0)$};
+ \node(q12) at (14.5, -1)  [none, left] {$S(2)$};
+ \node(q14) at (14.5, -2)  [none, left] {$S(4)$};
+ \node(q16) at (14.5, -3)  [none, left] {$S(6)$};
+ \node(q11) at (14.5, -4)  [none, left] {$S(1)$};
+ \node(q13) at (14.5, -5)  [none, left] {$S(3)$};
+ \node(q15) at (14.5, -6)  [none, left] {$S(5)$};
+ \node(q17) at (14.5, -7)  [none, left] {$S(7)$};
+ 
+ \node(q20) at (16.5,  0)  [none, left] {$S(0)$};
+ \node(q21) at (16.5, -1)  [none, left] {$S(1)$};
+ \node(q22) at (16.5, -2)  [none, left] {$S(2)$};
+ \node(q23) at (16.5, -3)  [none, left] {$S(3)$};
+ \node(q24) at (16.5, -4)  [none, left] {$S(4)$};
+ \node(q25) at (16.5, -5)  [none, left] {$S(5)$};
+ \node(q26) at (16.5, -6)  [none, left] {$S(6)$};
+ \node(q27) at (16.5, -7)  [none, left] {$S(7)$};
+ 
+ \draw[->] (q00.east) -- (q10.west);
+ \draw[->] (q01.east) -- (q11.west);
+ \draw[->] (q02.east) -- (q12.west);
+ \draw[->] (q03.east) -- (q13.west);
+ \draw[->] (q04.east) -- (q14.west);
+ \draw[->] (q05.east) -- (q15.west);
+ \draw[->] (q06.east) -- (q16.west);
+ \draw[->] (q07.east) -- (q17.west);
+ 
+ \draw[->] (q10.east) -- (q20.west);
+ \draw[->] (q11.east) -- (q21.west);
+ \draw[->] (q12.east) -- (q22.west);
+ \draw[->] (q13.east) -- (q23.west);
+ \draw[->] (q14.east) -- (q24.west);
+ \draw[->] (q15.east) -- (q25.west);
+ \draw[->] (q16.east) -- (q26.west);
+ \draw[->] (q17.east) -- (q27.west);
+ 
+		
+		\end{tikzpicture}
+\end {document}
+
+		
+%		\caption{Граф «бабочка»}\label{fft_dec_in_time:fig2}
+%	\end{center}
+%\end{figure}
