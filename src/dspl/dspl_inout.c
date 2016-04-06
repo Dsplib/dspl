@@ -48,7 +48,9 @@ DSPL_API void dspl_print_err(int res, int printCR)
 			printf("OK");
 			break;
 			
-			
+		case DSPL_ERROR_ELLIP_K:
+			printf("ERROR: Complete elliptic integral modulus can be from 0 to 1!");
+			break;	
 		case DSPL_ERROR_FFT_SIZE:
 			printf("ERROR: FFT size must be power of two!");
 			break;

@@ -39,6 +39,7 @@
 #define DSPL_OK						0
 
 /* Error codes */
+#define DSPL_ERROR_ELLIP_K			0x00008000
 #define	DSPL_ERROR_FFT_SIZE			0x00009000	
 #define DSPL_ERROR_FILTER_A0		0x00010000
 #define	DSPL_ERROR_FILTER_ORD		0x00012000
@@ -154,6 +155,10 @@ DSPL_API int dspl_conv_cmplx	(double* aR, double* aI, int na,
 					 double *cR, double *cI);
 
 
+/* Cosine for complex argument (dspl_math_basic.c) */					 
+DSPL_API int dspl_cos_cmplx(double xR, double xI, double *yR, double *yI); 
+					 
+					 
 /* Hyperbolic cosine for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_cosh(double x);
 					 
@@ -162,15 +167,10 @@ DSPL_API double dspl_cosh(double x);
 DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
 
 
-/* Goertzel Algorithm for Discrete Fourier Transform  (dspl_goertzel.c) */
-DSPL_API int dspl_goertzel(	double *xR, double *xI, int n, 
-							int *ind, int k, 
-							double *yR, double *yI);
+/* Complete elliptic integral first kind (dspl_math_ellip.c)*/
+DSPL_API int dspl_ellipk(double *pk, int k, double *pK);
 
 
-/* Inverse Fast Fourier Transform  (dspl_fft.c)*/
-DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
-		
 		
 /* Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API int dspl_fft(	double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
@@ -202,6 +202,15 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
 /* Get DSPL version  (dspl.c) */
 DSPL_API int dspl_get_version (int printFlag);
 
+
+/* Goertzel Algorithm for Discrete Fourier Transform  (dspl_goertzel.c) */
+DSPL_API int dspl_goertzel(	double *xR, double *xI, int n, 
+							int *ind, int k, 
+							double *yR, double *yI);
+
+
+/* Inverse Fast Fourier Transform  (dspl_fft.c)*/
+DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
 
 /* fill vector x as linear from x0 to x1  (dspl_math_basic.c)*/
 DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x);
@@ -320,7 +329,7 @@ typedef int (*p_dspl_conv_cmplx)	(	double* aR, double* aI, int na,
                      					double* bR, double* bI, int nb, 
 					 					double *cR, double *cI);
 
-										
+typedef int (*p_dspl_cos_cmplx)(double xR, double xI, double *yR, double *yI); 										
 /* Hyperbolic cosine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_cosh)(double x);
 										
@@ -331,15 +340,9 @@ typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double*
 
 
 
-/* Goertzel Algorithm for Discrete Fourier Transform  (dspl_goertzel.c) */
-typedef int (*p_dspl_goertzel)(	double *xR, double *xI, int n, 
-							int *ind, int k, 
-							double *yR, double *yI);
+/* Complete elliptic integral first kind (dspl_math_ellip.c)*/
+typedef int (*p_dspl_ellipk)(double *pk, int k, double *pK);
 
-							
-/* Inverse Fast Fourier Transform  (dspl_fft.c)*/
-typedef int (*p_dspl_ifft)			(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
-		
 
 		
 /* Fast Fourier Transform  (dspl_fft.c)*/
@@ -370,6 +373,18 @@ typedef int (*p_dspl_freqz)(double* b, double* a, int ord,
 
 /* Get DSPL version  (dspl_inout.c) */
 typedef int (*p_dspl_get_version) 	(int printFlag);
+
+
+
+/* Goertzel Algorithm for Discrete Fourier Transform  (dspl_goertzel.c) */
+typedef int (*p_dspl_goertzel)(	double *xR, double *xI, int n, 
+							int *ind, int k, 
+							double *yR, double *yI);
+
+							
+/* Inverse Fast Fourier Transform  (dspl_fft.c)*/
+typedef int (*p_dspl_ifft) (double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
+
 
 
 /* fill vector x as linear from x0 to x1 (dspl_math_basic.c)*/
@@ -435,17 +450,19 @@ extern p_dspl_cheby1_ap		dspl_cheby1_ap		;
 extern p_dspl_cheby2_ap		dspl_cheby2_ap		;
 extern p_dspl_compos		dspl_compos			;
 extern p_dspl_conv			dspl_conv			;         	
-extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;  
-extern p_dspl_cosh 			dspl_cosh 			;	
-extern p_dspl_goertzel		dspl_goertzel		;			
+extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ; 
+extern p_dspl_cos_cmplx		dspl_cos_cmplx		;
+extern p_dspl_cosh 			dspl_cosh 			;			
 extern p_dspl_dft 			dspl_dft 			; 
-extern p_dspl_ifft			dspl_ifft		    ;
+extern p_dspl_ellipk		dspl_ellipk			;
 extern p_dspl_fft			dspl_fft		    ;
 extern p_dspl_fft_shift		dspl_fft_shift		;
 extern p_dspl_filter_iir	dspl_filter_iir	    ;
 extern p_dspl_freqs			dspl_freqs		    ;
 extern p_dspl_freqz			dspl_freqz		    ;
 extern p_dspl_get_version 	dspl_get_version 	;
+extern p_dspl_goertzel		dspl_goertzel		;
+extern p_dspl_ifft			dspl_ifft		    ;	
 extern p_dspl_linspace 		dspl_linspace 		;
 extern p_dspl_logspace 		dspl_logspace 		;
 extern p_dspl_obj_create	dspl_obj_create		; 

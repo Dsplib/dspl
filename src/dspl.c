@@ -16,8 +16,10 @@ p_dspl_cheby2_ap		dspl_cheby2_ap		;
 p_dspl_compos			dspl_compos			;
 p_dspl_conv				dspl_conv			;
 p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
+p_dspl_cos_cmplx		dspl_cos_cmplx		;
 p_dspl_cosh 			dspl_cosh 			;
 p_dspl_dft 				dspl_dft 			;
+p_dspl_ellipk			dspl_ellipk			;
 p_dspl_fft				dspl_fft		    ;
 p_dspl_fft_shift		dspl_fft_shift		;
 p_dspl_filter_iir		dspl_filter_iir	    ;
@@ -119,6 +121,14 @@ HINSTANCE	dspl_load()
 		goto error_proc;
 	
 	
+	
+	func_name = "dspl_cos_cmplx";
+	dspl_cos_cmplx = (p_dspl_cos_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_cos_cmplx)
+		goto error_proc;	
+	
+	
+	
 	func_name = "dspl_cosh";
 	dspl_cosh = (p_dspl_cosh) GetProcAddress(hDSPL, func_name);
 	if(!dspl_cosh)
@@ -130,7 +140,13 @@ HINSTANCE	dspl_load()
 	if(!dspl_dft)
 		goto error_proc;
 	
+		
+	func_name = "dspl_ellipk";
+	dspl_ellipk = (p_dspl_ellipk) GetProcAddress(hDSPL, func_name);
+	if(!dspl_ellipk)
+		goto error_proc;
 	
+
 	func_name = "dspl_fft";
 	dspl_fft = (p_dspl_fft) GetProcAddress(hDSPL, func_name);
 	if(!dspl_fft)

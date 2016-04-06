@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2015, 2016 Sergey Bakhurin
+*Copyright (c) 2015, 2016 Sergey Bakhurin
 * Digital Signal Processing Library [http://dsplib.org]
 *
 * This file is part of DSPL.
@@ -24,39 +24,35 @@
 #include "dspl.h"
 
 
-DSPL_API int dspl_cos_cmplx(double xR, double xI, double *yR, double *yI)
-{
-	double t, wn, wp;
-	
-	if(!yR && !yI)
-		return DSPL_ERROR_PTR;
-		
-	
-	wn = exp(-xI);
-	wp = exp( xI);
-	
-	t   = 0.5*cos(xR)*(wn+wp);
-	*yI = 0.5*sin(xR)*(wn+wp);
-	*yR = t;
-	return DSPL_OK;
-	
-}
+#define DSPL_ELLIP_ITER	24
 
 
-DSPL_API int dspl_sin_cmplx(double xR, double xI, double *yR, double *yI)
+DSPL_API int dspl_ellipk(double *pk, int k, double *pK)
 {
-	double t, wn, wp;
 	
-	if(!yR && !yI)
-		return DSPL_ERROR_PTR;
-		
+    int n, m;
+    double ktmp;
+   
+
+    if(!pk || !pK)
+        return DSPL_ERROR_PTR;
+    if(k < 1)
+        return DSPL_ERROR_SIZE;
+
+	for(m = 0; m < k; m++)
+	{
+		ktmp = pk[m];
+		if(ktmp >= 1.0 || ktmp<0.0)
+			return DSPL_ERROR_ELLIP_K;
+		pK[m] = M_PI_2;
+		for(n = 1; n < DSPL_ELLIP_ITER; n++)
+		{
+			ktmp = ktmp / (1.0 + sqrt(1.0 - ktmp*ktmp));
+			ktmp *= ktmp;
+			pK[m] *= 1.0+ktmp;
+		}
+	}
 	
-	wn = exp(-xI);
-	wp = exp( xI);
-	
-	t   = 0.5*sin(xR)*(wn+wp);
-	*yI =- 0.5*cos(xR)*(wn+wp);
-	*yR = t;
-	return DSPL_OK;
-	
+    
+    return DSPL_OK;
 }

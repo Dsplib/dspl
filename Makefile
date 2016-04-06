@@ -29,18 +29,19 @@ DLL_OBJS=	$(DLL_OBJ_DIR)/dspl_cconv.o\
 			$(DLL_OBJ_DIR)/dspl_compos.o\
 			$(DLL_OBJ_DIR)/dspl_conv.o\
 			$(DLL_OBJ_DIR)/dspl_dft.o\
-			$(DLL_OBJ_DIR)/dspl_goertzel.o\
 			$(DLL_OBJ_DIR)/dspl_fft.o\
 			$(DLL_OBJ_DIR)/dspl_filter_ap.o\
 			$(DLL_OBJ_DIR)/dspl_filter_iir.o\
 			$(DLL_OBJ_DIR)/dspl_filter_transform.o\
 			$(DLL_OBJ_DIR)/dspl_freqs.o\
 			$(DLL_OBJ_DIR)/dspl_freqz.o\
+			$(DLL_OBJ_DIR)/dspl_goertzel.o\
 			$(DLL_OBJ_DIR)/dspl_inout.o\
 			$(DLL_OBJ_DIR)/dspl_linspace.o\
 			$(DLL_OBJ_DIR)/dspl_logspace.o\
 			$(DLL_OBJ_DIR)/dspl_main.o\
 			$(DLL_OBJ_DIR)/dspl_math_basic.o\
+			$(DLL_OBJ_DIR)/dspl_math_ellip.o\
 			$(DLL_OBJ_DIR)/dspl_math_hyperbolic.o\
 			$(DLL_OBJ_DIR)/dspl_polyval.o\
 			$(DLL_OBJ_DIR)/dspl_unwrap.o\
@@ -59,7 +60,9 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			
 
 			
-VER_FILES = $(VER_BIN_DIR)/ver_dspl_fft.exe\
+VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
+			$(VER_BIN_DIR)/ver_dspl_fft.exe\
+
 
 
 				 
