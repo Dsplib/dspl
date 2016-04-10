@@ -62,7 +62,7 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\
-
+			$(VER_BIN_DIR)/ver_dspl_trigonometric.exe\
 
 
 				 

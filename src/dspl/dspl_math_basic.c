@@ -21,42 +21,73 @@
 
 #include <stdlib.h>      
 #include <math.h>
+#include <string.h>  
 #include "dspl.h"
 
 
-DSPL_API int dspl_cos_cmplx(double xR, double xI, double *yR, double *yI)
+DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
 	double t, wn, wp;
+	int k;
 	
-	if(!yR && !yI)
+	if(!xR || !yR || (xI && !yI))
 		return DSPL_ERROR_PTR;
+	if(n<1)
+		return DSPL_ERROR_SIZE;
 		
-	
-	wn = exp(-xI);
-	wp = exp( xI);
-	
-	t   = 0.5*cos(xR)*(wn+wp);
-	*yI = 0.5*sin(xR)*(wn+wp);
-	*yR = t;
+	if(!xI)
+	{
+		for(k = 0; k < n; k++)
+			yR[k] = cos(xR[k]);
+		if(yI)
+			memset(yI, 0, n*sizeof(double));
+		return DSPL_OK;
+		
+	}
+	for(k =0; k < n; k++)
+	{
+		wn = exp(-xI[k]);
+		wp = exp( xI[k]);
+		
+		t     = 0.5*cos(xR[k])*(wn+wp);
+		yI[k] = 0.5*sin(xR[k])*(wn-wp);
+		yR[k] = t;
+	}
 	return DSPL_OK;
 	
 }
 
 
-DSPL_API int dspl_sin_cmplx(double xR, double xI, double *yR, double *yI)
+DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
 	double t, wn, wp;
+	int k;
 	
-	if(!yR && !yI)
+	if(!xR || !yR || (xI && !yI))
 		return DSPL_ERROR_PTR;
+	if(n<1)
+		return DSPL_ERROR_SIZE;
 		
+	if(!xI)
+	{
+		for(k = 0; k < n; k++)
+			yR[k] = sin(xR[k]);
+		if(yI)
+			memset(yI, 0, n*sizeof(double));
+		return DSPL_OK;
+		
+	}
 	
-	wn = exp(-xI);
-	wp = exp( xI);
+	for(k =0; k < n; k++)
+	{
+		wn = exp(-xI[k]);
+		wp = exp( xI[k]);
 	
-	t   = 0.5*sin(xR)*(wn+wp);
-	*yI =- 0.5*cos(xR)*(wn+wp);
-	*yR = t;
+		t     =  0.5*sin(xR[k])*(wn+wp);
+		yI[k] = -0.5*cos(xR[k])*(wn-wp);
+		yR[k] = t;
+	}
+	
 	return DSPL_OK;
 	
 }

@@ -156,7 +156,7 @@ DSPL_API int dspl_conv_cmplx	(double* aR, double* aI, int na,
 
 
 /* Cosine for complex argument (dspl_math_basic.c) */					 
-DSPL_API int dspl_cos_cmplx(double xR, double xI, double *yR, double *yI); 
+DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *yI); 
 					 
 					 
 /* Hyperbolic cosine for real argument (dspl_math_hyperbolic.c) */
@@ -245,6 +245,9 @@ DSPL_API void dspl_print_err (int res, int printCR);
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
 
 
+/* Sine for complex argument (dspl_math_basic.c) */					 
+DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI); 
+
 
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_sinh(double x);
@@ -329,7 +332,10 @@ typedef int (*p_dspl_conv_cmplx)	(	double* aR, double* aI, int na,
                      					double* bR, double* bI, int nb, 
 					 					double *cR, double *cI);
 
-typedef int (*p_dspl_cos_cmplx)(double xR, double xI, double *yR, double *yI); 										
+/* Cosine for complex argument (dspl_math_basic.c) */					 
+typedef int (*p_dspl_cos_cmplx)(double *xR, double *xI, int n, double *yR, double *yI); 	
+
+									
 /* Hyperbolic cosine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_cosh)(double x);
 										
@@ -420,6 +426,10 @@ typedef void (*p_dspl_print_err) 	(int res, int printCR);
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 
 
+/* Cosine for complex argument (dspl_math_basic.c) */					 
+typedef int (*p_dspl_sin_cmplx)(double *xR, double *xI, int n, double *yR, double *yI); 	
+
+
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_sinh)		(double x);
 
@@ -471,6 +481,7 @@ extern p_dspl_polyval		dspl_polyval   		;
 extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
 extern p_dspl_print_err		dspl_print_err	    ;
 extern p_dspl_print_msg 	dspl_print_msg 	    ;
+extern p_dspl_sin_cmplx		dspl_sin_cmplx		;
 extern p_dspl_sinh			dspl_sinh			;
 extern p_dspl_unwrap		dspl_unwrap			;
 extern p_dspl_window		dspl_window         ;

@@ -36,6 +36,7 @@ p_dspl_polyval			dspl_polyval	    ;
 p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
 p_dspl_print_err		dspl_print_err	    ;
 p_dspl_print_msg 		dspl_print_msg 	    ;
+p_dspl_sin_cmplx		dspl_sin_cmplx		;
 p_dspl_sinh				dspl_sinh			;
 p_dspl_unwrap			dspl_unwrap			;
 p_dspl_window			dspl_window         ;
@@ -244,6 +245,13 @@ HINSTANCE	dspl_load()
 	dspl_print_msg = (p_dspl_print_msg) GetProcAddress(hDSPL, func_name);
 	if(!dspl_print_msg)
 		goto error_proc;
+	
+	
+	func_name = "dspl_sin_cmplx";
+	dspl_sin_cmplx = (p_dspl_sin_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_sin_cmplx)
+		goto error_proc;
+	
 	
 	
 	func_name = "dspl_sinh";
