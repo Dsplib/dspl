@@ -167,9 +167,16 @@ DSPL_API double dspl_cosh(double x);
 DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
 
 
+/* elliptic CD function (dspl_math_ellip.c)*/
+DSPL_API int dspl_ellip_cd(double *uR, double *uI, int nu, double k, double *cdR, double *cdI);
+
+
+/* elliptic SN function (dspl_math_ellip.c)*/
+DSPL_API int dspl_ellip_sn(double *uR, double *uI, int nu, double k, double *snR, double *snI);
+
+
 /* Complete elliptic integral first kind (dspl_math_ellip.c)*/
 DSPL_API int dspl_ellipk(double *pk, int k, double *pK);
-
 
 		
 /* Fast Fourier Transform  (dspl_fft.c)*/
@@ -344,6 +351,11 @@ typedef double (*p_dspl_cosh)(double x);
 /* Discrete Fourier Transform  (dspl_dft.c) */
 typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double* yI);
 
+/* Elliptic CD function (dspl_math_ellip.c)*/
+typedef int (*p_dspl_ellip_cd)(double *uR, double *uI, int nu, double k, double *cdR, double *cdI);
+
+/* Elliptic SN function (dspl_math_ellip.c)*/
+typedef int (*p_dspl_ellip_sn)(double *uR, double *uI, int nu, double k, double *snR, double *snI);
 
 
 /* Complete elliptic integral first kind (dspl_math_ellip.c)*/
@@ -464,6 +476,8 @@ extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
 extern p_dspl_cos_cmplx		dspl_cos_cmplx		;
 extern p_dspl_cosh 			dspl_cosh 			;			
 extern p_dspl_dft 			dspl_dft 			; 
+extern p_dspl_ellip_cd		dspl_ellip_cd		;
+extern p_dspl_ellip_sn 		dspl_ellip_sn		;
 extern p_dspl_ellipk		dspl_ellipk			;
 extern p_dspl_fft			dspl_fft		    ;
 extern p_dspl_fft_shift		dspl_fft_shift		;

@@ -1,270 +1,82 @@
 \documentclass [tikz] {standalone}
+
 %common figure styles
 \input{fig_header.tex}
 
 
 \begin {document}
+%\begin{figure}[ht!]
+%	\begin{center}
 		
+		\begin{tikzpicture}		
 		
-\begin{tikzpicture}
 
-\node(s0) at (-0.2, 0)  [none] {$s(0)$};
-\node(s1) at (-0.2, -1) [none] {$s(1)$};
-\node(s2) at (-0.2, -2) [none] {$s(2)$};
-\node(s3) at (-0.2, -3) [none] {$s(3)$};
-\node(s4) at (-0.2, -4) [none] {$s(4)$};
-\node(s5) at (-0.2, -5) [none] {$s(5)$};
-\node(s6) at (-0.2, -6) [none] {$s(6)$};
-\node(s7) at (-0.2, -7) [none] {$s(7)$};
+ \node(S0) at (-1.5,0)  [none, left] {$s(m)$};
+ \node(S1) at (-1.5,-2) [none,left] {$s \left( m + \frac{N}{2}\right)$};
 
-\node(x000) at (2, 0)  [pnt] {};
-\node(x001) at (2, -1) [pnt] {};
-\node(x002) at (2, -2) [pnt] {};
-\node(x003) at (2, -3) [pnt] {};
-\node(x010) at (2, -4) [pnt] {};
-\node(x011) at (2, -5) [pnt] {};
-\node(x012) at (2, -6) [pnt] {};
-\node(x013) at (2, -7) [pnt] {};
+ 
+  
+  
 
-\draw[blue,->] (s0) -- (x000);
-\draw[blue,->] (s1) -- (x001);
-\draw[blue,->] (s2) -- (x002);
-\draw[blue,->] (s3) -- (x003);
-\draw[red,->] (s4) -- (x010);
-\draw[red,->] (s5) -- (x011);
-\draw[red,->] (s6) -- (x012);
-\draw[red,->] (s7) -- (x013);
+ \node(w) at ( 2,-2) [gain, rotate = -90]  {};
+ \node[] at (2, -1.5){$W_N^m$};
 
+  \node(sum0) at ( 1, 0) [sum, ] {$+$};
+  \node(sum1) at ( 1,-2) [sum,] {$+$};
 
-\draw[blue,->] (1, 0) -- (x010);
-\draw[blue,->] (1,-1) -- (x011);
-\draw[blue,->] (1,-2) -- (x012);
-\draw[blue,->] (1,-3) -- (x013);
-\draw[red,->] (1,-4) -- (x000);
-\draw[red,->] (1,-5) -- (x001);
-\draw[red,->] (1,-6) -- (x002);
-\draw[red,->] (1,-7) -- (x003);
+\draw[->, blue] (S0) -- (sum0);
 
+\draw[->, red] (S1) -- (sum1);	
+\node[none] at (0.5, 0.2 ) {$+$};
+%\draw[->, shorten <=-1, red] (w) -- (sum1);
+\node[none] at (0.5, -2.2 ) {$-$};	
+	
+\draw[->, blue] (-1, 0) -- (sum1);
+\draw[->, red] (-1, -2) -- (sum0);
 
-\foreach \z in {0, 1, ...,3}
-{ 	
-	\draw[blue] node at (1,-\z) {\textbullet} ;
-	\draw[red] node at (1,-\z-4) {\textbullet} ;
-}
 
+\node[none] at (0.8, -0.5 ) {$+$};
+\node[none] at (0.8, -1.5 ) {$+$};
 
+\node(Y0) at (3,0)  [none, right] {$x_0(m)$};
+\node(Y1) at (3,-2) [none,right] {$x_1(m)$};
 
+\draw[->] (sum0) -- (Y0);
+	
+\draw[->] (sum1) -- (w);	
 
+\draw[->, shorten <=-1] (w) -- (Y1);
 
+\draw[blue] node at (-1,0) {\textbullet} ;
+\draw[red] node at (-1,-2){\textbullet};
 
 
+\node(pnt0) at (9.5,  0) [pnt] {};
+\node(pnt1) at (9.5, -2) [pnt] {};
+\node(Z0) at (7,0) [none, left] {$s(m)$};
+\node(Z1) at (7,-2) [none, left] {$s \left( m + \frac{N}{2}\right)$};
+\node(Q0) at (10.5,0) [none, right] {$x_0(m)$};
+\node(Q1) at (10.5, -2) [none,right] {$x_1(m)$};;
 
-\node(s000) at (2.5, 0)  [right] {$S_{00}(0)$};
-\node(s001) at (2.5, -1) [right] {$S_{00}(1)$};
-\node(s002) at (2.5, -2) [right] {$S_{00}(2)$};
-\node(s003) at (2.5, -3) [right] {$S_{00}(3)$};
-\node(s010) at (2.5, -4) [right] {$S_{01}(0)$};
-\node(s011) at (2.5, -5) [right] {$S_{01}(1)$};
-\node(s012) at (2.5, -6) [right] {$S_{01}(2)$};
-\node(s013) at (2.5, -7) [right] {$S_{01}(3)$};
 
 
-\draw[->] (x000) -- (s000);
-\draw[->] (x001) -- (s001);
-\draw[->] (x002) -- (s002);
-\draw[->] (x003) -- (s003);
-\draw[->] (x010) -- (s010);
-\draw[->] (x011) -- (s011);
-\draw[->] (x012) -- (s012);
-\draw[->] (x013) -- (s013);
+\draw[->, blue] (Z0) -- (pnt0);
+\draw[->, red] (Z1.east)  -- (pnt1);
+\draw[->] (pnt0) -- (Q0);
+\draw[->] (pnt1) node[above right]{$W_N^m$} -- (Q1);
+\draw[->, red] (7.5, -2) -- (pnt0);
+\draw[->, blue] (7.5, 0) -- (pnt1);
 
+\draw[blue] node at (7.5,0) {\textbullet}; 			
+\draw[red] node at (7.5,-2) {\textbullet}; 
 
-
-
-\draw[blue,->] (1, 0) -- (x010);
-\draw[blue,->] (1,-1) -- (x011);
-\draw[blue,->] (1,-2) -- (x012);
-\draw[blue,->] (1,-3) -- (x013);
-\draw[red,->]  (1,-4) node[above left] {$W_8^0$} -- (x000);
-\draw[red,->]  (1,-5) node[above left] {$W_8^1$} -- (x001);
-\draw[red,->]  (1,-6) node[above left] {$W_8^2$} -- (x002);
-\draw[red,->]  (1,-7) node[above left] {$W_8^3$} -- (x003);
-
-
-
-
-
-\node(x100) at (5.5, 0)  [pnt] {};
-\node(x101) at (5.5, -1) [pnt] {};
-\node(x110) at (5.5, -2) [pnt] {};
-\node(x111) at (5.5, -3) [pnt] {};
-\node(x120) at (5.5, -4) [pnt] {};
-\node(x121) at (5.5, -5) [pnt] {};
-\node(x130) at (5.5, -6) [pnt] {};
-\node(x131) at (5.5, -7) [pnt] {};
-
-
-
-\draw[blue,->]  (s000) -- (x100);
-\draw[blue,->]  (s001) -- (x101);
-\draw[red,->]   (s002) -- (x110);
-\draw[red,->]   (s003) -- (x111);
-\draw[blue,->]  (s010) -- (x120);
-\draw[blue,->]  (s011) -- (x121);
-\draw[red,->]   (s012) -- (x130);
-\draw[red,->]   (s013) -- (x131);
-
-
-\draw[blue,->] (4.5 ,0) -- (x110);
-\draw[blue,->] (4.5,-1) -- (x111);
-\draw[red,->] (4.5,-2)node[above left] {$W_4^0$} -- (x100);
-\draw[red,->] (4.5,-3)node[above left] {$W_4^1$} -- (x101);
-\draw[blue,->]  (4.5,-4) -- (x130);
-\draw[blue,->]  (4.5,-5) -- (x131);
-\draw[red,->]  (4.5,-6)node[above left] {$W_4^0$} -- (x120);
-\draw[red,->]  (4.5,-7)node[above left] {$W_4^1$} -- (x121);
-
-\foreach \z in {0, 1}
-{ 	
-	\draw[blue] node at (4.5,-\z) {\textbullet} ;
-	\draw[blue] node at (4.5,-\z-4) {\textbullet} ;
-	\draw[red] node at (4.5,-\z-2) {\textbullet} ;
-	\draw[red] node at (4.5,-\z-6) {\textbullet} ;
-}
-
-
-
-\node(s100) at (6,  0) [right] {$S_{10}(0)$};
-\node(s101) at (6, -1) [right] {$S_{10}(1)$};
-\node(s110) at (6, -2) [right] {$S_{11}(0)$};
-\node(s111) at (6, -3) [right] {$S_{11}(1)$};
-\node(s120) at (6, -4) [right] {$S_{12}(0)$};
-\node(s121) at (6, -5) [right] {$S_{12}(1)$};
-\node(s130) at (6, -6) [right] {$S_{13}(0)$};
-\node(s131) at (6, -7) [right] {$S_{13}(1)$};
-
-
-\draw[->] (x100) -- (s100);
-\draw[->] (x101) -- (s101);
-\draw[->] (x110) -- (s110);
-\draw[->] (x111) -- (s111);
-\draw[->] (x120) -- (s120);
-\draw[->] (x121) -- (s121);
-\draw[->] (x130) -- (s130);
-\draw[->] (x131) -- (s131);
-
-
-\node(x200) at (9, 0)  [pnt] {};
-\node(x201) at (9, -1) [pnt] {};
-\node(x210) at (9, -2) [pnt] {};
-\node(x211) at (9, -3) [pnt] {};
-\node(x220) at (9, -4) [pnt] {};
-\node(x221) at (9, -5) [pnt] {};	
-\node(x230) at (9, -6) [pnt] {};	
-\node(x231) at (9, -7) [pnt] {};
-
-
-\draw[blue,->]   (s100) -- (x200);
-\draw[red,->]    (s101) -- (x201);
-\draw[blue,->]   (s110) -- (x210);
-\draw[red,->]    (s111) -- (x211);
-\draw[blue,->]   (s120) -- (x220);
-\draw[red,->]    (s121) -- (x221);
-\draw[blue,->]   (s130) -- (x230);
-\draw[red,->]    (s131) -- (x231);
-
-
-
-\draw[blue,->]  (8 ,0) -- (x201);
-\draw[red,->]   (8,-1)node[above left] {$W_2^0$} -- (x200);
-\draw[blue,->]  (8,-2) -- (x211);
-\draw[red,->]   (8,-3)node[above left] {$W_2^0$} -- (x210);
-\draw[blue,->]  (8,-4) -- (x221);
-\draw[red,->]   (8,-5)node[above left] {$W_2^0$} -- (x220);
-\draw[blue,->]  (8,-6) -- (x231);
-\draw[red,->]   (8,-7)node[above left] {$W_2^0$} -- (x230);
-
-\draw[blue] node at (8,  0)  {\textbullet} ;
-\draw[red]  node at (8, -1)  {\textbullet} ;
-\draw[blue] node at (8, -2)  {\textbullet} ;
-\draw[red]  node at (8, -3)  {\textbullet} ;
-\draw[blue] node at (8, -4)  {\textbullet} ;
-\draw[red]  node at (8, -5)  {\textbullet} ;
-\draw[blue] node at (8, -6)  {\textbullet} ;
-\draw[red]  node at (8, -7)  {\textbullet} ;
-
-
-
-\node(s20) at (9.5,  0) [right] {$S(0)$};
-\node(s21) at (9.5, -1) [right] {$S(4)$};
-\node(s22) at (9.5, -2) [right] {$S(2)$};
-\node(s23) at (9.5, -3) [right] {$S(6)$};
-\node(s24) at (9.5, -4) [right] {$S(1)$};
-\node(s25) at (9.5, -5) [right] {$S(5)$};
-\node(s26) at (9.5, -6) [right] {$S(3)$};
-\node(s27) at (9.5, -7) [right] {$S(7)$};
-
-
-
-\draw[->] (x200) -- (s20);
-\draw[->] (x201) -- (s21);
-\draw[->] (x210) -- (s22);
-\draw[->] (x211) -- (s23);
-\draw[->] (x220) -- (s24);
-\draw[->] (x221) -- (s25);
-\draw[->] (x230) -- (s26);
-\draw[->] (x231) -- (s27);
-
-
-\node(s10) at (11.5,  0) [right] {$S(0)$};
-\node(s11) at (11.5, -1) [right] {$S(2)$};
-\node(s12) at (11.5, -2) [right] {$S(4)$};
-\node(s13) at (11.5, -3) [right] {$S(6)$};
-\node(s14) at (11.5, -4) [right] {$S(1)$};
-\node(s15) at (11.5, -5) [right] {$S(3)$};
-\node(s16) at (11.5, -6) [right] {$S(5)$};
-\node(s17) at (11.5, -7) [right] {$S(7)$};
-
-
-\draw[->,blue] (s20.east) -- (s10.west);
-\draw[->,red]  (s21.east) -- (s12.west);
-\draw[->,blue] (s22.east) -- (s11.west);
-\draw[->,red]  (s23.east) -- (s13.west);
-
-\draw[->,blue] (s24.east) -- (s14.west);
-\draw[->,red]  (s25.east) -- (s16.west);
-\draw[->,blue] (s26.east) -- (s15.west);
-\draw[->,red]  (s27.east) -- (s17.west);
-
-
-
-
-
-\node(s00) at (13.5,  0) [right] {$S(0)$};
-\node(s01) at (13.5, -1) [right] {$S(1)$};
-\node(s02) at (13.5, -2) [right] {$S(2)$};
-\node(s03) at (13.5, -3) [right] {$S(3)$};
-\node(s04) at (13.5, -4) [right] {$S(4)$};
-\node(s05) at (13.5, -5) [right] {$S(5)$};
-\node(s06) at (13.5, -6) [right] {$S(6)$};
-\node(s07) at (13.5, -7) [right] {$S(7)$};
-
-
-\draw[->,blue] (s10.east) -- (s00.west);
-\draw[->,blue] (s11.east) -- (s02.west);
-\draw[->,blue] (s12.east) -- (s04.west);
-\draw[->,blue] (s13.east) -- (s06.west);
-\draw[->,red]  (s14.east) -- (s01.west);
-\draw[->,red]  (s15.east) -- (s03.west);
-\draw[->,red]  (s16.east) -- (s05.west);
-\draw[->,red]  (s17.east) -- (s07.west);
-
-
-
-
-\end{tikzpicture}
+\node at (5, -1){\Huge{$\Leftrightarrow$}};	
+	
+		
+		\end{tikzpicture}
 \end {document}
+
 		
-%		\caption{Граф алгоритма БПФ для $N=8$ }\label{fft_dec_in_time:fig3}
+%		\caption{Граф «бабочка»}\label{fft_dec_in_time:fig2}
 %	\end{center}
 %\end{figure}

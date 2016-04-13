@@ -11,67 +11,130 @@
 		\begin{tikzpicture}		
 		
 
- \node(S0) at (-1.5,0)  [none, left] {$s(m)$};
- \node(S1) at (-1.5,-2) [none,left] {$s \left( m + \frac{N}{2}\right)$};
+ \node(s0) at (0,  0)  [none, left] {$s(0)$};
+ \node(s1) at (0, -1)  [none, left] {$s(1)$};
+ \node(s2) at (0, -2)  [none, left] {$s(2)$};
+ \node(s3) at (0, -3)  [none, left] {$s(3)$};
+ \node(s4) at (0, -4)  [none, left] {$s(4)$};
+ \node(s5) at (0, -5)  [none, left] {$s(5)$};
+ \node(s6) at (0, -6)  [none, left] {$s(6)$};
+ \node(s7) at (0, -7)  [none, left] {$s(7)$};
+  
+ \node(pnt0) at (2,  0) [pnt]  {};
+ \node(pnt1) at (2, -1) [pnt]  {};
+ \node(pnt2) at (2, -2) [pnt]  {};
+ \node(pnt3) at (2, -3) [pnt]  {};
+ \node(pnt4) at (2, -4) [pnt]  {};
+ \node(pnt5) at (2, -5) [pnt]  {};
+ \node(pnt6) at (2, -6) [pnt]  {};
+ \node(pnt7) at (2, -7) [pnt]  {};
+ 
+ 
+ \draw[->, blue] (s0) -- (pnt0);
+ \draw[->, blue] (s1) -- (pnt1);
+ \draw[->, blue] (s2) -- (pnt2);
+ \draw[->, blue] (s3) -- (pnt3);
+ \draw[->, red ] (s4) -- (pnt4);
+ \draw[->, red ] (s5) -- (pnt5);
+ \draw[->, red ] (s6) -- (pnt6);
+ \draw[->, red ] (s7) -- (pnt7);
+ 
+ 
+ \draw[->, blue ] (0.5, 0) -- (pnt4);
+ \draw[->, blue ] (0.5,-1) -- (pnt5);
+ \draw[->, blue ] (0.5,-2) -- (pnt6);
+ \draw[->, blue ] (0.5,-3) -- (pnt7); 
+ \draw[->, red  ] (0.5,-4) -- (pnt0);
+ \draw[->, red  ] (0.5,-5) -- (pnt1);
+ \draw[->, red  ] (0.5,-6) -- (pnt2);
+ \draw[->, red  ] (0.5,-7) -- (pnt3);
+ 
+ \draw[blue] node at (0.5, 0) {\textbullet} ;
+ \draw[blue] node at (0.5,-1) {\textbullet} ;
+ \draw[blue] node at (0.5,-2) {\textbullet} ;
+ \draw[blue] node at (0.5,-3) {\textbullet} ;
+ \draw[red ] node at (0.5,-4) {\textbullet} ;
+ \draw[red ] node at (0.5,-5) {\textbullet} ;
+ \draw[red ] node at (0.5,-6) {\textbullet} ;
+ \draw[red ] node at (0.5,-7) {\textbullet} ;
+ 
+ 
+ 
+
+ \node(x0) at (3,  0)  [none, right] {$x_0(0)$};
+ \node(x1) at (3, -1)  [none, right] {$x_0(1)$};
+ \node(x2) at (3, -2)  [none, right] {$x_0(2)$};
+ \node(x3) at (3, -3)  [none, right] {$x_0(3)$};
+ \node(x4) at (3, -4)  [none, right] {$x_1(0)$};
+ \node(x5) at (3, -5)  [none, right] {$x_1(1)$};
+ \node(x6) at (3, -6)  [none, right] {$x_1(2)$};
+ \node(x7) at (3, -7)  [none, right] {$x_1(3)$}; 
+ 
+ \draw[->] (pnt0) -- (x0);
+ \draw[->] (pnt1) -- (x1);
+ \draw[->] (pnt2) -- (x2);
+ \draw[->] (pnt3) -- (x3);
+ \draw[->] (pnt4) node[above right]{$W_8^0$} -- (x4);
+ \draw[->] (pnt5) node[above right]{$W_8^1$}  -- (x5);
+ \draw[->] (pnt6) node[above right]{$W_8^2$}  -- (x6);
+ \draw[->] (pnt7) node[above right]{$W_8^3$}  -- (x7);
+ 
+ \draw (5,0.25) rectangle  (7, -3.25);
+ \draw (6, -1.5) node[align = center] { $4-$точ.\\ ДПФ};
+ 
+ \draw (5,-3.75) rectangle  (7, -7.25);
+  \draw (6, -5.5) node[align = center] { $4-$точ.\\ ДПФ};
+  
+ \draw[->] (x0) -- (5, -0);
+ \draw[->] (x1) -- (5, -1);
+ \draw[->] (x2) -- (5, -2);
+ \draw[->] (x3) -- (5, -3);
+ \draw[->] (x4) -- (5, -4);
+ \draw[->] (x5) -- (5, -5);
+ \draw[->] (x6) -- (5, -6);
+ \draw[->] (x7) -- (5, -7);
+ 
+ 
+ \node(q0) at (9,  0)  [none, left] {$S(0)$};
+ \node(q2) at (9, -1)  [none, left] {$S(2)$};
+ \node(q4) at (9, -2)  [none, left] {$S(4)$};
+ \node(q6) at (9, -3)  [none, left] {$S(6)$};
+ \node(q1) at (9, -4)  [none, left] {$S(1)$};
+ \node(q3) at (9, -5)  [none, left] {$S(3)$};
+ \node(q5) at (9, -6)  [none, left] {$S(5)$};
+ \node(q7) at (9, -7)  [none, left] {$S(7)$}; 
+ 
+ 
+ \draw[->] (7, -0) -- (q0);
+ \draw[->] (7, -1) -- (q2);
+ \draw[->] (7, -2) -- (q4);
+ \draw[->] (7, -3) -- (q6);
+ \draw[->] (7, -4) -- (q1);
+ \draw[->] (7, -5) -- (q3);
+ \draw[->] (7, -6) -- (q5);
+ \draw[->] (7, -7) -- (q7);
+ 
+ 
+ \node(z0) at (10,  0)  [none, right] {$S(0)$};
+ \node(z1) at (10, -1)  [none, right] {$S(1)$};
+ \node(z2) at (10, -2)  [none, right] {$S(2)$};
+ \node(z3) at (10, -3)  [none, right] {$S(3)$};
+ \node(z4) at (10, -4)  [none, right] {$S(4)$};
+ \node(z5) at (10, -5)  [none, right] {$S(5)$};
+ \node(z6) at (10, -6)  [none, right] {$S(6)$};
+ \node(z7) at (10, -7)  [none, right] {$S(7)$}; 
+
+\draw[->] (q0.east) -- (z0.west); 
+\draw[->] (q1.east) -- (z1.west); 
+\draw[->] (q2.east) -- (z2.west); 
+\draw[->] (q3.east) -- (z3.west); 
+\draw[->] (q4.east) -- (z4.west); 
+\draw[->] (q5.east) -- (z5.west); 
+\draw[->] (q6.east) -- (z6.west); 
+\draw[->] (q7.east) -- (z7.west); 
+
 
  
-  
-  
-
- \node(w) at ( 2,-2) [gain, rotate = -90]  {};
- \node[] at (2, -1.5){$W_N^m$};
-
-  \node(sum0) at ( 1, 0) [sum, ] {$+$};
-  \node(sum1) at ( 1,-2) [sum,] {$+$};
-
-\draw[->, blue] (S0) -- (sum0);
-
-\draw[->, red] (S1) -- (sum1);	
-\node[none] at (0.5, 0.2 ) {$+$};
-%\draw[->, shorten <=-1, red] (w) -- (sum1);
-\node[none] at (0.5, -2.2 ) {$-$};	
-	
-\draw[->, blue] (-1, 0) -- (sum1);
-\draw[->, red] (-1, -2) -- (sum0);
-
-
-\node[none] at (0.8, -0.5 ) {$+$};
-\node[none] at (0.8, -1.5 ) {$+$};
-
-\node(Y0) at (3,0)  [none, right] {$x_0(m)$};
-\node(Y1) at (3,-2) [none,right] {$x_1(m)$};
-
-\draw[->] (sum0) -- (Y0);
-	
-\draw[->] (sum1) -- (w);	
-
-\draw[->, shorten <=-1] (w) -- (Y1);
-
-\draw[blue] node at (-1,0) {\textbullet} ;
-\draw[red] node at (-1,-2){\textbullet};
-
-
-\node(pnt0) at (9.5,  0) [pnt] {};
-\node(pnt1) at (9.5, -2) [pnt] {};
-\node(Z0) at (7,0) [none, left] {$s(m)$};
-\node(Z1) at (7,-2) [none, left] {$s \left( m + \frac{N}{2}\right)$};
-\node(Q0) at (10.5,0) [none, right] {$x_0(m)$};
-\node(Q1) at (10.5, -2) [none,right] {$x_1(m)$};;
-
-
-
-\draw[->, blue] (Z0) -- (pnt0);
-\draw[->, red] (Z1.east)  -- (pnt1);
-\draw[->] (pnt0) -- (Q0);
-\draw[->] (pnt1) node[above right]{$W_N^m$} -- (Q1);
-\draw[->, red] (7.5, -2) -- (pnt0);
-\draw[->, blue] (7.5, 0) -- (pnt1);
-
-\draw[blue] node at (7.5,0) {\textbullet}; 			
-\draw[red] node at (7.5,-2) {\textbullet}; 
-
-\node at (5, -1){\Huge{$\Leftrightarrow$}};	
-	
 		
 		\end{tikzpicture}
 \end {document}
