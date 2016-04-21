@@ -10,5 +10,5 @@ addpath('functions');
 Y = fft(x);
 Z = ifft(Y);
 
-dspl_verification('FFT',  y, Y);
-dspl_verification('IFFT', z, Z);
+dspl_verification('dspl_fft',  y, Y);
+dspl_verification('dspl_ifft', z, Z);

@@ -1,15 +1,14 @@
 ﻿#ifndef DSPL_MAIN_H
 #define DSPL_MAIN_H
 
+#include <fftw3.h>
+
 
 typedef struct
 {
-	double *wR;
-	double *wI;
-	double *t0R;
-	double *t0I;
-	double *t1R;
-	double *t1I;
+	fftw_complex 	*in;
+	fftw_complex 	*out;
+	fftw_plan 		plan;
 	int n;
 } fft_t;
 

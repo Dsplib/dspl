@@ -21,54 +21,58 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "fftw3.h"
 #include "dspl.h"
 #include "dspl_main.h"
 
 
 
-void 	dspl_fft_krn (fft_t *pfft, int n, int p2);
-void  	dspl_fft_reorder (fft_t *pfft, int n);
-
-
 /* inverse FFT */
 DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)
 {
-	int p2;
-	int k;
-	double invn;
-	size_t bufSize;
+	int k, res;
+	double *t;
+	double ninv;
+	
 	fft_t *pfft = ((dspl_t*)pdspl)->pfft;
 	
-	
-	if(!xR || !yR || !pfft)
-		return DSPL_ERROR_PTR;
-	
-	k = dspl_fft_create(n, pfft, &p2);
-	
-	if(k!=DSPL_OK)
-		return k;
+	if(!xR || !xI || !yR || !pdspl)
+		return DSPL_ERROR_PTR;	
+	if(n<1)
+		return DSPL_ERROR_SIZE;
 	
 	
-	bufSize = n * sizeof(double);
-	memcpy(pfft->t0R, xR, bufSize);
-	if(xI)
-		for (k = 0; k<n; k++)
-			pfft->t0I[k] = -xI[k];
-	else		
-        memset(pfft->t0I, 0, bufSize);
-	dspl_fft_reorder(pfft, n);
-	dspl_fft_krn(pfft, n, p2);
-	invn = 1.0 / (double) n;
+	res = dspl_fft_create(n, pfft, NULL);
+	if(res!=DSPL_OK)
+		return res;
+	
+	
+	t = (double*)(pfft->in);
+
+	for(k = 0; k < n; k++)
+	{
+		t[2*k]   = xR[k];
+		t[2*k+1] = -xI[k];
+	}
+
+	
+    fftw_execute(pfft->plan); /* repeat as needed */
+  
+	t = (double*)pfft->out;
+	ninv = 1.0 / (double) n;
 	if(yI)
-		for (k = 0; k<n; k++)
+	{	
+		for(k = 0; k < n; k++)
 		{
-			yR[k]=  invn * pfft->t0R[k];
-			yI[k]= -invn * pfft->t0I[k];	
-		}	
+			yR[k] =  ninv * t[2*k];
+			yI[k] = -ninv * t[2*k+1];
+		}
+	}
 	else
-		for (k = 0; k<n; k++)
-			yR[k]=  invn * pfft->t0R[k];
-	 
+		for(k = 0; k < n; k++)
+			yR[k] = ninv * t[2*k];
+
+	
 	return DSPL_OK;
 }
 
@@ -78,28 +82,49 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, d
 */
 DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)
 {
-	int p2;
-	size_t bufSize;
-	int res;
+	int k, res;
+	double *t;
+	
 	fft_t *pfft = ((dspl_t*)pdspl)->pfft;
 	
+	if(!xR || !yR || !yI || !pdspl)
+		return DSPL_ERROR_PTR;	
+	if(n<1)
+		return DSPL_ERROR_SIZE;
 	
-	if(!xR || !yR || !yI)
-		return DSPL_ERROR_PTR;
-	res = dspl_fft_create(n, pfft, &p2);
 	
+	res = dspl_fft_create(n, pfft, NULL);
 	if(res!=DSPL_OK)
 		return res;
-	bufSize = n * sizeof(double);
-	memcpy(pfft->t0R, xR, bufSize);
+	
+	
+	t = (double*)(pfft->in);
 	if(xI)
-		memcpy(pfft->t0I, xI, bufSize);
-	else		
-        memset(pfft->t0I, 0, bufSize);
-	dspl_fft_reorder(pfft, n);
-	dspl_fft_krn(pfft, n, p2);
-	memcpy(yR, pfft->t0R, bufSize);
-	memcpy(yI, pfft->t0I, bufSize);
+	{	
+		for(k = 0; k < n; k++)
+		{
+			t[2*k] = xR[k];
+			t[2*k+1] = xI[k];
+		}
+	}
+	else
+	{
+		for(k = 0; k < n; k++)
+		{
+			t[2*k] = xR[k];
+			t[2*k+1] = 0.0;
+		}
+	}
+	
+    fftw_execute(pfft->plan); /* repeat as needed */
+  
+	t = (double*)pfft->out;
+	for(k = 0; k < n; k++)
+	{
+		yR[k] = t[2*k];
+		yI[k] = t[2*k+1];
+	}
+	
 	return DSPL_OK;
 }
 
@@ -112,152 +137,28 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 
 int dspl_fft_create(int n, fft_t *pfft, int *p2)
 {
-	long double phi;
-	long double dphi;
-	int k;
-	int n2;
-	int ind; 
-	size_t bufSize;
-	
-	k = dspl_fft_p2(n);
-	if(!k)
-		return DSPL_ERROR_FFT_SIZE;
-	
-	if(p2)
-		*p2 = k;
-	
-	if(pfft->n >= n)
+	if(!pfft)
+		return DSPL_ERROR_PTR;
+	if(n == pfft->n)
 		return DSPL_OK;
 	
-	
-	dphi = M_PI;
-	bufSize = (size_t)(n*sizeof(double));
-	pfft->wR  = (double*)realloc(pfft->wR, bufSize);
-	pfft->wI  = (double*)realloc(pfft->wI, bufSize);
-	pfft->t0R = (double*)realloc(pfft->t0R, bufSize);
-	pfft->t0I = (double*)realloc(pfft->t0I, bufSize);
-	pfft->t1R = (double*)realloc(pfft->t1R, bufSize);
-	pfft->t1I = (double*)realloc(pfft->t1I, bufSize);
-	
-	pfft->n = n;
-	n2 = 1;
-	ind = 0;
-	while(n2<n)
-	{
-		phi = 0;
-		for(k = 0; k<n2; k++)
-		{
-			pfft->wR[ind+k] = (double)cos(phi);
-			pfft->wI[ind+k] = (double)sin(phi);
-			phi -= dphi;
-		}
-		ind+=n2;
-		n2<<=1;
-		dphi*=0.5;		
-	}
+	dspl_fft_free(pfft);
+	pfft->in  = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
+    pfft->out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
+	pfft->plan = fftw_plan_dft_1d(n, pfft->in, pfft->out, FFTW_FORWARD, FFTW_ESTIMATE);
 	return DSPL_OK;
 }
 
 
 
 
-/*
-	Clear Fast Fourier Transform object.
-	This function clears memory for fft_t object
-	------------------------------------------------------------------------------------------
-	Parameters:                                                        
-		[in, out]	fft_t* 	pfft	-	FFT object pointer. 
-							Memory for twiddle factor will be free.
-			
-	Example: ex_dspl_fft.c
-	
-	Author:
-	Sergey Bakhurin.                                                         www.dsplib.org    
-	
-*/  
-
 void dspl_fft_free(fft_t *pfft)
 {
-	if(pfft->wR)
-		free(pfft->wR);
-	if(pfft->wI)
-		free(pfft->wI);
-	if(pfft->t0R)
-		free(pfft->t0R);
-	if(pfft->t0I)
-		free(pfft->t0I);
-	if(pfft->t1R)
-		free(pfft->t1R);
-	if(pfft->t1I)
-		free(pfft->t1I);
+	fftw_destroy_plan(pfft->plan);
+    fftw_free(pfft->in); 
+	fftw_free(pfft->out);
 	pfft->n = 0;
 }
-
-
-
-
-
-/* fft kernel */
-void dspl_fft_krn(fft_t *pfft, int n, int p2)
-{
-	int k,p,q,q2,wi,ind0,i,ind0i, ind1, ind1i, iwi;
-	double *ptr = NULL;
-	double *ptr0R = NULL, *ptr0I = NULL; 
-	double *ptr1R = NULL, *ptr1I = NULL;
-	double zR, zI;
-	
-	p = n>>1;
-	q = 1;
-	q2 = 2;
-	wi = 0;
-	if(p2%2)
-	{
-		ptr0R = pfft->t1R;
-		ptr1R = pfft->t0R;
-		ptr0I = pfft->t1I;
-		ptr1I = pfft->t0I;
-	}
-	else
-	{
-		ptr0R = pfft->t0R;
-		ptr1R = pfft->t1R;
-		ptr0I = pfft->t0I;
-		ptr1I = pfft->t1I;
-	}
-	while(p)
-	{
-		ind0 = 0;
-		for(k = 0; k<p; k++)
-		{
-			ind1 = ind0+q;
-			for(i = 0; i<q; i++)
-			{
-				ind1i = ind1+i;
-				iwi = wi+i;
-				zR = ptr0R[ind1i] * pfft->wR[iwi] - ptr0I[ind1i] * pfft->wI[iwi];
-				zI = ptr0R[ind1i] * pfft->wI[iwi] + ptr0I[ind1i] * pfft->wR[iwi];
-				ind0i = ind0+i;
-				ptr1R[ind0i] = ptr0R[ind0i] + zR;
-				ptr1I[ind0i] = ptr0I[ind0i] + zI;
-				ptr1R[ind1i] = ptr0R[ind0i] - zR;
-				ptr1I[ind1i] = ptr0I[ind0i] - zI;
-			}
-			ind0+=q2;
-		}
-		p>>=1;
-		wi+=q;
-		q<<=1;
-		q2 = q<<1;
-		ptr = ptr0R;
-		ptr0R = ptr1R;
-		ptr1R = ptr;
-		ptr = ptr0I;
-		ptr0I = ptr1I;
-		ptr1I = ptr;
-	}
-	
-}
-
 
 
 
@@ -278,56 +179,6 @@ int dspl_fft_p2(int n)
 		return 0;
 	return p2;	
 }
-
-
-
-
-/* Bit inverse reordering for decimation in time */
-void dspl_fft_reorder(fft_t *pfft, int n)
-{
-	int i;
-	int i2;
-	int n2;
-	int n2jn22;
-	int n22;
-	int p;
-	int j;
-	int jn22;
-	int jn221;
-	double *ptr;
-	
-	n2 = n >> 1;
-	p = 1;
-	while(n2)
-	{
-		n22 = n2<<1;
-		jn22 = 0;
-		for(j = 0; j < p; j++)
-		{
-			n2jn22 = n2 + jn22;
-			jn221 = jn22 + 1;
-			for(i = 0; i < n2; i++)
-			{
-				i2 = i<<1;
-				pfft->t1R[i + jn22]   = pfft->t0R[i2 + jn22];
-				pfft->t1I[i + jn22]   = pfft->t0I[i2 + jn22];
-				pfft->t1R[i + n2jn22] = pfft->t0R[i2 + jn221];
-				pfft->t1I[i + n2jn22] = pfft->t0I[i2 + jn221];
-			}
-			jn22+=n22;
-		}
-		n2 >>= 1;
-		p  <<= 1;
-		ptr = pfft->t0R;
-		pfft->t0R = pfft->t1R;
-		pfft->t1R = ptr;
-		ptr = pfft->t0I;
-		pfft->t0I = pfft->t1I;
-		pfft->t1I = ptr;
-	}
-}
-
-
 
 
 

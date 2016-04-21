@@ -24,6 +24,7 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/fft_dec_in_freq_fig1.pdf\
 		fig/fft_dec_in_freq_fig2.pdf\
 		fig/fft_dec_in_freq_fig3.pdf\
+		fig/fft_performance_fig3.pdf\
 				
 all: figures clean
 

@@ -1,6 +1,6 @@
 #ifdef DOXYGEN_EN
 /*!
-	\mainpage DSPL - Digital signal processing library
+	\mainpage DSPL - Digital Signal Processing Library
 	
 	DSPL - Open source library for digital signal processing. DSPL includes follow algorithm groups: <BR>
 	

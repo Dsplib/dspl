@@ -98,6 +98,9 @@
 	\defgroup DFT_GROUP	Алгоритмы дискретного и быстрого преобразования Фурье
 	\ingroup SPECTRAL_GROUP
 	
+	Алгоритмы дискретного и быстрого преобразования Фурье используют функции из библиотеки FFTW
+
+
 	\defgroup WIN_GROUP	Функции оконного взвешивания
 	\ingroup SPECTRAL_GROUP	
 	

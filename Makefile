@@ -1,6 +1,7 @@
 CC      = gcc
 INC_DIR = src
 OBJ_DIR = obj
+FFTW_DIR = lib/fftw
 
 
 DLL_SRC_DIR  = src/dspl
@@ -20,7 +21,7 @@ VER_BIN_DIR  = bin/verification
 BIN_DIR = bin
 OBJ_DIR = obj
 
-DLL_CFLAGS  = -c -Wall -O3 -D DLL_EXPORT -I$(INC_DIR)
+DLL_CFLAGS  = -c -Wall -O3 -D DLL_EXPORT -I$(INC_DIR) -I$(FFTW_DIR)
 EXE_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 VER_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 
@@ -79,10 +80,10 @@ all:	$(EXE_BIN_DIR)/dspl.dll\
 		
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
+	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows -Llib/fftw -llibfftw3-3
 
 $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows
+	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows -Llib/fftw -llibfftw3-3
 
 
 
@@ -93,7 +94,8 @@ $(RES_OBJ):$(DLL_SRC_DIR)/resource.rc
 
 	
 $(DLL_OBJ_DIR)/%.o:$(DLL_SRC_DIR)/%.c
-	$(CC) $(DLL_CFLAGS) -c $< -o $@
+	$(CC) $(DLL_CFLAGS) -c $< -o $@  -Llib/fftw -llibfftw3-3
+
 
 	
 

@@ -9,7 +9,7 @@
 #include "dspl.h"
 
 
-#define N	1024
+#define N	1000
 
 int main()
 {
