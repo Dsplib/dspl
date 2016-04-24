@@ -40,6 +40,7 @@
 
 /* Error codes */
 #define DSPL_ERROR_ELLIP_K			0x00008000
+//#define	DSPL_ERROR_FFT_NTHREADS		0x00008800	
 #define	DSPL_ERROR_FFT_SIZE			0x00009000	
 #define DSPL_ERROR_FILTER_A0		0x00010000
 #define	DSPL_ERROR_FILTER_ORD		0x00012000
@@ -168,11 +169,11 @@ DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
 
 
 /* elliptic CD function (dspl_math_ellip.c)*/
-DSPL_API int dspl_ellip_cd(double *uR, double *uI, int nu, double k, double *cdR, double *cdI);
+DSPL_API int dspl_ellip_cd_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI);
 
 
 /* elliptic SN function (dspl_math_ellip.c)*/
-DSPL_API int dspl_ellip_sn(double *uR, double *uI, int nu, double k, double *snR, double *snI);
+DSPL_API int dspl_ellip_sn_cmplx(double *uR, double *uI, int nu, double k, double *snR, double *snI);
 
 
 /* Complete elliptic integral first kind (dspl_math_ellip.c)*/
@@ -223,13 +224,21 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, d
 DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x);
 
 
+/* Complex logarithm   (dspl_math_basic.c)*/
+DSPL_API int dspl_log_cmplx(double *xR, double *xI, int n, double *yR, double *yI);
+
+
 /* fill vector x in logarithmic scale from 10^x0 to 10^x1  (dspl_math_basic.c)*/
 DSPL_API int dspl_logspace(double x0, double x1, int n, int type, double* x);
 
 
+/* create DSPL object */
 DSPL_API int dspl_obj_create(void **obj);
 
+
+/*delete DSPL object */
 DSPL_API int dspl_obj_free(void **obj);
+
 
 /* Polynomial calculation (dspl_polynom.c) */
 DSPL_API int dspl_polyval(double* a, int ord, double* x, int n, double* y);
@@ -258,6 +267,9 @@ DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *y
 
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_sinh(double x);
+
+/* complex square root (dspl_math_basic.c) */
+DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double * yI);
 
 /* unwrap function (dspl_unwrap.c)*/
 DSPL_API int dspl_unwrap(double* phi,  int n, double lev, double mar);
@@ -352,10 +364,10 @@ typedef double (*p_dspl_cosh)(double x);
 typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double* yI);
 
 /* Elliptic CD function (dspl_math_ellip.c)*/
-typedef int (*p_dspl_ellip_cd)(double *uR, double *uI, int nu, double k, double *cdR, double *cdI);
+typedef int (*p_dspl_ellip_cd_cmplx)(double *uR, double *uI, int nu, double k, double *cdR, double *cdI);
 
 /* Elliptic SN function (dspl_math_ellip.c)*/
-typedef int (*p_dspl_ellip_sn)(double *uR, double *uI, int nu, double k, double *snR, double *snI);
+typedef int (*p_dspl_ellip_sn_cmplx)(double *uR, double *uI, int nu, double k, double *snR, double *snI);
 
 
 /* Complete elliptic integral first kind (dspl_math_ellip.c)*/
@@ -366,8 +378,8 @@ typedef int (*p_dspl_ellipk)(double *pk, int k, double *pK);
 /* Fast Fourier Transform  (dspl_fft.c)*/
 typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
 
-											
 
+/* DFT shift  (dspl_fft.c)*/
 typedef int(*p_dspl_fft_shift)(double* xR, double* xI, int n, double* yR, double* yI);
 
 
@@ -410,6 +422,10 @@ typedef int (*p_dspl_linspace)(double x0, double x1, int n, int type, double* x)
 
 
 
+typedef int (*p_dspl_log_cmplx)(double *xR, double *xI, int n, double *yR, double *yI);
+
+
+
 /* fill vector x in logarithmic from 10^x0 to 10^x1 (dspl_math_basic.c) */
 typedef int (*p_dspl_logspace)(double x0, double x1, int n, int type, double* x);
 
@@ -445,6 +461,8 @@ typedef int (*p_dspl_sin_cmplx)(double *xR, double *xI, int n, double *yR, doubl
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_sinh)		(double x);
 
+typedef int (*p_dspl_sqrt_cmplx)(double *xR, double *xI, int n, double * yR, double * yI);
+
 /* Unwrap phase response */
 typedef int (*p_dspl_unwrap)(double* phi,  int n, double lev, double mar);
 
@@ -462,45 +480,47 @@ typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
 
 
 
-extern p_dspl_ap2bpass		dspl_ap2bpass		;
-extern p_dspl_ap2bstop		dspl_ap2bstop		;
-extern p_dspl_ap2high		dspl_ap2high		;
-extern p_dspl_ap2low		dspl_ap2low			;
-extern p_dspl_asinh			dspl_asinh			;
-extern p_dspl_butter_ap		dspl_butter_ap		;
-extern p_dspl_cheby1_ap		dspl_cheby1_ap		;
-extern p_dspl_cheby2_ap		dspl_cheby2_ap		;
-extern p_dspl_compos		dspl_compos			;
-extern p_dspl_conv			dspl_conv			;         	
-extern p_dspl_conv_cmplx   	dspl_conv_cmplx     ; 
-extern p_dspl_cos_cmplx		dspl_cos_cmplx		;
-extern p_dspl_cosh 			dspl_cosh 			;			
-extern p_dspl_dft 			dspl_dft 			; 
-extern p_dspl_ellip_cd		dspl_ellip_cd		;
-extern p_dspl_ellip_sn 		dspl_ellip_sn		;
-extern p_dspl_ellipk		dspl_ellipk			;
-extern p_dspl_fft			dspl_fft		    ;
-extern p_dspl_fft_shift		dspl_fft_shift		;
-extern p_dspl_filter_iir	dspl_filter_iir	    ;
-extern p_dspl_freqs			dspl_freqs		    ;
-extern p_dspl_freqz			dspl_freqz		    ;
-extern p_dspl_get_version 	dspl_get_version 	;
-extern p_dspl_goertzel		dspl_goertzel		;
-extern p_dspl_ifft			dspl_ifft		    ;	
-extern p_dspl_linspace 		dspl_linspace 		;
-extern p_dspl_logspace 		dspl_logspace 		;
-extern p_dspl_obj_create	dspl_obj_create		; 
-extern p_dspl_obj_free		dspl_obj_free		; 
-extern p_dspl_polyval		dspl_polyval   		;
-extern p_dspl_polyval_cmplx	dspl_polyval_cmplx	;
-extern p_dspl_print_err		dspl_print_err	    ;
-extern p_dspl_print_msg 	dspl_print_msg 	    ;
-extern p_dspl_sin_cmplx		dspl_sin_cmplx		;
-extern p_dspl_sinh			dspl_sinh			;
-extern p_dspl_unwrap		dspl_unwrap			;
-extern p_dspl_window		dspl_window         ;
-extern p_dspl_writebin		dspl_writebin     	;
-extern p_dspl_writetxt		dspl_writetxt       ;
+extern p_dspl_ap2bpass					dspl_ap2bpass			;
+extern p_dspl_ap2bstop					dspl_ap2bstop			;
+extern p_dspl_ap2high					dspl_ap2high			;
+extern p_dspl_ap2low					dspl_ap2low				;
+extern p_dspl_asinh						dspl_asinh				;
+extern p_dspl_butter_ap					dspl_butter_ap			;
+extern p_dspl_cheby1_ap					dspl_cheby1_ap			;
+extern p_dspl_cheby2_ap					dspl_cheby2_ap			;
+extern p_dspl_compos					dspl_compos				;
+extern p_dspl_conv						dspl_conv				;         	
+extern p_dspl_conv_cmplx   				dspl_conv_cmplx     	; 
+extern p_dspl_cos_cmplx					dspl_cos_cmplx			;
+extern p_dspl_cosh 						dspl_cosh 				;			
+extern p_dspl_dft 						dspl_dft 				; 
+extern p_dspl_ellip_cd_cmplx			dspl_ellip_cd_cmplx		;
+extern p_dspl_ellip_sn_cmplx 			dspl_ellip_sn_cmplx		;
+extern p_dspl_ellipk					dspl_ellipk				;
+extern p_dspl_fft						dspl_fft		    	;
+extern p_dspl_fft_shift					dspl_fft_shift			;
+extern p_dspl_filter_iir				dspl_filter_iir	    	;
+extern p_dspl_freqs						dspl_freqs		    	;
+extern p_dspl_freqz						dspl_freqz		    	;
+extern p_dspl_get_version 				dspl_get_version 		;
+extern p_dspl_goertzel					dspl_goertzel			;
+extern p_dspl_ifft						dspl_ifft		    	;
+extern p_dspl_log_cmplx					dspl_log_cmplx			;
+extern p_dspl_linspace 					dspl_linspace 			;
+extern p_dspl_logspace 					dspl_logspace 			;
+extern p_dspl_obj_create				dspl_obj_create			; 
+extern p_dspl_obj_free					dspl_obj_free			; 
+extern p_dspl_polyval					dspl_polyval   			;
+extern p_dspl_polyval_cmplx				dspl_polyval_cmplx		;
+extern p_dspl_print_err					dspl_print_err	    	;
+extern p_dspl_print_msg 				dspl_print_msg 	    	;
+extern p_dspl_sin_cmplx					dspl_sin_cmplx			;
+extern p_dspl_sinh						dspl_sinh				;
+extern p_dspl_sqrt_cmplx				dspl_sqrt_cmplx			;
+extern p_dspl_unwrap					dspl_unwrap				;
+extern p_dspl_window					dspl_window         	;
+extern p_dspl_writebin					dspl_writebin     		;
+extern p_dspl_writetxt					dspl_writetxt       	;
 
 HINSTANCE dspl_load();
 

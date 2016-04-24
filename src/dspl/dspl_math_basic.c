@@ -58,6 +58,28 @@ DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *y
 }
 
 
+
+DSPL_API int dspl_log_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+{
+	double tI;
+	int k;
+	
+	if(!xR || !yR || !yI)
+		return DSPL_ERROR_PTR;
+	if(n<1)
+		return DSPL_ERROR_SIZE;
+	for(k = 0; k < n; k++)
+	{
+		tI = xI ? xI[k] : 0.0;
+		yR[k] = 0.5 * log(xR[k] * xR[k] + tI * tI);
+		yI[k] = atan2(tI, xR[k]);		
+	}
+	return DSPL_OK;
+	
+}
+
+
+
 DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
 	double t, wn, wp;
@@ -91,3 +113,44 @@ DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *y
 	return DSPL_OK;
 	
 }
+
+
+
+
+
+
+
+DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double * yI)
+{
+	double t, tI, a;
+	int k;
+	
+	if(!xR || !yR || !yI)
+		return DSPL_ERROR_PTR;
+
+	if(n < 1)
+		return DSPL_ERROR_SIZE;
+	
+	
+	for(k = 0; k < n; k++)
+	{
+		tI = xI ? xI[k] : 0.0;
+		a = xI ? sqrt(xR[k]*xR[k] + tI*tI) : fabs(xR[k]);
+		yR[k] = sqrt(0.5 * (a+xR[k]));
+		t = sqrt(0.5+ (a-xR[k]));
+		yI[k] = (tI > 0) ? t : -t;
+		
+	}
+	return DSPL_OK;
+	
+}
+
+
+
+
+
+
+
+
+
+

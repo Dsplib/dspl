@@ -27,7 +27,7 @@
 
 
 /* DSPL VERSION */
-#define DSPL_VERSION 0x00100415
+#define DSPL_VERSION 0x00100418
 
 
 /*
@@ -73,7 +73,7 @@ DSPL_API int dspl_obj_create(void **obj)
 	
 	pdspl->pfft   = (fft_t*)malloc (sizeof(fft_t));
 	memset(pdspl->pfft, 0, sizeof(fft_t));
-		
+
 	
 	pdspl->pconv = (conv_t*) malloc (sizeof(conv_t));	
 	memset(pdspl->pconv, 0, sizeof(conv_t));

@@ -58,7 +58,7 @@ RES_OBJ = $(DLL_OBJ_DIR)/resource.o
 
 EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/dft_freq_fig4.exe\
-			
+			$(EXE_BIN_DIR)/fft_performance.exe\
 
 			
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
@@ -94,7 +94,7 @@ $(RES_OBJ):$(DLL_SRC_DIR)/resource.rc
 
 	
 $(DLL_OBJ_DIR)/%.o:$(DLL_SRC_DIR)/%.c
-	$(CC) $(DLL_CFLAGS) -c $< -o $@  -Llib/fftw -llibfftw3-3
+	$(CC) $(DLL_CFLAGS) -c $< -o $@  -Llib/fftw -lfftw3_threads
 
 
 	

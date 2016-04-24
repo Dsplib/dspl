@@ -20,12 +20,12 @@ BEGIN
     BEGIN
       VALUE "CompanyName", "dsplib.org"
       VALUE "FileDescription", "Digital Signal Processing Library"
-      VALUE "FileVersion", "16.04.21.0"
+      VALUE "FileVersion", "16.04.24.0"
       VALUE "InternalName", "DSPL"
       VALUE "LegalCopyright", "(c) 2016 Sergey Bakhurin"
       VALUE "OriginalFilename", "dspl.dll"
       VALUE "ProductName", "DSPL"
-      VALUE "ProductVersion", "16.04.21.0"
+      VALUE "ProductVersion", "16.04.24.0"
     END
   END
   BLOCK "VarFileInfo"

@@ -42,7 +42,7 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, d
 		return DSPL_ERROR_SIZE;
 	
 	
-	res = dspl_fft_create(n, pfft, NULL);
+	res = dspl_fft_create(n, pfft);
 	if(res!=DSPL_OK)
 		return res;
 	
@@ -55,7 +55,6 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, d
 		t[2*k+1] = -xI[k];
 	}
 
-	
     fftw_execute(pfft->plan); /* repeat as needed */
   
 	t = (double*)pfft->out;
@@ -93,7 +92,7 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 		return DSPL_ERROR_SIZE;
 	
 	
-	res = dspl_fft_create(n, pfft, NULL);
+	res = dspl_fft_create(n, pfft);
 	if(res!=DSPL_OK)
 		return res;
 	
@@ -115,7 +114,7 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 			t[2*k+1] = 0.0;
 		}
 	}
-	
+
     fftw_execute(pfft->plan); /* repeat as needed */
   
 	t = (double*)pfft->out;
@@ -135,7 +134,7 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 
 
 
-int dspl_fft_create(int n, fft_t *pfft, int *p2)
+int dspl_fft_create(int n, fft_t *pfft)
 {
 	if(!pfft)
 		return DSPL_ERROR_PTR;
@@ -145,6 +144,8 @@ int dspl_fft_create(int n, fft_t *pfft, int *p2)
 	dspl_fft_free(pfft);
 	pfft->in  = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
     pfft->out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
+
+	
 	pfft->plan = fftw_plan_dft_1d(n, pfft->in, pfft->out, FFTW_FORWARD, FFTW_ESTIMATE);
 	return DSPL_OK;
 }
@@ -163,7 +164,7 @@ void dspl_fft_free(fft_t *pfft)
 
 
 /* retrun power of 2 of FFT size. 
- Return zero if n is not power of 2 */
+ Return zero if n is not power of 2 
 int dspl_fft_p2(int n)
 {
 	int n2;
@@ -179,6 +180,10 @@ int dspl_fft_p2(int n)
 		return 0;
 	return p2;	
 }
+*/
+
+
+
 
 
 

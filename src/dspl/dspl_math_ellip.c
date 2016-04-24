@@ -31,7 +31,7 @@
 
 
 
-DSPL_API int dspl_ellip_cd(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
+DSPL_API int dspl_ellip_cd_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
 {
 	int n, m;
 	double ktmp[DSPL_ELLIP_ITER];
@@ -90,7 +90,7 @@ DSPL_API int dspl_ellip_cd(double *uR, double *uI, int nu, double k, double *cdR
 
 
 
-DSPL_API int dspl_ellip_sn(double *uR, double *uI, int nu, double k, double *snR, double *snI)
+DSPL_API int dspl_ellip_sn_cmplx(double *uR, double *uI, int nu, double k, double *snR, double *snI)
 {
 	int n, m;
 	double ktmp[DSPL_ELLIP_ITER];

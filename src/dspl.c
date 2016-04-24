@@ -5,45 +5,47 @@
 
 
 
-p_dspl_ap2bpass			dspl_ap2bpass		;
-p_dspl_ap2bstop			dspl_ap2bstop		;
-p_dspl_ap2high			dspl_ap2high		;
-p_dspl_ap2low			dspl_ap2low			;
-p_dspl_asinh			dspl_asinh			;
-p_dspl_butter_ap		dspl_butter_ap		;
-p_dspl_cheby1_ap		dspl_cheby1_ap		;
-p_dspl_cheby2_ap		dspl_cheby2_ap		;
-p_dspl_compos			dspl_compos			;
-p_dspl_conv				dspl_conv			;
-p_dspl_conv_cmplx   	dspl_conv_cmplx     ;
-p_dspl_cos_cmplx		dspl_cos_cmplx		;
-p_dspl_cosh 			dspl_cosh 			;
-p_dspl_dft 				dspl_dft 			;
-p_dspl_ellip_cd			dspl_ellip_cd		;
-p_dspl_ellip_sn 		dspl_ellip_sn		;
-p_dspl_ellipk			dspl_ellipk			;
-p_dspl_fft				dspl_fft		    ;
-p_dspl_fft_shift		dspl_fft_shift		;
-p_dspl_filter_iir		dspl_filter_iir	    ;
-p_dspl_freqs			dspl_freqs		    ;
-p_dspl_freqz			dspl_freqz		    ;
-p_dspl_get_version 		dspl_get_version 	;
-p_dspl_goertzel			dspl_goertzel		;
-p_dspl_ifft				dspl_ifft		    ;
-p_dspl_linspace			dspl_linspace		;
-p_dspl_logspace			dspl_logspace		;
-p_dspl_obj_create		dspl_obj_create		; 
-p_dspl_obj_free			dspl_obj_free		; 		
-p_dspl_polyval			dspl_polyval	    ;
-p_dspl_polyval_cmplx	dspl_polyval_cmplx  ;
-p_dspl_print_err		dspl_print_err	    ;
-p_dspl_print_msg 		dspl_print_msg 	    ;
-p_dspl_sin_cmplx		dspl_sin_cmplx		;
-p_dspl_sinh				dspl_sinh			;
-p_dspl_unwrap			dspl_unwrap			;
-p_dspl_window			dspl_window         ;
-p_dspl_writebin			dspl_writebin		;
-p_dspl_writetxt			dspl_writetxt       ;
+p_dspl_ap2bpass					dspl_ap2bpass			;
+p_dspl_ap2bstop					dspl_ap2bstop			;
+p_dspl_ap2high					dspl_ap2high			;
+p_dspl_ap2low					dspl_ap2low				;
+p_dspl_asinh					dspl_asinh				;
+p_dspl_butter_ap				dspl_butter_ap			;
+p_dspl_cheby1_ap				dspl_cheby1_ap			;
+p_dspl_cheby2_ap				dspl_cheby2_ap			;
+p_dspl_compos					dspl_compos				;
+p_dspl_conv						dspl_conv				;
+p_dspl_conv_cmplx   			dspl_conv_cmplx     	;
+p_dspl_cos_cmplx				dspl_cos_cmplx			;
+p_dspl_cosh 					dspl_cosh 				;
+p_dspl_dft 						dspl_dft 				;
+p_dspl_ellip_cd_cmplx			dspl_ellip_cd_cmplx		;
+p_dspl_ellip_sn_cmplx 			dspl_ellip_sn_cmplx		;
+p_dspl_ellipk					dspl_ellipk				;
+p_dspl_fft						dspl_fft		    	;
+p_dspl_fft_shift				dspl_fft_shift			;
+p_dspl_filter_iir				dspl_filter_iir	    	;
+p_dspl_freqs					dspl_freqs		    	;
+p_dspl_freqz					dspl_freqz		    	;
+p_dspl_get_version 				dspl_get_version 		;
+p_dspl_goertzel					dspl_goertzel			;
+p_dspl_ifft						dspl_ifft		    	;
+p_dspl_linspace					dspl_linspace			;
+p_dspl_log_cmplx				dspl_log_cmplx			;
+p_dspl_logspace					dspl_logspace			;
+p_dspl_obj_create				dspl_obj_create			; 
+p_dspl_obj_free					dspl_obj_free			; 		
+p_dspl_polyval					dspl_polyval	    	;
+p_dspl_polyval_cmplx			dspl_polyval_cmplx  	;
+p_dspl_print_err				dspl_print_err	    	;
+p_dspl_print_msg 				dspl_print_msg 	    	;
+p_dspl_sin_cmplx				dspl_sin_cmplx			;
+p_dspl_sinh						dspl_sinh				;
+p_dspl_sqrt_cmplx				dspl_sqrt_cmplx			;
+p_dspl_unwrap					dspl_unwrap				;
+p_dspl_window					dspl_window         	;
+p_dspl_writebin					dspl_writebin			;
+p_dspl_writetxt					dspl_writetxt       	;
 
 
 
@@ -144,15 +146,15 @@ HINSTANCE	dspl_load()
 		goto error_proc;
 	
 		
-	func_name = "dspl_ellip_cd";	
-	dspl_ellip_cd = (p_dspl_ellip_cd) GetProcAddress(hDSPL, func_name);
-	if(!dspl_ellip_cd)
+	func_name = "dspl_ellip_cd_cmplx";	
+	dspl_ellip_cd_cmplx = (p_dspl_ellip_cd_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_ellip_cd_cmplx)
 		goto error_proc;
 	
 	
-	func_name = "dspl_ellip_sn";
-	dspl_ellip_sn = (p_dspl_ellip_sn) GetProcAddress(hDSPL, func_name);
-	if(!dspl_ellip_sn)
+	func_name = "dspl_ellip_sn_cmplx";
+	dspl_ellip_sn_cmplx = (p_dspl_ellip_sn_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_ellip_sn_cmplx)
 		goto error_proc;
 	
 		
@@ -222,6 +224,13 @@ HINSTANCE	dspl_load()
 	if(!dspl_logspace)
 		goto error_proc;
 	
+		
+	
+	func_name = "dspl_log_cmplx";
+	dspl_log_cmplx = (p_dspl_log_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_log_cmplx)
+		goto error_proc;
+	
 	
 	
 	func_name = "dspl_obj_create";
@@ -273,7 +282,14 @@ HINSTANCE	dspl_load()
 	if(!dspl_sinh)
 		goto error_proc;
 	
-		
+
+	
+	func_name = "dspl_sqrt_cmplx";
+	dspl_sqrt_cmplx = (p_dspl_sqrt_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_sqrt_cmplx)
+		goto error_proc;
+	
+	
 	func_name = "dspl_unwrap";
 	dspl_unwrap = (p_dspl_unwrap) GetProcAddress(hDSPL, func_name);
 	if(!dspl_unwrap)
