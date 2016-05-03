@@ -28,7 +28,7 @@
 		`DSPL_ERROR_PTR` если входной указатель `NULL`.
 		
 	\note
-		Объект должен быть очищен функцией `dspl_obj_free` 
+		Объект должен быть очищен функцией `#dspl_obj_free` 
 		перед завершением приложения во избежание утечки памяти 
 	
 	\author
@@ -37,4 +37,25 @@
 
 */
 
+
+
+
+/*!
+	\ingroup DSPL_OBJECT
+	\fn int dspl_obj_free(void **obj)
+	Очищает DSPL object.
+	
+	Данная функция очищает созданный функией `#dspl_obj_create` объект DSPL.
+		
+	\param[in, out]	obj	ссылка на указатель на объект DSPL..
+						
+	\return 
+		`DSPL_OK` если объект очищен успешно.
+		`DSPL_ERROR_PTR` если входной указатель `NULL`.
+
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+
+*/
 #endif

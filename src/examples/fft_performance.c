@@ -16,23 +16,53 @@
 	<BR>
 	Результат работы программы:
 	\verbatim
-	N =       131072         K =       16    FFT time = 8.125000 ms
-	N =        65536         K =       24    FFT time = 3.333333 ms
-	N =        32768         K =       36    FFT time = 1.666667 ms
-	N =        16384         K =       54    FFT time = 0.925926 ms
-	N =         8192         K =       81    FFT time = 0.370370 ms
-	N =         4096         K =      121    FFT time = 0.165289 ms
-	N =         2048         K =      181    FFT time = 0.165746 ms
-	N =         1024         K =      271    FFT time = 0.147601 ms
-	N =          512         K =      406    FFT time = 0.123153 ms
-	N =          256         K =      609    FFT time = 0.098522 ms
-	N =          128         K =      913    FFT time = 0.098576 ms
-	N =           64         K =     1369    FFT time = 0.094960 ms
-	N =           32         K =     2053    FFT time = 0.004871 ms
-	N =           16         K =     3079    FFT time = 0.006496 ms
-	N =            8         K =     4618    FFT time = 0.006496 ms
-	N =            4         K =     6927    FFT time = 0.004331 ms
+	N =       131072         K =      512    FFT time = 4.335938 ms
+	N =        65536         K =      768    FFT time = 1.757813 ms
+	N =        32768         K =     1152    FFT time = 0.668403 ms
+	N =        16384         K =     1728    FFT time = 0.347222 ms
+	N =         8192         K =     2592    FFT time = 0.189043 ms
+	N =         4096         K =     3888    FFT time = 0.123971 ms
+	N =         2048         K =     5832    FFT time = 0.089163 ms
+	N =         1024         K =     8748    FFT time = 0.074303 ms
+	N =          512         K =    13122    FFT time = 0.061728 ms
+	N =          256         K =    19683    FFT time = 0.049281 ms
+	N =          128         K =    29524    FFT time = 0.044709 ms
+	N =           64         K =    44286    FFT time = 0.044303 ms
+	N =           32         K =    66429    FFT time = 0.000151 ms
+	N =           16         K =    99643    FFT time = 0.000100 ms
+	N =            8         K =   149464    FFT time = 0.000067 ms
+	N =            4         K =   224196    FFT time = 0.000045 ms
+	\endverbatim	
+	<BR>
+	<BR>
+	Для сравнения производительности с функциями FFT входящих в состав пакетов
+	GNU Octave и MATLAB можно использовать следующий скрипт:
+	<BR>
+	\verbatim
+	clear all; close all;        
+
+	N = 131072;
+	K = 512;
+
+	n = 0:N-1;
+	x = exp(2i*pi * n *0.2);
+
+
+	while(N>2)
+		t = tic;
+		for(k = 1:K)
+			y = fft(x(1:N));
+			
+		end
+		t = toc(t);
+		
+		fprintf("N = %12d, K = %8d, OCTAVE FFT time %.7f ms\n",N,K,1000*t/K);
+		N = N/2;
+		K = floor(K*1.5);
+	end
 	\endverbatim
+	<BR>
+	Данный скрипт также произведет замер времени выполнения FFT и выведет результат на печать.
 */
 
 #endif
@@ -54,16 +84,15 @@ int main()
 	/* input signal */
 	double *xR = NULL  ;
 	double *xI = NULL;
-	           
+	   
 	/* FFT */  
 	double *yR = NULL;
 	double *yI = NULL;
-
 	
 	/* dspl handle */
 	HINSTANCE hDSPL;
 	
-	int n, N=131072, K = 16;
+	int n, N=131072, K = 512;
 	
 	void *pdspl = NULL;
 	
@@ -83,6 +112,7 @@ int main()
 	yR = (double*)malloc(N*sizeof(double));
 	yI = (double*)malloc(N*sizeof(double));
 
+	
 	/* input signal s(n) = exp(2*pi*j*0.2*n) */
 	for(n = 0; n < N; n++)
 	{
@@ -96,6 +126,7 @@ int main()
 	while(N>2)
 	{		
 		t = clock();
+		dspl_fft(xR, xI, N, pdspl,  yR, yI);
 		
 		/* K times N-points FFT calculation */
 		for(n = 0; n<K; n++)
@@ -110,10 +141,11 @@ int main()
 		/* increase K on 1.5 times */
 		K *= 1.5;
 		
-		/* decrease N 2 times */
+		/* decrease N on 2 times */
 		N /= 2; 
 	}	
-		
+	
+	/* Free memory */		
 	dspl_obj_free(&pdspl);
 		
 	free(xR);

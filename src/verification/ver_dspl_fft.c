@@ -51,22 +51,23 @@ int main()
 
 	dspl_obj_create(&pdspl);
 
+printf("1\n");
 	
 	/*N-points FFT calculation */
 	dspl_fft(xR, xI, N, pdspl,  yR, yI);
-		
+printf("2\n");
 	/*N-points IFFT calculation 
 	We no need to recalculate FFT object */
 	dspl_ifft(yR, yI, N, pdspl, zR, zI);	
-
+printf("3\n");
 	/* save input signal, FFT and IFFT to the bin-files */
 	dspl_writebin(xR, xI, N, "dat/dspl_fft/fft_in.bin");
 	dspl_writebin(yR, yI, N, "dat/dspl_fft/fft_out.bin");
 	dspl_writebin(zR, zI, N, "dat/dspl_fft/ifft_out.bin");
-		
+printf("4\n");		
 	//printf("obj = %.8x\n", obj);	
 	dspl_obj_free(&pdspl);
-	
+printf("5\n");	
 	/* clear dspl handle */
 	FreeLibrary(hDSPL);
 	

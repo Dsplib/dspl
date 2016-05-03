@@ -62,6 +62,8 @@ DSPL_API int dspl_get_version(int printFlag)
 DSPL_API int dspl_obj_create(void **obj)
 {
 	dspl_t *pdspl;
+	SYSTEM_INFO sysinfo;
+
 	if(!obj || (*obj))
 		return DSPL_ERROR_PTR;
 
@@ -73,12 +75,14 @@ DSPL_API int dspl_obj_create(void **obj)
 	
 	pdspl->pfft   = (fft_t*)malloc (sizeof(fft_t));
 	memset(pdspl->pfft, 0, sizeof(fft_t));
-
+	
+	/* processor cores */
+	GetSystemInfo(&sysinfo);
+	pdspl->pfft->nthreads = sysinfo.dwNumberOfProcessors;	
+	
 	
 	pdspl->pconv = (conv_t*) malloc (sizeof(conv_t));	
 	memset(pdspl->pconv, 0, sizeof(conv_t));
-
-	fftw_init_threads();
 
 	return DSPL_OK;
 }
@@ -93,7 +97,7 @@ DSPL_API int dspl_obj_free(void **obj)
 		return DSPL_ERROR_PTR;
 	if((*obj) == NULL)
 		return DSPL_OK;
-	fftw_cleanup_threads();
+
 	pdspl = (dspl_t*)(*obj);
 	dspl_fft_free(pdspl->pfft);
 	

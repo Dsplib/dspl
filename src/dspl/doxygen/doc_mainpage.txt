@@ -34,8 +34,7 @@
 	
 	DSPL - свободная библиотека алгоритмов цифровой обработки сигналов, 
 	включающая в себя следующие группы алгоритмов: <BR>
-	
-	
+
 	\ref DFT_GROUP <BR>
 	\ref WIN_GROUP <BR>
 	\ref FILTER_CONV_GROUP <BR>
@@ -44,8 +43,6 @@
 	\ref FILTER_ANALYSIS_GROUP <BR>
 	\ref SPEC_MATH_GROUP <BR>
 	\ref IN_OUT_GROUP <BR>
-	 
-	
 	
 	<BR>
 	
@@ -59,6 +56,7 @@
 	DSPL - библиотека с открытым исходным кодом, написанная на языке Си. <BR>
 	Исходные коды библиотеки доступны на <a href = "https://github.com/Dsplib/dspl">GitHub</a>.<BR>
 	Вы также можете внести свой вклад в развитие данной библиотеки. Присоединяйтесь!
+	
 	
 	Смотрите также:<BR>
 	\ref page_begin_use <BR> 

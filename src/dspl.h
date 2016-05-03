@@ -31,10 +31,7 @@
 #ifndef M_2PI
 	#define M_2PI	6.283185307179586476925286766559
 #endif
-
- 	
-
-                                     
+                                    
 
 #define DSPL_OK						0
 

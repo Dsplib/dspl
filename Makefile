@@ -80,11 +80,11 @@ all:	$(EXE_BIN_DIR)/dspl.dll\
 		
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows -Llib/fftw -llibfftw3-3 -lm
+	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -Llib/fftw -llibfftw3-3 -lm
 
 
 $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows -Llib/fftw -llibfftw3-3 -lm
+	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -Llib/fftw -llibfftw3-3 -lm
 
 
 
@@ -96,7 +96,7 @@ $(RES_OBJ):$(DLL_SRC_DIR)/resource.rc
 
 	
 $(DLL_OBJ_DIR)/%.o:$(DLL_SRC_DIR)/%.c
-	$(CC) $(DLL_CFLAGS) -c $< -o $@  -Llib/fftw -lfftw3_threads
+	$(CC) $(DLL_CFLAGS) -c $< -o $@   -Llib/fftw -lfftw3_threads
 
 
 	

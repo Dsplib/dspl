@@ -169,7 +169,7 @@ HINSTANCE	dspl_load()
 	if(!dspl_fft)
 		goto error_proc;
 	
-
+	
 	
 	func_name = "dspl_fft_shift";
 	dspl_fft_shift = (p_dspl_fft_shift) GetProcAddress(hDSPL, func_name);

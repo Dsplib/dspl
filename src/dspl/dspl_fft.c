@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <omp.h>
 #include "fftw3.h"
 #include "dspl.h"
 #include "dspl_main.h"
@@ -51,7 +52,7 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, d
 
 	for(k = 0; k < n; k++)
 	{
-		t[2*k]   = xR[k];
+		t[2*k]   =  xR[k];
 		t[2*k+1] = -xI[k];
 	}
 
@@ -84,6 +85,8 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 	int k, res;
 	double *t;
 	
+	
+	
 	fft_t *pfft = ((dspl_t*)pdspl)->pfft;
 	
 	if(!xR || !yR || !yI || !pdspl)
@@ -91,7 +94,10 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 	if(n<1)
 		return DSPL_ERROR_SIZE;
 	
-	fftw_plan_with_nthreads(8);
+	//omp_set_dynamic(1);      // запретить библиотеке openmp менять число потоков во время исполнения
+  //omp_set_num_threads(2); // установить число потоков в 10
+	
+	//fftw_plan_with_nthreads(8);
 	res = dspl_fft_create(n, pfft);
 	if(res!=DSPL_OK)
 		return res;
@@ -100,14 +106,16 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 	t = (double*)(pfft->in);
 	if(xI)
 	{	
+		
 		for(k = 0; k < n; k++)
-		{
+		{			
 			t[2*k] = xR[k];
 			t[2*k+1] = xI[k];
 		}
 	}
 	else
 	{
+		//#pragma omp parallel for shared(xR, xI, t) private(k)
 		for(k = 0; k < n; k++)
 		{
 			t[2*k] = xR[k];
@@ -118,6 +126,7 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
     fftw_execute(pfft->plan); /* repeat as needed */
   
 	t = (double*)pfft->out;
+	//#pragma omp parallel for shared(yR, yI, t) private(k)
 	for(k = 0; k < n; k++)
 	{
 		yR[k] = t[2*k];
@@ -129,24 +138,19 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 
 
 
-
-
-
-
-
 int dspl_fft_create(int n, fft_t *pfft)
 {
 	if(!pfft)
 		return DSPL_ERROR_PTR;
 	if(n == pfft->n)
 		return DSPL_OK;
-	
 	dspl_fft_free(pfft);
 	pfft->in  = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
     pfft->out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
-
-	fftw_plan_with_nthreads(2);
-	pfft->plan = fftw_plan_dft_1d(n, pfft->in, pfft->out, FFTW_FORWARD, FFTW_ESTIMATE);
+	pfft->n = n;
+	
+	fftw_plan_with_nthreads(pfft->nthreads);
+	pfft->plan = fftw_plan_dft_1d(pfft->n , pfft->in, pfft->out, FFTW_FORWARD, FFTW_ESTIMATE);
 	return DSPL_OK;
 }
 
