@@ -25,7 +25,12 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/fft_dec_in_freq_fig2.pdf\
 		fig/fft_dec_in_freq_fig3.pdf\
 		fig/fft_performance_fig3.pdf\
-				
+		fig/goertzel_fig1.pdf\
+		fig/goertzel_fig2.pdf\
+		fig/goertzel_fig3.pdf\
+
+		
+
 all: figures clean
 
 	
@@ -33,7 +38,7 @@ figures: $(FIG)
 		
 
 #DFT
-fig/%.pdf:%.tex 	
+fig/%.pdf:%.tex fig_header.tex 	
 	$(LATEX)  $< -output-directory=$(FIG_DIR) $@
   
 	

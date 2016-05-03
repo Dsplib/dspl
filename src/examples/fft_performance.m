@@ -18,7 +18,7 @@ while(N>2)
 	end
 	t = toc(t);
 	
-	fprintf("N = %d, K = %d, %d sec\n",N,K,t);
+	fprintf("N = %12d, K = %8d, %d ms\n",N,K,1000*t/K);
 	N = N/2;
 	K = K*2;
 end

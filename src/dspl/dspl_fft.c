@@ -91,7 +91,7 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 	if(n<1)
 		return DSPL_ERROR_SIZE;
 	
-	
+	fftw_plan_with_nthreads(8);
 	res = dspl_fft_create(n, pfft);
 	if(res!=DSPL_OK)
 		return res;
@@ -145,7 +145,7 @@ int dspl_fft_create(int n, fft_t *pfft)
 	pfft->in  = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
     pfft->out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
 
-	
+	fftw_plan_with_nthreads(2);
 	pfft->plan = fftw_plan_dft_1d(n, pfft->in, pfft->out, FFTW_FORWARD, FFTW_ESTIMATE);
 	return DSPL_OK;
 }
@@ -155,6 +155,7 @@ int dspl_fft_create(int n, fft_t *pfft)
 
 void dspl_fft_free(fft_t *pfft)
 {
+	
 	fftw_destroy_plan(pfft->plan);
     fftw_free(pfft->in); 
 	fftw_free(pfft->out);
