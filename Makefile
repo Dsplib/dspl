@@ -2,7 +2,7 @@ CC      = gcc
 INC_DIR = src
 OBJ_DIR = obj
 FFTW_DIR = lib/fftw
-
+DAT2CM_DIR = src/dat2cm
 
 DLL_SRC_DIR  = src/dspl
 DLL_OBJ_DIR  = obj/dspl
@@ -59,7 +59,7 @@ RES_OBJ = $(DLL_OBJ_DIR)/resource.o
 EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/dft_freq_fig4.exe\
 			$(EXE_BIN_DIR)/fft_performance.exe\
-
+			$(EXE_BIN_DIR)/goertzel_dtmf.exe\
 			
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\
@@ -77,6 +77,7 @@ all:	$(EXE_BIN_DIR)/dspl.dll\
 		$(VER_BIN_DIR)/dspl.dll\
 		$(EXE_FILES)\
 		$(VER_FILES)\
+		dat2cm
 		
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
@@ -123,6 +124,9 @@ $(VER_OBJ_DIR)/%.o:$(VER_SRC_DIR)/%.c
 $(OBJ_DIR)/%.o:$(INC_DIR)/%.c
 	$(CC) $(EXE_CFLAGS)  -c $< -o $@
 
+	
+dat2cm:$(DAT2CM_DIR)/dat2cm.c
+	$(CC) $(DAT2CM_DIR)/dat2cm.c -o $(EXE_BIN_DIR)/tex/dat2cm.exe
 
 
 $(DLL_OBJS):	 $(INC_DIR)/dspl.h  

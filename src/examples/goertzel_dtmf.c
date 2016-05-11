@@ -8,7 +8,12 @@
 #elseif DOXYGEN_RU
 
 /*! 
-	\example goertzel_dtmf.c                                        
+	\example goertzel_dtmf.c  
+Данная программа производит генерирование 16-ти DTMF сигналов тонового набора номера.
+После производится расчет спектральных отсчетов ДПФ соответствующих частотам тонов 
+DTMF при помощи алгоритма Гёрцеля.<BR>
+
+DTMF сигналы и значения амплитуды спектральных отсчетов ДПФ сохраняются в текстовые файлы для построения графиков 	
 */
 
 #endif
@@ -41,9 +46,9 @@ int main()
 	char sym[16] = "123a456b789cs0rd";
 	char fn[24];
 	
-	double t[N];			/* time 	*/
+	double t[N];			/* time 					*/
 
-	double s[N];			/* DTMF signal 			*/
+	double s[N];			/* DTMF signal 				*/
 	double SR[8];			/* DFT image part 			*/
 	double SI[8];
 	double S[8];			/* Spectrum magnitude  		*/

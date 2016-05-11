@@ -1,0 +1,49 @@
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{fig_header.tex}
+
+
+
+\begin {document}		
+\begin{tikzpicture}		
+
+\draw[white] (-2, 1.5) rectangle (4, -4);
+
+\node[draw=black, xshift = 0.0cm, yshift =  0.0cm, minimum size=1cm] {\LARGE{1}};
+\node[draw=black, xshift = 1.2cm, yshift =  0.0cm, minimum size=1cm] {\LARGE{2}};
+\node[draw=black, xshift = 2.4cm, yshift =  0.0cm, minimum size=1cm] {\LARGE{3}};
+\node[draw=black, xshift = 3.6cm, yshift =  0.0cm, minimum size=1cm] {\LARGE{A}};
+\node[draw=black, xshift = 0.0cm, yshift = -1.2cm, minimum size=1cm] {\LARGE{4}};
+\node[draw=black, xshift = 1.2cm, yshift = -1.2cm, minimum size=1cm] {\LARGE{5}};
+\node[draw=black, xshift = 2.4cm, yshift = -1.2cm, minimum size=1cm] {\LARGE{6}};
+\node[draw=black, xshift = 3.6cm, yshift = -1.2cm, minimum size=1cm] {\LARGE{B}};
+\node[draw=black, xshift = 0.0cm, yshift = -2.4cm, minimum size=1cm] {\LARGE{7}};
+\node[draw=black, xshift = 1.2cm, yshift = -2.4cm, minimum size=1cm] {\LARGE{8}};
+\node[draw=black, xshift = 2.4cm, yshift = -2.4cm, minimum size=1cm] {\LARGE{9}};
+\node[draw=black, xshift = 3.6cm, yshift = -2.4cm, minimum size=1cm] {\LARGE{C}};
+\node[draw=black, xshift = 0.0cm, yshift = -3.6cm, minimum size=1cm] {\LARGE{$\ast$}};
+\node[draw=black, xshift = 1.2cm, yshift = -3.6cm, minimum size=1cm] {\LARGE{0}};
+\node[draw=black, xshift = 2.4cm, yshift = -3.6cm, minimum size=1cm] {\LARGE{\#}};
+\node[draw=black, xshift = 3.6cm, yshift = -3.6cm, minimum size=1cm] {\LARGE{D}};
+
+%{697, 770, 852, 941, 1209, 1336, 1477, 1633}
+\node at (-0.6,  0.0) [left] {697};
+\node at (-0.6, -1.2) [left] {770};
+\node at (-0.6, -2.4) [left] {852};
+\node at (-0.6, -3.6) [left] {941};
+
+\node at (0.0, 0.6) [above] {\small{1209}};
+\node at (1.2, 0.6) [above] {\small{1336}};
+\node at (2.4, 0.6) [above] {\small{1477}};
+\node at (3.6, 0.6) [above] {\small{1633}};
+
+\node at (1.8, 1.0) [above] {Верхняя группа частот (Гц)};
+
+\node at (-1.5, -1.8) [above, rotate = 90] {Нижняя группа частот (Гц)};
+
+\end{tikzpicture}
+\end {document}
+
+
+

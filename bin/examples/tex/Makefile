@@ -25,9 +25,14 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/fft_dec_in_freq_fig2.pdf\
 		fig/fft_dec_in_freq_fig3.pdf\
 		fig/fft_performance_fig3.pdf\
+		fig/goertzel_dtmf_freq.pdf\
+		fig/goertzel_dtmf_time.pdf\
+		fig/goertzel_dtmf_symbols.pdf\
 		fig/goertzel_fig1.pdf\
 		fig/goertzel_fig2.pdf\
 		fig/goertzel_fig3.pdf\
+		
+
 
 		
 
