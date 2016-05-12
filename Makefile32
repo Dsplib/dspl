@@ -1,7 +1,7 @@
 CC      = gcc
 INC_DIR = src
 OBJ_DIR = obj
-FFTW_DIR = lib/fftw
+FFTW_DIR = lib/fftw32
 DAT2CM_DIR = src/dat2cm
 
 DLL_SRC_DIR  = src/dspl
@@ -81,14 +81,12 @@ all:	$(EXE_BIN_DIR)/dspl.dll\
 		
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -Llib/fftw -llibfftw3-3 -lm
-
+	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
+	cp	$(FFTW_DIR)/libfftw3-3.dll   $(EXE_BIN_DIR)/libfftw3-3.dll	
 
 $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -Llib/fftw -llibfftw3-3 -lm
-
-
-
+	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
+	cp	$(FFTW_DIR)/libfftw3-3.dll   $(VER_BIN_DIR)/libfftw3-3.dll
 
 
 
@@ -129,13 +127,11 @@ dat2cm:$(DAT2CM_DIR)/dat2cm.c
 	$(CC) $(DAT2CM_DIR)/dat2cm.c -o $(EXE_BIN_DIR)/tex/dat2cm.exe
 
 
-$(DLL_OBJS):	 $(INC_DIR)/dspl.h  
-
+$(DLL_OBJS):	 $(INC_DIR)/dspl.h 
 
 $(EXE_FILES):	 $(INC_DIR)/dspl.h
 
-$(VER_FILES):	 $(INC_DIR)/dspl.h
-
+$(VER_FILES):	 $(INC_DIR)/dspl.h 
 
 $(COMMON_OBJS):	 $(INC_DIR)/dspl.h
 
