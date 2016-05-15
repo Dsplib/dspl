@@ -15,7 +15,7 @@ while(N>2)
 	end
 	t = toc(t);
 	
-	fprintf("N = %12d, K = %8d, OCTAVE FFT time %.7f ms\n",N,K,1000*t/K);
+	fprintf('N = %12d, K = %8d, OCTAVE FFT time %.7f ms\n',N,K,1000*t/K);
 	N = N/2;
 	K = floor(K*1.5);
 end

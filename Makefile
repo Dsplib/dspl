@@ -1,7 +1,17 @@
+OS_VER	= 32
 CC      = gcc
 INC_DIR = src
 OBJ_DIR = obj
-FFTW_DIR = lib/fftw32
+
+ifeq ($(OS_VER), 32)
+	FFTW_DIR = lib/fftw32
+endif
+
+ifeq ($(OS_VER), 64)
+	FFTW_DIR = lib/fftw64
+endif
+
+
 DAT2CM_DIR = src/dat2cm
 
 DLL_SRC_DIR  = src/dspl
@@ -95,7 +105,7 @@ $(RES_OBJ):$(DLL_SRC_DIR)/resource.rc
 
 	
 $(DLL_OBJ_DIR)/%.o:$(DLL_SRC_DIR)/%.c
-	$(CC) $(DLL_CFLAGS) -c $< -o $@   -Llib/fftw -lfftw3_threads
+	$(CC) $(DLL_CFLAGS) -c $< -o $@   -L$(FFTW_DIR) -lfftw3_threads
 
 
 	

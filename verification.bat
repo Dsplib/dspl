@@ -1,7 +1,7 @@
 
 
 
-mingw32-make  -f Makefile32
+mingw32-make 
 
 @echo off
 
