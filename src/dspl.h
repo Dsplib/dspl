@@ -36,21 +36,24 @@
 #define DSPL_OK						0
 
 /* Error codes */
-#define DSPL_ERROR_ELLIP_K			0x00008000
+#define DSPL_ERROR_ELLIP_K				0x00008000
 //#define	DSPL_ERROR_FFT_NTHREADS		0x00008800	
-#define	DSPL_ERROR_FFT_SIZE			0x00009000	
-#define DSPL_ERROR_FILTER_A0		0x00010000
-#define	DSPL_ERROR_FILTER_ORD		0x00012000
-#define	DSPL_ERROR_FILTER_RP		0x00012500	
-#define	DSPL_ERROR_FILTER_RS		0x00012550 
-#define	DSPL_ERROR_FILTER_WP		0x00012560 
-#define DSPL_ERROR_FNAME			0x00020000	
-#define DSPL_ERROR_FOPEN			0x00025000
-#define DSPL_ERROR_POLY_ORD			0x00090000
-#define DSPL_ERROR_PTR				0x00100000
-#define DSPL_ERROR_SIZE				0x00400000
-#define DSPL_ERROR_UNWRAP			0x00450000
-#define	DSPL_ERROR_WIN_TYPE			0x00500000
+#define	DSPL_ERROR_FFT_SIZE				0x00009000	
+#define DSPL_ERROR_FILTER_A0			0x00010000
+#define	DSPL_ERROR_FILTER_ORD			0x00012000
+#define	DSPL_ERROR_FILTER_RP			0x00012500	
+#define	DSPL_ERROR_FILTER_RS			0x00012550 
+#define	DSPL_ERROR_FILTER_WP			0x00012560 
+#define DSPL_ERROR_FNAME				0x00020000	
+#define DSPL_ERROR_FOPEN				0x00025000
+#define DSPL_ERROR_POLY_ORD				0x00090000
+#define DSPL_ERROR_PTR					0x00100000
+#define DSPL_ERROR_RESAMPLE_FRAC_DELAY	0x00120000
+#define	DSPL_ERROR_RESAMPLE_RATIO		0x00102100
+#define	DSPL_ERROR_RESAMPLE_SIZE		0x00102200
+#define DSPL_ERROR_SIZE					0x00400000
+#define DSPL_ERROR_UNWRAP				0x00450000
+#define	DSPL_ERROR_WIN_TYPE				0x00500000
 	
 	
 /* data */	
@@ -258,6 +261,11 @@ DSPL_API void dspl_print_err (int res, int printCR);
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
 
 
+/* resampling by using Farrow structure (dspl_resample.c) */
+DSPL_API int dspl_resample_lagrange(double *x, int n, int p, int q, 
+									double frd, double *z, int nz);
+
+
 /* Sine for complex argument (dspl_math_basic.c) */					 
 DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI); 
 
@@ -450,6 +458,9 @@ typedef void (*p_dspl_print_err) 	(int res, int printCR);
 /* print message (dspl_inout.c) */
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 
+/* resampling by using Farrow structure (dspl_resample.c) */
+typedef int (*p_dspl_resample_lagrange)(double *x, int n, int p, int q, 
+										double frd, double *z, int nz);
 
 /* Cosine for complex argument (dspl_math_basic.c) */					 
 typedef int (*p_dspl_sin_cmplx)(double *xR, double *xI, int n, double *yR, double *yI); 	
@@ -511,6 +522,7 @@ extern p_dspl_polyval					dspl_polyval   			;
 extern p_dspl_polyval_cmplx				dspl_polyval_cmplx		;
 extern p_dspl_print_err					dspl_print_err	    	;
 extern p_dspl_print_msg 				dspl_print_msg 	    	;
+extern p_dspl_resample_lagrange			dspl_resample_lagrange	;	
 extern p_dspl_sin_cmplx					dspl_sin_cmplx			;
 extern p_dspl_sinh						dspl_sinh				;
 extern p_dspl_sqrt_cmplx				dspl_sqrt_cmplx			;

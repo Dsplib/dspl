@@ -2,8 +2,8 @@
 
 // DLL version information.
 VS_VERSION_INFO    VERSIONINFO
-FILEVERSION        16,05,15,0
-PRODUCTVERSION     16,05,15,0
+FILEVERSION        16,05,25,0
+PRODUCTVERSION     16,05,25,0
 FILEFLAGSMASK      VS_FFI_FILEFLAGSMASK
 #ifdef _DEBUG
   FILEFLAGS        VS_FF_DEBUG | VS_FF_PRERELEASE
@@ -20,12 +20,12 @@ BEGIN
     BEGIN
       VALUE "CompanyName", "dsplib.org"
       VALUE "FileDescription", "Digital Signal Processing Library"
-      VALUE "FileVersion", "16.05.15.0"
+      VALUE "FileVersion", "16.05.25.0"
       VALUE "InternalName", "DSPL"
       VALUE "LegalCopyright", "(c) 2016 Sergey Bakhurin"
       VALUE "OriginalFilename", "dspl.dll"
       VALUE "ProductName", "DSPL"
-      VALUE "ProductVersion", "16.05.15.0"
+      VALUE "ProductVersion", "16.05.25.0"
     END
   END
   BLOCK "VarFileInfo"

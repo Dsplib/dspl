@@ -14,6 +14,7 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/dft_prop_fig2.pdf\
 		fig/dft_prop_fig3.pdf\
 		fig/dft_prop_fig4.pdf\
+		fig/farrow_lagrange_frac_delay.pdf\
 		fig/fft_introduction_fig1.pdf\
 		fig/fft_introduction_fig2.pdf\
 		fig/fft_introduction_fig3.pdf\
