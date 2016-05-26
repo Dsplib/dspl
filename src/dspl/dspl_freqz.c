@@ -33,14 +33,13 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
 
 	double jwR;
 	double jwI;
-	double nR;
-	double nI;
+	double tmp;
 	double dR;
 	double dI;
 	double mag;
 	int k;
 
-	if(!b || !a || !w || !hR || !hI)
+	if(!b || !w || !hR || !hI)
 		return DSPL_ERROR_PTR;
 	if(ord<0)
 		return DSPL_ERROR_FILTER_ORD;
@@ -52,12 +51,15 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
 	{
 		jwR =  cos(w[k]);
 		jwI = -sin(w[k]);
-		dspl_polyval_cmplx(b, NULL, ord, &jwR, &jwI, 1, &nR, &nI);	
-		dspl_polyval_cmplx(a, NULL, ord, &jwR, &jwI, 1, &dR, &dI);
-		mag = 1.0 / (dR * dR + dI * dI);
-		hR[k] = (nR * dR + nI * dI) * mag;
-		hI[k] = (nI * dR - nR * dI) * mag;
- 
+		dspl_polyval_cmplx(b, NULL, ord, &jwR, &jwI, 1, hR+k, hI+k);	
+		if(a)
+		{	
+			dspl_polyval_cmplx(a, NULL, ord, &jwR, &jwI, 1, &dR, &dI);
+			mag = 1.0 / (dR * dR + dI * dI);
+			tmp = (hR[k] * dR + hI[k] * dI) * mag;			
+			hI[k] = (hI[k] * dR - hR[k] * dI) * mag;
+			hR[k] = tmp;
+		}
 	}
 
 	return DSPL_OK;

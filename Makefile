@@ -71,6 +71,7 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/dft_freq_fig4.exe\
 			$(EXE_BIN_DIR)/fft_performance.exe\
 			$(EXE_BIN_DIR)/goertzel_dtmf.exe\
+			$(EXE_BIN_DIR)/resample_lagrange_filter_interp.exe\
 			
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\

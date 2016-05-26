@@ -58,7 +58,7 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 		if(ind == 0)
 		{
 			memset(g, 0, 4*sizeof(double));
-			memcpy(g, s+n-ind, (n-ind)*sizeof(double));
+			memcpy(g+1, s, 3*sizeof(double));
 			y = g;
 		}
 		else
@@ -66,14 +66,14 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 			if(ind > n-2)
 			{
 				memset(g, 0, 4*sizeof(double));
-				memcpy(g, s+n-ind, (n-ind)*sizeof(double));
+				memcpy(g, s+ind-1, (n-ind)*sizeof(double));
 				y = g;
 			}
 			else
 				y = s+ind-1;			
 		}
 		a[0] = y[1];
-		a[3] = DSPL_RESAMPLE_LAGRANGE_COEFF*(y[3] - y[0]);
+		a[3] = DSPL_RESAMPLE_LAGRANGE_COEFF*(y[3] - y[0]) + 0.5*(y[1] - y[2]);
 		a[1] = 0.5*(y[2] - y[0])-a[3];
 		a[2] = y[2] - y[1] -a[3]-a[1];
 		

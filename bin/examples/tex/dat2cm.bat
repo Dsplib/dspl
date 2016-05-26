@@ -31,3 +31,5 @@ dat2cm.exe -i ../dat/dtmf/sym_c_freq.txt -o ../dat/dtmf/sym_c_freq.cm -ymin 0 -y
 dat2cm.exe -i ../dat/dtmf/sym_d_freq.txt -o ../dat/dtmf/sym_d_freq.cm -ymin 0 -ymax 120 -xmin 500 -xmax 1800 -w 4.5 -h 2
 dat2cm.exe -i ../dat/dtmf/sym_r_freq.txt -o ../dat/dtmf/sym_r_freq.cm -ymin 0 -ymax 120 -xmin 500 -xmax 1800 -w 4.5 -h 2
 dat2cm.exe -i ../dat/dtmf/sym_s_freq.txt -o ../dat/dtmf/sym_s_freq.cm -ymin 0 -ymax 120 -xmin 500 -xmax 1800 -w 4.5 -h 2
+
+mingw32-make

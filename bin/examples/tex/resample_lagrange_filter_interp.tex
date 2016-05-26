@@ -1,0 +1,75 @@
+\documentclass{standalone}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{color}
+
+
+\usepackage{pgfplots}
+\pgfplotsset{width=9cm,compat=1.12}
+\usetikzlibrary{backgrounds}
+\begin{document}
+\begin{tikzpicture}[baseline]
+	\begin{axis}[xlabel={$n$},
+		ylabel={$h(n)$},
+		xmin = 0,
+		xmax = 20,
+		ymin = -0.1,
+		ymax = 1.1,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=3]
+		\addplot + [dashed,draw=blue, mark=none] table {../dat/resample/lagrange_filter_time.txt};
+		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5}] table {../dat/resample/lagrange_filter_time.txt};
+	\end{axis}
+\end{tikzpicture}%
+\hspace{0.15cm}
+\begin{tikzpicture}[baseline]
+	\begin{axis}[xlabel={$\omega_{\textrm{н}}$},
+		ylabel={$\left| H\left( e^{j \cdot \omega_{\textrm{н}}}\right) \right|^2$},
+		ymin = -90,
+		ymax = 10,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=3]
+		\addplot + [draw=blue, mark=none] table {../dat/resample/lagrange_filter_freq.txt};
+	
+	\end{axis}
+
+	
+%		xtick={0,
+%		0.31415926535897932384626433832795,
+%		0.6283185307179586476925286766559,
+%		0.94247779607693797153879301498385,
+%		1.2566370614359172953850573533118,
+%		1.5707963267948966192313216916398,
+%		1.8849555921538759430775860299677,
+%		2.1991148575128552669238503682957,
+%		2.5132741228718345907701147066236,
+%		2.8274333882308139146163790449516},
+%	xticklabels={$0$,
+%		${\pi}\frac{10}$,
+%		${2\pi}\frac{10}$,
+%		${3\pi}\frac{10}$,
+%		${4\pi}\frac{10}$,
+%		${\pi}\frac{2}$,
+%		${6\pi}\frac{10}$,
+%		${7\pi}\frac{10}$,
+%		${8\pi}\frac{10}$,
+%		${9\pi}\frac{10}$},
+	
+	
+	
+	
+	
+	\end{tikzpicture}
+\end{document}
