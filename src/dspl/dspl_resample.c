@@ -66,7 +66,7 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 			if(ind > n-2)
 			{
 				memset(g, 0, 4*sizeof(double));
-				memcpy(g, s+ind-1, (n-ind)*sizeof(double));
+				memcpy(g, s+ind-1, (n-ind+1)*sizeof(double));
 				y = g;
 			}
 			else

@@ -1,0 +1,24 @@
+
+#ifdef DOXYGEN_EN
+/*!
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+
+
+
+
+
+
+
+#elseif DOXYGEN_RU
+/*!
+	
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+
+*/
+
+#endif

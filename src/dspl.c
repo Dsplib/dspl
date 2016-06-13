@@ -29,6 +29,7 @@ p_dspl_freqs					dspl_freqs		    	;
 p_dspl_freqz					dspl_freqz		    	;
 p_dspl_get_version 				dspl_get_version 		;
 p_dspl_goertzel					dspl_goertzel			;
+p_dspl_hilbert					dspl_hilbert			;
 p_dspl_ifft						dspl_ifft		    	;
 p_dspl_linspace					dspl_linspace			;
 p_dspl_log_cmplx				dspl_log_cmplx			;
@@ -206,6 +207,12 @@ HINSTANCE	dspl_load()
 	dspl_goertzel = (p_dspl_goertzel) GetProcAddress(hDSPL, func_name);
 	if(!dspl_goertzel)
 		goto error_proc;
+	
+	func_name = "dspl_hilbert";
+	dspl_hilbert = (p_dspl_hilbert) GetProcAddress(hDSPL, func_name);
+	if(!dspl_hilbert)
+		goto error_proc;
+	
 	
 	
 	func_name = "dspl_ifft";

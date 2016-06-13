@@ -216,7 +216,10 @@ DSPL_API int dspl_goertzel(	double *xR, double *xI, int n,
 							int *ind, int k, 
 							double *yR, double *yI);
 
-
+							
+/* Analytic signal calculation  (dspl_hilbert.c) */
+DSPL_API int dspl_hilbert(double* x, int n, void* pdspl, double* y);							
+							
 /* Inverse Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
 
@@ -416,6 +419,10 @@ typedef int (*p_dspl_goertzel)(	double *xR, double *xI, int n,
 							int *ind, int k, 
 							double *yR, double *yI);
 
+
+/* Analytic signal calculation  (dspl_hilbert.c) */
+typedef int (*p_dspl_hilbert)(double* x, int n, void* pdspl, double* y);	
+
 							
 /* Inverse Fast Fourier Transform  (dspl_fft.c)*/
 typedef int (*p_dspl_ifft) (double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
@@ -512,6 +519,7 @@ extern p_dspl_freqs						dspl_freqs		    	;
 extern p_dspl_freqz						dspl_freqz		    	;
 extern p_dspl_get_version 				dspl_get_version 		;
 extern p_dspl_goertzel					dspl_goertzel			;
+extern p_dspl_hilbert					dspl_hilbert			;
 extern p_dspl_ifft						dspl_ifft		    	;
 extern p_dspl_log_cmplx					dspl_log_cmplx			;
 extern p_dspl_linspace 					dspl_linspace 			;
