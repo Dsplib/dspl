@@ -21,6 +21,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
+#include <time.h>
+
 #include "dspl.h"
 #include "dspl_main.h"
 
@@ -117,9 +119,11 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 {
 	switch( fdwReason )
 	{
-		case DLL_PROCESS_ATTACH:			
+		case DLL_PROCESS_ATTACH:
+			srand(time(NULL));			
 			break;
 		case DLL_THREAD_ATTACH: 
+			srand(time(NULL));
 			break;        
 		case DLL_THREAD_DETACH:
 			break;

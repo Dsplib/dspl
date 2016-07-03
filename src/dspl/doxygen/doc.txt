@@ -24,6 +24,8 @@
 	\defgroup WIN_GROUP	Window functions collection
 	\ingroup SPECTRAL_GROUP	
 	
+	\defgroup HILBERT_GROUP	Hilbert Transform
+	\ingroup MAIN_GROUP
 	
 
 	
@@ -65,7 +67,9 @@
 	\defgroup SPEC_MATH_ELLIP_GROUP Elliptic functions of real and complex arguments.
 	\ingroup SPEC_MATH_GROUP
 
-	
+	\defgroup SPEC_MATH_RAND_GEN_GROUP	Random numbers generation group
+	\ingroup SPEC_MATH_GROUP
+   
 
 	\defgroup IN_OUT_GROUP Input - output functions
 	\ingroup MAIN_GROUP
@@ -105,7 +109,13 @@
 	\ingroup SPECTRAL_GROUP	
 	
 	
+	\defgroup HILBERT_GROUP	Преобразование Гильберта
+	\ingroup MAIN_GROUP
+	
+	В данной группе собраны функции реализующие алгоритмы преобразования Гильберта.
 		
+
+	
 	\defgroup FILTER_GROUP	Цифровая фильтрация. Синтез и анализ цифровых фильтров.
 	\ingroup MAIN_GROUP
 	
@@ -143,6 +153,9 @@
 	\ingroup SPEC_MATH_GROUP
 	
 	\defgroup SPEC_MATH_ELLIP_GROUP Эллиптические функции вещественного и комплексного аргумента.
+	\ingroup SPEC_MATH_GROUP
+
+	\defgroup SPEC_MATH_RAND_GEN_GROUP Генерация случайных чисел
 	\ingroup SPEC_MATH_GROUP
 
  

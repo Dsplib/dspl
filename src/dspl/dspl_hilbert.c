@@ -73,7 +73,7 @@ DSPL_API int dspl_hilbert(double* x, int n, void* pdspl, double* y)
 	ninv = 2.0 / (double) n;
 	
 	for(k = 0; k < n; k++)
-		y[k] = -ninv * out[2*k];
+		y[k] = -ninv * out[2*k+1];
 	
 	return DSPL_OK;
 }

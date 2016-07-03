@@ -48,6 +48,7 @@
 #define DSPL_ERROR_FOPEN				0x00025000
 #define DSPL_ERROR_POLY_ORD				0x00090000
 #define DSPL_ERROR_PTR					0x00100000
+#define DSPL_ERROR_RAND_SIGMA			0x00110000
 #define DSPL_ERROR_RESAMPLE_FRAC_DELAY	0x00120000
 #define	DSPL_ERROR_RESAMPLE_RATIO		0x00102100
 #define	DSPL_ERROR_RESAMPLE_SIZE		0x00102200
@@ -264,6 +265,14 @@ DSPL_API void dspl_print_err (int res, int printCR);
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
 
 
+/* uniform random numbers generation (dspl_rand_gen.c) */
+DSPL_API int dspl_rand(double* x, int n);
+
+
+/* Gaussian random numbers generation (dspl_rand_gen.c) */
+DSPL_API int dspl_randn(double* x, int n, double mu, double sigma);
+
+
 /* resampling by using Farrow structure (dspl_resample.c) */
 DSPL_API int dspl_resample_lagrange(double *x, int n, int p, int q, 
 									double frd, double *z, int nz);
@@ -465,6 +474,15 @@ typedef void (*p_dspl_print_err) 	(int res, int printCR);
 /* print message (dspl_inout.c) */
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
 
+
+/* uniform random numbers generation (dspl_rand_gen.c) */
+typedef int (*p_dspl_rand)(double* x, int n);
+
+
+/* Gaussian random numbers generation (dspl_rand_gen.c) */
+typedef int (*p_dspl_randn)(double* x, int n, double mu, double sigma);
+
+
 /* resampling by using Farrow structure (dspl_resample.c) */
 typedef int (*p_dspl_resample_lagrange)(double *x, int n, int p, int q, 
 										double frd, double *z, int nz);
@@ -530,6 +548,8 @@ extern p_dspl_polyval					dspl_polyval   			;
 extern p_dspl_polyval_cmplx				dspl_polyval_cmplx		;
 extern p_dspl_print_err					dspl_print_err	    	;
 extern p_dspl_print_msg 				dspl_print_msg 	    	;
+extern p_dspl_rand						dspl_rand				;
+extern p_dspl_randn						dspl_randn				;
 extern p_dspl_resample_lagrange			dspl_resample_lagrange	;	
 extern p_dspl_sin_cmplx					dspl_sin_cmplx			;
 extern p_dspl_sinh						dspl_sinh				;

@@ -56,6 +56,7 @@ DLL_OBJS=	$(DLL_OBJ_DIR)/dspl_cconv.o\
 			$(DLL_OBJ_DIR)/dspl_math_ellip.o\
 			$(DLL_OBJ_DIR)/dspl_math_hyperbolic.o\
 			$(DLL_OBJ_DIR)/dspl_polyval.o\
+			$(DLL_OBJ_DIR)/dspl_rand_gen.o\
 			$(DLL_OBJ_DIR)/dspl_resample.o\
 			$(DLL_OBJ_DIR)/dspl_unwrap.o\
 			$(DLL_OBJ_DIR)/dspl_win.o\
