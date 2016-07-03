@@ -1,0 +1,40 @@
+
+#ifdef DOXYGEN_EN
+/*!
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+
+
+
+
+
+
+
+#elseif DOXYGEN_RU
+/*!
+	\ingroup SPEC_MATH_RAND_GEN_GROUP
+	\fn int dspl_rand(double* x, int n);
+	\brief Генерация вектора равномерно-распределенных в интервале от 0 до 1 случайных чисел.
+	Генерация производится при помощи рекурсивного алгоритма L'Ecluyer. Период датчика порядка 10^56.
+	
+	
+	\param[in,out] x	Указатель на вектор случайных чисел. 
+						Размер вектора `[n x 1]`.
+						Память должна быть выделена.
+				
+	\param[in]		n	Размер вектора случайных чисел.
+	
+	\return
+			`DSPL_OK`		 Вектор случайных чисел сгенерирован успешно.<BR>
+			`DSPL_ERROR_PTR` указатель x не может быть `NULL`.<BR>
+			`DSPL_ERROR_PTR` размер вектора `n` должен быть больше нуля.<BR>
+	
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+	
+*/
+
+#endif
