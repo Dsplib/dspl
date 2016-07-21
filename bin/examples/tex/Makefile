@@ -31,6 +31,7 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/goertzel_fig1.pdf\
 		fig/goertzel_fig2.pdf\
 		fig/goertzel_fig3.pdf\
+		fig/hilbert_fft.pdf\
 		fig/resample_lagrange_filter.pdf\
 
 

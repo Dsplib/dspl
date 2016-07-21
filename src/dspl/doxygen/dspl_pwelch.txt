@@ -1,0 +1,174 @@
+
+#ifdef DOXYGEN_EN
+/*!
+	\ingroup DFT_GROUP
+	\fn int dspl_pwelch(double *xR, double *xI, int n, 
+						int win_type, double win_param, 
+						int npsd, int noverlap, void *pdspl, 
+						double fs, double *ppsd, double *pfrq)
+						
+	Estimate two-side  power spectral density (PSD) by the Welch periodogram/FFT method.
+
+	The PSD is the mean of the periodograms, scaled so that
+	area under the spectrum is the same as the mean square of the data.
+	
+	\param[in]	xR		Input signal real part pointer. 
+						Vector size is `[n x 1]`. 						
+	
+	\param[in]	xI  	Input signal vector image part pointer. 
+						Vector size is `[n x 1]`.		
+						This pointer can be `NULL` if PSD is calculated for a real signal.
+	
+	\param[in]	 n		Input signal size (input and output vectors size).
+	
+	\param [in]	win_type	Bit string for set window function type.<BR>
+							This parameter is bit masks combination
+							`DSPL_WIN_MASK | DSPL_WIN_SYM_MASK`.<BR>
+							Bit mask `DSPL_WIN_MASK` sets window function type:<BR>
+							Value `DSPL_WIN_MASK` 	| Description
+							----------------------------|----------------------------
+							`DSPL_WIN_BARTLETT`			|Non-parametric Bartlett window		
+							`DSPL_WIN_BARTLETT_HANN`	|Non-parametric Bartlett-Hann window		
+							`DSPL_WIN_BLACKMAN`			|Non-parametric Blackman window		
+							`DSPL_WIN_BLACKMAN_HARRIS`	|Non-parametric Blackman-Harris window			
+							`DSPL_WIN_BLACKMAN_NUTTALL`	|Non-parametric Blackman-Nuttall window		
+							`DSPL_WIN_COS`				|Non-parametric cosine window		
+							`DSPL_WIN_FLAT_TOP`			|Non-parametric flat top window		
+							`DSPL_WIN_GAUSSIAN`			|Parametric Gaussian window		
+							`DSPL_WIN_HAMMING`			|Non-parametric Hamming window		
+							`DSPL_WIN_HANN`				|Non-parametric Hann window		
+							`DSPL_WIN_LANCZOS`			|Non-parametric Lanczos window		
+							`DSPL_WIN_NUTTALL`			|Non-parametric Nuttall window		
+	                        `DSPL_WIN_RECT`				|Non-parametric rectangular window		
+							Bit mask `DSPL_WIN_SYM_MASK` sets symmetric or periodic window:<BR>
+							Value `DSPL_WIN_SYM_MASK` 	| Description
+							--------------------------------|----------------------------
+							`DSPL_WIN_SYMMETRIC`			|Symmetric window (by default)	
+							`DSPL_WIN_PERIODIC`				|Periodic window
+							
+	\param [in]	win_param	Window function parameter (for parametric windows only). <BR>
+							This parameter is ignored for non-parametric windows.
+							
+	\param [in]	npsd		PSD size.
+
+	\param [in]	noverlap	PSD overlap size. This number must be from 1 to `npsd`.
+	
+	\param [in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
+						This object can be created by `dspl_obj_create` function before using
+						and should be destroyed by `dspl_obj_free` before exit.
+						
+	\param [in]	fs		Input signal sample rate (Hz).
+	
+	\param [out] ppsd	PSD vector pointer.
+						Vector size is `[npsd x 1]`.
+						Memory should be allocated.
+
+	\param [out] pfrq	PSD frequency vector pointer.
+						Vector size is `[npsd x 1]`.
+						Memory should be allocated.
+	
+	
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+
+
+
+
+
+
+
+#elseif DOXYGEN_RU
+/*!
+	\ingroup DFT_GROUP
+	\fn int dspl_pwelch(double *xR, double *xI, int n, 
+						int win_type, double win_param, 
+						int npsd, int noverlap, void *pdspl, 
+						double fs, double *ppsd, double *pfrq)
+						
+	Оценка спектральной плотности мощности (СПМ) случайного процесса методом Уэлча.
+
+	СПМ есть среднее периодограм нормированное к мощности входного сигнала.
+	
+	\param[in]	xR		Указатель вектор реальной части входного сигнала. 
+						Размер вектора `[n x 1]`. 						
+	
+	\param[in]	xI  	Указатель вектор мнимой части входного сигнала. 
+						Размер вектора `[n x 1]`.
+						Этот указатель может быть `NULL` если СПМ рассчитывается для 
+						вещественного процесса.
+	
+	\param[in]	 n		Размер выборки входного сигнала (размер векторов `xR` и `xI`).
+	
+	\param [in]	win_type	Комбинация флагов для задания типа оконной
+							функции.<BR>
+							Для задания типа окна используется 
+							комбинация битовых масок
+							`DSPL_WIN_MASK | DSPL_WIN_SYM_MASK`.<BR>
+							Маска `DSPL_WIN_MASK` задает тип оконной функции.
+							Может принимать следующие значения:<BR>
+							Значение `DSPL_WIN_MASK` 	| Описание
+							----------------------------|----------------------------
+							`DSPL_WIN_BARTLETT`			|Непараметрическое окно Бартлетта		
+							`DSPL_WIN_BARTLETT_HANN`	|Непараметрическое окно Бартлетта-Ханна	
+							`DSPL_WIN_BLACKMAN`			|Непараметрическое окно Блэкмана	
+							`DSPL_WIN_BLACKMAN_HARRIS`	|Непараметрическое окно Блэкмана-Харриса	
+							`DSPL_WIN_BLACKMAN_NUTTALL`	|Непараметрическое окно Блэкмана-Натталла
+							`DSPL_WIN_COS`				|Непараметрическое косинус-окно 
+							`DSPL_WIN_FLAT_TOP`			|Непараметрическое окно с максимально плоской вершиной
+							`DSPL_WIN_GAUSSIAN`			|Параметрическое окно Гаусса
+							`DSPL_WIN_HAMMING`			|Непараметрическое окно Хемминга	
+							`DSPL_WIN_HANN`				|Непараметрическое окно Ханна
+							`DSPL_WIN_LANCZOS`			|Непараметрическое окно Ланкзоса	
+							`DSPL_WIN_NUTTALL`			|Непараметрическое окно Натталла
+	                        `DSPL_WIN_RECT`				|Непараметрическое прямоугольное окно
+							Маска `DSPL_WIN_SYM_MASK` задает симметричное или периодическое окно:<BR>
+							Значение `DSPL_WIN_SYM_MASK` 	| Описание
+							--------------------------------|----------------------------
+							`DSPL_WIN_SYMMETRIC`			|Симметричное окно (по умолчанию)	
+							`DSPL_WIN_PERIODIC`				|Периодическое окно
+							
+	\param [in]	win_param	Параметр окна. Данный параметр применяется только для параметрических
+							оконных функций. Для непараметрических окон игнорируется.
+
+							
+	\param [in]	npsd		Размер оценки СПМ в частотной области. 
+							Задает количество спектральных отсчетов СПМ и 
+							длину временного окна для оценки периодограмм.
+
+	\param [in]	noverlap	Величина перекрытия периодограмм при усреднении.
+							Параметр должен принимать значения от 1 до `npsd`.
+	
+	\param [in]	pdspl	Указатель на объект DSPL. 
+						Объект DSPL это внутренняя структура, 
+						которая хранит необходимые данные для алгоритмов библиотеки.
+						Объект DSPL должен быть  однократно заполнен функцией 
+						`#dspl_obj_create` после связывания с DSPL, 
+						и должен быть очищен функцией `#dspl_obj_free` перед выходом.
+	
+	\param [in]	fs		Частота дискретизации входного сигнала (Гц).
+	
+	\param [out] ppsd	Указатель на вектор СПМ
+						Размер вектора `[npsd x 1]`.
+						Память должна быть выделена.
+
+	\param [out] pfrq	Указатель на вектор частоты соответствующей отсчетам СПМ.
+						Размер вектора `[npsd x 1]`.
+						Память должна быть выделена.
+						
+	\return
+		`DSPL_OK`  если СПМ рассчитана успешно. <BR>
+		`DSPL_ERROR_PTR`  если `xR == NULL` или `pdspl == NULL` или `ppsd == NULL`. <BR>
+		`DSPL_ERROR_SIZE` если `n<1` или `npsd<1`.<BR>
+		`DSPL_ERROR_OVERLAP` ошибка задания параметра `noverlap`. 
+								Данный параметр должен быть от 1 до `npsd`.<BR>
+		`DSPL_ERROR_FS` параметр частоты дискретизации дожен быть положительным.<BR>
+		
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+
+*/
+
+#endi

@@ -1,11 +1,46 @@
 
 #ifdef DOXYGEN_EN
 /*!
+	\ingroup DSPL_OBJECT
+	\fn int dspl_obj_create(void **obj)
+	DSPL object create.
+	
+	This function creates DSPL object for intermediate operations.
+	
+	\param[in, out]	obj	DSPL object pointer
+						
+	\return 
+		`DSPL_OK` if DSPL object created successfully .
+		`DSPL_ERROR_PTR` if `obj` parameter is `NULL`.
+		
+	\note
+		DSPL object must be clear by `#dspl_obj_free` function before your program is finished. 
+	
 	\author
 		Sergey Bakhurin.                                                         
-		www.dsplib.org    
+		www.dsplib.org
 */
 
+
+
+
+/*!
+	\ingroup DSPL_OBJECT
+	\fn int dspl_obj_free(void **obj)
+	Clear DSPL object.
+	
+
+		
+	\param[in, out]	obj	DSPL object pointer.
+						
+	\return 
+		`DSPL_OK` DSPL object has been cleared successfully.
+		`DSPL_ERROR_PTR` object `obj` is `NULL`.
+
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org
+*/
 
 
 

@@ -54,13 +54,6 @@
 		Sergey Bakhurin.                                                         
 		www.dsplib.org    
 */
-
-
-
-
-
-
-
 #elseif DOXYGEN_RU
 /*!
 	\ingroup WIN_GROUP
@@ -125,5 +118,4 @@
  		www.dsplib.org	
 
 */
-
 #endif

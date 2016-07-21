@@ -30,17 +30,22 @@ p_dspl_freqz					dspl_freqz		    	;
 p_dspl_get_version 				dspl_get_version 		;
 p_dspl_goertzel					dspl_goertzel			;
 p_dspl_hilbert					dspl_hilbert			;
+p_dspl_histogram				dspl_histogram			;
+p_dspl_histogram_norm			dspl_histogram_norm		;
 p_dspl_ifft						dspl_ifft		    	;
 p_dspl_linspace					dspl_linspace			;
 p_dspl_log_cmplx				dspl_log_cmplx			;
 p_dspl_logspace					dspl_logspace			;
+p_dspl_minmax					dspl_minmax				;
 p_dspl_obj_create				dspl_obj_create			; 
 p_dspl_obj_free					dspl_obj_free			; 		
 p_dspl_polyval					dspl_polyval	    	;
 p_dspl_polyval_cmplx			dspl_polyval_cmplx  	;
 p_dspl_print_err				dspl_print_err	    	;
 p_dspl_print_msg 				dspl_print_msg 	    	;
+p_dspl_pwelch					dspl_pwelch				;
 p_dspl_rand						dspl_rand				;
+p_dspl_randn					dspl_randn				;
 p_dspl_resample_lagrange		dspl_resample_lagrange	;	
 p_dspl_sin_cmplx				dspl_sin_cmplx			;
 p_dspl_sinh						dspl_sinh				;
@@ -215,6 +220,19 @@ HINSTANCE	dspl_load()
 		goto error_proc;
 	
 	
+	func_name = "dspl_histogram";
+	dspl_histogram = (p_dspl_histogram) GetProcAddress(hDSPL, func_name);
+	if(!dspl_histogram)
+		goto error_proc;
+	
+	
+	func_name = "dspl_histogram_norm";
+	dspl_histogram_norm = (p_dspl_histogram_norm) GetProcAddress(hDSPL, func_name);
+	if(!dspl_histogram_norm)
+		goto error_proc;
+		
+	
+	
 	
 	func_name = "dspl_ifft";
 	dspl_ifft = (p_dspl_ifft) GetProcAddress(hDSPL, func_name);
@@ -240,6 +258,11 @@ HINSTANCE	dspl_load()
 	if(!dspl_log_cmplx)
 		goto error_proc;
 	
+	
+	func_name = "dspl_minmax";
+	dspl_minmax = (p_dspl_minmax) GetProcAddress(hDSPL, func_name);
+	if(!dspl_minmax)
+		goto error_proc;
 	
 	
 	func_name = "dspl_obj_create";
@@ -279,6 +302,11 @@ HINSTANCE	dspl_load()
 		goto error_proc;
 	
 	
+	func_name = "dspl_pwelch";
+	dspl_pwelch = (p_dspl_pwelch) GetProcAddress(hDSPL, func_name);
+	if(!dspl_pwelch)
+		goto error_proc;
+	
 	func_name = "dspl_rand";
 	dspl_rand = (p_dspl_rand) GetProcAddress(hDSPL, func_name);
 	if(!dspl_rand)
@@ -293,7 +321,7 @@ HINSTANCE	dspl_load()
 	
 	func_name = "dspl_resample_lagrange";
 	dspl_resample_lagrange = (p_dspl_resample_lagrange) GetProcAddress(hDSPL, func_name);
-	if(!dspl_print_msg)
+	if(!dspl_resample_lagrange)
 		goto error_proc;
 	
 	func_name = "dspl_sin_cmplx";

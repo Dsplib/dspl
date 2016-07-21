@@ -1,6 +1,5 @@
 
 #ifdef DOXYGEN_EN
-
 /*!
 	\ingroup DFT_GROUP
 	\fn int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)

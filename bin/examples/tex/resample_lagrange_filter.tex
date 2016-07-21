@@ -28,13 +28,13 @@
 		every minor grid/.style={black!10, opacity=0.5},
 		minor tick num=3]
 		\addplot + [dashed,draw=blue, mark=none] table {../dat/resample/lagrange_filter_time.txt};
-		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5}] table {../dat/resample/lagrange_filter_time.txt};
+		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/resample/lagrange_filter_time.txt};
 	\end{axis}
 \end{tikzpicture}%
 \hspace{0.15cm}
 \begin{tikzpicture}[baseline]
 	\begin{axis}[xlabel={$\omega$},
-		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$},
+		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
 		ymin = -80,
 		ymax = 25,
 		xmin = 0,
