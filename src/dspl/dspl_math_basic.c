@@ -137,7 +137,7 @@ DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double 
 		tI = xI ? xI[k] : 0.0;
 		a = xI ? sqrt(xR[k]*xR[k] + tI*tI) : fabs(xR[k]);
 		yR[k] = sqrt(0.5 * (a+xR[k]));
-		t = sqrt(0.5+ (a-xR[k]));
+		t = sqrt(0.5*(a-xR[k]));
 		yI[k] = (tI > 0) ? t : -t;
 		
 	}

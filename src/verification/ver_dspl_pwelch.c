@@ -41,16 +41,16 @@ int main()
 						NPSD, NPSD/2, pdspl, FS, psd, frq);
 						
 						
-	dspl_writebin(xR,  xI, N, "dat/dspl_pwelch/pwelch_in_even.bin");
-	dspl_writebin(frq, psd, NPSD, "dat/dspl_pwelch/pwelch_out_even.bin");
+	dspl_writebin(xR,  xI, N, "dat/pwelch_in_even.bin");
+	dspl_writebin(frq, psd, NPSD, "dat/pwelch_out_even.bin");
 	
 	
 	dspl_pwelch(xR, xI, N-1, DSPL_WIN_BLACKMAN | DSPL_WIN_PERIODIC, 0, 
 						NPSD, NPSD/2, pdspl, FS, psd, frq);
 						
 						
-	dspl_writebin(xR,  xI, N-1, "dat/dspl_pwelch/pwelch_in_odd.bin");
-	dspl_writebin(frq, psd, NPSD, "dat/dspl_pwelch/pwelch_out_odd.bin");
+	dspl_writebin(xR,  xI, N-1, "dat/pwelch_in_odd.bin");
+	dspl_writebin(frq, psd, NPSD, "dat/pwelch_out_odd.bin");
 	
 	
 	dspl_obj_free(&pdspl);

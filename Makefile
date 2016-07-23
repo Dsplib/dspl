@@ -88,8 +88,9 @@ VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\
 		    $(VER_BIN_DIR)/ver_dspl_hilbert.exe\
 		    $(VER_BIN_DIR)/ver_dspl_histogram_norm.exe\
+		    $(VER_BIN_DIR)/ver_dspl_math_basic.exe\
 		    $(VER_BIN_DIR)/ver_dspl_pwelch.exe\
-			$(VER_BIN_DIR)/ver_dspl_trigonometric.exe\
+			
 
 PRF_FILES = $(PRF_BIN_DIR)/fft_performance.exe\
 				 

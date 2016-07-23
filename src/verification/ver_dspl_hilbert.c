@@ -35,12 +35,12 @@ int main()
 
 	dspl_hilbert(x, N, pdspl, y);
 	
-	dspl_writebin(x, y, N, "dat/dspl_hilbert/hilbert_fft_even.bin");
+	dspl_writebin(x, y, N, "dat/hilbert_fft_even.bin");
 	
 	dspl_hilbert(x, N-1, pdspl, y);
 	
 	/* save result for odd length */
-	dspl_writebin(x, y, N-1, "dat/dspl_hilbert/hilbert_fft_odd.bin");
+	dspl_writebin(x, y, N-1, "dat/hilbert_fft_odd.bin");
 
 	dspl_obj_free(&pdspl);
 

@@ -5,11 +5,11 @@ if(isOctave)
 end
 addpath('functions');
 
-[x, n, m] = dspl_readbin('../dat/dspl_hilbert/hilbert_fft_even.bin');
+[x, n, m] = dspl_readbin('../dat/hilbert_fft_even.bin');
 z = hilbert(real(x));
 dspl_verification('dspl_hilbert (even length)',  x, z);
 
 
-[x, n, m] = dspl_readbin('../dat/dspl_hilbert/hilbert_fft_odd.bin');
+[x, n, m] = dspl_readbin('../dat/hilbert_fft_odd.bin');
 z = hilbert(real(x));
 dspl_verification('dspl_hilbert (odd length)',  x, z);

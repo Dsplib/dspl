@@ -3,7 +3,7 @@ clear all; close all;
 
 addpath('functions');
 
-[x, n, m] = dspl_readbin('../dat/dspl_ellip/ellipk.bin');
+[x, n, m] = dspl_readbin('../dat/ellipk.bin');
 
 
 k = real(x);

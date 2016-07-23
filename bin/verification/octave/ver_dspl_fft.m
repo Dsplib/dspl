@@ -2,9 +2,9 @@ clear all; close all;
 
 addpath('functions');
 
-[x, n, m] = dspl_readbin('../dat/dspl_fft/fft_in.bin');
-[y, n, m] = dspl_readbin('../dat/dspl_fft/fft_out.bin');
-[z, n, m] = dspl_readbin('../dat/dspl_fft/ifft_out.bin');
+[x, n, m] = dspl_readbin('../dat/fft_in.bin');
+[y, n, m] = dspl_readbin('../dat/fft_out.bin');
+[z, n, m] = dspl_readbin('../dat/ifft_out.bin');
 
 
 Y = fft(x);

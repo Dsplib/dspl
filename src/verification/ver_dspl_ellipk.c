@@ -34,7 +34,7 @@ int main()
 	
 	dspl_ellipk(k,N,K);
 	
-	dspl_writebin(k, K, N, "dat/dspl_ellip/ellipk.bin");
+	dspl_writebin(k, K, N, "dat/ellipk.bin");
 	
 	dspl_obj_free(&pdspl);
 	

@@ -15,19 +15,23 @@
 
 В качестве входного сигнала выступает белый гауссовский процесс. <BR>
 
-В результате выполнения программы, в директории `dat/hilbert` будует создан текстовый файл
-hilbert_fft.txt который хранит отсчеты спектральной плотности мощности полученного аналитического сигнала.<BR>
+В результате выполнения программы, в директории `dat` будует создан текстовый файл
+`hilbert_fft.txt` который хранит отсчеты спектральной плотности мощности полученного аналитического сигнала.<BR>
 
-При построении спектальной плотности мощности можно видеть высокий уровень боковых лепестков спектральной плотности мощности.
+График спектральной плотности мощности, построенный по отсчетам из файла `hilbert_fft.txt`
+показан на рисунке ниже.
+
+\image html hilbert_fft.png
+
+Можно видеть высокий уровень боковых лепестков спектральной плотности мощности в отрицательной области частот.
 Данный эффект обусловлен тем, что размер блока преобразования Гильерта `NFFT` меньше размера вектора спектальной плотности 
 мощности `NPSD`. <BR>
 
-Данный пример наглядно иллюстрирует что используя преобразование Гильберта на осное FFT мы 
+Данный пример наглядно иллюстрирует, что  используя преобразование Гильберта на осное FFT мы 
 обнуляем значения фиксированных частот в отрицательной области, но никак не контроллируем поведение
 спектральной плотности мощности между обнуленныыми спектральными отсчетами.<BR> 
 
-Данный эффект носит название эффекта Гиббса.
-и  
+Данный эффект носит название эффекта Гиббса и проявляется при попытке построения фильтров на основе частотной выборки.   
 */
 
 #endif
@@ -71,9 +75,15 @@ int main()
 		printf("dspl.dll loading ERROR!\n");
 		return 0;
 	}
+
+	/* create DSPL object for Hilbert transform */
 	dspl_obj_create(&pdspl);
 	
+	/* generate random vector */
 	dspl_randn(x, N, 0.0, 1.0);
+
+	/* calculate the block Hilbert transform with 0.5 overlapping.	
+	The signal z = x+ j*y is analytic signal*/
 	memset(y, 0, N*sizeof(double));
 	n = 0;
 	while(n + NFFT <= N)
@@ -83,19 +93,25 @@ int main()
 		n+=NFFT/2;	
 	}
 	
+	/* calculate PSD of the analytic signal*/
 	dspl_pwelch(x+NFFT/4, y+NFFT/4, N-NFFT/2, 
 				DSPL_WIN_HAMMING | DSPL_WIN_PERIODIC, 0, 
 				NPSD, NPSD/2, pdspl, FS, psd, frq);
-				
+
+	/* linear PSD to dB scaling */ 
 	for(n = 0; n < NPSD; n++)
 		psd[n] = 10*log10(psd[n]);
 	
+	/* frequency vector */ 
 	dspl_linspace(-FS/2.0, FS/2.0, NPSD, DSPL_PERIODIC, frq);
+
+	/* FFT shift. Zero frequency in the center */
 	dspl_fft_shift(psd, NULL, NPSD, psd, NULL);
 	
-	dspl_writetxt(frq,psd,NPSD,"dat/hilbert/");
+	/* write PSD to the dat/hilbert_fft.txt */
+	dspl_writetxt(frq,psd,NPSD,"dat/hilbert_fft.txt");
 
-	
+	/* Free DSPL object */
 	dspl_obj_free(&pdspl);
 
 	/* clear dspl handle */

@@ -49,14 +49,14 @@ int main()
 	/* */
 	dspl_rand(y, N);	
 	dspl_histogram_norm(y, N, NHIST, x, w);	
-	dspl_writebin(y, NULL, N,  "dat/dspl_histogram_norm/rand_y.bin");
-	dspl_writebin(x, w, NHIST, "dat/dspl_histogram_norm/rand_h.bin");
+	dspl_writebin(y, NULL, N,  "dat/histogram_rand_y.bin");
+	dspl_writebin(x, w, NHIST, "dat/histogram_rand_h.bin");
 	
 	/* gaussian random numbers m = 0, std = 1.0 */
 	dspl_randn(y, N, 0.0, 1.0);
 	dspl_histogram_norm(y, N, NHIST, x, w);
-	dspl_writebin(y, NULL, N,  "dat/dspl_histogram_norm/randn_y.bin");
-	dspl_writebin(x, w, NHIST, "dat/dspl_histogram_norm/randn_h.bin");
+	dspl_writebin(y, NULL, N,  "dat/histogram_randn_y.bin");
+	dspl_writebin(x, w, NHIST, "dat/histogram_randn_h.bin");
 	
 	
 	

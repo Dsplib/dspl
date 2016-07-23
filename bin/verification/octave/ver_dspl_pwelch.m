@@ -5,8 +5,8 @@ if(isOctave)
 end
 addpath('functions');
 
-[x, n, m] = dspl_readbin('../dat/dspl_pwelch/pwelch_in_even.bin');
-[y, n, m] = dspl_readbin('../dat/dspl_pwelch/pwelch_out_even.bin');
+[x, n, m] = dspl_readbin('../dat/pwelch_in_even.bin');
+[y, n, m] = dspl_readbin('../dat/pwelch_out_even.bin');
 
 Fs = 2;
 N = length(y);
