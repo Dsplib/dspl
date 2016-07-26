@@ -1,0 +1,176 @@
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{fig_header.tex}
+
+
+
+\begin {document}
+\begin{tikzpicture}		
+		
+
+\node(in) at (0,0.5)  [none, left] {$s(n)$};
+
+\node(d00) at (1,-2)  [delay] {$z^{-1}$};
+\node(d01) at (1,-4)  [delay] {$z^{-1}$};
+\node(d02) at (1,-6)  [delay] {$z^{-1}$};
+\node(w00) at (2, -1) [gain, rotate = -90]  {};
+\node(w01) at (2, -3) [gain, rotate = -90]  {};
+\node(w02) at (2, -5) [gain, rotate = -90]  {};
+\node(w03) at (2, -7) [gain, rotate = -90]  {};
+\node(s00) at (3.25, -3) [sum] {$+$};
+\node(s01) at (3.25, -5) [sum] {$+$};
+\node(s02) at (3.25, -7) [sum] {$+$};
+\node(p0)  at (1, 0.5)  [pnt, fill = black] {};
+\node(p00) at (1, -1) [pnt, fill = black] {};
+\node(p01) at (1, -3)  [pnt, fill = black] {};
+\node(p02) at (1, -5)  [pnt, fill = black] {};
+\draw[->] (p0)  -- (d00);
+\draw[->] (d00) -- (d01);
+\draw[->] (d01) -- (d02);
+\draw[->] (d02) |- (w03);
+\draw[->] (p00) -- (w00);
+\draw[->] (p01) -- (w01);
+\draw[->] (p02) -- (w02);
+\draw[->] (w00) -| (s00);
+\draw[->] (w01) -- (s00);
+\draw[->] (s00) -- (s01);
+\draw[->] (w02) -- (s01);
+\draw[->] (s01) -- (s02);
+\draw[->] (w03) -- (s02);
+
+
+
+
+\node(d10) at (5,-2)  [delay] {$z^{-1}$};
+\node(d11) at (5,-4)  [delay] {$z^{-1}$};
+\node(d12) at (5,-6)  [delay] {$z^{-1}$};
+\node(w10) at (6, -1) [gain, rotate = -90]  {};
+\node(w11) at (6, -3) [gain, rotate = -90]  {};
+\node(w12) at (6, -5) [gain, rotate = -90]  {};
+\node(w13) at (6, -7) [gain, rotate = -90]  {};
+\node(s10) at (7.25, -3) [sum] {$+$};
+\node(s11) at (7.25, -5) [sum] {$+$};
+\node(s12) at (7.25, -7) [sum] {$+$};
+\node(p1)  at (5, 0.5)  [pnt, fill = black] {};
+\node(p10) at (5, -1) [pnt, fill = black] {};
+\node(p11) at (5, -3)  [pnt, fill = black] {};
+\node(p12) at (5, -5)  [pnt, fill = black] {};
+\draw[->] (p1)  -- (d10);
+\draw[->] (d10) -- (d11);
+\draw[->] (d11) -- (d12);
+\draw[->] (d12) |- (w13);
+\draw[->] (p10) -- (w10);
+\draw[->] (p11) -- (w11);
+\draw[->] (p12) -- (w12);
+\draw[->] (w10) -| (s10);
+\draw[->] (w11) -- (s10);
+\draw[->] (s10) -- (s11);
+\draw[->] (w12) -- (s11);
+\draw[->] (s11) -- (s12);
+\draw[->] (w13) -- (s12);
+
+
+
+
+
+\node(d20) at (9,-2)  [delay] {$z^{-1}$};
+\node(d21) at (9,-4)  [delay] {$z^{-1}$};
+\node(d22) at (9,-6)  [delay] {$z^{-1}$};
+\node(w20) at (10, -1) [gain, rotate = -90]  {};
+\node(w21) at (10, -3) [gain, rotate = -90]  {};
+\node(w22) at (10, -5) [gain, rotate = -90]  {};
+\node(w23) at (10, -7) [gain, rotate = -90]  {};
+\node(s20) at (11.25, -3) [sum] {$+$};
+\node(s21) at (11.25, -5) [sum] {$+$};
+\node(s22) at (11.25, -7) [sum] {$+$};
+\node(p2)  at (9, 0.5)  [pnt, fill = black] {};
+\node(p20) at (9, -1) [pnt, fill = black] {};
+\node(p21) at (9, -3)  [pnt, fill = black] {};
+\node(p22) at (9, -5)  [pnt, fill = black] {};
+\draw[->] (p2)  -- (d20);
+\draw[->] (d20) -- (d21);
+\draw[->] (d21) -- (d22);
+\draw[->] (d22) |- (w23);
+\draw[->] (p20) -- (w20);
+\draw[->] (p21) -- (w21);
+\draw[->] (p22) -- (w22);
+\draw[->] (w20) -| (s20);
+\draw[->] (w21) -- (s20);
+\draw[->] (s20) -- (s21);
+\draw[->] (w22) -- (s21);
+\draw[->] (s21) -- (s22);
+\draw[->] (w23) -- (s22);
+
+
+
+
+
+
+\node(d30) at (13,-2)  [delay] {$z^{-1}$};
+\node(d31) at (13,-4)  [delay] {$z^{-1}$};
+\node(d32) at (13,-6)  [delay] {$z^{-1}$};
+\node(w30) at (14, -1) [gain, rotate = -90]  {};
+\node(w31) at (14, -3) [gain, rotate = -90]  {};
+\node(w32) at (14, -5) [gain, rotate = -90]  {};
+\node(w33) at (14, -7) [gain, rotate = -90]  {};
+\node(s30) at (15.25, -3) [sum] {$+$};
+\node(s31) at (15.25, -5) [sum] {$+$};
+\node(s32) at (15.25, -7) [sum] {$+$};
+
+\node(p30) at (13, -1) [pnt, fill = black] {};
+\node(p31) at (13, -3)  [pnt, fill = black] {};
+\node(p32) at (13, -5)  [pnt, fill = black] {};
+\draw[->] (in)  -| (d30);
+\draw[->] (d30) -- (d31);
+\draw[->] (d31) -- (d32);
+\draw[->] (d32) |- (w33);
+\draw[->] (p30) -- (w30);
+\draw[->] (p31) -- (w31);
+\draw[->] (p32) -- (w32);
+\draw[->] (w30) -| (s30);
+\draw[->] (w31) -- (s30);
+\draw[->] (s30) -- (s31);
+\draw[->] (w32) -- (s31);
+\draw[->] (s31) -- (s32);
+\draw[->] (w33) -- (s32);
+
+\node(mul0) at (3.25, -9) [sum] {$\times$};
+\node(sum0) at (7.25, -9) [sum] {$+$};
+\node(mul1) at (9, -9) [sum] {$\times$};
+\node(sum1) at (11.25, -9) [sum] {$+$};
+\node(mul2) at (13, -9) [sum] {$\times$};
+\node(sum2) at (15.25, -9) [sum] {$+$};
+\node(pnt0) at (3.25, -10.5)  [pnt, fill = black] {};
+\node(pnt1) at (9, -10.5)  [pnt, fill = black] {};
+
+
+\node(x) at (0,-10.5)  [none, left] {$x$};
+\node(out) at (17.5,-9)  [none, left] {$y(n)$};
+
+
+
+\draw[->] (x) -| (mul2);
+\draw[->] (pnt0) -- (mul0);
+\draw[->] (pnt1) -- (mul1);
+
+\draw[->] (s02) -- (mul0) node[yshift=0.4cm, xshift = -0.4cm]{$a_3$};
+\draw[->] (s12) -- (sum0) node[yshift=0.4cm, xshift = -0.4cm]{$a_2$};
+\draw[->] (s22) -- (sum1) node[yshift=0.4cm, xshift = -0.4cm]{$a_1$};
+\draw[->] (s32) -- (sum2) node[yshift=0.4cm, xshift = -0.4cm]{$a_0$};
+
+\draw[->] (mul0) -- (sum0);
+\draw[->] (mul1) -- (sum1);
+\draw[->] (mul2) -- (sum2);
+
+\draw[->] (sum0) -- (mul1);
+\draw[->] (sum1) -- (mul2);
+\draw[->] (sum2) -- (out);
+
+
+
+
+\end{tikzpicture}
+\end {document}
+
+		
