@@ -1,0 +1,78 @@
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{fig_header.tex}
+
+
+
+\begin {document}
+\begin{tikzpicture}		
+		
+
+\node(in) at (-1,0)   [none, left] {$s(k)$};
+\node(z0) at (2,0)   [delay] {$z^{-1}$};
+\node(z1) at (6,0)   [delay] {$z^{-1}$};
+\node(z2) at (10,0)  [delay] {$z^{-1}$};
+
+\node(p0)  at (0, 0)  [pnt, fill = black] {};
+\node(p1)  at (4, 0)  [pnt, fill = black] {};
+\node(p2)  at (8, 0)  [pnt, fill = black] {};
+\node(p3)  at (12, -1.5)  [pnt, fill = black] {};
+\node(p4)  at (4, -5.5)  [pnt, fill = black] {};
+\node(p5)  at (0, -8.5)  [pnt, fill = black] {};
+\node(p6)  at (4, -8.5)  [pnt, fill = black] {};
+\node(p7)  at (4, -2.5)  [pnt, fill = black] {};
+\node(p8)  at (12, -10)  [pnt, fill = black] {};
+
+\node(s0)  at (0, -1.5) [sum] {$+$};
+\node(s1)  at (4, -4) [sum] {$+$};
+\node(s2)  at (12, -4) [sum] {$+$};
+\node(s3)  at (0, -5.5) [sum] {$+$};
+\node(s4)  at (4, -7) [sum] {$+$};
+\node(s5)  at (12, -7) [sum] {$+$};
+\node(s6)  at (8, -10) [sum] {$+$};
+\node(s7)  at (8, -12.5) [sum] {$+$};
+\node(s8)  at (12, -12.5) [sum] {$+$};
+\node(s9)  at (16, -12.5) [sum] {$+$};
+
+\node (m0) at (0, -12.5) [sum] {$\times$};
+
+
+\node(w0)  at (0, -4) [gain, rotate = 180]  {};
+\node(w1)  at (2, -5.5) [gain, rotate = 90]  {};
+\node(w2)  at (12, -5.5) [gain, rotate = 180]  {};
+
+\draw[->] (in) -- (z0);
+\draw[->] (z0) -- (z1);
+\draw[->] (z1) -- (z2);
+\draw[->] (z2) -| (s2);
+
+\draw[->] (p0) -- (s0);
+\draw[->] (p1) -- (s1);
+\draw[->] (p3) -- (s2);
+\draw[->] (s2) -- (w2);
+\draw[->] (w2) -- (s5);
+\draw[->] (p3) -- (s0);
+
+\draw[->] (s0) -- (w0);
+\draw[->] (w0) -- (s3);
+\draw[->] (s1) -- (s4);
+\draw[->] (p4) -- (w1);
+\draw[->] (w1) -- (s3);
+
+\draw[->] (p7) -- (6,-2.5)--(8,-4) -- (s2);
+\draw[->] (p2) -- (8,-2.5)--(6,-4) -- (s1);
+
+\draw[->] (p5) -- (6,-8.5)--(8,-7) -- (s5);
+\draw[->] (s4) -- (6,-7) -- (8, -8.5) -- (s6);
+
+\draw[->] (s3) -- (m0);
+\draw[->] (p6) -- (s4);
+\draw[->] (s5) -- (s8);
+\draw[->] (p8) -- (s6);
+
+
+\end{tikzpicture}
+\end {document}
+
+		
