@@ -40,57 +40,56 @@
 *	Sergey Bakhurin. 														www.dsplib.org	
 *
 */
-DSPL_API void dspl_print_err(int res, int printCR)
+DSPL_API void dspl_print_err(int res, int printCR, char* funcName)
 {
 	switch(res)
 	{
 		case DSPL_OK:
-			printf("OK");
 			break;
 			
 		case DSPL_ERROR_ELLIP_K:
-			printf("ERROR: Complete elliptic integral modulus can be from 0 to 1!");
+			printf("%s ERROR: Complete elliptic integral modulus can be from 0 to 1!", funcName);
 			break;	
 		case DSPL_ERROR_FFT_SIZE:
-			printf("ERROR: FFT size must be power of two!");
+			printf("%s ERROR: FFT size must be power of two!", funcName);
 			break;
 		case DSPL_ERROR_FILTER_A0:	
-			printf("ERROR: IIR filter coefficient a[0] cannot be zero!");
+			printf("%s ERROR: IIR filter coefficient a[0] cannot be zero!", funcName);
 			break;
 		case DSPL_ERROR_FILTER_ORD:	
-			printf("ERROR: filter order must be more than zero!");
+			printf("%s ERROR: filter order must be more than zero!", funcName);
 			break;
 		case DSPL_ERROR_FILTER_RP:	
-			printf("ERROR: filter Rp parameter must be more than zero!");
+			printf("%s ERROR: filter Rp parameter must be more than zero!", funcName);
 			break;
 		case DSPL_ERROR_FILTER_RS:
-			printf("ERROR: filter Rs parameter must be more than zero!");
+			printf("%s ERROR: filter Rs parameter must be more than zero!", funcName);
 			break;
 		case DSPL_ERROR_FILTER_WP:
-			printf("ERROR: filter passband parameter is wrong!");
+			printf("%s ERROR: filter passband parameter is wrong!", funcName);
 			break;
 		case DSPL_ERROR_FNAME:	
-			printf("ERROR: file name is wrong!");
+			printf("%s ERROR: file name is wrong!", funcName);
 			break;
 		case DSPL_ERROR_FOPEN:
-			printf("ERROR: cannot to open file!");
+			printf("%s ERROR: cannot to open file!", funcName);
 			break;		
 		case DSPL_ERROR_POLY_ORD:	
-			printf("ERROR: polynomial order must be more than zero!");
+			printf("%s ERROR: polynomial order must be more than zero!", funcName);
 			break;
 		case DSPL_ERROR_PTR:
-			printf("ERROR: pointer is wrong!");
+			printf("%s ERROR: pointer is wrong!", funcName);
 			break;
 		case DSPL_ERROR_SIZE:
-			printf("ERROR: input array size is wrong!");
+			printf("%s ERROR: input array size is wrong!", funcName);
 			break;
 		case DSPL_ERROR_UNWRAP:
-			printf("ERROR: unwrap level or margin is wrong!");
+			printf("%s ERROR: unwrap level or margin is wrong!", funcName);
 			break;
-		case DSPL_ERROR_WIN_TYPE:		
+		//case DSPL_ERROR_WIN_TYPE:		
 			
 		default:
-			printf("Unknown error");		
+			printf("%s Unknown error code 0x%.8x", funcName, res);		
 	}
 	if(printCR)
 		printf("\n");	

@@ -27,60 +27,82 @@
 #define DSPL_RESAMPLE_LAGRANGE_COEFF	0.16666666666666666666666666666667
 
 
-DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, double *z, int nz)
+DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, double **y, int *ny)
 {
 	double a[4];
 	double t, x, dt;
-	int ind, k;
+	int ind, k, res;
 	double g[4];
-	double *y;
+	double *z;
 	
-	if(!s || !z)
-		return DSPL_ERROR_PTR;
+	if(!s || !y)
+	{
+		res = DSPL_ERROR_PTR;
+		goto  exit_label;
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto  exit_label;
+	}
 	if(p <= 0 || q <= 0)
-		return DSPL_ERROR_RESAMPLE_RATIO;
+	{
+		res = DSPL_ERROR_RESAMPLE_RATIO;
+		goto  exit_label;
+	}
 	if(frd <= -1.0 || frd >= 1.0)
-		return DSPL_ERROR_RESAMPLE_FRAC_DELAY;	
-	
+	{
+		res = DSPL_ERROR_RESAMPLE_FRAC_DELAY;
+		goto  exit_label;		
+	}
 	dt = (double)q/(double)p;
 	
-	if(nz < (int)((double)n*dt))
-		return DSPL_ERROR_RESAMPLE_SIZE;	
-	
-	t = frd;
-	k = 0;
-	while(t < (double)n)
+	if((*ny) != (int)((double)n*dt))
 	{
-		ind = floor(t);
+		
+		*ny = (int)((double)n*dt);
+		(*y) = (double*)realloc((*y), sizeof(double));
+	}
+				
+	t = -frd;
+	k = 0;
+	while(k < (*ny))
+	{
+		ind = floor(t)+1;
 		x = t - (double)ind;
-		if(ind == 0)
+		ind-=2;
+		if(ind < 0)
 		{
 			memset(g, 0, 4*sizeof(double));
-			memcpy(g+1, s, 3*sizeof(double));
-			y = g;
+			if(ind > (-3))
+				memcpy(g-ind, s, (4+ind)*sizeof(double));
+			z = g;
 		}
 		else
 		{
-			if(ind > n-2)
+			if(ind < n-2)
+				z = s+ind;
+			else
 			{
 				memset(g, 0, 4*sizeof(double));
-				memcpy(g, s+ind-1, (n-ind+1)*sizeof(double));
-				y = g;
-			}
-			else
-				y = s+ind-1;			
+				if((n-ind)>0)
+					memcpy(g, s+ind, (n-ind)*sizeof(double));
+				z = g;
+			}		
 		}
-		a[0] = y[1];
-		a[3] = DSPL_RESAMPLE_LAGRANGE_COEFF*(y[3] - y[0]) + 0.5*(y[1] - y[2]);
-		a[1] = 0.5*(y[2] - y[0])-a[3];
-		a[2] = y[2] - y[1] -a[3]-a[1];
+		a[0] = z[2];
+		a[3] = DSPL_RESAMPLE_LAGRANGE_COEFF*(z[3] -z[0]) + 0.5*(z[1] - z[2]);
+		a[1] = 0.5*(z[3] - z[1])-a[3];
+		a[2] = z[3] - z[2] -a[3]-a[1];
 		
-		dspl_polyval(a, 3, &x, 1, z+k);
+		res = dspl_polyval(a, 3, &x, 1, (*y)+k);
+		if(res != DSPL_OK)
+			goto exit_label;
 		t+=dt;
 		k++;		
 	}
 	
-    return DSPL_OK;
+exit_label:
+	dspl_print_err(res, 1, "dspl_resample_lagrange");
+    return res;
 }

@@ -18,7 +18,7 @@
 \path [name path=s1] (2cm, 0cm) -- (2cm, 2.5cm);
 \path [name path=s2] (4cm, 0cm) -- (4cm, 2.5cm);
 \path [name path=s3] (6cm, 0cm) -- (6cm, 2.5cm);
-\path [name path=y0] (2.7cm, 0cm) -- (2.7cm, 2.5cm);
+\path [name path=y0] (3.3cm, 0cm) -- (3.3cm, 2.5cm);
 
 \draw [-, name intersections={of=s0 and p0, by=x}, thick] (0cm, -0.1cm) node[below]{$k-3$}-- (x) 
 node[above, fill = white] {$s(k-3)$}  ; \fill (x) circle(0.07cm) ;
@@ -33,11 +33,11 @@ node[above, fill = white] {$s(k-1)$}  ; \fill (x) circle(0.07cm) ;
  node[above, fill = white] {$s(k)$}; \fill (x) circle(0.07cm) ;
 
 
-\draw [-,red,  name intersections={of=y0 and p0, by=x}, thick] (2.7cm, -0.1cm) node[below]{$t$} -- (x) 
-node[above, fill = white] {$y(k-2)$}; \fill[red] (x) circle(0.07cm) ;
+\draw [-,red,  name intersections={of=y0 and p0, by=x}, thick] (3.3cm, -0.1cm) node[below]{$t$} -- (x) 
+node[above left, fill = white] {$y(k-1)$}; \fill[red] (x) circle(0.07cm) ;
 
-\draw[<->, thin] (2, 0.3) -- (2.7, 0.3);
-\node[above] at(2.35, 0.3) {$x$};
+\draw[<->, thin] (3.3, 0.3) -- (4, 0.3);
+\node[above] at(3.65, 0.3) {$x$};
 
 
 
@@ -49,23 +49,23 @@ node[above, fill = white] {$y(k-2)$}; \fill[red] (x) circle(0.07cm) ;
 \path [name path=d1] (10cm, 0cm) -- (10cm, 2.5cm);
 \path [name path=d2] (12cm, 0cm) -- (12cm, 2.5cm);
 \path [name path=d3] (14cm, 0cm) -- (14cm, 2.5cm);
-\path [name path=y1] (10.7cm, 0cm) -- (10.7cm, 2.5cm);
+\path [name path=y1] (11.3cm, 0cm) -- (11.3cm, 2.5cm);
 
-\draw [-, name intersections={of=d0 and p1, by=x}, thick] (8cm, -0.1cm) node[below]{$-1$}-- (x) 
+\draw [-, name intersections={of=d0 and p1, by=x}, thick] (8cm, -0.1cm) node[below]{$-2$}-- (x) 
 node[above, fill = white] {$s(k-3)$}  ; \fill (x) circle(0.07cm) ;
 
-\draw [-, name intersections={of=d1 and p1, by=x}, thick] (10cm, -0.1cm) node[below]{$0$} -- (x) 
+\draw [-, name intersections={of=d1 and p1, by=x}, thick] (10cm, -0.1cm) node[below]{$-1$} -- (x) 
 node[above left, fill = white] {$s(k-2)$}  ; \fill (x) circle(0.07cm) ;
 
-\draw [-, name intersections={of=d2 and p1, by=x}, thick] (12cm, -0.1cm) node[below]{$1$} -- (x) 
+\draw [-, name intersections={of=d2 and p1, by=x}, thick] (12cm, -0.1cm) node[below]{$0$} -- (x) 
 node[above, fill = white] {$s(k-1)$}  ; \fill (x) circle(0.07cm) ;
 
-\draw [-, name intersections={of=d3 and p1, by=x}, thick] (14cm, -0.1cm) node[below]{$2$} -- (x)
+\draw [-, name intersections={of=d3 and p1, by=x}, thick] (14cm, -0.1cm) node[below]{$1$} -- (x)
  node[above, fill = white] {$s(k)$}; \fill (x) circle(0.07cm) ;
 
 
-\draw [-,red,  name intersections={of=y1 and p1, by=x}, thick] (10.7cm, -0.1cm) node[below]{$x$} -- (x) 
-node[above, fill = white] {$y(k-2)$}; \fill[red] (x) circle(0.07cm) ;
+\draw [-,red,  name intersections={of=y1 and p1, by=x}, thick] (11.3cm, -0.1cm) node[below]{$-x$} -- (x) 
+node[above left, fill = white] {$y(k-1)$}; \fill[red] (x) circle(0.07cm) ;
 
 
 

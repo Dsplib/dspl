@@ -234,7 +234,7 @@ DSPL_API int dspl_polyval_cmplx(	double* aR, double* aI, int ord,
 									double* yR, double* yI);									
 									
 /* print error code (dspl_inout.c) */
-DSPL_API void dspl_print_err (int res, int printCR);
+DSPL_API void dspl_print_err (int res, int printCR, char* funcName);
 
 /* print message (dspl_inout.c) */
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
@@ -253,7 +253,7 @@ DSPL_API int dspl_randn(double* x, int n, double mu, double sigma);
 
 /* resampling by using Farrow structure (dspl_resample.c) */
 DSPL_API int dspl_resample_lagrange(double *x, int n, int p, int q, 
-									double frd, double *z, int nz);
+									double frd, double **y, int *ny);
 
 /* Sine for complex argument (dspl_math_basic.c) */					 
 DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI);
@@ -414,7 +414,7 @@ typedef int (*p_dspl_polyval_cmplx)	(	double* aR, double* aI, int ord,
 										double* yR, double* yI);
 
 /* print error code (dspl_inout.c) */
-typedef void (*p_dspl_print_err) 	(int res, int printCR);
+typedef void (*p_dspl_print_err) 	(int res, int printCR, char* funcName);
 
 /* print message (dspl_inout.c) */
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);
@@ -433,7 +433,7 @@ typedef int (*p_dspl_randn)(double* x, int n, double mu, double sigma);
 
 /* resampling by using Farrow structure (dspl_resample.c) */
 typedef int (*p_dspl_resample_lagrange)(double *x, int n, int p, int q, 
-										double frd, double *z, int nz);
+										double frd, double **y, int *ny);
 
 /* Cosine for complex argument (dspl_math_basic.c) */					 
 typedef int (*p_dspl_sin_cmplx)(double *xR, double *xI, int n, double *yR, double *yI); 	
