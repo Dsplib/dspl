@@ -57,11 +57,11 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 	}
 	dt = (double)q/(double)p;
 	
-	if((*ny) != (int)((double)n*dt))
+	if((*ny) != (int)((double)(n-1)/dt)+1)
 	{
 		
-		*ny = (int)((double)n*dt);
-		(*y) = (double*)realloc((*y), sizeof(double));
+		*ny = (int)((double)(n-1)*dt)+1;
+		(*y) = (double*)realloc((*y), (*ny)*sizeof(double));
 	}
 				
 	t = -frd;
@@ -80,7 +80,7 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 		}
 		else
 		{
-			if(ind < n-2)
+			if(ind < n-3)
 				z = s+ind;
 			else
 			{
