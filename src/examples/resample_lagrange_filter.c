@@ -36,9 +36,8 @@
 
 #define P 	10
 #define Q	1
-
-#define	N	41
-#define K	512 
+#define K	512
+#define N	5 
 
 
 int main()
@@ -46,7 +45,7 @@ int main()
 
 	HINSTANCE hDSPL;		/* dspl handle 					*/
 	
-	double s[4] = {0.0, 1.0, 0.0, 0.0};
+	double s[N] = {0.0, 0.0, 1.0, 0.0, 0.0};
 		
 	double *t=NULL;		/* time 						*/
 	double *h=NULL;		/* Filter impulse response		*/
@@ -64,13 +63,12 @@ int main()
 		return 0;
 	}
 
-	dspl_linspace(0, N, N, DSPL_PERIODIC, t);
-	dspl_resample_lagrange(s, 4, P, Q, 0, &h, &nh);
+	dspl_resample_lagrange(s, N, P, Q, 0, &h, &nh);
 	t = (double*) malloc(nh*sizeof(double));
 	
 	dspl_linspace(0, nh, nh, DSPL_PERIODIC, t);	
 	
-	dspl_writetxt(t,h,N,"dat/resample/lagrange_filter_time.txt");
+	dspl_writetxt(t,h,nh,"dat/resample/lagrange_filter_time.txt");
 	
 	dspl_linspace(0, M_PI, K, DSPL_PERIODIC, w);
 	dspl_freqz(h, NULL, nh-1, w, K, HR, HI);

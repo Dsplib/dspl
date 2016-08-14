@@ -60,7 +60,7 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 	if((*ny) != (int)((double)(n-1)/dt)+1)
 	{
 		
-		*ny = (int)((double)(n-1)*dt)+1;
+		*ny = (int)((double)(n-1)/dt)+1;
 		(*y) = (double*)realloc((*y), (*ny)*sizeof(double));
 	}
 				

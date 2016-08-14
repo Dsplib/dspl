@@ -64,3 +64,111 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
 
 	return DSPL_OK;
 }  
+
+
+
+
+
+
+DSPL_API int dspl_freqz_resp(double* b, double* a, int ord, 
+							 double* w, int n, 
+							 double *h, double* phi, double* gd)
+{
+
+	double *hR = NULL;
+	double *hI = NULL;
+	double *dw = NULL;
+    double *phi1 = NULL;
+    double *phi0 = NULL;
+
+	int k;
+	int res;
+
+	if(!b || !w)
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;
+	}
+	if(ord<0)
+	{
+		res = DSPL_ERROR_FILTER_ORD;
+		goto exit_label;
+	}
+	if(n<1)
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
+
+	hR = (double*) malloc(n * sizeof(double));
+	hI = (double*) malloc(n * sizeof(double));
+
+	res = dspl_freqz(b, a, ord, w, n, hR, hI);
+	if(res != DSPL_OK)
+		goto exit_label;
+
+	if(h)
+	{
+		for(k = 0; k < n; k++)
+			h[k] = 10.0 * log10(hR[k]*hR[k] + hI[k]*hI[k]);
+	}
+
+
+	if(phi)
+	{
+		phi0 = phi;
+		for(k = 0; k < n; k++)
+			phi0[k] = atan2(hI[k], hR[k]);
+		res = dspl_unwrap(phi0,  n, M_2PI, 0.7); 
+		if(res!=DSPL_OK)
+			goto  exit_label;
+	}
+
+	if(gd)
+	{
+		if(!phi0)
+		{
+			phi0 = (double*)malloc(n*sizeof(double));            
+			for(k = 0; k < n; k++)
+				phi0[k] = atan2(hI[k], hR[k]);
+			res = dspl_unwrap(phi0,  n, M_2PI, 0.7); 
+			if(res!=DSPL_OK)
+				goto  exit_label;
+		}
+
+		dw = (double*)malloc(n*sizeof(double));
+		phi1 = (double*)malloc(n*sizeof(double));
+
+		dw[0] = w[0] + 0.01*(w[1] - w[0]);
+		for(k = 1; k < n; k++)
+			dw[k] = w[k] + 0.01*(w[k] - w[k-1]);
+                       
+        res = dspl_freqz(b, a, ord, dw, n, hR, hI);
+		if(res != DSPL_OK)
+			goto exit_label;
+		for(k = 0; k < n; k++)
+			phi1[k] = atan2(hI[k], hR[k]);
+		res = dspl_unwrap(phi1,  n, M_2PI, 0.7); 
+		if(res!=DSPL_OK)
+			goto  exit_label;
+		
+		for(k = 0; k < n; k++)
+			gd[k] = (phi0[k] - phi1[k])/(dw[k] - w[k]);			
+
+	}                                                    	
+    res = DSPL_OK;
+
+exit_label:
+	if(hR)
+		free(hR);
+	if(hI)
+		free(hI);
+	if(dw)
+		free(dw);
+	if(phi0!=phi)
+		free(phi0);
+	if(phi1)
+		free(phi1);
+
+	return res;
+}  

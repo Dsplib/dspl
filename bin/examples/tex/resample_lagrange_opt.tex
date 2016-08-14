@@ -9,9 +9,9 @@
 \begin{tikzpicture}		
 		
 
-\node(in) at (-4,0)   [none, left] {$s(k)$};
-\node(out) at (-4,-13)   [none, left] {$y(k-1)$};
-\node(xin) at (-4,-14)   [none, left] {$-x$};
+\node(in) at (-4,0)   [none, left] {$s(n)$};
+\node(out) at (-4,-13)   [none, left] {$y(k)$};
+\node(xin) at (-4,-14)   [none, left] {$-\Delta_k$};
 
 \node(z0) at (1.5,0)   [delay] {$z^{-1}$};
 \node(z1) at (4.5,0)   [delay] {$z^{-1}$};
@@ -19,17 +19,17 @@
 
 
 \node(p0)  at (0, 0)  [pnt, fill = black] {} ;
-\node[above] at (0,0) {$s(k)$};
+\node[above] at (0,0) {$s(n)$};
 \node(p1)  at (3, 0)  [pnt, fill = black] {} ;
-\node[above left, yshift = 0.4cm] at (3,0) {$s(k-1)$};;
+\node[above left, yshift = 0.4cm] at (3,0) {$s(n-1)$};;
 \node(p2)  at (6, 0)    [pnt, fill = black] {} ;
-\node[above] at (6, 0) {$s(k-2)$};
-\node[above] at (9, 0) {$s(k-3)$};
+\node[above] at (6, 0) {$s(n-2)$};
+\node[above] at (9, 0) {$s(n-3)$};
 \node(p3)  at  (0, -1.5)[pnt, fill = black] {};
 \node(p4)  at  (3, -3)[pnt, fill = black] {};
-\node[left] at (3, -3) {$s(k-1)$};
+\node[left] at (3, -3) {$s(n-1)$};
 \node(p5)  at  (6, -3)[pnt, fill = black] {};
-\node[right] at (6, -3) {$s(k-2)$};
+\node[right] at (6, -3) {$s(n-2)$};
 \node(p6)  at  (0, -4.5)[pnt, fill = black] {};
 \node(p7)  at  (6, -7.5)[pnt, fill = black] {};
 \node(p8)  at  (9, -7.5)[pnt, fill = black] {}; 

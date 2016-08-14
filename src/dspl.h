@@ -186,6 +186,12 @@ DSPL_API int dspl_freqs(double* b, double* a, int ord,
 DSPL_API int dspl_freqz(double* b, double* a, int ord, 
 						double* w, int n, 
 						double *hR, double* hI);
+                                                
+/* IIR digital filter frequency_response (dspl_freqz.c) */
+DSPL_API int dspl_freqz_resp(double* b, double* a, int ord, 
+							 double* w, int n, 
+							 double *h, double* phi, double* gd);
+
 
 /* Get DSPL version  (dspl.c) */
 DSPL_API int dspl_get_version (int printFlag);
@@ -367,6 +373,11 @@ typedef int (*p_dspl_freqz)(double* b, double* a, int ord,
 							double* w, int n, 
 							double *hR, double* hI);
 
+/* IIR digital filter frequency_response (dspl_freqz.c) */
+typedef int (*p_dspl_freqz_resp)(double* b, double* a, int ord, 
+							 double* w, int n, 
+							 double *h, double* phi, double* gd); 
+
 /* Get DSPL version  (dspl_inout.c) */
 typedef int (*p_dspl_get_version) 	(int printFlag);
 
@@ -480,6 +491,7 @@ extern p_dspl_filter_iir				dspl_filter_iir	    	;	/* ru, en */
 extern p_dspl_freqs						dspl_freqs		    	;	/* ru, en */
 extern p_dspl_freqz						dspl_freqz		    	;	/* ru, en */
 extern p_dspl_get_version 				dspl_get_version 		;	/* ru, en */
+extern p_dspl_freqz_resp				dspl_freqz_resp			;
 extern p_dspl_goertzel					dspl_goertzel			;	/* ru, en */
 extern p_dspl_hilbert					dspl_hilbert			;	/* ru, en */
 extern p_dspl_histogram					dspl_histogram			;	/* ru, -- */

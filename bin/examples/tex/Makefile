@@ -35,6 +35,7 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/resample_lagrange_horner.pdf\
 		fig/resample_lagrange_farrow.pdf\
 		fig/resample_lagrange_fig1.pdf\
+		fig/resample_lagrange_fig2.pdf\
 		fig/resample_lagrange_fig3.pdf\
 		fig/resample_lagrange_filter.pdf\
 		fig/resample_lagrange_opt.pdf\

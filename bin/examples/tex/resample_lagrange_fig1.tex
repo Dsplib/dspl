@@ -8,153 +8,168 @@
 
 \begin {document}
 
-\begin{tikzpicture}[domain=0:10]
+\begin{tikzpicture}%[domain=0:10]
 
 
-\draw[->,thick] (-0.5cm,	0cm)		-- (10.5cm, 0cm)	node[below] {$n$};
-\draw[-, thin, dashed, name path=signal] plot (\x,{1+0.05*(\x)*(\x)-0.02*(\x-5)*(\x-5)*(\x-5)}) node[right] {$s(t)$};
-\path [name path=y0] (1cm, 0cm) -- (1cm, 5cm);
-\path [name path=y1] (3cm, 0cm) -- (3cm, 5cm);
-\path [name path=y2] (5cm, 0cm) -- (5cm, 5cm);
-\path [name path=y3] (9cm, 0cm) -- (9cm, 5cm);
+\draw[->](-1, 0) -- (13,0) node[above] {$n$};
+\draw[red, ->](-1, -0.2) -- (13,-.2) node[below] {$k$};
 
 
-\draw [-, name intersections={of=y0 and signal, by=x}, thick] (1cm, 0cm) node[below]{$0$}  -- (x) node[above] {$s(0)$}  ; \fill (x) circle(0.07cm) ;
-\draw [-, name intersections={of=y1 and signal, by=x}, thick] (3cm, 0cm) node[below]{$1$}  -- (x) node[above] {$s(1)$}  ; \fill (x) circle(0.07cm) ;
-\draw [-, name intersections={of=y2 and signal, by=x}, thick] (5cm, 0cm) node[below]{$2$}  -- (x) node[above] {$s(2)$}  ; \fill (x) circle(0.07cm) ;
-\draw [-, name intersections={of=y3 and signal, by=x}, thick] (9cm, 0cm) node[below]{$N-1$}  -- (x) node[above right] {$s(N-1)$}; \fill (x) circle(0.07cm) ;
+\node at (-1,1) [right] {Частный случай 1: $P = 1$, $Q = 1$, $x_0 = 0$, $F_{\textrm{y}} = F_{\textrm{s}}$};
+
+\foreach \x in {0,1,2,3,4,5}
+{
+	\draw[-] (\x*2.5cm, 0) -- (\x*2.5cm, 0.3cm) node[above] {$\x$};
+	\draw[red, -] (\x*2.5cm, -0.2) -- (\x*2.5cm, -0.5cm) node[below] {$\x$};
+}
 
 
 
-\path [name path=s0] (0.3cm, 0cm) -- (0.3cm, 5cm);
-\path [name path=s1] (2.3cm, 0cm) -- (2.3cm, 5cm);
-\path [name path=s2] (4.3cm, 0cm) -- (4.3cm, 5cm);
-\path [name path=s3] (8.3cm, 0cm) -- (8.3cm, 5cm);
 
 
-\draw [-,red,  name intersections={of=s0 and signal, by=x}, thick] (0.3cm, 0cm)   -- (x) node[left] {$y(0)$}  ; \fill[red] (x) circle(0.07cm) ;
-\draw [-,red,  name intersections={of=s1 and signal, by=x}, thick] (2.3cm, 0cm)   -- (x) node[above] {$y(1)$}  ; \fill[red] (x) circle(0.07cm) ;
-\draw [-,red,  name intersections={of=s2 and signal, by=x}, thick] (4.3cm, 0cm)   -- (x) node[above] {$y(2)$}  ; \fill[red] (x) circle(0.07cm) ;
-\draw [-,red,  name intersections={of=s3 and signal, by=x}, thick] (8.3cm, 0cm)   -- (x) node[above left] {$y(N-1)$}; \fill[red] (x) circle(0.07cm) ;
 
-\draw[<->] (0.3,0.6)--(1, 0.6);
-\node at (0.65, 0.6) [above] {$x$};
-
-\draw[<->] (2.3,0.6)--(3, 0.6);
-\node at (2.65, 0.6) [above] {$x$};
-
-\draw[<->] (4.3,0.6)--(5, 0.6);
-\node at (4.65, 0.6) [above] {$x$};
-
-\draw[<->] (8.3,0.6)--(9, 0.6);
-\node at (8.65, 0.6) [above] {$x$};
+\draw[->](-1, -3) -- (13,-3) node[above] {$n$};
+\draw[red, ->](-1, -3.2) -- (13,-3.2) node[below] {$k$};
 
 
-\node at (6.5, 0.6) [above] {$\ldots$};
-\node at (6.5, 0) [below] {$\ldots$};
+\node at (-1,-2) [right] {Частный случай 2: $P = 1$, $Q = 1$, $x_0 = 0.2$, $F_{\textrm{y}} = F_{\textrm{s}}$};
 
-%\begin{scope}[red]
-%
-%\draw [-, thin, dashed] (-7cm, 0cm) -- (-7cm, 1cm);  
-%\draw [-, thin, dashed, name path=signal_left] (-7cm, 1cm) sin (-6.5cm, 1.5cm) cos (-6cm, 1cm) sin (-5.5cm, 0.5cm) 
-%  cos (-5cm, 1cm) sin (-4.5cm, 1.5cm) cos (-4cm, 1cm) sin (-3.5cm, 0.5cm) cos (-3cm, 1cm) ; 
-%\draw [-, thin, dashed] (-3cm, 0cm) -- (-3cm, 1cm);
-%
-%\path [name path=d00] (-6.75cm, 0cm) -- (-6.75cm, 2cm);
-%\path [name path=d01] (-6.25cm, 0cm) -- (-6.25cm, 2cm);
-%\path [name path=d02] (-5.75cm, 0cm) -- (-5.75cm, 2cm);
-%\path [name path=d03] (-5.25cm, 0cm) -- (-5.25cm, 2cm);
-%\path [name path=d04] (-4.75cm, 0cm) -- (-4.75cm, 2cm);
-%\path [name path=d05] (-4.25cm, 0cm) -- (-4.25cm, 2cm);
-%\path [name path=d06] (-3.75cm, 0cm) -- (-3.75cm, 2cm);
-%\path [name path=d07] (-3.25cm, 0cm) -- (-3.25cm, 2cm);
-%
-%\draw [-, name intersections={of=d00 and signal_left, by=x}, thick] (-6.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);  
-%\draw [-, name intersections={of=d01 and signal_left, by=x}, thick] (-6.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d02 and signal_left, by=x}, thick] (-5.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d03 and signal_left, by=x}, thick] (-5.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d04 and signal_left, by=x}, thick] (-4.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d05 and signal_left, by=x}, thick] (-4.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d06 and signal_left, by=x}, thick] (-3.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d07 and signal_left, by=x}, thick] (-3.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%
-%\end{scope}
-%
-%
-%
-%\draw [-, thin, dashed] (-2cm, 0cm) -- (-2cm, 1cm);
-%\draw [-, thin, dashed, name path=signal_center] (-2cm, 1cm) sin (-1.5cm, 1.5cm) cos (-1cm, 1cm) sin (-0.5cm, 0.5cm) 
-%  cos (0cm, 1cm) sin (0.5cm, 1.5cm) cos (1cm, 1cm) sin (1.5cm, 0.5cm) cos (2cm, 1cm) ;
-%\draw [-, thin, dashed] (2cm, 0cm) -- (2cm, 1cm);
-%
-%
-%\path [name path=d10] (-1.75cm, 0cm) -- (-1.75cm, 2cm);
-%\path [name path=d11] (-1.25cm, 0cm) -- (-1.25cm, 2cm);
-%\path [name path=d12] (-0.75cm, 0cm) -- (-0.75cm, 2cm);
-%\path [name path=d13] (-0.25cm, 0cm) -- (-0.25cm, 2cm);
-%\path [name path=d14] ( 0.25cm, 0cm) -- ( 0.25cm, 2cm);
-%\path [name path=d15] ( 0.75cm, 0cm) -- ( 0.75cm, 2cm);
-%\path [name path=d16] ( 1.25cm, 0cm) -- ( 1.25cm, 2cm);
-%\path [name path=d17] ( 1.75cm, 0cm) -- ( 1.75cm, 2cm);
-%
-%\draw [-, name intersections={of = d10 and signal_center, by=x}, thick] (-1.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);  
-%\draw [-, name intersections={of = d11 and signal_center, by=x}, thick] (-1.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of = d12 and signal_center, by=x}, thick] (-0.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of = d13 and signal_center, by=x}, thick] (-0.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of = d14 and signal_center, by=x}, thick] ( 0.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of = d15 and signal_center, by=x}, thick] ( 0.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of = d16 and signal_center, by=x}, thick] ( 1.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of = d17 and signal_center, by=x}, thick] ( 1.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%
-%\draw [-, thin] (-7cm, 0cm) -- (-7cm, -1cm);
-%\draw [-, thin] (-2cm, 0cm) -- (-2cm, -1cm);
-%\draw [-, thin] ( 3cm, 0cm) -- ( 3cm, -1cm);
-%\draw [-, thin] ( 8cm, 0cm) -- ( 8cm, -1cm);
-%
-%\draw[<->, thin] (-7cm, -0.7cm) -- (-2cm, -0.7cm) node[above, midway]{$T$};
-%\draw[<->, thin] (-2cm, -0.7cm) -- ( 3cm, -0.7cm) node[above, midway]{$T$};
-%\draw[<->, thin] ( 3cm, -0.7cm) -- ( 8cm, -0.7cm) node[above, midway]{$T$};
-%
-%
-%\begin{scope}[red]
-%
-%\draw [-, thin, dashed] (3cm, 0cm) -- (3cm, 1cm); 
-%\draw [-, thin, dashed, name path=signal_right] (3cm, 1cm) sin (3.5cm, 1.5cm) cos (4cm, 1cm) sin (4.5cm, 0.5cm) 
-%  cos (5cm, 1cm) sin (5.5cm, 1.5cm) cos (6cm, 1cm) sin (6.5cm, 0.5cm) cos (7cm, 1cm) ;
-%\draw [-, thin, dashed] (7cm, 0cm) -- (7cm, 1cm);
-%
-%
-%\path [name path=d20] ( 3.25cm, 0cm) -- ( 3.25cm, 2cm);
-%\path [name path=d21] ( 3.75cm, 0cm) -- ( 3.75cm, 2cm);
-%\path [name path=d22] ( 4.25cm, 0cm) -- ( 4.25cm, 2cm);
-%\path [name path=d23] ( 4.75cm, 0cm) -- ( 4.75cm, 2cm);
-%\path [name path=d24] ( 5.25cm, 0cm) -- ( 5.25cm, 2cm);
-%\path [name path=d25] ( 5.75cm, 0cm) -- ( 5.75cm, 2cm);
-%\path [name path=d26] ( 6.25cm, 0cm) -- ( 6.25cm, 2cm);
-%\path [name path=d27] ( 6.75cm, 0cm) -- ( 6.75cm, 2cm);
-%
-%\draw [-, name intersections={of=d20 and signal_right, by=x}, thick] ( 3.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d21 and signal_right, by=x}, thick] ( 3.75cm, 0cm) -- (x); \fill (x) circle(0.07cm); 
-%\draw [-, name intersections={of=d22 and signal_right, by=x}, thick] ( 4.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d23 and signal_right, by=x}, thick] ( 4.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d24 and signal_right, by=x}, thick] ( 5.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d25 and signal_right, by=x}, thick] ( 5.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d26 and signal_right, by=x}, thick] ( 6.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%\draw [-, name intersections={of=d27 and signal_right, by=x}, thick] ( 6.75cm, 0cm) -- (x); \fill (x) circle(0.07cm);
-%
-%
-%
-%\draw [-, thin, dashed] (8cm, 0cm) -- (8cm, 1cm); 
-%\draw [-, thin, dashed, name path=signal_resid] (8cm, 1cm) sin (8.5cm, 
-%1.5cm);
-%
-%\path [name path=d30] ( 8.25cm, 0cm) -- ( 8.25cm, 2cm);
-%
-%\draw [-, name intersections={of=d30 and signal_resid, by=x}, thick] ( 8.25cm, 0cm) -- (x); \fill (x) circle(0.07cm);  
-%
-% 
-%\end{scope}
- 
+\foreach \x in {0,1,2,3,4,5}
+{
+	\draw[-] (\x*2.5cm, -3) -- (\x*2.5cm, -2.7cm) node[above] {$\x$};
+	\draw[red, -] (\x*2.5cm-0.5cm, -3.2) -- (\x*2.5cm-0.5cm, -3.5cm) node[below] {$\x$};
+}
+
+
+
+
+
+\draw[->](-1, -6) -- (13,-6) node[above] {$n$};
+\draw[red, ->](-1, -6.2) -- (13,-6.2) node[below] {$k$};
+
+
+\node at (-1,-5) [right] {Частный случай 3: $P = 5$, $Q = 1$, $x_0 = 0$, $F_{\textrm{y}} = 5 \cdot F_{\textrm{s}}$};
+
+\foreach \x in {0,1,2,3,4,5}
+{
+	\draw[-] (\x*2.5cm, -6) -- (\x*2.5cm, -5.7cm) node[above] {$\x$};
+}
+
+
+
+\foreach \x in {0,5,...,25}
+{
+	
+	\draw[red, -] (\x*0.5cm, -6.2) -- (\x*0.5cm, -6.5cm) node[below] {${\x}$};
+}
+
+
+\foreach \x in {0,1,...,25}
+{
+	
+	\draw[red, -] (\x*0.5cm, -6.2) -- (\x*0.5cm, -6.5cm);
+}
+
+
+
+
+
+
+\draw[->](-1, -9) -- (13,-9) node[above] {$n$};
+\draw[red, ->](-1, -9.2) -- (13,-9.2) node[below] {$k$};
+
+
+\node at (-1,-8) [right] {Частный случай 4: $P = 5$, $Q = 4$, $x_0 = 0$, $F_{\textrm{y}} = \frac{5}{4} \cdot F_{\textrm{s}}$};
+
+\foreach \x in {0,1,2,3,4,5}
+{
+	\draw[-] (\x*2.5cm, -9) -- (\x*2.5cm, -8.7cm) node[above] {$\x$};
+}
+
+
+
+\foreach \x in {0,1,...,6}
+{
+	
+	\draw[red, -] (\x*2cm, -9.2) -- (\x*2cm, -9.5cm) node[below] {${\x}$};
+}
+
+
+
+
+
+
+
+
+\draw[->](-1, -12) -- (13,-12) node[above] {$n$};
+\draw[red, ->](-1, -12.2) -- (13,-12.2) node[below] {$k$};
+
+
+\node at (-1,-11) [right] {Частный случай 5: $P = 5$, $Q = 4$, $x_0 = 0.2$, $F_{\textrm{y}} = \frac{5}{4} \cdot F_{\textrm{s}}$};
+
+\foreach \x in {0,1,2,3,4,5}
+{
+	\draw[-] (\x*2.5cm, -12) -- (\x*2.5cm, -11.7cm) node[above] {$\x$};
+}
+
+
+
+\foreach \x in {0,1,...,6}
+{
+	
+	\draw[red, -] (\x*2cm - 0.5cm, -12.2) -- (\x*2cm-0.5cm, -12.5cm) node[below] {${\x}$};
+}
+
+
+
+
+%%
+%%\draw[->,thick] (-0.5cm,	0cm)		-- (10.5cm, 0cm)	node[below] {$n$};
+%%\draw[-, thin, dashed, name path=signal] plot (\x,{1+0.05*(\x)*(\x)-0.02*(\x-5)*(\x-5)*(\x-5)}) node[right] {$s(t)$};
+%%\path [name path=y0] (1cm, 0cm) -- (1cm, 5cm);
+%%\path [name path=y1] (3cm, 0cm) -- (3cm, 5cm);
+%%\path [name path=y2] (5cm, 0cm) -- (5cm, 5cm);
+%%\path [name path=y3] (9cm, 0cm) -- (9cm, 5cm);
+%%
+%%
+%%\draw [-, name intersections={of=y0 and signal, by=x}, thick] (1cm, 0cm) node[below]{$0$}  -- (x) node[above] {$s(0)$}  ; \fill (x) circle(0.07cm) ;
+%%\draw [-, name intersections={of=y1 and signal, by=x}, thick] (3cm, 0cm) node[below]{$1$}  -- (x) node[above] {$s(1)$}  ; \fill (x) circle(0.07cm) ;
+%%\draw [-, name intersections={of=y2 and signal, by=x}, thick] (5cm, 0cm) node[below]{$2$}  -- (x) node[above] {$s(2)$}  ; \fill (x) circle(0.07cm) ;
+%%\draw [-, name intersections={of=y3 and signal, by=x}, thick] (9cm, 0cm) node[below]{$N-1$}  -- (x) node[above right] {$s(N-1)$}; \fill (x) circle(0.07cm) ;
+%%
+%%
+%%
+%%\path [name path=s0] (0.3cm, 0cm) -- (0.3cm, 5cm);
+%%\path [name path=s1] (2.3cm, 0cm) -- (2.3cm, 5cm);
+%%\path [name path=s2] (4.3cm, 0cm) -- (4.3cm, 5cm);
+%%\path [name path=s3] (8.3cm, 0cm) -- (8.3cm, 5cm);
+%%
+%%
+%%\draw [-,red,  name intersections={of=s0 and signal, by=x}, thick] (0.3cm, 0cm)   -- (x) node[left] {$y(0)$}  ; \fill[red] (x) circle(0.07cm) ;
+%%\draw [-,red,  name intersections={of=s1 and signal, by=x}, thick] (2.3cm, 0cm)   -- (x) node[above] {$y(1)$}  ; \fill[red] (x) circle(0.07cm) ;
+%%\draw [-,red,  name intersections={of=s2 and signal, by=x}, thick] (4.3cm, 0cm)   -- (x) node[above] {$y(2)$}  ; \fill[red] (x) circle(0.07cm) ;
+%%\draw [-,red,  name intersections={of=s3 and signal, by=x}, thick] (8.3cm, 0cm)   -- (x) node[above left] {$y(N-1)$}; \fill[red] (x) circle(0.07cm) ;
+%%
+%%\draw[<->] (0.3,0.6)--(1, 0.6);
+%%\node at (0.65, 0.6) [above] {$x$};
+%%
+%%\draw[<->] (2.3,0.6)--(3, 0.6);
+%%\node at (2.65, 0.6) [above] {$x$};
+%%
+%%\draw[<->] (4.3,0.6)--(5, 0.6);
+%%\node at (4.65, 0.6) [above] {$x$};
+%%
+%%\draw[<->] (8.3,0.6)--(9, 0.6);
+%%\node at (8.65, 0.6) [above] {$x$};
+%%
+%%
+%%\node at (6.5, 0.6) [above] {$\ldots$};
+%%\node at (6.5, 0) [below] {$\ldots$};
+
+
+
+
+
 \end{tikzpicture}
 
 \end {document}

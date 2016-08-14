@@ -27,6 +27,7 @@ p_dspl_fft_shift				dspl_fft_shift			;
 p_dspl_filter_iir				dspl_filter_iir	    	;
 p_dspl_freqs					dspl_freqs		    	;
 p_dspl_freqz					dspl_freqz		    	;
+p_dspl_freqz_resp				dspl_freqz_resp			;
 p_dspl_get_version 				dspl_get_version 		;
 p_dspl_goertzel					dspl_goertzel			;
 p_dspl_hilbert					dspl_hilbert			;
@@ -201,6 +202,13 @@ HINSTANCE	dspl_load()
 	dspl_freqz = (p_dspl_freqz) GetProcAddress(hDSPL, func_name);
 	if(!dspl_freqz)
 		goto error_proc;
+
+
+	func_name = "dspl_freqz_resp";
+	dspl_freqz_resp = (p_dspl_freqz_resp) GetProcAddress(hDSPL, func_name);
+	if(!dspl_freqz_resp)
+		goto error_proc;
+
 
 	
 	func_name = "dspl_get_version";
