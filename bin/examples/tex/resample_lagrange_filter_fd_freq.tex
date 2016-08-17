@@ -1,0 +1,125 @@
+\documentclass{standalone}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{color}
+
+
+%common figure styles
+
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.12}
+\usetikzlibrary{backgrounds}
+\begin{document}
+
+
+
+\definecolor{colorLine}{RGB}{100,100,100}
+
+
+\begin{tikzpicture}[baseline,  >=latex]
+	\begin{axis}[xlabel={$\omega$},
+		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
+		ymin = -20,
+		ymax = 2,
+		xmin = 0,
+		xmax = 3.141590,
+		grid = both,
+		xtick={0,  0.628318, 1.256636,  1.884954,  2.513272,  3.141590},
+		xticklabels={$0$, $0.2\pi$, $0.4\pi$, $0.6\pi$,	$0.8\pi$, $\pi$},
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor x tick num=3,
+		minor y tick num=4]		
+		\addplot + [solid, draw=black, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.0.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.1.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.2.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.3.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.4.txt};
+		\addplot + [solid, draw=red, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.5.txt};	
+
+		%\addplot + [dashed, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.6.txt};
+		%\addplot + [dashed, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.7.txt};
+		%\addplot + [dashed, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.8.txt};
+		%\addplot + [dashed, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_mag_0.9.txt};		
+		
+		\node(n00)[left, draw=colorLine, fill=white] at (axis cs:1.57,-3) {$x_0 = 0.0$};
+		\draw[draw=colorLine, ->] (n00.east) -- (axis cs:2.827,0);
+		
+		\node(n19) [left, draw=colorLine, fill=white] at (axis cs:1.57,-6) {$x_0 = 0.1,$  $x_0 = 0.9$};
+		\draw[draw=colorLine, ->] (n19.east) -- (axis cs:2.827,-1.35);
+		
+		
+		\node(n28) [left, draw=colorLine, fill=white] at (axis cs:1.57,-9) {$x_0 = 0.2,$ $x_0 = 0.8$};
+		\draw[draw=colorLine, ->] (n28.east) -- (axis cs:2.827,-3.5);
+		
+		
+		\node(n37) [left, draw=colorLine, fill=white] at (axis cs:1.57,-12) {$x_0 = 0.3$, $x_0 = 0.7$};
+		\draw[draw=colorLine, ->] (n37.east) -- (axis cs:2.827,-6.2);
+		
+		
+		\node(n46) [left, draw=colorLine, fill=white] at (axis cs:1.57,-15) {$x_0 = 0.4$, $x_0 = 0.6$};
+		\draw[draw=colorLine, ->] (n46.east) -- (axis cs:2.827,-10);
+		
+		\node(n05) [left, draw=colorLine] at (axis cs:1.57,-18) {$x_0 = 0.5$};
+		\draw[draw=colorLine, ->] (n05.east) -- (axis cs:2.827,-12.5);
+		
+		
+		
+	\end{axis}
+\end{tikzpicture}
+\hspace{0.15cm}
+\begin{tikzpicture}[baseline,  >=latex]
+	\begin{axis}[xlabel={$\omega$},
+		ylabel={$\tau( \omega)$},
+		ymin = 0,
+		ymax = 3,
+		xmin = 0,
+		xmax = 3.141590,
+		grid = both,
+		xtick={0,  0.628318, 1.256636,  1.884954,  2.513272,  3.141590},
+		xticklabels={$0$, $0.2\pi$, $0.4\pi$, $0.6\pi$,	$0.8\pi$, $\pi$},
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor x tick num=3,
+		minor y tick num=4]
+		\addplot + [solid, draw=black,  mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.0.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.1.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.2.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.3.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.4.txt};
+		\addplot + [solid, draw=red,  mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.5.txt};
+
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.6.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.7.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.8.txt};
+		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample/lagrange_filter_fd_gd_0.9.txt};		
+	
+		\node(n02)[left, draw=colorLine, fill=white] at (axis cs:0.7,0.8) {$x_0 = 0.2$};
+		\draw[draw=colorLine, ->] (n02.east) -- (axis cs:1,1.18);
+		\node(n01)[left, draw=colorLine, fill=white] at (axis cs:0.7,0.5) {$x_0 = 0.1$};
+	    \draw[draw=colorLine, ->] (n01.east) -- (axis cs:1,1.08);
+		\node(n00)[left, draw=colorLine, fill=white] at (axis cs:0.7,0.2) {$x_0 = 0.0$};
+		\draw[draw=colorLine, ->] (n00.east) -- (axis cs:1,1);
+		
+		
+		
+		\node(n05)[right, draw=colorLine, fill=white] at (axis cs:1.7,0.8) {$x_0 = 0.5$};
+		\draw[draw=colorLine, ->] (n05.west) -- (axis cs:1,1.48);
+		\node(n04)[right, draw=colorLine, fill=white] at (axis cs:1.7,0.5) {$x_0 = 0.4$};
+	    \draw[draw=colorLine, ->] (n04.west) -- (axis cs:1,1.38);
+		\node(n03)[right, draw=colorLine, fill=white] at (axis cs:1.7,0.2) {$x_0 = 0.3$};
+		\draw[draw=colorLine, ->] (n03.west) -- (axis cs:1,1.28);
+		
+	\end{axis}
+\end{tikzpicture}
+
+
+\end{document}

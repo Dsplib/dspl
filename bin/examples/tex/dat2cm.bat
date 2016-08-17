@@ -32,4 +32,19 @@ dat2cm.exe -i ../dat/dtmf/sym_d_freq.txt -o ../dat/dtmf/sym_d_freq.cm -ymin 0 -y
 dat2cm.exe -i ../dat/dtmf/sym_r_freq.txt -o ../dat/dtmf/sym_r_freq.cm -ymin 0 -ymax 120 -xmin 500 -xmax 1800 -w 4.5 -h 2
 dat2cm.exe -i ../dat/dtmf/sym_s_freq.txt -o ../dat/dtmf/sym_s_freq.cm -ymin 0 -ymax 120 -xmin 500 -xmax 1800 -w 4.5 -h 2
 
+
+
+
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.0.txt -o ../dat/resample/lagrange_filter_fd_time_0.0.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.1.txt -o ../dat/resample/lagrange_filter_fd_time_0.1.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.2.txt -o ../dat/resample/lagrange_filter_fd_time_0.2.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.3.txt -o ../dat/resample/lagrange_filter_fd_time_0.3.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.4.txt -o ../dat/resample/lagrange_filter_fd_time_0.4.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.5.txt -o ../dat/resample/lagrange_filter_fd_time_0.5.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.6.txt -o ../dat/resample/lagrange_filter_fd_time_0.6.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.7.txt -o ../dat/resample/lagrange_filter_fd_time_0.7.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.8.txt -o ../dat/resample/lagrange_filter_fd_time_0.8.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+dat2cm.exe -i ../dat/resample/lagrange_filter_fd_time_0.9.txt -o ../dat/resample/lagrange_filter_fd_time_0.9.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
+
+
 mingw32-make

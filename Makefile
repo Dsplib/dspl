@@ -81,8 +81,8 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/goertzel_dtmf.exe\
 			$(EXE_BIN_DIR)/randn_histogram.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_interp.exe\
-			$(EXE_BIN_DIR)/resample_lagrange_filter.exe\
-			
+			$(EXE_BIN_DIR)/resample_lagrange_filter_interp.exe\
+			$(EXE_BIN_DIR)/resample_lagrange_filter_frac_delay.exe\
 			
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\
