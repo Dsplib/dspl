@@ -69,7 +69,7 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 		case  DSPL_WIN_COS				:	dspl_win_cos				(w, n, win_type);	break;
 		default 						:	res = DSPL_ERROR_WIN_TYPE;			
 	}
-	
+	res = DSPL_OK;
 exit_label:
 	dspl_print_err(res, "dspl_window");
     return res;
