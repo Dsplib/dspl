@@ -508,7 +508,7 @@ extern p_dspl_polyval_cmplx				dspl_polyval_cmplx		;	/* ru, en */
 extern p_dspl_print_err					dspl_print_err	    	;	/* --, -- */
 extern p_dspl_print_msg 				dspl_print_msg 	    	;	/* --, -- */ 
 extern p_dspl_pwelch					dspl_pwelch				;	/* ru, en */
-extern p_dspl_rand						dspl_rand				;	/* ru, -- */ 
+extern p_dspl_rand						dspl_rand				;	/* ru, en */ 
 extern p_dspl_randn						dspl_randn				;	/* --, -- */ 
 extern p_dspl_resample_lagrange			dspl_resample_lagrange	;	/* ru, -- */	
 extern p_dspl_sin_cmplx					dspl_sin_cmplx			;	/* ru, en */

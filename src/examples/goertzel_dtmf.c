@@ -8,8 +8,13 @@
 
 #elseif DOXYGEN_RU
 
+
 /*! 
-\example goertzel_dtmf.c  
+\file goertzel_dtmf.c
+\example  goertzel_dtmf.c 
+  
+\brief Пример использования алгоритма Гёрцеля.
+ 
 Данная программа производит генерирование 16-ти DTMF сигналов тонового набора номера.
 После производится расчет спектральных отсчетов ДПФ соответствующих частотам тонов 
 DTMF при помощи <a href="http://ru.dsplib.org/content/goertzel.html">алгоритма Гёрцеля</a>.<BR>
