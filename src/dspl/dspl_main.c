@@ -65,9 +65,13 @@ DSPL_API int dspl_obj_create(void **obj)
 {
 	dspl_t *pdspl;
 	SYSTEM_INFO sysinfo;
-
+	int res;
+	
 	if(!obj || (*obj))
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 
 	(*obj) = (void*)malloc(sizeof(dspl_t));
 	
@@ -86,7 +90,10 @@ DSPL_API int dspl_obj_create(void **obj)
 	pdspl->pconv = (conv_t*) malloc (sizeof(conv_t));	
 	memset(pdspl->pconv, 0, sizeof(conv_t));
 
-	return DSPL_OK;
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_obj_create");
+	return res;
 }
 
 
@@ -95,8 +102,12 @@ DSPL_API int dspl_obj_create(void **obj)
 DSPL_API int dspl_obj_free(void **obj)
 {
 	dspl_t *pdspl;
+	int res;
 	if(!obj)
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if((*obj) == NULL)
 		return DSPL_OK;
 
@@ -109,7 +120,10 @@ DSPL_API int dspl_obj_free(void **obj)
 	free(*obj);
 	*obj = NULL;
 	
-	return DSPL_OK;
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_obj_free");
+	return res;
 }
 
 

@@ -35,13 +35,25 @@ DSPL_API int dspl_pwelch(double *xR, double *xI, int n,
 	
 	
 	if(!xR || !pdspl || !ppsd)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n<1 || npsd < 1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	if(noverlap < 1 || noverlap > npsd)
-		return DSPL_ERROR_OVERLAP;
+	{
+		res =  DSPL_ERROR_OVERLAP;
+		goto exit_label;	
+	}
 	if(fs < 0.0)
-		return DSPL_ERROR_FS;
+	{
+		res = DSPL_ERROR_FS;
+		goto exit_label;	
+	}
 	
 	win = (double*)malloc(npsd*sizeof(double));
 	res = dspl_window(win, npsd, win_type, win_param);
@@ -80,8 +92,7 @@ DSPL_API int dspl_pwelch(double *xR, double *xI, int n,
 				sI[k] = 0.0;
 			}
 		}
-		res = dspl_fft(sR, sI, npsd, pdspl, tR, tI);
-		
+		res = dspl_fft(sR, sI, npsd, pdspl, tR, tI);		
 		if(res != DSPL_OK)
 			goto exit_label;
 	
@@ -96,11 +107,15 @@ DSPL_API int dspl_pwelch(double *xR, double *xI, int n,
 		ppsd[k] /= (double)cnt * fs;
 	
 	if(pfrq)
-		dspl_linspace(0, fs, npsd, DSPL_PERIODIC, pfrq);
+	{
+		res = dspl_linspace(0, fs, npsd, DSPL_PERIODIC, pfrq);
+		if(res != DSPL_OK)
+			goto exit_label;
+	}
 	
 	res = DSPL_OK;
-	
 exit_label:
+	dspl_print_err(res, "dspl_pwelch");
 	if(win)
 		free(win);
 	if(tR)
@@ -111,6 +126,5 @@ exit_label:
 		free(sR);
 	if(tR)
 		free(sI);
-	return DSPL_OK;
-	
+	return res;
 }

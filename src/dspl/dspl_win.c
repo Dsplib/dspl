@@ -42,10 +42,17 @@ void dspl_win_cos				(double *w, int n, int win_type);
 
 DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 {
+	int res;
 	if(!w)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto  exit_label;		
+	}
 	if(n<2)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto  exit_label;		
+	}
 	switch(win_type & DSPL_WIN_MASK){
 		case  DSPL_WIN_BARTLETT			:	dspl_win_bartlett			(w, n, win_type);	break; 
 		case  DSPL_WIN_BARTLETT_HANN	:	dspl_win_bartlett_hann		(w, n, win_type);	break; 
@@ -60,9 +67,12 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param)
 		case  DSPL_WIN_NUTTALL			:	dspl_win_nuttall			(w, n, win_type);	break; 
 		case  DSPL_WIN_RECT				:	dspl_win_rect				(w, n);				break; 
 		case  DSPL_WIN_COS				:	dspl_win_cos				(w, n, win_type);	break;
-		default 						:	return DSPL_ERROR_WIN_TYPE;			
+		default 						:	res = DSPL_ERROR_WIN_TYPE;			
 	}
-	return DSPL_OK;
+	
+exit_label:
+	dspl_print_err(res, "dspl_window");
+    return res;
 }
 
 

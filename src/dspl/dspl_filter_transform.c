@@ -34,17 +34,32 @@ DSPL_API int dspl_ap2bpass(double* b, double* a, int n,
 {
 	double p[3] = {0.0, 0.0, 1.0};
 	double q[3] = {0.0, 0.0, 0.0};
+	int res;
 	
 	if(!b || !a || !beta || !alpha)
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n < 0)
-		return DSPL_ERROR_FILTER_ORD;
+	{
+		res =DSPL_ERROR_FILTER_ORD;
+		goto exit_label;	
+	}
 	if(wp0<=0.0 || wp1<wp0)
-		return DSPL_ERROR_FILTER_WP;
+	{
+		res =DSPL_ERROR_FILTER_WP;
+		goto exit_label;	
+	}
 		
 	p[0] = wp0 * wp1;
 	q[1] = wp1 - wp0;
-	return dspl_compos(b, a, n, p, q, 2, beta, alpha);
+	res = dspl_compos(b, a, n, p, q, 2, beta, alpha);
+
+	
+exit_label:
+	dspl_print_err(res, "dspl_ap2bpass");
+	return res;
 }
 
 
@@ -59,17 +74,31 @@ DSPL_API int dspl_ap2bstop(double* b, double* a, int n,
 {
 	double p[3] = {0.0, 0.0, 0.0};
 	double q[3] = {0.0, 0.0, 1.0};
+	int res;
 	
 	if(!b || !a || !beta || !alpha)
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n < 0)
-		return DSPL_ERROR_FILTER_ORD;
+	{
+		res =DSPL_ERROR_FILTER_ORD;
+		goto exit_label;	
+	}
 	if(ws0<=0.0 || ws1<ws0)
-		return DSPL_ERROR_FILTER_WP;
+	{
+		res =DSPL_ERROR_FILTER_WP;
+		goto exit_label;	
+	}
 		
 	q[0] = ws0 * ws1;
 	p[1] = ws1 - ws0;
-	return dspl_compos(b, a, n, p, q, 2, beta, alpha);
+	res =  dspl_compos(b, a, n, p, q, 2, beta, alpha);
+	
+exit_label:
+	dspl_print_err(res, "dspl_ap2bstop");
+	return res;
 }
 
 
@@ -82,16 +111,30 @@ DSPL_API int dspl_ap2high(double* b, double* a, int n, double wp,
 {
 	double p[2] = {0.0, 0.0};
 	double q[2] = {0.0, 1.0};
+	int res;
 	
 	if(!b || !a || !beta || !alpha)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n < 0)
-		return DSPL_ERROR_FILTER_ORD;
+	{
+		res = DSPL_ERROR_FILTER_ORD;
+		goto exit_label;	
+	}
 	if(wp<=0.0)
-		return DSPL_ERROR_FILTER_WP;
+	{
+		res = DSPL_ERROR_FILTER_WP;
+		goto exit_label;	
+	}
 		
 	p[0] = wp; 
-	return dspl_compos(b, a, n, p, q, 1, beta, alpha);
+	res =   dspl_compos(b, a, n, p, q, 1, beta, alpha);
+		
+exit_label:
+	dspl_print_err(res, "dspl_ap2high");
+	return res;
 }
 
 
@@ -108,16 +151,31 @@ DSPL_API int dspl_ap2low(double* b, double* a, int n, double wp,
 {
 	double p[2] = {0.0, 1.0};
 	double q[2] = {0.0, 0.0};
+	int res;
+	
 	
 	if(!b || !a || !beta || !alpha)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n < 0)
-		return DSPL_ERROR_FILTER_ORD;
+	{
+		res = DSPL_ERROR_FILTER_ORD;
+		goto exit_label;	
+	}
 	if(wp<=0.0)
-		return DSPL_ERROR_FILTER_WP;
+	{
+		res =  DSPL_ERROR_FILTER_WP;
+		goto exit_label;	
+	}
 		
 	q[0] = wp; 
-	return dspl_compos(b, a, n, p, q, 1, beta, alpha);
+	res = dspl_compos(b, a, n, p, q, 1, beta, alpha);
+			
+exit_label:
+	dspl_print_err(res, "dspl_ap2low");
+	return res;
 }
 
 

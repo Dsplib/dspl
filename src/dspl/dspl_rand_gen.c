@@ -33,11 +33,18 @@ DSPL_API int dspl_rand(double* x, int n)
 {
  	int k,m;
  	unsigned int x1[4], x2[4], y;
-
+	int res;
+	
  	if(!x)
- 		return DSPL_ERROR_PTR;
+	{
+		res =  DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
  	if(n<1)
- 		return DSPL_ERROR_SIZE;
+	{
+		res =  DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 
  	x1[1] = rand();
  	x2[1] = rand();
@@ -58,7 +65,12 @@ DSPL_API int dspl_rand(double* x, int n)
 
  		x[k] = (double)y/DSPL_RAND_MOD_X1;
  	}
- 	return DSPL_OK;
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_rand");
+	return res;
+
 }
 
 
@@ -69,17 +81,35 @@ DSPL_API int dspl_randn(double* x, int n, double mu, double sigma)
 {
 	int k, m;
 	double x1[128], x2[128];
+	int res;
 	if(!x)
- 		return DSPL_ERROR_PTR;
+	{
+		res =  DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
+
  	if(n<1)
- 		return DSPL_ERROR_SIZE;
+	{
+		res =  DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
+
 	if(sigma < 0.0)
-		return DSPL_ERROR_RAND_SIGMA;
+	{
+		res =  DSPL_ERROR_RAND_SIGMA;
+		goto exit_label;	
+	}
+
 	k=0;
 	while(k < n)
 	{
-		dspl_rand(x1, 128);
-		dspl_rand(x2, 128);
+		res = dspl_rand(x1, 128);
+		if(res != DSPL_OK)
+			goto exit_label;
+		
+		res = dspl_rand(x2, 128);
+		if(res != DSPL_OK)
+			goto exit_label;
 		m = 0 ;
 		while(k<n && m < 128)
 		{
@@ -94,7 +124,11 @@ DSPL_API int dspl_randn(double* x, int n, double mu, double sigma)
 			}			
 		}		
 	}
-	return DSPL_OK;	
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_randn");
+	return res;
 }
 
 

@@ -32,12 +32,23 @@ DSPL_API int dspl_unwrap(double* phi,  int n, double lev, double mar)
 	double th;
 	int k;
 	int flag = 1;
+	int res;
+	
 	if(!phi)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto  exit_label;		
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto  exit_label;		
+	}
 	if(lev<=0 || mar <=0)
-		return DSPL_ERROR_UNWRAP;
+	{
+		res = DSPL_ERROR_UNWRAP;
+		goto  exit_label;		
+	}
 	th = mar*lev;
 	while(flag)
 	{
@@ -61,7 +72,11 @@ DSPL_API int dspl_unwrap(double* phi,  int n, double lev, double mar)
 		}
 		phi[n-1]+=a[1];
 	}
-	return DSPL_OK;
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_unwrap");
+    return res;
 }
 
 

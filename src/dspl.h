@@ -240,7 +240,7 @@ DSPL_API int dspl_polyval_cmplx(	double* aR, double* aI, int ord,
 									double* yR, double* yI);									
 									
 /* print error code (dspl_inout.c) */
-DSPL_API void dspl_print_err (int res, int printCR, char* funcName);
+DSPL_API void dspl_print_err (int res, char* funcName);
 
 /* print message (dspl_inout.c) */
 DSPL_API void dspl_print_msg (char* msg, int printTime, int msgLen);
@@ -425,7 +425,7 @@ typedef int (*p_dspl_polyval_cmplx)	(	double* aR, double* aI, int ord,
 										double* yR, double* yI);
 
 /* print error code (dspl_inout.c) */
-typedef void (*p_dspl_print_err) 	(int res, int printCR, char* funcName);
+typedef void (*p_dspl_print_err) 	(int res, char* funcName);
 
 /* print message (dspl_inout.c) */
 typedef void (*p_dspl_print_msg) 	(char* msg, int printTime, int msgLen);

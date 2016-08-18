@@ -33,12 +33,19 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
     double eR, eI;
     double divn;
     double dphi;
-    double phi;         
+    double phi; 
+	int res;
 
     if(!xR || !yR ||!yI)
-        return DSPL_ERROR_PTR;
+	{
+        res = DSPL_ERROR_PTR;
+		goto exit_label;
+	}
     if(n<1)
-        return DSPL_ERROR_SIZE;
+	{
+        res = DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
 
     divn = 1.0 / (double)n;
     if(xI)
@@ -73,5 +80,9 @@ DSPL_API int dspl_dft(double *xR, double *xI, int n, double *yR, double *yI)
             }    
         }
     }
-    return DSPL_OK;
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_dft");
+	return res;	
 }

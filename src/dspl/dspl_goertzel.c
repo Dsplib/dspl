@@ -35,11 +35,18 @@ DSPL_API int dspl_goertzel(double *xR, double *xI, int n, int *ind, int k, doubl
     double alpha;
     double vR[3];
 	double vI[3];
-
+	int res;
+	
     if(!xR || !yR ||!yI || !ind)
-        return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
     if(n < 1 || k < 1)
-        return DSPL_ERROR_SIZE;
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 
 	for(p = 0; p < k; p++)
 	{
@@ -76,5 +83,8 @@ DSPL_API int dspl_goertzel(double *xR, double *xI, int n, int *ind, int k, doubl
 	}
 	
     
-    return DSPL_OK;
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_goertzel");
+	return res;
 }

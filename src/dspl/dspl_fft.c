@@ -38,14 +38,20 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, d
 	fft_t *pfft = ((dspl_t*)pdspl)->pfft;
 	
 	if(!xR || !xI || !yR || !pdspl)
-		return DSPL_ERROR_PTR;	
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}	
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	
 	
 	res = dspl_fft_create(n, pfft);
 	if(res!=DSPL_OK)
-		return res;
+		goto exit_label;
 	
 	
 	t = (double*)(pfft->in);
@@ -71,9 +77,11 @@ DSPL_API int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, d
 	else
 		for(k = 0; k < n; k++)
 			yR[k] = ninv * t[2*k];
-
 	
-	return DSPL_OK;
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_ifft");
+	return res;
 }
 
 
@@ -90,9 +98,15 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 	fft_t *pfft = ((dspl_t*)pdspl)->pfft;
 	
 	if(!xR || !yR || !yI || !pdspl)
-		return DSPL_ERROR_PTR;	
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	
 	//omp_set_dynamic(1);      // запретить библиотеке openmp менять число потоков во время исполнения
   //omp_set_num_threads(2); // установить число потоков в 10
@@ -100,7 +114,7 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 	//fftw_plan_with_nthreads(8);
 	res = dspl_fft_create(n, pfft);
 	if(res!=DSPL_OK)
-		return res;
+		goto exit_label;
 	
 	
 	t = (double*)(pfft->in);
@@ -133,17 +147,27 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
 		yI[k] = t[2*k+1];
 	}
 	
-	return DSPL_OK;
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_fft");
+	return res;
 }
 
 
 
 int dspl_fft_create(int n, fft_t *pfft)
 {
+	int res;
 	if(!pfft)
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n == pfft->n)
-		return DSPL_OK;
+	{
+		res =DSPL_OK;
+		goto exit_label;	
+	}
 	dspl_fft_free(pfft);
 	pfft->in  = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
     pfft->out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
@@ -151,7 +175,11 @@ int dspl_fft_create(int n, fft_t *pfft)
 	
 	fftw_plan_with_nthreads(pfft->nthreads);
 	pfft->plan = fftw_plan_dft_1d(pfft->n , pfft->in, pfft->out, FFTW_FORWARD, FFTW_ESTIMATE);
-	return DSPL_OK;
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_fft_create");
+	return res;
 }
 
 
@@ -168,29 +196,6 @@ void dspl_fft_free(fft_t *pfft)
 
 
 
-/* retrun power of 2 of FFT size. 
- Return zero if n is not power of 2 
-int dspl_fft_p2(int n)
-{
-	int n2;
-	int p2;
-	p2 = 0;;
-	n2 = n;
-	while(n2-1)
-	{
-		p2++;
-		n2>>=1;
-	}
-	if(1<<p2 != n)
-		return 0;
-	return p2;	
-}
-*/
-
-
-
-
-
 
 DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* yI)
 {
@@ -198,11 +203,18 @@ DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* y
 	int k;
 	double tmp;
 	double *buf;
+	int res;
 	
 	if(!xR || !yR || (!xI && yI) || (!yI && xI))
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	r = n%2;
 	if(!r)
 	{
@@ -248,6 +260,9 @@ DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* y
 		}
 		free(buf);
 	}
-			
-	return DSPL_OK;
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_fft_shift");
+	return res;
 }

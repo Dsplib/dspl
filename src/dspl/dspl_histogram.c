@@ -30,16 +30,29 @@
 
 DSPL_API int dspl_histogram(double* x, int n, int nh, double *pedges, double *ph)
 {
-	double xmin, xmax, dx;
+	double xmin, xmax;
 	int k, ind;
+	int res;
 	
 	if(!x || !pedges || !ph)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;	
+		goto exit_label;	
+	}
 	if(n<1 || nh<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;	
+		goto exit_label;	
+	}
 	
-	dspl_minmax(x, n, &xmin, &xmax);
-	dspl_linspace(xmin, xmax, nh+1, DSPL_SYMMETRIC, pedges);
+	res = dspl_minmax(x, n, &xmin, &xmax);
+	if(res != DSPL_OK)
+		goto exit_label;
+	
+	res = dspl_linspace(xmin, xmax, nh+1, DSPL_SYMMETRIC, pedges);
+	if(res != DSPL_OK)
+		goto exit_label;
+	
 	memset(ph, 0, nh*sizeof(double));
 	for(k = 0; k < n; k++)
 	{
@@ -48,7 +61,11 @@ DSPL_API int dspl_histogram(double* x, int n, int nh, double *pedges, double *ph
 			ind++;
 		ph[ind-1]+=1.0;		
 	}
-	return DSPL_OK;
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_histogram");
+	return res;
 
 }
 
@@ -62,14 +79,20 @@ DSPL_API int dspl_histogram_norm(double *y, int n, int nh, double *x, double *w)
 	int k, res;
 	
 	if(!y || !x || !w)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;	
+		goto exit_label;	
+	}
 	if(n<1 || nh<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;	
+		goto exit_label;	
+	}
 	pedges = (double*)malloc((nh+1)*sizeof(double));
 	
 	res = dspl_histogram(y, n, nh, pedges, w);
 	if(res != DSPL_OK)
-		goto error_label;
+		goto exit_label;
 
 	for(k = 1; k < nh+1; k++)
 	{
@@ -77,11 +100,11 @@ DSPL_API int dspl_histogram_norm(double *y, int n, int nh, double *x, double *w)
 		w[k-1] /= ((double)n * (pedges[k] - pedges[k-1]));
 	}
 	
-	
-error_label:	
+	res = DSPL_OK;	
+exit_label:	
+	dspl_print_err(res, "dspl_histogram_norm");
 	if(pedges)
-		free(pedges);
-	
+		free(pedges);	
 	return res;
 
 }

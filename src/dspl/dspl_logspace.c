@@ -27,10 +27,18 @@ DSPL_API int dspl_logspace(double x0, double x1, int n, int type, double* x)
 {
 	double mx, a, b;
 	int k;
+	int res;
+	
 	if(n < 2)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	if(!x)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 
 	a = pow(10.0, x0);
 	b = pow(10.0, x1);
@@ -49,6 +57,10 @@ DSPL_API int dspl_logspace(double x0, double x1, int n, int type, double* x)
 		for(k = 1; k < n; k++)
 			x[k] = x[k-1] * mx;
 	}
-	return DSPL_OK;	
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_logspace");
+	return res;
 }
               

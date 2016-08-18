@@ -40,13 +40,12 @@
 *	Sergey Bakhurin. 														www.dsplib.org	
 *
 */
-DSPL_API void dspl_print_err(int res, int printCR, char* funcName)
+DSPL_API void dspl_print_err(int res, char* funcName)
 {
 	switch(res)
 	{
 		case DSPL_OK:
-			break;
-			
+			return;			
 		case DSPL_ERROR_ELLIP_K:
 			printf("%s ERROR: Complete elliptic integral modulus can be from 0 to 1!", funcName);
 			break;	
@@ -91,9 +90,7 @@ DSPL_API void dspl_print_err(int res, int printCR, char* funcName)
 		default:
 			printf("%s Unknown error code 0x%.8x", funcName, res);		
 	}
-	if(printCR)
-		printf("\n");	
-	
+	printf("\n");	
 }
 
 
@@ -153,19 +150,31 @@ DSPL_API void dspl_print_msg(char* msg, int printTime, int msgLen)
 */
 DSPL_API int dspl_writebin(double* x, double *y, int n, char* fn)
 {
-	int k;
+	int k, res;
 	FILE* pFile = NULL;
 	
 	if(!x)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;
+	}
 	if(n < 1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
 	if(!fn)
-		return DSPL_ERROR_FNAME;
+	{
+		res =  DSPL_ERROR_FNAME;
+		goto exit_label;
+	}
 	
 	pFile = fopen(fn, "wb");
 	if(pFile == NULL)
-		return DSPL_ERROR_FOPEN;
+	{
+		res = DSPL_ERROR_FOPEN;
+		goto exit_label;
+	}
 	k = y ? DSPL_DAT_COMPLEX : DSPL_DAT_REAL;
 	fwrite(&k, sizeof(int), 1, pFile);
 	fwrite(&n, sizeof(int), 1, pFile);
@@ -174,9 +183,17 @@ DSPL_API int dspl_writebin(double* x, double *y, int n, char* fn)
 	fwrite(x, sizeof(double), n, pFile);
 	if(y)
 		fwrite(y, sizeof(double), n, pFile);
-	fclose(pFile);
-	return DSPL_OK;	
+
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_writebin");
+	if(pFile)
+		fclose(pFile);
+	return res;	
 }
+
+
+
 
 /*
  Save data to text file.
@@ -184,26 +201,45 @@ DSPL_API int dspl_writebin(double* x, double *y, int n, char* fn)
 DSPL_API int dspl_writetxt(double* x, double *y, int n, char* fn)
 {
 	int k;
+	int res;
 	FILE* pFile = NULL;
 	
 	if(!x)
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;
+	}
 	if(n < 1)
-		return DSPL_ERROR_SIZE;
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
 	if(!fn)
-		return DSPL_ERROR_FNAME;
+	{
+		res =DSPL_ERROR_FNAME;
+		goto exit_label;
+	}
 	
 	pFile = fopen(fn, "w");
 	if(pFile == NULL)
-		return DSPL_ERROR_FOPEN;
+	{
+		res =DSPL_ERROR_FOPEN;
+		goto exit_label;
+	}
 	if(y)
 		for(k = 0; k < n; k++)
 			fprintf(pFile, "%+.12E\t%+.12E\n", x[k], y[k]);
 	else
 		for(k = 0; k < n; k++)
 			fprintf(pFile, "%+.12E\n", x[k]);
-	fclose(pFile);
-	return DSPL_OK;	
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_writetxt");
+	if(pFile)
+		fclose(pFile);
+	return res;	
+
 }
 
 

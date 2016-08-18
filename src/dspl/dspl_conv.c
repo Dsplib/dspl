@@ -43,34 +43,40 @@ DSPL_API int dspl_conv(double* a, int na, double* b,  int nb, double *c)
 	double *t;
 
 	size_t bufsize;	
-	int f = 0;
-
+	int res;
 	
 	if(!a || !b || !c)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;
+	}
 	if(na < 1 || nb < 1)
-		return DSPL_ERROR_SIZE;
-
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
+	
 	bufsize = (na + nb - 1) * sizeof(double);
 	
 	if((a != c) && (b != c))
 		t = c;
 	else
-	{
 		t = (double*)malloc(bufsize);
-	 	f = 1;
-	}
 
 	memset(t, 0, bufsize);
 
 	dspl_conv_real_krn(a, na, b, nb, t);
 
-	if(f)
+	if(t!=c)
 	{
 		memcpy(c, t, bufsize);
 		free(t);
 	}
-	return DSPL_OK;	
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_conv");
+	return res;	
 			
 }
 
@@ -84,34 +90,33 @@ DSPL_API int dspl_conv_cmplx(double *aR, double *aI, int na, double *bR, double 
 	double *tR = NULL;
 	double *tI = NULL;
 	size_t bufsize;	
-	int fR = 0;
-	int fI = 0;
+	int res = 0;
 	
 	if(!aR || !bR || !cR || ((aI || bI) && !cI))
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;
+	}
 	if(na < 1 || nb < 1)
-		return DSPL_ERROR_SIZE;
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
 
 	bufsize = (na + nb - 1) * sizeof(double);
 	
 	if((aR != cR) && (bR != cR))
 		tR = cR;
 	else
-	{
 		tR = (double*)malloc(bufsize);
-	 	fR = 1;
-	}
+
 
 	if((aI != cI) && (bI != cI))
 		tI = cI;
 	else
-	{
 		if(cI)
-		{
 			tI = (double*)malloc(bufsize);
-	 		fI = 1;
-		}
-	}
+
 	memset(tR, 0, bufsize);
 	if(tI)
 		memset(tI, 0, bufsize);
@@ -125,17 +130,21 @@ DSPL_API int dspl_conv_cmplx(double *aR, double *aI, int na, double *bR, double 
 	if(!aI && !bI)	
 		dspl_conv_real_krn(aR, na, bR, nb, tR);
 
-	if(fR)
+	if(tR!=cR)
 	{
 		memcpy(cR, tR, bufsize);
 		free(tR);
 	}
-	if(fI)
+	if(tI!=cI)
 	{
 		memcpy(cI, tI, bufsize);
 		free(tI);
 	}
-	return DSPL_OK;	
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_conv_cmplx");
+	return res;	
 			
 }
 

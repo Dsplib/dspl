@@ -29,11 +29,18 @@ DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *y
 {
 	double t, wn, wp;
 	int k;
+	int res;
 	
 	if(!xR || !yR || (xI && !yI))
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 		
 	if(!xI)
 	{
@@ -53,7 +60,11 @@ DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *y
 		yI[k] = 0.5*sin(xR[k])*(wn-wp);
 		yR[k] = t;
 	}
-	return DSPL_OK;
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_cos_cmplx");
+	return res;
 	
 }
 
@@ -63,18 +74,29 @@ DSPL_API int dspl_log_cmplx(double *xR, double *xI, int n, double *yR, double *y
 {
 	double tI;
 	int k;
+	int res;
 	
 	if(!xR || !yR || !yI)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	for(k = 0; k < n; k++)
 	{
 		tI = xI ? xI[k] : 0.0;
 		yR[k] = 0.5 * log(xR[k] * xR[k] + tI * tI);
 		yI[k] = atan2(tI, xR[k]);		
 	}
-	return DSPL_OK;
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_log_cmplx");
+	return res;
 	
 }
 
@@ -84,11 +106,18 @@ DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *y
 {
 	double t, wn, wp;
 	int k;
+	int res;
 	
 	if(!xR || !yR || (xI && !yI))
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 		
 	if(!xI)
 	{
@@ -110,7 +139,10 @@ DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *y
 		yR[k] = t;
 	}
 	
-	return DSPL_OK;
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_sin_cmplx");
+	return res;
 	
 }
 
@@ -124,12 +156,19 @@ DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double 
 {
 	double t, tI, a;
 	int k;
+	int res;
 	
 	if(!xR || !yR || !yI)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 
 	if(n < 1)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	
 	
 	for(k = 0; k < n; k++)
@@ -141,7 +180,12 @@ DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double 
 		yI[k] = (tI > 0) ? t : -t;
 		
 	}
-	return DSPL_OK;
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_sqrt_cmplx");
+	return res;
+	
 	
 }
 

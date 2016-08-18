@@ -103,6 +103,6 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 	}
 	
 exit_label:
-	dspl_print_err(res, 1, "dspl_resample_lagrange");
+	dspl_print_err(res, "dspl_resample_lagrange");
     return res;
 }

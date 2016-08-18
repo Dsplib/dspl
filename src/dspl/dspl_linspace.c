@@ -27,10 +27,18 @@ DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x)
 {
 	double dx;
 	int k;
+	int res;
+	
 	if(n < 2)
-		return DSPL_ERROR_SIZE;
+	{
+		res = DSPL_ERROR_SIZE;	
+		goto exit_label;	
+	}
 	if(!x)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;	
+		goto exit_label;	
+	}
 
 	if(type == DSPL_SYMMETRIC)
 	{
@@ -47,6 +55,10 @@ DSPL_API int dspl_linspace(double x0, double x1, int n, int type, double* x)
 		for(k = 1; k < n; k++)
 			x[k] = x[k-1] + dx;
 	}
-	return DSPL_OK;	
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_linspace");
+	return res;
 }
 

@@ -35,13 +35,23 @@ DSPL_API int dspl_butter_ap(double Rp, int ord, double* b, double* a)
 	int L;
 	int n;
 	int k;
+	int res;
 	
 	if(Rp < 0 || Rp == 0)
-		return DSPL_ERROR_FILTER_RP;
+	{
+		res = DSPL_ERROR_FILTER_RP;
+		goto exit_label;	
+	}
 	if(ord < 1)
-		return DSPL_ERROR_FILTER_ORD;
+	{
+		res = DSPL_ERROR_FILTER_ORD;
+		goto exit_label;	
+	}
 	if(!b || !a)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	
 	acc = (double*)malloc((ord+1)*sizeof(double));
 
@@ -79,12 +89,20 @@ DSPL_API int dspl_butter_ap(double Rp, int ord, double* b, double* a)
 		teta = M_PI*(double)(2*n + 1)/(double)(2*ord);
 		p[0] = alpha * alpha;
 		p[1] = 2.0 * alpha * sin(teta);
-		dspl_conv(p, 3, acc, k, a);
+		
+		res = dspl_conv(p, 3, acc, k, a);
+		if(res!=DSPL_OK)			
+			goto exit_label;	
+	
 		k+=2;
 	}
 
-	free(acc);
-	return DSPL_OK;
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_butter_ap");
+	if(acc)
+		free(acc);
+	return res;
 }
 
 
@@ -109,13 +127,23 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
 	int L;
 	int n;
 	int k;
+	int res;
 	
 	if(Rp < 0 || Rp == 0)
-		return DSPL_ERROR_FILTER_RP;
+	{
+		res = DSPL_ERROR_FILTER_RP;
+		goto exit_label;	
+	}
 	if(ord < 1)
-		return DSPL_ERROR_FILTER_ORD;
+	{
+		res = DSPL_ERROR_FILTER_ORD;
+		goto exit_label;	
+	}
 	if(!b || !a)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	
 	acc = (double*)malloc((ord+1)*sizeof(double));
 
@@ -161,12 +189,19 @@ DSPL_API int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
 		gain*=p[0];
 		p[1] = -2.0 * sigma;
 		
-		dspl_conv(p, 3, acc, k, a);
+		res = dspl_conv(p, 3, acc, k, a);
+		if(res!=DSPL_OK)
+			goto exit_label;
 		k+=2;
 	}
 	b[0] = gain;
-	free(acc);
-	return DSPL_OK;
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_cheby1_ap");
+	if(acc)
+		free(acc);
+	return res;
 }
 
 
@@ -180,13 +215,23 @@ DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
 	double q[3] = {0.0, 0.0, 1.0};
 	double gain;
 	int r, L, n, kp;
+	int res;
 	
 	if(Rs < 0 || Rs == 0)
-		return DSPL_ERROR_FILTER_RS;
+	{
+		res =DSPL_ERROR_FILTER_RS;
+		goto exit_label;	
+	}
 	if(ord < 1)
-		return DSPL_ERROR_FILTER_ORD;
+	{
+		res =DSPL_ERROR_FILTER_ORD;
+		goto exit_label;	
+	}
 	if(!b || !a)
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	
 	acc = (double*)malloc((ord+1)*sizeof(double));
 	bcc = (double*)malloc((ord+1)*sizeof(double));
@@ -238,8 +283,14 @@ DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
 		p[0] = so2;
 		p[1] = 2.0*sigma*so2;
 
-		dspl_conv(p, 3, acc, kp, a);
-		dspl_conv(q, 3, bcc, kp, b);
+		res = dspl_conv(p, 3, acc, kp, a);
+		if(res!=DSPL_OK)
+			goto exit_label;
+		
+		res = dspl_conv(q, 3, bcc, kp, b);
+		if(res!=DSPL_OK)
+			goto exit_label;
+		
 		kp+=2;
 		
 	}
@@ -248,10 +299,16 @@ DSPL_API int dspl_cheby2_ap(double Rs, int ord, double *b, double *a)
 	for(n = 0; n < ord+1; n++)
 		b[n] /= gain;
 
-	free(acc);
-	free(bcc);
 	
-	return DSPL_OK;
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_cheby2_ap");
+	if(acc)
+		free(acc);
+	if(bcc)
+		free(bcc);
+	return res;
+
 }
 
 

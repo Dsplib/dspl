@@ -37,14 +37,20 @@ DSPL_API int dspl_hilbert(double* x, int n, void* pdspl, double* y)
 	fft_t *pfft = ((dspl_t*)pdspl)->pfft;
 	
 	if(!x|| !y || !pdspl)
-		return DSPL_ERROR_PTR;	
+	{
+		res =DSPL_ERROR_PTR;	
+		goto exit_label;	
+	}
 	if(n<1)
-		return DSPL_ERROR_SIZE;
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
 	
 	
 	res = dspl_fft_create(n, pfft);
 	if(res!=DSPL_OK)
-		return res;
+		goto exit_label;
 	
 	
 	in = (double*)(pfft->in);
@@ -75,6 +81,9 @@ DSPL_API int dspl_hilbert(double* x, int n, void* pdspl, double* y)
 	for(k = 0; k < n; k++)
 		y[k] = -ninv * out[2*k+1];
 	
-	return DSPL_OK;
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_hilbert");
+	return res;
 }
 

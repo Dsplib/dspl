@@ -25,52 +25,6 @@
 
 
 
-/*
- IIR filter output for real filter coefficients and real signals.
- Function Calculates IIR filter output. IIR filter transfer function is
-
-         ord
-         SUM b[n] * z^(-n)
-         n=0
-  H(z) = -------------------------------,    a[0] cannot be zero
-               ord
-         1.0 + SUM a[n] / a[0] * z^(-n)
-               n=0
- ------------------------------------------------------------------------------------------
- Parameters:
-	[in] 	double *b	-	IIR filter transfer function numerator coefficients pointer. 
-							Vector size is [ord + 1 x 1]. 
-
-	[in] 	double *a	-	IIR filter transfer function denominator coefficients pointer. 
-							Vector size is [ord + 1 x 1]. This pointer can be NULL. 
-							Filter becomes FIR in this case with impulse response 
-							corresponds to vector b 
-							 
-	[in]	int		ord	-	Filter order.
-
-	[in] 	double *x	-	Input signal pointer. Vector size is [n x 1]. 
-   
-	[in]	int		n	-	Input signal vector length.
-                                                                       
-	[out]	double *y	-	IIR filter output vector pointer. Vector size is [n x  1].	
-							Memory must be allocated.
- 	                                                                          
- ------------------------------------------------------------------------------------------
- Return:
-	DSPL_OK 		if filter output is calculted successfuly
-
-	DSPL_ERROR_PTR	if pointer are wrong. This situation can be if:
-					b is NULL or x is NULL or y is NULL.
-
-
-	DSPL_ERROR_SIZE if ord < 1 or n < 1.
-
-	DSPL_ERROR_FILTER_A0 if a[0] is zero.
- ------------------------------------------------------------------------------------------
- Author:
-	Sergey Bakhurin. 														www.dsplib.org	
-
-*/
 DSPL_API int dspl_filter_iir(double* b, double* a, int ord, double* x, int n, double* y)
 {
 	double* buf = NULL;
@@ -79,13 +33,23 @@ DSPL_API int dspl_filter_iir(double* b, double* a, int ord, double* x, int n, do
 	int 	k;
 	int		m;
 	int 	count;
+	int 	res; 
 	
 	if(!b || !x || !y)
-		return DSPL_ERROR_PTR;
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
 	if(ord < 1 || n < 1)
-		return DSPL_ERROR_SIZE;
-	if(!a[0])
-		return DSPL_ERROR_FILTER_A0;
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
+	if(a && !a[0])
+	{
+		res =DSPL_ERROR_FILTER_A0;
+		goto exit_label;	
+	}
 	
 	count = ord + 1;	
 	buf = (double*) malloc(count*sizeof(double));
@@ -112,9 +76,15 @@ DSPL_API int dspl_filter_iir(double* b, double* a, int ord, double* x, int n, do
 		for(m = 0; m < count; m++)
 			y[k] += buf[m] * b[m];		
 	}
-	free(buf);
-	free(an);
-	return DSPL_OK;
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_filter_iir");
+	if(buf)
+		free(buf);
+	if(an)
+		free(an);
+	return res;
 }
 
 

@@ -37,11 +37,18 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 	
 	int k2, i, k,  pn, pd, ln, ld, k2s, nk2s;
 	double *num = NULL, *den = NULL, *ndn = NULL, *ndd = NULL;
-
+	int res;
+	
 	if (!a || !b || !c || !d || !beta || !alpha)
-		return DSPL_ERROR_PTR;
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;
+	}
 	if(n < 0 || p < 0)
-		return DSPL_ERROR_SIZE;
+	{
+		res =  DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
 
 	k2   = (n*p)+1; 
 	k2s  = k2*sizeof(double);	/* alpha and beta size			*/
@@ -63,8 +70,12 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 	ln = 1;
 	for(i = 1; i < n+1; i++)
 	{
-		dspl_conv(num+pn, ln, c, p+1, num+pn+k2);
-		dspl_conv(den+pn, ln, d, p+1, den+pn+k2);
+		res = dspl_conv(num+pn, ln, c, p+1, num+pn+k2);
+		if(res!=DSPL_OK)
+			goto exit_label;
+		res = dspl_conv(den+pn, ln, d, p+1, den+pn+k2);
+		if(res!=DSPL_OK)
+			goto exit_label;
 		pn += k2;
 		ln += p;
 	}
@@ -76,7 +87,9 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 
 	for (i = 0; i < n+1; i++)
 	{
-		dspl_conv(num + pn, ln, den + pd, ld, ndn + i*k2);
+		res = dspl_conv(num + pn, ln, den + pd, ld, ndn + i*k2);
+		if(res!=DSPL_OK)
+			goto exit_label;
 		ln += p;
 		ld -= p;
 		pn += k2;
@@ -106,10 +119,17 @@ DSPL_API int dspl_compos(	double *b, double *a, int n,
 		}
 	}
 	
-	free(num);
-	free(den);
-	free(ndn);
-	free(ndd);
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_compos");
+	if(num)
+		free(num);
+	if(den)
+		free(den);
+	if(ndn)
+		free(ndn);
+	if(ndd)
+		free(ndd);
 
-	return DSPL_OK;
+	return res;
 }
