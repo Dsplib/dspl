@@ -28,6 +28,39 @@
 
 
 
+/*!
+
+	\ingroup SPEC_MATH_RAND_GEN_GROUP
+	\fn int dspl_randn(double* x, int n, double mu, double sigma)
+	\brief Normally distributed  pseudo-random number generation.
+	
+	This function generates normally distributed pseudo-random numbers by using Box–Muller transform. 
+	
+	
+	
+	\param[in,out] x	Pseudo-random numbers vector pointer. 
+						Vector size is `[n x 1]`.
+						Memory must be allocated.
+				
+	\param[in]		n	Pseudo-random numbers vector size.
+	
+	\param[in]		mu	Mean value of random numbers vector.
+		
+	\param[in]		sigma	Random numbers vector standard deviation.
+	
+	\return
+			`DSPL_OK`		 Pseudo-random numbers vector has been calculated successfully.<BR>
+			`DSPL_ERROR_PTR` Pointer `x` cannot be null `NULL`.<BR>
+			`DSPL_ERROR_PTR` Vector `x` size `n` cannot be less than 1.<BR>
+			`DSPL_ERROR_RAND_SIGMA` Standard deviation `sigma` must be more than zerro.
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
+
+
+
+
 
 
 
@@ -55,5 +88,42 @@
  		www.dsplib.org	
 	
 */
+
+
+
+/*!
+	\ingroup SPEC_MATH_RAND_GEN_GROUP
+	\fn int dspl_randn(double* x, int n, double mu, double sigma)
+	\brief Генерация вектора  нормально распределенных случайных чисел с заданным математическим
+	ожиданием и среднеквадратическим отклонением.
+	
+	Генерация производится при помощи преобразования Бокса — Мюллера равномерно-распределенной
+	случайной величины в нормально распределенную.
+	
+	
+	
+	\param[in,out] x	Указатель на вектор нормальной распределенных случайных чисел. 
+						Размер вектора `[n x 1]`.
+						Память должна быть выделена.
+				
+	\param[in]		n	Размер вектора случайных чисел.
+	
+	\param[in]		mu	Математическое ожидание.
+	
+	\param[in]		sigma Среднеквадратическое отклонение (СКО).
+	
+	\return
+			`DSPL_OK`		 Вектор случайных чисел сгенерирован успешно.<BR>
+			`DSPL_ERROR_PTR` указатель x не может быть `NULL`.<BR>
+			`DSPL_ERROR_PTR` размер вектора `n` должен быть больше нуля.<BR>
+			`DSPL_ERROR_RAND_SIGMA` значение СКО `sigma` должно быть больше нуля.
+	
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+	
+*/
+
+
 
 #endif

@@ -3,7 +3,7 @@
 #include "dspl.h"
 
 
-
+#ifndef DLL_EXPORT
 
 p_dspl_ap2bpass					dspl_ap2bpass			;
 p_dspl_ap2bstop					dspl_ap2bstop			;
@@ -56,7 +56,7 @@ p_dspl_window					dspl_window         	;
 p_dspl_writebin					dspl_writebin			;
 p_dspl_writetxt					dspl_writetxt       	;
 
-
+#endif
 
 HINSTANCE	dspl_load()
 {

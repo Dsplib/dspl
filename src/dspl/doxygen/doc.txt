@@ -76,11 +76,17 @@
 	\defgroup SPEC_MATH_STAT_GROUP Math statistic functions group
 	\ingroup SPEC_MATH_GROUP
 	
-
-
 	\defgroup IN_OUT_GROUP Input - output functions
 	\ingroup MAIN_GROUP
+
+		
+	\defgroup MACRO_DEFINE_GROUP Macro defines
+	\ingroup MAIN_GROUP
 	
+	\defgroup ERROR_CODE_GROUP  Error codes
+	\ingroup MACRO_DEFINE_GROUP
+
+
 	
 	
 */
@@ -171,9 +177,17 @@
  
 	\defgroup IN_OUT_GROUP Функции ввода - вывода данных
 	\ingroup MAIN_GROUP
-	
 	Функции ввода и вывода данных. Запись и считывание данных в бинарные и текстовые файлы.
 
 	
+	\defgroup MACRO_DEFINE_GROUP Макросы и константы
+	\ingroup MAIN_GROUP
+	
+	\defgroup ERROR_CODE_GROUP Коды ошибок при вызове функций
+	\ingroup MACRO_DEFINE_GROUP	
+	В данной группе приведены возможные коды ошибок, возвращаемые функциями библиотеки в процессе 
+	работы. 
+	
+
 	
 */

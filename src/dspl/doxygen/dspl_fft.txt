@@ -20,7 +20,7 @@
 	
 	\param[in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
 						This object can be created by `dspl_obj_create` function before using
-						and should be destoyed by `dspl_obj_free` bafore exit.
+						and should be destroyed by `dspl_obj_free` before exit.
 
 	\param[out]	yR  	IFFT vector real  part pointer. 
 						Vector size is `[n x 1]`. 
@@ -65,7 +65,7 @@
 
 	\param[in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
 						This object can be created by `dspl_obj_create` function before using
-						and should be destoyed by `dspl_obj_free` bafore exit.
+						and should be destroyed by `dspl_obj_free` before exit.
 
 	\param[out]	yR  	FFT vector real  part pointer. 
 						Vector size is `[n x 1]`. 

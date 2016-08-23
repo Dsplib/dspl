@@ -40,7 +40,9 @@
 			DSPL_ERROR_PTR	Pointer is wrong. Pointers `xR`, `ind`, `yR` and `yI` 
 							cannot be as `NULL`. <BR>
 			DSPL_ERROR_SIZE Vector size is wrong. Parameters `n` ans `k` must be more than zero.
-				
+		
+
+		
 	\author
 		Sergey Bakhurin.                                                         
 		www.dsplib.org    
@@ -105,7 +107,7 @@
 		в том числе и отрицательными. В этом случае будут расчитаны спектральные отсчеты с индексами
 		по модулю `n`.
 		
-			
+				
 	\author
 		Бахурин Сергей.
  		www.dsplib.org	
