@@ -3,6 +3,7 @@ CC      = gcc
 INC_DIR = src
 OBJ_DIR = obj
 
+
 ifeq ($(OS_VER), 32)
 	FFTW_DIR = lib/fftw32
 endif
