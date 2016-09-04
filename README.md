@@ -14,3 +14,4 @@ DSPL - Open source library for digital signal processing. DSPL includes follow a
 DSPL is dynamic link library (dspl.dll) under a LGPL v3 license and can be used in an open source and commercial software.
 
 
+
