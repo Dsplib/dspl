@@ -13,4 +13,4 @@ for  %%i in (*.exe) do start /wait "" "%%i"
 Cd octave
 
 
-for  %%i in (*.m) do octave-cli "%%i"
+for  %%i in (*.m) do %OCTAVE_PATH%\octave-cli "%%i"

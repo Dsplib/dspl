@@ -1470,8 +1470,8 @@ tr.heading h2 {
 
 #MSearchBox {
     white-space : nowrap;
-    position: relative;
-    float: left;
+    //position: relative;
+    float: right;
     display: inline;
     margin-top: 8px;
     right: 0px;
