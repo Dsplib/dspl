@@ -4,32 +4,28 @@ INC_DIR = src
 OBJ_DIR = obj
 
 ifeq ($(OS_VER), 32)
-	FFTW_DIR = lib\fftw32
+	FFTW_DIR = lib/fftw32
 endif
 
 ifeq ($(OS_VER), 64)
-	FFTW_DIR = lib\fftw64
+	FFTW_DIR = lib/fftw64
 endif
 
 
 DAT2CM_DIR = src/dat2cm
 
-DLL_SRC_DIR  = src\dspl
-DLL_OBJ_DIR  = obj\dspl
-DLL_BIN_DIR  = bin\dspl
-
-EXE_SRC_DIR  = src\examples
-EXE_OBJ_DIR  = obj\examples
-EXE_BIN_DIR  = bin\examples
-
-VER_SRC_DIR  = src\verification
-VER_OBJ_DIR  = obj\verification
-VER_BIN_DIR  = bin\verification
-
-
-PRF_SRC_DIR  = src\performance
-PRF_OBJ_DIR  = obj\performance
-PRF_BIN_DIR  = bin\performance
+DLL_SRC_DIR  = src/dspl
+DLL_OBJ_DIR  = obj/dspl
+DLL_BIN_DIR  = bin/dspl
+EXE_SRC_DIR  = src/examples
+EXE_OBJ_DIR  = obj/examples
+EXE_BIN_DIR  = bin/examples
+VER_SRC_DIR  = src/verification
+VER_OBJ_DIR  = obj/verification
+VER_BIN_DIR  = bin/verification
+PRF_SRC_DIR  = src/performance
+PRF_OBJ_DIR  = obj/performance
+PRF_BIN_DIR  = bin/performance
 
 BIN_DIR = bin
 OBJ_DIR = obj
@@ -110,15 +106,15 @@ all:	$(EXE_BIN_DIR)/dspl.dll\
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
-	copy 	$(FFTW_DIR)\libfftw3-3.dll   $(EXE_BIN_DIR)\libfftw3-3.dll	
+	cp 	$(FFTW_DIR)/libfftw3-3.dll   $(EXE_BIN_DIR)/libfftw3-3.dll	
 
 $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
-	copy	$(FFTW_DIR)\libfftw3-3.dll   $(VER_BIN_DIR)\libfftw3-3.dll
+	cp	$(FFTW_DIR)/libfftw3-3.dll   $(VER_BIN_DIR)/libfftw3-3.dll
 
 $(PRF_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(PRF_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
-	copy	$(FFTW_DIR)\libfftw3-3.dll   $(PRF_BIN_DIR)\libfftw3-3.dll
+	cp	$(FFTW_DIR)/libfftw3-3.dll   $(PRF_BIN_DIR)/libfftw3-3.dll
 
 
 
@@ -177,14 +173,14 @@ $(COMMON_OBJS):	 $(INC_DIR)/dspl.h
 
 
 clean:
-	del   $(DLL_OBJ_DIR)\*.o
-	del   $(EXE_OBJ_DIR)\*.o
-	del   $(VER_OBJ_DIR)\*.o
-	del   $(PRF_OBJ_DIR)\*.o
-	del   $(OBJ_DIR)\*.o
-	del   $(EXE_BIN_DIR)\*.exe
-	del   $(EXE_BIN_DIR)\*.dll
-	del   $(VER_BIN_DIR)\*.exe
-	del   $(VER_BIN_DIR)\*.dll	
-	del   $(PRF_BIN_DIR)\*.exe
-	del   $(PRF_BIN_DIR)\*.dll
+	rm -f   $(DLL_OBJ_DIR)/*.o
+	rm -f   $(EXE_OBJ_DIR)/*.o
+	rm -f   $(VER_OBJ_DIR)/*.o
+	rm -f   $(PRF_OBJ_DIR)/*.o
+	rm -f   $(OBJ_DIR)/*.o
+	rm -f   $(EXE_BIN_DIR)/*.exe
+	rm -f   $(EXE_BIN_DIR)/*.dll
+	rm -f   $(VER_BIN_DIR)/*.exe
+	rm -f   $(VER_BIN_DIR)/*.dll	
+	rm -f   $(PRF_BIN_DIR)/*.exe
+	rm -f   $(PRF_BIN_DIR)/*.dll
