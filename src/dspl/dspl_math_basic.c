@@ -24,6 +24,25 @@
 #include <string.h>  
 #include "dspl.h"
 
+/*
+DSPL_API int dspl_acos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+{
+
+
+}
+
+
+DSPL_API int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+{
+
+
+}
+*/
+
+
+
+
+
 
 DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
@@ -72,7 +91,7 @@ exit_label:
 
 DSPL_API int dspl_log_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
-	double tI;
+	double tI, tR;
 	int k;
 	int res;
 	
@@ -89,8 +108,9 @@ DSPL_API int dspl_log_cmplx(double *xR, double *xI, int n, double *yR, double *y
 	for(k = 0; k < n; k++)
 	{
 		tI = xI ? xI[k] : 0.0;
-		yR[k] = 0.5 * log(xR[k] * xR[k] + tI * tI);
-		yI[k] = atan2(tI, xR[k]);		
+		tR = xR[k];
+		yR[k] = 0.5 * log(tR * tR + tI * tI);
+		yI[k] = atan2(tI, tR);		
 	}
 	
 	res = DSPL_OK;		
@@ -154,7 +174,7 @@ exit_label:
 
 DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double * yI)
 {
-	double t, tI, a;
+	double t, tI, tR, a;
 	int k;
 	int res;
 	
@@ -174,9 +194,10 @@ DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double 
 	for(k = 0; k < n; k++)
 	{
 		tI = xI ? xI[k] : 0.0;
-		a = xI ? sqrt(xR[k]*xR[k] + tI*tI) : fabs(xR[k]);
-		yR[k] = sqrt(0.5 * (a+xR[k]));
-		t = sqrt(0.5*(a-xR[k]));
+		tR = xR[k];
+		a = xI ? sqrt(tR*tR + tI*tI) : fabs(tR);
+		yR[k] = sqrt(0.5 * (a+tR));
+		t = sqrt(0.5*(a-tR));
 		yI[k] = (tI > 0) ? t : -t;
 		
 	}
