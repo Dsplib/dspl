@@ -31,6 +31,7 @@ p_dspl_ap2bpass					dspl_ap2bpass			;
 p_dspl_ap2bstop					dspl_ap2bstop			;
 p_dspl_ap2high					dspl_ap2high			;
 p_dspl_ap2low					dspl_ap2low				;
+p_dspl_asin_cmplx				dspl_asin_cmplx			;
 p_dspl_asinh					dspl_asinh				;
 p_dspl_butter_ap				dspl_butter_ap			;
 p_dspl_cheby1_ap				dspl_cheby1_ap			;
@@ -112,6 +113,11 @@ HINSTANCE	dspl_load()
 	func_name = "dspl_ap2low";
 	dspl_ap2low = (p_dspl_ap2low) GetProcAddress(hDSPL, func_name);
 	if(!dspl_ap2low)
+		goto error_proc;
+	
+	func_name = "dspl_asin_cmplx";
+	dspl_asin_cmplx = (p_dspl_asin_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_asin_cmplx)
 		goto error_proc;
 	
 	

@@ -27,17 +27,57 @@
 /*
 DSPL_API int dspl_acos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
-
+	
 
 }
-
+*/
 
 DSPL_API int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
 
+	double wR, wI;
+	int k, res;
+
+
+	if(!xR || !yR ||  !yI)
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
+	if(n<1)
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
+
+	for(k =0; k < n; k++)
+	{
+		wR = xI ? 1.0 - xR[k]*xR[k] + xI[k]*xI[k] : 1.0 - xR[k]*xR[k];
+		wI = xI ? 2.0 * xR[k] * xI[k] : 0.0;
+
+		res = dspl_sqrt_cmplx(&wR, &wI, 1, &wR, &wI);
+		if(res != DSPL_OK)
+			goto exit_label;
+
+		wI = wI + xR[k];
+		wR = xI ? wR - xI[k] : wR;
+
+		res = dspl_log_cmplx(&wR, &wI, 1, &wR, yR+k);
+        if(res != DSPL_OK)
+			goto exit_label;
+		yI[k] = -wR;
+
+	}
+
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_cos_cmplx");
+	return res;
+	
+
 
 }
-*/
+
 
 
 

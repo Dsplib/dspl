@@ -5,6 +5,9 @@ addpath('functions');
 
 [x, n, m] = dspl_readbin('../dat/math_basic_x.bin');
 
+[y, n, m] = dspl_readbin('../dat/math_basic_asin.bin');
+dspl_verification('dspl_asin_cmplx', y, asin(x));
+
 [y, n, m] = dspl_readbin('../dat/math_basic_cos.bin');
 dspl_verification('dspl_cos_cmplx', y, cos(x));
 

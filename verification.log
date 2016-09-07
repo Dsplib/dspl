@@ -1,0 +1,14 @@
+dspl_ellipk.....................................OK     err = 2.646065E-016
+dspl_fft........................................OK     err = 6.781666E-017
+dspl_ifft.......................................OK     err = 8.082546E-016
+dspl_hilbert (even length)......................OK     err = 3.812272E-016
+dspl_hilbert (odd length).......................OK     err = 4.145944E-016
+dspl_histogram_norm for rand....................OK     err = 9.989935E-016
+dspl_histogram_norm for randn...................OK     err = 3.638948E-016
+dspl_asin_cmplx.................................ERROR  err = 1.340796E+000
+dspl_cos_cmplx..................................OK     err = 1.651640E-016
+dspl_sin_cmplx..................................OK     err = 1.651640E-016
+dspl_sqrt_cmplx.................................OK     err = 5.837696E-016
+dspl_log_cmplx..................................OK     err = 1.593233E-016
+dspl_pwelch (psd even length)...................ERROR  err = 4.083399E-003
+dspl_pwelch (freq even length)..................OK     err = 0.000000E+000

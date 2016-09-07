@@ -124,6 +124,11 @@ DSPL_API int dspl_ap2high(double* b, double* a, int n, double wp,
 filter with wp cutoff frequency    (dspl_filter_transform.c) */
 DSPL_API int dspl_ap2low(double* b, double* a, int n, double wp, 
 						 double* beta, double* alpha);						 
+
+
+/* Arcsine  for complex argument (dspl_math_basic.c) */
+DSPL_API int dspl_asin_cmplx(double *xR, double *xI, int n, 
+							double *yR, double *yI);
 						 
 /* Arsine hyperbolic for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_asinh(double x);
@@ -313,6 +318,10 @@ filter with wp cutoff frequency   (dspl_filter_transform.c) */
 typedef int (*p_dspl_ap2low)(double* b, double* a, int n, double wp, 
 							 double* beta, double* alpha);
 
+/* Arcsine  for complex argument (dspl_math_basic.c) */
+typedef int (*p_dspl_asin_cmplx)(double *xR, double *xI, int n, 
+								double *yR, double *yI);
+							 
 /* Arsine hyperbolic for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_asinh)(double x);
 
@@ -474,6 +483,7 @@ extern p_dspl_ap2bpass					dspl_ap2bpass			;	/* ru, en */
 extern p_dspl_ap2bstop					dspl_ap2bstop			;	/* ru, en */
 extern p_dspl_ap2high					dspl_ap2high			;	/* ru, en */
 extern p_dspl_ap2low					dspl_ap2low				;   /* ru, en */
+extern p_dspl_asin_cmplx				dspl_asin_cmplx			;	/* --, -- */
 extern p_dspl_asinh						dspl_asinh				;	/* ru, en */
 extern p_dspl_butter_ap					dspl_butter_ap			;	/* ru, en */
 extern p_dspl_cheby1_ap					dspl_cheby1_ap			;   /* ru, en */
