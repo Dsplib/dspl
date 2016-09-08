@@ -32,6 +32,11 @@ int main()
 	dspl_linspace(10.0, -10.0, N, DSPL_PERIODIC, xI);
 	dspl_writebin(xR, xI, N, "dat/math_basic_x.bin");
 	
+	
+	dspl_acos_cmplx(xR, xI, N, yR, yI);
+	dspl_writebin(yR, yI, N, "dat/math_basic_acos.bin");
+	
+	
 	dspl_asin_cmplx(xR, xI, N, yR, yI);
 	dspl_writebin(yR, yI, N, "dat/math_basic_asin.bin");
 	
@@ -39,6 +44,7 @@ int main()
 	dspl_cos_cmplx(xR, xI, N, yR, yI);
 	dspl_writebin(yR, yI, N, "dat/math_basic_cos.bin");
 
+	
 	dspl_sin_cmplx(xR, xI, N, yR, yI);
 	dspl_writebin(yR, yI, N, "dat/math_basic_sin.bin");
 	
@@ -46,6 +52,7 @@ int main()
 	dspl_sqrt_cmplx(xR, xI, N, yR, yI);
 	dspl_writebin(yR, yI, N, "dat/math_basic_sqrt.bin");
 
+	
 	dspl_log_cmplx(xR, xI, N, yR, yI);	                                                       
 	dspl_writebin(yR, yI, N, "dat/math_basic_log.bin");
 		

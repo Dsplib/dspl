@@ -1,33 +1,120 @@
 
 #ifdef DOXYGEN_EN
 
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn int dspl_acos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+	\brief Inverse sine of a complex arguments
+	
+	Function calculates inverse cosine function of a complex vector argument \f$ x \f$. 
+	
+	\f[
+		\arccos(x)= \frac{\pi}{2} - \arcsin(x).
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector  \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$ image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
+					
+	\param[in]	n	Input vector size.<BR><BR>
+	
+	\param[out]	yR	Pointer to the inverse cosine real part values vector.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+	
+	\param[out]	yI	Pointer to the inverse cosine image part values vector.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR>
+		
+	\return	
+		`DSPL_OK` if function has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
+
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/
+
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+	\brief Inverse sine of a complex arguments
+	
+	Function calculates inverse sine function of a complex vector argument \f$ x \f$. 
+	
+	\f[
+		\arcsin(x)=-j\ln \left(j \cdot x+{\sqrt {1-x^{2}}} \right).
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector  \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$ image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
+					
+	\param[in]	n	Input vector size.<BR><BR>
+	
+	\param[out]	yR	Pointer to the inverse sine real part values vector.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+	
+	\param[out]	yI	Pointer to the inverse sine image part values vector.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR>
+		
+	\return	
+		`DSPL_OK` if complex function has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
+
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/
+
+
+
 /*!
 	\ingroup SPEC_MATH_TRIG_GROUP
 	\fn int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Cosine of complex arguments
 	
-	Function calculates cosine function of a complex vector argument. 
+	Function calculates cosine function of a complex vector argument \f$ x \f$. 
 	
-	\param[in]	xR	Pointer to the complex vector real part.
-					Vector size is `[n x 1]`.
+	\f[
+		\cos(x)= \frac{\exp(j \cdot x) + \exp(-j \cdot x)}{2}.
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector  \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
 	
 	
-	\param[in]	xI	Pointer to the complex vector image part.
-					Vector size is `[n x 1]`.
-					This pointer can be a `NULL` if function uses real argument only.
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$ image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
 					
-	\param[in]	n	Input vector size.
+	\param[in]	n	Input vector size.<BR><BR>
 	
-	\param[out]	yR	Pointer to the cosine real part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated.
+	\param[out]	yR	Pointer to the cosine real part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
 	
-	\param[out]	yI	Pointer to the cosine image part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated (even if `xI` is `NULL`).
+	\param[out]	yI	Pointer to the cosine image part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR>
 		
 	\return	
-		DSPL_OK if complex cosine has been calculated successfully, else error code.<BR>
+		DSPL_OK if complex cosine has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
 
 		
 	\author
@@ -42,28 +129,33 @@
 	\fn int dspl_log_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Logarithm of complex arguments
 	
-	Function calculates logarithm function of a complex vector argument. 
+	Function calculates logarithm function of a complex vector argument \f$ x \f$. 
 	
-	\param[in]	xR	Pointer to the complex vector real part.
-					Vector size is `[n x 1]`.
+	\f[
+		\ln(x) = \ln \left( |x| \right) + j \cdot \arg(x).
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
 	
 	
-	\param[in]	xI	Pointer to the complex vector image part.
-					Vector size is `[n x 1]`.
-					This pointer can be a `NULL` if function uses real argument only.
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$ image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
 					
-	\param[in]	n	Input vector size.
+	\param[in]	n	Input vector size.<BR><BR>
 	
-	\param[out]	yR	Pointer to the logarithm real part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated.
+	\param[out]	yR	Pointer to the logarithm real part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
 	
-	\param[out]	yI	Pointer to the logarithm image part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated (even if `xI` is `NULL`).
+	\param[out]	yI	Pointer to the logarithm image part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR>
 		
 	\return	
-		DSPL_OK if complex logarithm has been calculated successfully, else error code.<BR>
+		`DSPL_OK` if complex logarithm has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
 
 		
 	\author
@@ -78,28 +170,33 @@
 	\fn int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Sine of complex arguments
 	
-	Function calculates sine function of a complex vector argument. 
+	Function calculates sine function of a complex vector argument \f$ x \f$. 
 	
-	\param[in]	xR	Pointer to the complex vector real part.
-					Vector size is `[n x 1]`.
+	\f[
+		\sin(x)= \frac{\exp(j \cdot x) - \exp(-j \cdot x)}{2j}.
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
 	
 	
-	\param[in]	xI	Pointer to the complex vector image part.
-					Vector size is `[n x 1]`.
-					This pointer can be a `NULL` if function uses real argument only.
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$  image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
 					
-	\param[in]	n	Input vector size.
+	\param[in]	n	Input vector size.<BR><BR>
 	
-	\param[out]	yR	Pointer to the sine real part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated.
+	\param[out]	yR	Pointer to the sine real part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
 	
-	\param[out]	yI	Pointer to the sine image part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated (even if `xI` is `NULL`).
+	\param[out]	yI	Pointer to the sine image part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR><BR>
 		
 	\return	
-		DSPL_OK if complex sine has been calculated successfully, else error code.<BR>
+		`DSPL_OK` if complex sine has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
 
 		
 	\author
@@ -114,28 +211,33 @@
 	\fn int dspl_sqrt_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Square root of complex arguments
 	
-	Function calculates square root function of a complex vector argument. 
+	Function calculates square root function of a complex vector argument\f$ x \f$. 
 	
-	\param[in]	xR	Pointer to the complex vector real part.
-					Vector size is `[n x 1]`.
+	\f[
+		\sqrt {x}={\sqrt {\frac {|x|+\Re (x)}{2}}} + \operatorname {sign} \left(\Im (x) \right) \cdot j\ {\sqrt {\frac {|x|-\Re (x)}{2}}}.
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
 	
 	
-	\param[in]	xI	Pointer to the complex vector image part.
-					Vector size is `[n x 1]`.
-					This pointer can be a `NULL` if function uses real argument only.
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$ image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
 					
-	\param[in]	n	Input vector size.
+	\param[in]	n	Input vector size.<BR><BR>
 	
-	\param[out]	yR	Pointer to the square root real part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated.
+	\param[out]	yR	Pointer to the square root real part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
 	
-	\param[out]	yI	Pointer to the square root image part values.
-					Vector size is `[n x 1]`.
-					Memory must be allocated (even if `xI` is `NULL`).
+	\param[out]	yI	Pointer to the square root image part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR>
 		
 	\return	
-		DSPL_OK if complex square root has been calculated successfully, else error code.<BR>
+		`DSPL_OK` if complex square root has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
 
 		
 	\author
@@ -150,35 +252,131 @@
 #elseif DOXYGEN_RU
 
 
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn int dspl_acos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+	\brief Арккосинус комплексного векторного аргумента
+	
+	Функция рассчитывает значения арккосинуса для комплексного векторного аргумента \f$ x \f$:
+	
+	\f[
+		\arccos(x)= \frac{\pi}{2} - \arcsin(x).
+	\f]
+		  
+	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента \f$ x \f$.<BR>
+					Размер вектора `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента \f$ x \f$.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Данный указатель может быть `NULL`, если необходимо рассчитать значения
+					арккосинуса для вещественного векторного аргумента.<BR><BR>
+					
+	\param[in]	n	Размер входного и выходного векторов.<BR><BR>
+	
+	\param[out]	yR	Указатель на вектор вещественной части значений арккосинуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
+	
+	\param[out]	yI	Указатель на вектор вещественной части значений арккосинуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена. <BR>
+					Данный указатель не может быть `NULL`, даже если
+					функция используется для вещественного входного аргумента.<BR><BR>
+		
+	\return	
+		`DSPL_OK` если функция расчитана успешно. 
+		В противном случае \ref ERROR_CODE_GROUP "код ошибки".<BR>
+
+		
+	\author
+		Бахурин Сергей.                                                         
+		www.dsplib.org 
+*/
+
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+	\brief Арксинус комплексного векторного аргумента
+	
+	Функция рассчитывает значения арксинуса для комплексного векторного аргумента \f$ x \f$:
+	
+	\f[
+		\arcsin(x)=-j\ln \left(j \cdot x+{\sqrt {1-x^{2}}} \right).
+	\f]
+		  
+	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента \f$ x \f$.<BR>
+					Размер вектора `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента \f$ x \f$.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Данный указатель может быть `NULL`, если необходимо рассчитать значения
+					арксинусаарксинуса для вещественного векторного аргумента.<BR><BR>
+					
+	\param[in]	n	Размер входного и выходного векторов.<BR><BR>
+	
+	\param[out]	yR	Указатель на вектор вещественной части значений арксинуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
+	
+	\param[out]	yI	Указатель на вектор вещественной части значений арксинуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена. <BR>
+					Данный указатель не может быть `NULL`, даже если
+					функция используется для вещественного входного аргумента.<BR><BR>
+		
+	\return	
+		`DSPL_OK` если функция расчитана успешно. 
+		В противном случае \ref ERROR_CODE_GROUP "код ошибки".<BR>
+
+		
+	\author
+		Бахурин Сергей.                                                         
+		www.dsplib.org 
+*/
+
+
+
+
 /*!
 	\ingroup SPEC_MATH_TRIG_GROUP
 	\fn int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Косинус комплексного векторного аргумента
 	
-	Функция рассчитывает значения косинуса для комплексного векторного аргумента.
+	Функция рассчитывает значения косинуса для комплексного векторного аргумента \f$ x \f$:
 	
-	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента.
-					Размер вектора `[n x 1]`.
+	\f[
+		\cos(x)= \frac{\exp(j \cdot x) + \exp(-j \cdot x)}{2}.
+	\f]
 	
 	
-	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента.
-					Размер вектора `[n x 1]`.
-					Данный указатель может быть `NULL` если необходимо рассчитать значения
-					косинуса для вещественного векторного аргумента.
+	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента.<BR>
+					Размер вектора `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Данный указатель может быть `NULL`, если необходимо рассчитать значения
+					косинуса для вещественного векторного аргумента.<BR><BR>
 					
-	\param[in]	n	Размер входного и выходного векторов.
+	\param[in]	n	Размер входного и выходного векторов.<BR><BR>
 	
-	\param[out]	yR	Указатель на вектор вещественной части значений косинуса.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена.
+	\param[out]	yR	Указатель на вектор вещественной части значений косинуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
 	
-	\param[out]	yI	Указатель на вектор вещественной части значений косинуса.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена. Данный указатель не может быть `NULL` даже если
-					функция используется для вещественного входного аргумента.
+	\param[out]	yI	Указатель на вектор вещественной части значений косинуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена.<BR>
+					Данный указатель не может быть `NULL`, даже если
+					функция используется для вещественного входного аргумента.<BR><BR>
 		
 	\return	
-		DSPL_OK если функция расчитана успешно. В противном случае код ошибки.<BR>
+		`DSPL_OK` если функция расчитана успешно.<BR>
+		В противном случае \ref ERROR_CODE_GROUP "код ошибки".<BR>
 
 		
 	\author
@@ -194,30 +392,37 @@
 	\fn int dspl_log_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Натуральный логарифм комплексного векторного аргумента
 	
-	Функция рассчитывает значения натурального логарифма для комплексного векторного аргумента.
+	Функция рассчитывает значения натурального логарифма для комплексного векторного аргумента \f$ x \f$:
 	
-	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента.
-					Размер вектора `[n x 1]`.
+	\f[
+		\ln(x) = \ln \left( |x| \right) + j \cdot \arg(x).
+	\f]
 	
 	
-	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента.
-					Размер вектора `[n x 1]`.
-					Данный указатель может быть `NULL` если необходимо рассчитать значения
-					натурального логарифма для вещественного векторного аргумента.
+	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента.<BR>
+					Размер вектора `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Данный указатель может быть `NULL`, если необходимо рассчитать значения
+					натурального логарифма для вещественного векторного аргумента.<BR><BR>
 					
-	\param[in]	n	Размер входного и выходного векторов.
+	\param[in]	n	Размер входного и выходного векторов.<BR><BR>
 	
-	\param[out]	yR	Указатель на вектор вещественной части значений натурального логарифма.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена.
+	\param[out]	yR	Указатель на вектор вещественной части значений натурального логарифма.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
 	
-	\param[out]	yI	Указатель на вектор вещественной части значений натурального логарифма.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена. Данный указатель не может быть `NULL` даже если
-					функция используется для вещественного входного аргумента.
+	\param[out]	yI	Указатель на вектор вещественной части значений натурального логарифма.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена. <BR>
+					Данный указатель не может быть `NULL`, даже если
+					функция используется для вещественного входного аргумента.<BR><BR>
 		
 	\return	
-		DSPL_OK если функция расчитана успешно. В противном случае код ошибки.<BR>
+		`DSPL_OK` если функция расчитана успешно.<BR> 
+		В противном случае \ref ERROR_CODE_GROUP "код ошибки".<BR>
 
 		
 	\author
@@ -235,30 +440,36 @@
 	\fn int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Cинус комплексного векторного аргумента
 	
-	Функция рассчитывает значения синуса для комплексного векторного аргумента.
+	Функция рассчитывает значения синуса для комплексного векторного аргумента \f$ x \f$:
 	
-	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента.
-					Размер вектора `[n x 1]`.
+	\f[
+		\sin(x)= \frac{\exp(j \cdot x) - \exp(-j \cdot x)}{2j}.
+	\f]
+	
+	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента.<BR>
+					Размер вектора `[n x 1]`.<BR><BR>
 	
 	
-	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента.
-					Размер вектора `[n x 1]`.
-					Данный указатель может быть `NULL` если необходимо рассчитать значения
-					синуса для вещественного векторного аргумента.
+	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Данный указатель может быть `NULL`, если необходимо рассчитать значения
+					синуса для вещественного векторного аргумента.<BR><BR>
 					
-	\param[in]	n	Размер входного и выходного векторов.
+	\param[in]	n	Размер входного и выходного векторов.<BR><BR>
 	
-	\param[out]	yR	Указатель на вектор вещественной части значений синуса.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена.
+	\param[out]	yR	Указатель на вектор вещественной части значений синуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
 	
-	\param[out]	yI	Указатель на вектор вещественной части значений синуса.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена. Данный указатель не может быть `NULL` даже если
-					функция используется для вещественного входного аргумента.
+	\param[out]	yI	Указатель на вектор вещественной части значений синуса.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена. <BR>
+					Данный указатель не может быть `NULL`, даже если
+					функция используется для вещественного входного аргумента.<BR>
 		
 	\return	
-		DSPL_OK если функция расчитана успешно. В противном случае код ошибки.<BR>
+		`DSPL_OK` если функция расчитана успешно. <BR>
+		В противном случае \ref ERROR_CODE_GROUP "код ошибки".<BR>
 
 		
 	\author
@@ -274,30 +485,36 @@
 	\fn int dspl_sqrt_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 	\brief Корень квадратный комплексного векторного аргумента
 	
-	Функция рассчитывает значения квадратного корня для комплексного векторного аргумента.
+	Функция рассчитывает значения квадратного корня комплексного векторного аргумента \f$ x \f$:
 	
-	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента.
-					Размер вектора `[n x 1]`.
+	\f[
+		\sqrt {x}={\sqrt {\frac {|x|+\Re (x)}{2}}} + \operatorname {sign} \left(\Im (x) \right) \cdot j\ {\sqrt {\frac {|x|-\Re (x)}{2}}}.
+	\f]
+	
+	\param[in]	xR	Указатель на вектор реальной части комплексного аргумента \f$ x \f$.<BR>
+					Размер вектора `[n x 1]`.<BR><BR>
 	
 	
-	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента.
-					Размер вектора `[n x 1]`.
-					Данный указатель может быть `NULL` если необходимо рассчитать значения
-					квадратного корня для вещественного векторного аргумента.
+	\param[in]	xI	Указатель на вектор мнимой части комплексного аргумента \f$ x \f$.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Данный указатель может быть `NULL`, если необходимо рассчитать значения
+					квадратного корня для вещественного векторного аргумента.<BR><BR>
 					
-	\param[in]	n	Размер входного и выходного векторов.
+	\param[in]	n	Размер входного и выходного векторов.<BR><BR>
 	
-	\param[out]	yR	Указатель на вектор вещественной части значений квадратного корня.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена.
+	\param[out]	yR	Указатель на вектор вещественной части значений квадратного корня.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
 	
-	\param[out]	yI	Указатель на вектор вещественной части значений квадратного корня.
-					Размер вектора `[n x 1]`.
-					Память должна быть выделена. Данный указатель не может быть `NULL` даже если
-					функция используется для вещественного входного аргумента.
+	\param[out]	yI	Указатель на вектор вещественной части значений квадратного корня.<BR>
+					Размер вектора `[n x 1]`.<BR>
+					Память должна быть выделена. <BR>
+					Данный указатель не может быть `NULL`, даже если
+					функция используется для вещественного входного аргумента.<BR><BR>
 		
 	\return	
-		DSPL_OK если функция расчитана успешно. В противном случае код ошибки.<BR>
+		`DSPL_OK` если функция расчитана успешно. <BR>
+		В противном случае \ref ERROR_CODE_GROUP "код ошибки".<BR>
 
 		
 	\author

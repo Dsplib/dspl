@@ -24,13 +24,34 @@
 #include <string.h>  
 #include "dspl.h"
 
-/*
+
+
+
+
+
 DSPL_API int dspl_acos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
+	int res, k;
 	
-
+	res = dspl_asin_cmplx(xR, xI, n, yR, yI);
+	if(res != DSPL_OK)
+		goto exit_label;
+	
+	for(k = 0; k < n; k++)
+	{
+		yR[k] = M_PI_2 - yR[k];
+		yI[k] = -yI[k];		
+	}
+	
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_acos_cmplx");
+	return res;
 }
-*/
+
+
+
+
 
 DSPL_API int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
@@ -52,8 +73,8 @@ DSPL_API int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *
 
 	for(k =0; k < n; k++)
 	{
-		wR = xI ? 1.0 - xR[k]*xR[k] + xI[k]*xI[k] : 1.0 - xR[k]*xR[k];
-		wI = xI ? 2.0 * xR[k] * xI[k] : 0.0;
+		wR = xI ?  1.0 - xR[k]*xR[k] + xI[k]*xI[k] : 1.0 - xR[k]*xR[k];
+		wI = xI ? -2.0 * xR[k] * xI[k] : 0.0;
 
 		res = dspl_sqrt_cmplx(&wR, &wI, 1, &wR, &wI);
 		if(res != DSPL_OK)
@@ -71,7 +92,7 @@ DSPL_API int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *
 
 	res = DSPL_OK;		
 exit_label:
-	dspl_print_err(res, "dspl_cos_cmplx");
+	dspl_print_err(res, "dspl_asin_cmplx");
 	return res;
 	
 

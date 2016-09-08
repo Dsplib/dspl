@@ -101,6 +101,9 @@
 extern "C" {
 #endif
 
+/* Arccosine  for complex argument (dspl_math_basic.c) */
+DSPL_API int dspl_acos_cmplx(double *xR, double *xI, int n,
+							 double *yR, double *yI);
 
 
 /* Analog low-pass prototype frequency transformation to band-pass 
@@ -296,6 +299,10 @@ DSPL_API int dspl_writetxt (double* x, double *y, int n, char* fn);
 
 #else
 	
+
+typedef int (*p_dspl_acos_cmplx)(double *xR, double *xI, int n,
+								 double *yR, double *yI);
+
 /* Analog low-pass prototype frequency transformation to band-pass 
 filter with wp0 .. wp1 pass-band   (dspl_filter_transform.c) */
 typedef int (*p_dspl_ap2bpass)(double* b, double* a, int n, 
@@ -479,11 +486,13 @@ typedef int (*p_dspl_writebin) 		(double* x, double *y, int n, char* fn);
 typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
 
 
+
+extern p_dspl_acos_cmplx				dspl_acos_cmplx			;	/* ru, en */
 extern p_dspl_ap2bpass					dspl_ap2bpass			;	/* ru, en */
 extern p_dspl_ap2bstop					dspl_ap2bstop			;	/* ru, en */
 extern p_dspl_ap2high					dspl_ap2high			;	/* ru, en */
 extern p_dspl_ap2low					dspl_ap2low				;   /* ru, en */
-extern p_dspl_asin_cmplx				dspl_asin_cmplx			;	/* --, -- */
+extern p_dspl_asin_cmplx				dspl_asin_cmplx			;	/* ru, en */
 extern p_dspl_asinh						dspl_asinh				;	/* ru, en */
 extern p_dspl_butter_ap					dspl_butter_ap			;	/* ru, en */
 extern p_dspl_cheby1_ap					dspl_cheby1_ap			;   /* ru, en */

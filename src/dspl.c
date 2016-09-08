@@ -27,6 +27,7 @@
 
 #ifndef DLL_EXPORT
 
+p_dspl_acos_cmplx				dspl_acos_cmplx			;
 p_dspl_ap2bpass					dspl_ap2bpass			;
 p_dspl_ap2bstop					dspl_ap2bstop			;
 p_dspl_ap2high					dspl_ap2high			;
@@ -92,6 +93,13 @@ HINSTANCE	dspl_load()
 		return NULL;
 	}
 
+	
+	func_name = "dspl_acos_cmplx";
+	dspl_acos_cmplx = (p_dspl_acos_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_acos_cmplx)
+		goto error_proc;	
+	
+	
 	func_name = "dspl_ap2bpass";
 	dspl_ap2bpass = (p_dspl_ap2bpass) GetProcAddress(hDSPL, func_name);
 	if(!dspl_ap2bpass)
