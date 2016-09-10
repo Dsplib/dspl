@@ -1,6 +1,145 @@
 
 #ifdef DOXYGEN_EN
+
+
 /*!
+	\ingroup SPEC_MATH_ELLIP_GROUP
+	\fn int dspl_ellip_cd_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
+	\brief Jacobian elliptic  function \f$ \operatorname{cd}(u \cdot K(k), k)\f$ 
+	of a real or complex vector argument \f$ u\f$.
+	
+	Function calculates the Jacobian elliptic function \f$ \operatorname{cd}(u \cdot K(k), k)\f$ of a real or complex argument 
+	\f$ u\f$ and elliptic modulus \f$ k \f$, 
+	here  \f$  K(k)\f$ &mdash; complete elliptic integral of the first kind value.
+	
+	\param[in] uR	Pointer to the real part of the argument vector \f$ u\f$.<BR>
+					Vector size is `[nu x 1]`.<BR><BR>
+					
+	\param[in] uI	Pointer to the real part of the argument vector \f$ u\f$.<BR>
+					Vector size is `[nu x 1]`.<BR>
+					This pointer can be `NULL` if the argument \f$ u\f$ is real.<BR><BR>
+					
+	\param[in] nu	Size of the argument vector \f$ u\f$.<BR><BR>
+	
+	\param[in] k	Elliptic modulus \f$  k \f$ value.<BR><BR>
+					
+	\param[out]	cdR	Pointer to the real part of the Jacobian elliptic  function 
+					\f$ \operatorname{cd}(u \cdot K(k), k)\f$.<BR>
+					Vector size is `[k x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+	
+	\param[out]	cdI	Pointer to the real part of the Jacobian elliptic  function
+					\f$ \operatorname{cd}(u \cdot K(k), k)\f$.<BR>
+					Vector size is`[k x 1]`.<BR>
+					This pointer can be `NULL` if the argument \f$ u\f$ is real.<BR><BR>
+					
+	\note
+	This function uses normalization of the argument \f$ u\f$ 
+	to the complete elliptic integral value \f$  K(k) \f$. 
+	As result \f$ \operatorname{cd}(u \cdot K(k), k)\f$ has period equal 8 for any 
+	elliptic modulus \f$  k \f$ values.
+
+	
+	\return
+		`DSPL_OK` 			if function has been calculated successfully,
+							else \ref ERROR_CODE_GROUP "code error":<BR><BR>
+		`DSPL_ERROR_PTR` 	Pointer is wrong.<BR>
+		`DSPL_ERROR_SIZE` 	Vector size `nu` is wrong.<BR>
+		`DSPL_ERROR_ELLIP_K` Elliptic modulus values must satisfy the condition   \f$ 0 \leq k < 1.\f$
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 		
+	
+*/
+
+
+
+
+
+/*!
+	\ingroup SPEC_MATH_ELLIP_GROUP
+	\fn int dspl_ellip_sn_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
+	\brief Jacobian elliptic  function \f$ \operatorname{sn}(u \cdot K(k), k)\f$ 
+	of a real or complex vector argument \f$ u\f$.
+	
+	Function calculates the Jacobian elliptic function \f$ \operatorname{sn}(u \cdot K(k), k)\f$ of a real or complex argument 
+	\f$ u\f$ and elliptic modulus \f$ k \f$, 
+	here  \f$  K(k)\f$ &mdash; complete elliptic integral of the first kind value.
+	
+	\param[in] uR	Pointer to the real part of the argument vector \f$ u\f$.<BR>
+					Vector size is `[nu x 1]`.<BR><BR>
+					
+	\param[in] uI	Pointer to the real part of the argument vector \f$ u\f$.<BR>
+					Vector size is `[nu x 1]`.<BR>
+					This pointer can be `NULL` if the argument \f$ u\f$ is real.<BR><BR>
+					
+	\param[in] nu	Size of the argument vector \f$ u\f$.<BR><BR>
+	
+	\param[in] k	Elliptic modulus \f$  k \f$ value.<BR><BR>
+					
+	\param[out]	cdR	Pointer to the real part of the Jacobian elliptic  function 
+					\f$ \operatorname{sn}(u \cdot K(k), k)\f$.<BR>
+					Vector size is `[k x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+	
+	\param[out]	cdI	Pointer to the real part of the Jacobian elliptic  function
+					\f$ \operatorname{sn}(u \cdot K(k), k)\f$.<BR>
+					Vector size is`[k x 1]`.<BR>
+					This pointer can be `NULL` if the argument \f$ u\f$ is real.<BR><BR>
+					
+	\note
+	This function uses normalization of the argument \f$ u\f$ 
+	to the complete elliptic integral value \f$  K(k) \f$. 
+	As result \f$ \operatorname{sn}(u \cdot K(k), k)\f$ has period equal 8 for any 
+	elliptic modulus \f$  k \f$ values.
+
+	
+	\return
+		`DSPL_OK` 			if function has been calculated successfully,
+							else \ref ERROR_CODE_GROUP "code error":<BR><BR>
+		`DSPL_ERROR_PTR` 	Pointer is wrong.<BR>
+		`DSPL_ERROR_SIZE` 	Vector size `nu` is wrong.<BR>
+		`DSPL_ERROR_ELLIP_K` Elliptic modulus values must satisfy the condition   \f$ 0 \leq k < 1.\f$
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 		
+	
+*/
+
+
+
+
+/*!
+	\ingroup SPEC_MATH_ELLIP_GROUP
+	\fn int dspl_ellipk(double *pk, int k, double *pK)
+	\breif Complete elliptic integral of the firs kind.
+	
+	Function calculated the complete elliptic integral of the firs kind
+	
+	\f[
+	\displaystyle K(k)=\int _{0}^{\tfrac {\pi }{2}}{\frac {d\theta }{\sqrt {1-k\sin ^{2}\theta }}},
+	\f]
+	here \f$ 0 \leq k < 1\f$ is elliptic modulus.
+	
+	\param[in] pk	Elliptic modulus vector pointer.<BR>
+					Vector size is `[k x 1]`.<BR><BR>
+					
+	\param[in] k	Elliptic modulus vector size.<BR><BR>
+					
+	\param[in,out]	pK	Complete elliptic integral vector pointer.<BR>
+					Vector size is `[k x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+					
+	\return
+		`DSPL_OK` 			if complete elliptic integral has been calculated successfully,<BR>
+							else \ref ERROR_CODE_GROUP "error code":<BR><BR>
+		`DSPL_ERROR_PTR` 	Pointer error. 
+							Pointers `pk` and `pK` cannot be as `NULL`.<BR>
+		`DSPL_ERROR_SIZE` 	Vector size `k` must be more than 0.<BR>
+		`DSPL_ERROR_ELLIP_K` Elliptic modulus values must satisfy the condition  \f$ 0 \leq k < 1.\f$<BR><BR>
+		
 	\author
 		Sergey Bakhurin.                                                         
 		www.dsplib.org    
@@ -13,29 +152,151 @@
 
 
 #elseif DOXYGEN_RU
+
+
+/*!
+	\ingroup SPEC_MATH_ELLIP_GROUP
+	\fn int dspl_ellip_cd_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
+	\brief Эллиптическая функция Якоби \f$ \operatorname{cd}(u \cdot K(k), k)\f$ 
+	вещественного или комплексного аргумента \f$ u\f$.
+	
+	Расчёт значений функции \f$ \operatorname{cd}(u \cdot K(k), k)\f$ для эллиптического модуля \f$ k \f$, 
+	здесь  \f$  K(k)\f$ &mdash; значение полного эллиптического интеграла первого рода.
+	
+	\param[in] uR	Указатель на вектор реальной части аргумента \f$ u\f$.<BR>
+					Размер вектора `[nu x 1]`.<BR><BR>
+					
+	\param[in] uI	Указатель на вектор мнимой части аргумента \f$ u\f$.<BR>
+					Размер вектора `[nu x 1]`.<BR>
+					Данный указатель может быть `NULL` если расчёт ведётся для вещественного
+					аргумента \f$ u\f$.<BR><BR>
+					
+	\param[in] nu	Размер вектора аргумента эллиптической функции.<BR><BR>
+	
+	\param[in] k	Значение эллиптического модуля \f$  k \f$.<BR><BR>
+					
+	\param[out]	cdR	Указатель на вектор реальной части функции 
+					\f$ \operatorname{cd}(u \cdot K(k), k)\f$.<BR>
+					Размер вектора `[k x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
+	
+	\param[out]	cdI	Указатель на вектор мнимой части функции 
+					\f$ \operatorname{cd}(u \cdot K(k), k)\f$.<BR>
+					Размер вектора `[k x 1]`.<BR>
+					Данный указатель может быть `NULL` если расчёт ведётся для вещественного
+					аргумента \f$ u\f$.<BR><BR>
+					
+	\note
+	Расчёт эллиптической функции ведётся с нормировкой аргумента \f$ u\f$. 
+	В результате для любого эллиптического модуля \f$  k, \f$ функция
+	\f$ \operatorname{cd}(u \cdot K(k), k)\f$
+	имеет период равный 8.
+	
+	\return
+		`DSPL_OK` 			если функция рассчитана успешно.<BR>
+							В противном случае \ref ERROR_CODE_GROUP "код ошибки":<BR><BR>
+		`DSPL_ERROR_PTR` 	Ошибка указателя.<BR>
+		`DSPL_ERROR_SIZE` 	Размер вектора входных и выходных данный не может быть меньше единицы.<BR>
+		`DSPL_ERROR_ELLIP_K` Значение модуля эллиптического интеграла должно удовлетворять условию \f$ 0 \leq k < 1.\f$
+		
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org		
+	
+*/
+
+
+
+/*!
+	\ingroup SPEC_MATH_ELLIP_GROUP
+	\fn int dspl_ellip_sn_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
+	\brief Эллиптическая функция Якоби \f$ \operatorname{sn}(u \cdot K(k), k)\f$ 
+	вещественного или комплексного аргумента \f$ u\f$.
+	
+	Расчёт значений функции \f$ \operatorname{sn}(u \cdot K(k), k)\f$ для эллиптического модуля \f$ k \f$, 
+	здесь  \f$  K(k)\f$ &mdash; значение полного эллиптического интеграла первого рода.
+	
+	\param[in] uR	Указатель на вектор реальной части аргумента \f$ u\f$.<BR>
+					Размер вектора `[nu x 1]`.<BR><BR>
+					
+	\param[in] uI	Указатель на вектор мнимой части аргумента \f$ u\f$.<BR>
+					Размер вектора `[nu x 1]`.<BR>
+					Данный указатель может быть `NULL` если расчёт ведётся для вещественного
+					аргумента \f$ u\f$.<BR><BR>
+					
+	\param[in] nu	Размер вектора аргумента эллиптической функции.<BR><BR>
+	
+	\param[in] k	Значение эллиптического модуля \f$  k \f$.<BR><BR>
+					
+	\param[out]	cdR	Указатель на вектор реальной части функции 
+					\f$ \operatorname{sn}(u \cdot K(k), k)\f$.<BR>
+					Размер вектора `[k x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
+	
+	\param[out]	cdI	Указатель на вектор мнимой части функции 
+					\f$ \operatorname{sn}(u \cdot K(k), k)\f$.<BR>
+					Размер вектора `[k x 1]`.<BR>
+					Данный указатель может быть `NULL` если расчёт ведётся для вещественного
+					аргумента \f$ u\f$.<BR><BR>
+					
+	\note
+	Расчёт эллиптической функции ведётся с нормировкой аргумента \f$ u\f$. 
+	В результате для любого эллиптического модуля \f$  k, \f$ функция
+	\f$ \operatorname{sn}(u \cdot K(k), k)\f$
+	имеет период равный 8.
+	
+	\return
+		`DSPL_OK` 			если функция рассчитана успешно.<BR>
+							В противном случае \ref ERROR_CODE_GROUP "код ошибки":<BR><BR>
+		`DSPL_ERROR_PTR` 	Ошибка указателя.<BR>
+		`DSPL_ERROR_SIZE` 	Размер вектора входных и выходных данный не может быть меньше единицы.<BR>
+		`DSPL_ERROR_ELLIP_K` Значение модуля эллиптического интеграла должно удовлетворять условию \f$ 0 \leq k < 1.\f$	
+		
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org		
+	
+*/
+
+
+
+
 /*!
 	\ingroup SPEC_MATH_ELLIP_GROUP
 	\fn int dspl_ellipk(double *pk, int k, double *pK)
-	Полный эллиптический интеграл первого рода
+	\brief Полный эллиптический интеграл первого рода.
 	
 	\param[in] pk	Указатель на вектор значений модулей полного эллиптического
-					интеграла первого рода. 
-					Размер вектора `[k x 1]`.
-					Вектор должен хранить значения от 0 до 1.
+					интеграла первого рода. <BR>
+					Размер вектора `[k x 1]`.<BR>
+					Вектор должен хранить значения от 0 до 1.<BR><BR>
 					
 	\param[in] k	Размер вектора модулей полного эллиптического
-					интеграла первого рода.
+					интеграла первого рода.<BR><BR>
 					
 	\param[in,out]	pK	Указатель на вектор значений полного эллиптического
-					интеграла первого рода.
-					Размер вектора `[k x 1]`.
-					Память должна быть выделена.
+					интеграла первого рода.<BR>
+					Размер вектора `[k x 1]`.<BR>
+					Память должна быть выделена.<BR><BR>
 					
-					
+	\return
+		`DSPL_OK` 			если полный эллиптический интеграл первого рода рассчитан успешно.<BR>
+							В противном случае \ref ERROR_CODE_GROUP "код ошибки":<BR><BR>
+		`DSPL_ERROR_PTR` 	Ошибка указателя. 
+							Указатели `pk` и `pK` не могут быть `NULL`.<BR>
+		`DSPL_ERROR_SIZE` 	Размер вектора входных и выходных данный не может быть меньше единицы.<BR>
+		`DSPL_ERROR_ELLIP_K` Значение модуля эллиптического интеграла должно удовлетворять условию \f$ 0 \leq k < 1.\f$					
+							
 	\author
 		Бахурин Сергей.
  		www.dsplib.org	
 
 */
+
+
+
+
+
+
 
 #endif
