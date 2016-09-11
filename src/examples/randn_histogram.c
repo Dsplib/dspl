@@ -1,23 +1,3 @@
-
-#ifdef DOXYGEN_EN
-
-/*!
-
-		
-*/
-
-#elseif DOXYGEN_RU
-
-/*! 
-\example randn_histogram.c  
-
-*/
-
-#endif
-
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>

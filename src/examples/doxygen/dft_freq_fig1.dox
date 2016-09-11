@@ -1,0 +1,40 @@
+
+#ifdef DOXYGEN_EN
+
+/*!
+		
+*/
+
+#elseif DOXYGEN_RU
+
+
+/*!
+	\file dft_freq_fig1.c
+	\brief \ref dft_freq_fig1.c "Расчет данных для рисунка 1 раздела &laquo;Индексация и перестановка спектральных отсчетов дискретного преобразования Фурье&raquo;".	
+*/
+
+
+/*! 
+	\example dft_freq_fig1.c                                        
+	\brief Расчет данных для построения рисунка 1 раздела 
+	<a href = "http://ru.dsplib.org/content/dft_freq.html">
+	Индексация и перестановка спектральных отсчетов дискретного преобразования Фурье
+	</a>.<BR>
+	
+	
+	Программа рассчитывает амплитудный спектр \f$|S(k)|\f$ сигнала
+	\f[ 
+		s(n) = \exp \left( j \cdot 2\pi \cdot n \cdot \frac{f_0}{F_\textrm{s}} \right),
+	\f]
+	
+	где \f$f_0 = -20\f$ Гц, \f$F_\textrm{s} = 120\f$ Гц,  \f$n = 0\ldots N-1\f$, 
+	\f$N = 30\f$. <BR>
+	
+	Рассчитанный амплитудный спектр \f$|S(k)|\f$ сохраняется в файл
+	`dat/dft_freq_fig1.txt` для построения графика.<BR>	
+*/
+
+#endif
+
+
+
