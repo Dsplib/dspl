@@ -5,10 +5,12 @@ OBJ_DIR = obj
 
 ifeq ($(OS_VER), 32)
 	FFTW_DIR = lib/fftw32
+	REL_DIR		 = bin/release/dspl32
 endif
 
 ifeq ($(OS_VER), 64)
 	FFTW_DIR = lib/fftw64
+	REL_DIR		 = bin/release/dspl64
 endif
 
 
@@ -26,6 +28,9 @@ VER_BIN_DIR  = bin/verification
 PRF_SRC_DIR  = src/performance
 PRF_OBJ_DIR  = obj/performance
 PRF_BIN_DIR  = bin/performance
+
+
+
 
 BIN_DIR = bin
 OBJ_DIR = obj
@@ -106,7 +111,13 @@ all:	$(EXE_BIN_DIR)/dspl.dll\
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
-	cp 	$(FFTW_DIR)/libfftw3-3.dll   $(EXE_BIN_DIR)/libfftw3-3.dll	
+	echo "$(date) $(ls -1 | wc -l)"
+	cp 	$(FFTW_DIR)/libfftw3-3.dll   	$(EXE_BIN_DIR)/libfftw3-3.dll
+	cp 	$(EXE_BIN_DIR)/dspl.dll 		$(REL_DIR)/bin/dspl.dll 	
+	cp	$(FFTW_DIR)/libfftw3-3.dll		$(REL_DIR)/bin/libfftw3-3.dll
+	cp	$(INC_DIR)/dspl.h				$(REL_DIR)/src/dspl.h
+	cp	$(INC_DIR)/dspl.c				$(REL_DIR)/src/dspl.c
+                  
 
 $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm

@@ -27,9 +27,11 @@
 #include "dspl_main.h"
 
 
+#define DSPL_VERSION 0x00001009
 
-/* DSPL VERSION */
-#define DSPL_VERSION 0x00100716
+
+
+
 
 
 /*
@@ -38,23 +40,17 @@
 */
 DSPL_API int dspl_get_version(int printFlag)
 {
-	int ver = DSPL_VERSION;
-	int yy;
-	int mm;
-	int dd;
-	
-
+	int vh, vl;
 	if(printFlag)
-	{
-		yy = (ver & 0x00FF0000) >> 16;
-		mm = (ver & 0x0000FF00) >> 8;
-		dd = (ver & 0x000000FF);
-		printf("\n\n     D S P L\n");
-		printf("     version %.2d.%.2d.%.2d\n\n", yy,mm,dd);
+	{                                  
+		vh = (DSPL_VERSION & 0x0000FF00) >> 8;
+		vl = (DSPL_VERSION & 0x000000FF); 
+		printf("\n\n     D S P L\n");                          
+		printf("     version %.2d.%.2d (%s)\n", vh, vl,  __DATE__);
 		printf("     Copyright (c) 2015, 2016  Sergey Bakhurin\n");
 		printf("     home page: www.dsplib.org\n\n");		
 	}
-	return ver;
+	return DSPL_VERSION;
 }
 
 

@@ -54,12 +54,12 @@ int main()
 	/* */
 	dspl_rand(y, N);	
 	dspl_histogram_norm(y, N, NHIST, x, w);	
-	dspl_writetxt(x, w, NHIST, "dat/math_stat/histogram_rand.txt");
+	dspl_writetxt(x, w, NHIST, "dat/math_stat_histogram_rand.txt");
 	
 	/* gaussian random numbers m = 0, std = 1.0 */
 	dspl_randn(y, N, 0.0, 1.0);
 	dspl_histogram_norm(y, N, NHIST, x, w);
-	dspl_writetxt(x, w, NHIST, "dat/math_stat/histogram_randn.txt");
+	dspl_writetxt(x, w, NHIST, "dat/math_stat_histogram_randn.txt");
 	
 	
 	

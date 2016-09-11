@@ -220,7 +220,7 @@ DSPL_API int dspl_writetxt(double* x, double *y, int n, char* fn)
 		goto exit_label;
 	}
 	
-	pFile = fopen(fn, "w");
+	pFile = fopen(fn, "w+");
 	if(pFile == NULL)
 	{
 		res =DSPL_ERROR_FOPEN;

@@ -58,13 +58,13 @@ fig/%.pdf:%.tex fig_header.tex
 	
 
 clean:
-	del *.aux
-	del *.bbl
-	del *.log
-	del *.toc
-	del *.blg
-	del fig\*.aux 
-	del fig\*.bbl
-	del fig\*.log
-	del fig\*.toc
-	del fig\*.blg
+	rm -f *.aux
+	rm -f *.bbl
+	rm -f *.log
+	rm -f *.toc
+	rm -f *.blg
+	rm -f fig/*.aux 
+	rm -f fig/*.bbl
+	rm -f fig/*.log
+	rm -f fig/*.toc
+	rm -f fig/*.blg

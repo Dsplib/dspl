@@ -58,10 +58,10 @@ int main()
 			for(n = 0; n < 8; n++)
 				S[n] = sqrt(SR[n]*SR[n] + SI[n]*SI[n]);
 			
-			sprintf(fn, "dat/dtmf/sym_%c_time.txt", sym[k*4+m]);
+			sprintf(fn, "dat/dtmf_sym_%c_time.txt", sym[k*4+m]);
 			dspl_writetxt(t, s, 201, fn);
 			
-			sprintf(fn, "dat/dtmf/sym_%c_freq.txt", sym[k*4+m]);
+			sprintf(fn, "dat/dtmf_sym_%c_freq.txt", sym[k*4+m]);
 			dspl_writetxt(frq, S, 8, fn);
 		}		
 	}

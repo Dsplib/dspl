@@ -18,9 +18,9 @@
 
  Результаты работы программы сохраняются в файлы:
 
- dat/resample/lagrange_filter_time.txt - отсчеты импульсной характеристики фильтра интерполятора
+ dat/resample_lagrange_filter_time.txt - отсчеты импульсной характеристики фильтра интерполятора
 
- dat/resample/lagrange_filter_freq.txt - АЧХ
+ dat/resample_lagrange_filter_freq.txt - АЧХ
 
 */
 
@@ -68,13 +68,13 @@ int main()
 	
 	dspl_linspace(0, nh, nh, DSPL_PERIODIC, t);	
 	
-	dspl_writetxt(t,h,nh,"dat/resample/lagrange_filter_time.txt");
+	dspl_writetxt(t,h,nh,"dat/resample_lagrange_filter_time.txt");
 	
 	dspl_linspace(0, M_PI, K, DSPL_PERIODIC, w);
 	dspl_freqz(h, NULL, nh-1, w, K, HR, HI);
 	for(k = 0; k < K; k++)
 		H[k] = 10.0*log10((HR[k]*HR[k] + HI[k]*HI[k]));
-	dspl_writetxt(w,H,K,"dat/resample/lagrange_filter_freq.txt");
+	dspl_writetxt(w,H,K,"dat/resample_lagrange_filter_freq.txt");
 	
 		
 	/* clear dspl handle */	

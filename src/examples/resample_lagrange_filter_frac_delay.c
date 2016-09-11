@@ -19,28 +19,28 @@
 Результаты работы программы сохраняются в файлы:<BR><BR>
 
  отсчеты импульсной характеристики фильтров<BR>
-dat/resample/lagrange_filter_fd_time_0.0.txt<BR> 
-dat/resample/lagrange_filter_fd_time_0.1.txt<BR> 
-dat/resample/lagrange_filter_fd_time_0.2.txt<BR> 
+dat/resample_lagrange_filter_fd_time_0.0.txt<BR> 
+dat/resample_lagrange_filter_fd_time_0.1.txt<BR> 
+dat/resample_lagrange_filter_fd_time_0.2.txt<BR> 
  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<BR> 
-dat/resample/lagrange_filter_fd_time_0.9.txt<BR><BR>
+dat/resample_lagrange_filter_fd_time_0.9.txt<BR><BR>
  
 
   АЧХ фильтров:<BR>
-dat/resample/lagrange_filter_fd_mag_0.0.txt<BR> 
-dat/resample/lagrange_filter_fd_mag_0.1.txt<BR> 
-dat/resample/lagrange_filter_fd_mag_0.2.txt<BR> 
+dat/resample_lagrange_filter_fd_mag_0.0.txt<BR> 
+dat/resample_lagrange_filter_fd_mag_0.1.txt<BR> 
+dat/resample_lagrange_filter_fd_mag_0.2.txt<BR> 
  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<BR> 
-dat/resample/lagrange_filter_fd_mag_0.9.txt<BR><BR>
+dat/resample_lagrange_filter_fd_mag_0.9.txt<BR><BR>
  
  
 
   ГВЗ фильтров<BR>
-dat/resample/lagrange_filter_fd_mag_0.0.txt<BR> 
-dat/resample/lagrange_filter_fd_mag_0.1.txt<BR> 
-dat/resample/lagrange_filter_fd_mag_0.2.txt<BR> 
+dat/resample_lagrange_filter_fd_mag_0.0.txt<BR> 
+dat/resample_lagrange_filter_fd_mag_0.1.txt<BR> 
+dat/resample_lagrange_filter_fd_mag_0.2.txt<BR> 
  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<BR> 
-dat/resample/lagrange_filter_fd_mag_0.9.txt<BR><BR>
+dat/resample_lagrange_filter_fd_mag_0.9.txt<BR><BR>
  
 
 
@@ -103,7 +103,7 @@ int main()
 		
 		/* save to file */
 		memset(fn, 0, FN_LEN);
-		sprintf(fn, "dat/resample/lagrange_filter_fd_time_%.1f.txt", frac_delay);
+		sprintf(fn, "dat/resample_lagrange_filter_fd_time_%.1f.txt", frac_delay);
 		dspl_writetxt(t,h,nh,fn);
 	
 		/* current fractional delay filter magnitude (dB) and group delay  */
@@ -111,13 +111,13 @@ int main()
 		
 		/*  save magnitude to file  */
 		memset(fn, 0, FN_LEN);
-		sprintf(fn, "dat/resample/lagrange_filter_fd_mag_%.1f.txt", frac_delay);
+		sprintf(fn, "dat/resample_lagrange_filter_fd_mag_%.1f.txt", frac_delay);
 		dspl_writetxt(w,H,K,fn);
 	
 	
 		/* dave group delay to file */
 		memset(fn, 0, FN_LEN);
-		sprintf(fn, "dat/resample/lagrange_filter_fd_gd_%.1f.txt", frac_delay);
+		sprintf(fn, "dat/resample_lagrange_filter_fd_gd_%.1f.txt", frac_delay);
 		dspl_writetxt(w,GD,K,fn);
 	}
 		
