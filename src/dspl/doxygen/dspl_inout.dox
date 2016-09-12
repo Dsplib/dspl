@@ -12,9 +12,9 @@
 		
 	
 	\return
-		DSPL version in format 0x00YYMMDD, here YY - year, 
-		MM - month and DD - day of DSPL creation.
-		For example 0x000F0B16 corresponds to 15.11.24 
+		DSPL version in format 0x0000YYMM, here YY - year, 
+		MM - month of DSPL compilation.
+		For example 0x00000F0B corresponds to 15.11
 	
 	\author
 		Sergey Bakhurin.                                                         
@@ -140,9 +140,9 @@
 		
 	
 	\return
-		Верия библиотеки DSPL в формате 0x00YYMMDD, 
-		где YY - год, MM - месяц и DD - день компиляции библиотеки.
-		Например 0x000F0B16 соответствует версии 15.11.24 
+		Верия библиотеки DSPL в формате 0x0000YYMM, 
+		где YY - год, MM - месяц компиляции библиотеки.
+		Например 0x00000F0B соответствует версии 15.11 
 	
 	\author
 		Бахурин Сергей.                                                         
