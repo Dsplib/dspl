@@ -23,9 +23,15 @@
 	
 	1) Необходимо скачать архив с готовой сборкой компилятора. 
 	
-	<a href = "https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/i686-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">Ссылка для скачивания 32-битной версии компилятора</a>
+	<a href = "https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/i686-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">
+	Ссылка для скачивания 32-битной версии компилятора
+	</a>
 	
-	<a href ="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/x86_64-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">Ссылка для скачивания 64-битной версии компилятора</a>
+	
+	<a href ="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/x86_64-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">
+	Ссылка для скачивания 64-битной версии компилятора
+	</a>
+	
 	
 	2) Распаковать архив в дирикторию `C:\mingw32`. 
 	Для распаковки архива рекомендуется использовать пакет <a href = "http://www.7-zip.org/">7-zip</a>. 
@@ -87,24 +93,34 @@
 
   	Для этого вы можете скачать минимальный проект использующий dspl.dll.
 	
-	<a href = "http://ru.dsplib.org/dspl32.zip">Ссылка для скачивания 32-битной версии </a>
+	<a href = "http://ru.dsplib.org/dspl32.zip">
+	Ссылка для скачивания 32-битной версии 
+	</a>
+	
+	<a href = "http://ru.dsplib.org/dspl64.zip">
+	Ссылка для скачивания 64-битной версии 
+	</a>
 	
 	
-	После извлечения архива вы получите следующую структуру файлов (а-32 битная версия, b - 64-битная версия:
+	
+	После извлечения архива вы получите следующую структуру файлов для 32-битной  (a) и 64-битной (b) версий:
 
 	\image html dspl_gcc_structure.png	
 
-	Директория `bin` содержит библиотеку  `dspl.dll`. В эту же директорию будет помещен выполняемый `.exe` файл после компиляции проекта
-
-	Директория `obj` пустая. В эту директорию будут помещены объектные `.o` файлы после компиляции проекта
+	Директория `bin` содержит библиотеку  `dspl.dll`, а также библиотеку 
+	<a href = "http://fftw.org"> FFTW </a> алгоритмов БПФ. В эту же директорию будет помещен выполняемый `.exe` файл после компиляции проекта.
 	
-	Директория `src` содержит три файла: `dspl.h` заголовочный файл с описанием всех функций импортируемых из `dspl.dll`; `dspl.c` исходный код для импорта всех функций из `dspl.dll` и  `hello_world.c` -- исходный код простейшей программы использующей библиотеку `dspl.dll`.
+	Директория данных `bin/dat` пока пустая, но в нее будут сохраняться файлы результатов работы примеров программ.
+
+	Директория объектных файлов `obj`. В эту директорию будут помещены объектные `.o` файлы после компиляции проекта.
+	
+	Директория `src` содержит три файла: `dspl.h` заголовочный файл с описанием всех функций импортируемых из `dspl.dll`; `dspl.c` исходный код для импорта всех функций из `dspl.dll` и  `main.c` -- исходный код простейшей программы использующей библиотеку `dspl.dll`.
 	
 	Файл `LICENSE` текст лицензии LGPL v3.
 	
-	Файл `Makefile` файл для компиляции проекта с использованием GCC.
+	Файл `Makefile` файл для компиляции проекта с использованием GCC компилятора.
 	
-	Для компиляции программы необходимо в консоли перейти в директорию `dspl32`, и выполнить команду 
+	Для компиляции программы необходимо перейти в директорию `dspl32` или `dspl64`, и в консоли выполнить команду: 
 	
 	\verbatim
 	mingw32-make
@@ -113,38 +129,30 @@
 	Результат в консоли:
 	
 	\verbatim
-	gcc -c -Wall -O3 -Isrc  src/hello_world.c -o obj/hello_world.o
+	
+	dspl64>mingw32-make
+	gcc -c -Wall -O3 -Isrc  src/main.c -o obj/main.o
 	gcc -c -Wall -O3 -Isrc  src/dspl.c -o obj/dspl.o
-	gcc obj/hello_world.o obj/dspl.o   -o bin/hello_world.exe
+	gcc obj/main.o obj/dspl.o   -o bin/main.exe
 	\endverbatim
 	
-	В директории `bin` появится скомпилированная программа `hello_world.exe`.
-	
-	Выполнив которую вы увидите
+	В директории `bin` появится скомпилированная программа `main.exe`,	
+	выполнив которую вы увидите
 	
 	
 	\verbatim
-		  D S P L
-		  version 16.04.01
 
-		  Copyright (c) 2015, 2016  Sergey Bakhurin
-		  home page: www.dsplib.org
+     D S P L
+     version 16.09 (Sep 11 2016)
+     Copyright (c) 2015, 2016  Sergey Bakhurin
+     home page: www.dsplib.org
+
 	\endverbatim
 	
-	Это означает что все настроено верно и теперь вы можете компилировать собственные программы с использованием `dspl.dll`.
+	Это означает что все настроено верно и теперь вы можете компилировать собственные программы с использованием фнукций `dspl.dll`.
 	
-	Вы можете заменить теперь текст исходного файла `hello_world.c` на текст 
+	 Текст исходного файла `main.c` на текст 
 	<a href = "examples.html">любого примера</A>, скомпилировать и выполнить программу.
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 	
 	
 */
