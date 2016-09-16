@@ -65,7 +65,7 @@ int main()
 		
 		dspl_polyval(a,3,&delta, 1, y+k);
 		
-		printf(" | %.1d  %6.2f   %.1d  %6.2f |", k, x, n-2, delta);
+		printf(" | %.1d  %6.2f   %.1d  %6.2f |", k, x, n-2, -delta);
 		printf(" %6.1f  %6.1f %6.1f %6.1f |", z[n-3], z[n-2], z[n-1], z[n]);
 		printf(" %8.4f  %8.4f %8.4f %8.4f |", a[0], a[1], a[2], a[3]);
 		printf(" %8.4f |\n", y[k]);

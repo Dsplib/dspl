@@ -1,0 +1,38 @@
+% \begin{figure}[ht!]
+%\begin{center}
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{fig_header.tex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+	\draw[->] 		(-1cm,	0cm)		-- (16cm, 0cm)	node[below] {$n$};
+	\draw[-]  (0,0)  node[below] {$0$} -- (0,1)      node[above, xshift = 2mm] {$s(0)$};  \fill (0,1) circle(0.07cm) ;
+	\draw[-]  (2,0)  node[below] {$1$} -- (2,2)      node[above, xshift = 2mm] {$s(1)$};  \fill (2,2) circle(0.07cm) ;
+	\draw[-]  (4,0)  node[below] {$2$} -- (4,2) 	 node[above, xshift = 2mm] {$s(2)$};  \fill (4,2) circle(0.07cm) ;
+	\draw[-]  (6,0)  node[below] {$3$} -- (6,1) 	 node[above, xshift = 2mm] {$s(3)$};  \fill (6,1) circle(0.07cm) ;
+	\draw[-]  (8,0)  node[above] {$4$} -- (8,-0.5)   node[below, xshift = 2mm]  {$s(4)$};  \fill (8,-0.5) circle(0.07cm) ;
+	\draw[-]  (10,0) node[above] {$5$} -- (10,-1)    node[below, xshift = 2mm] {$s(5)$};  \fill (10,-1) circle(0.07cm) ;
+	\draw[-]  (12,0) node[above] {$6$} -- (12,-2)    node[below, xshift = 2mm] {$s(6)$};  \fill (12,-2) circle(0.07cm) ;
+	\draw[-]  (14,0) node[above] {$7$} -- (14,-0.5)  node[below, xshift = 2mm] {$s(7)$};  \fill (14,-0.5) circle(0.07cm) ;
+	
+	
+	
+	
+	\draw[red, -]  (-0.5,0) -- (-0.5,   0.5859)  node[above, xshift = -2mm] {$y(0)$};  \fill[red] (-0.5,   0.5859) circle(0.07cm) ;
+	\draw[red, -]  ( 1.5,0) -- ( 1.5,   1.8047)  node[above, xshift = -2mm] {$y(1)$};  \fill[red] ( 1.5,   1.8047) circle(0.07cm) ;
+	\draw[red, -]  ( 3.5,0) -- ( 3.5,   2.2188)  node[above, xshift = -2mm] {$y(2)$};  \fill[red] ( 3.5,   2.2188) circle(0.07cm) ;
+	\draw[red, -]  ( 5.5,0) -- ( 5.5,   1.5039)  node[above, xshift = -2mm] {$y(3)$};  \fill[red] ( 5.5,   1.5039) circle(0.07cm) ;
+	\draw[red, -]  ( 7.5,0) -- ( 7.5,  -0.0977)  node[below, xshift = -2mm] {$y(4)$};  \fill[red] ( 7.5,  -0.0977) circle(0.07cm) ;
+	\draw[red, -]  ( 9.5,0) -- ( 9.5,  -0.7617)  node[below, xshift = -2mm] {$y(5)$};  \fill[red] ( 9.5,  -0.7617) circle(0.07cm) ;
+	\draw[red, -]  (11.5,0) -- (11.5,  -2.0547)  node[below, xshift = -2mm] {$y(6)$};  \fill[red] (11.5,  -2.0547) circle(0.07cm) ;
+	\draw[red, -]  (13.5,0) -- (13.5,  -0.9805)  node[below, xshift = -2mm] {$y(7)$};  \fill[red] (13.5,  -0.9805) circle(0.07cm) ;
+\end{tikzpicture}
+
+\end {document}
+
+

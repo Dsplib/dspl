@@ -5,12 +5,15 @@ OBJ_DIR = obj
 
 ifeq ($(OS_VER), 32)
 	FFTW_DIR = lib/fftw32
-	REL_DIR		 = bin/release/dspl32
+	REL_DIR		 = bin/release/gcc/dspl32 
+	VC_DIR		 = bin/release/vc/dspl32
 endif
 
 ifeq ($(OS_VER), 64)
 	FFTW_DIR = lib/fftw64
-	REL_DIR		 = bin/release/dspl64
+	REL_DIR		 = bin/release/gcc/dspl64
+	VC_DIR		 = bin/release/vc/dspl64
+
 endif
 
 
@@ -81,16 +84,16 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/hilbert_fft.exe\
 			$(EXE_BIN_DIR)/goertzel_dtmf.exe\
 			$(EXE_BIN_DIR)/randn_histogram.exe\
-			$(EXE_BIN_DIR)/resample_lagrange_interp.exe\
+			$(EXE_BIN_DIR)/resample_lagrange_ex_frac_delay.exe\
+			$(EXE_BIN_DIR)/resample_lagrange_ex_interp.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_filter_interp.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_filter_frac_delay.exe\
-			$(EXE_BIN_DIR)/resample_lagrange_filter_frac_delay_ex.exe\
 		
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\
 		    $(VER_BIN_DIR)/ver_dspl_hilbert.exe\
 		    $(VER_BIN_DIR)/ver_dspl_histogram_norm.exe\
-		    $(VER_BIN_DIR)/ver_dspl_math_basic.exe\
+			$(VER_BIN_DIR)/ver_dspl_math_basic.exe\
 		    $(VER_BIN_DIR)/ver_dspl_pwelch.exe\
 			
 
@@ -118,6 +121,10 @@ $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	cp	$(FFTW_DIR)/libfftw3-3.dll		$(REL_DIR)/bin/libfftw3-3.dll
 	cp	$(INC_DIR)/dspl.h				$(REL_DIR)/src/dspl.h
 	cp	$(INC_DIR)/dspl.c				$(REL_DIR)/src/dspl.c
+    cp 	$(EXE_BIN_DIR)/dspl.dll 		$(VC_DIR)/bin/dspl.dll 	
+	cp	$(FFTW_DIR)/libfftw3-3.dll		$(VC_DIR)/bin/libfftw3-3.dll
+	cp	$(INC_DIR)/dspl.h				$(VC_DIR)/src/dspl.h
+	cp	$(INC_DIR)/dspl.c				$(VC_DIR)/src/dspl.c
                   
 
 $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
@@ -196,3 +203,4 @@ clean:
 	rm -f   $(VER_BIN_DIR)/*.dll	
 	rm -f   $(PRF_BIN_DIR)/*.exe
 	rm -f   $(PRF_BIN_DIR)/*.dll
+	                                                                      

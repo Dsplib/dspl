@@ -38,10 +38,14 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/resample_lagrange_fig1.pdf\
 		fig/resample_lagrange_fig2.pdf\
 		fig/resample_lagrange_fig3.pdf\
-		fig/resample_lagrange_filter.pdf\
 		fig/resample_lagrange_filter_fd_freq.pdf\
 		fig/resample_lagrange_filter_fd_time.pdf\
+		fig/resample_lagrange_filter_interp.pdf\
+		fig/resample_lagrange_frac_delay_in.pdf\
+		fig/resample_lagrange_frac_delay_out.pdf\
 		fig/resample_lagrange_opt.pdf\
+        fig/resample_lagrange_table_frac_delay.pdf\
+
 
 		
 

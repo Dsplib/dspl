@@ -1,0 +1,15 @@
+*.exe
+*.o
+*.dll
+*.db
+*.tlog
+*.obj
+*.idb
+*.pdb
+*.lastbuildstate
+*.ilk
+*.iobj
+*.ipdb
+*.tmp
+*.vs
+

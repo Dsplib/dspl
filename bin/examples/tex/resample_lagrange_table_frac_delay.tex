@@ -1,0 +1,39 @@
+\documentclass[border=3mm]{standalone}
+\usepackage{siunitx, array, booktabs, stackengine, etoolbox}
+\usepackage [table]{xcolor}
+\setlength{\extrarowheight}{1.5mm}
+\begin{document}
+
+\rowcolors{1}{}{black!7!white}
+\begin{tabular}{
+		*{1}{S[table-format = 2.0]}
+		*{1}{S[table-format = 2.2]}
+		*{1}{S[table-format = 2.0]}
+		*{1}{S[table-format = 2.2]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.4]}
+	}
+	
+\toprule
+{$k$} & {$x_k$}  &   {$n$}  &   {$\Delta_k$}  & {$s(n-3)$} &  {$s(n-2)$} &  {$s(n-1)$} &  {$s(n)$} & {$a_0$}  &  {$a_1$} & {$a_2$} & {$a_3$} & {$y(k)$}\\  
+\midrule 
+  0 & -0.25 &  1 &  0.25  &	\color{red} 0.0	& \color{red} 0.0	&  1.0 &   2.0 				&   1.000 &   1.167 & -2.000 & -0.167 &   0.5859 \\
+  1 &  0.75 &  2 &  0.25  &	\color{red} 0.0	&  1.0  			&  2.0 &   2.0 				&   2.000 &   0.667 & -0.500 & -0.167 &   1.8047 \\
+  2 &  1.75 &  3 &  0.25  &   1.0   		&  2.0  			&  2.0 &   1.0 				&   2.000 &  -0.500 &  1.500 &  0.000 &   2.2188 \\
+  3 &  2.75 &  4 &  0.25  &   2.0   		&  2.0  			&  1.0 &  -0.5 				&   1.000 &  -1.333 &  2.750 &  0.083 &   1.5039 \\
+  4 &  3.75 &  5 &  0.25  &   2.0   		&  1.0  			& -0.5 &  -1.0 				&  -0.500 &  -1.250 &  1.500 &  0.250 &  -0.0977 \\
+  5 &  4.75 &  6 &  0.25  &   1.0   		& -0.5  			& -1.0 &  -2.0 				&  -1.000 &  -0.500 &  1.750 & -0.250 &  -0.7617 \\
+  6 &  5.75 &  7 &  0.25  &  -0.5   		& -1.0  			& -2.0 &  -0.5 				&  -2.000 &  -0.250 & -1.750 &  0.500 &  -2.0547 \\
+  7 &  6.75 &  8 &  0.25  &  -1.0   		& -2.0  			& -0.5 &  \color{red} 0.0	&  -0.500 &   1.583 & -1.500 & -0.583 &  -0.9805 \\
+\bottomrule
+
+\end{tabular}
+
+\end{document}
