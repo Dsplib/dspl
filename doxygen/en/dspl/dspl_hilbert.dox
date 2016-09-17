@@ -1,0 +1,32 @@
+/*!
+	\ingroup HILBERT_GROUP
+	\fn int dspl_hilbert(double* x, int n, void* pdspl, double* y)
+			
+	\brief Analytic extension `y` of real valued signal `x` calculation by using Hilbert transform. 
+	
+		
+	\param[in]	x		Real  input signal vector pointer. 
+						Vector size is `[n x 1]`. 
+	
+	
+	\param[in]	 n		Size of input signal vector.
+	
+	\param[in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
+						This object can be created by `#dspl_obj_create` function before using
+						and should be destroyed by `#dspl_obj_free` before exit.
+
+
+	\param[out]	y	 	Analytic extension vector pointer. 
+						Vector size is  `[n x 1]`. 
+						Memory must be allocated.
+	
+	
+	\return
+		`DSPL_OK`  Analitic signal has been calculated successfully. <BR>
+		`DSPL_ERROR_PTR`  Pointer error if `x == NULL` or `y == NULL` or `pdspl == NULL`. <BR>
+		`DSPL_ERROR_SIZE` Size error if `n<1`.<BR>
+	
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

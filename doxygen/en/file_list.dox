@@ -1,0 +1,234 @@
+/*!
+	\dir ../src
+	\brief Main DSPL folder includes DSPL sources, examples and versification sources.
+*/
+
+
+
+/*!
+	\dir ../src/dspl
+	\brief DSPL sources folder.
+*/
+
+/*!
+	\dir ../src/dspl/linpack
+	\brief Linear algebra  subroutines (BLAS and LINPACK) folder .
+*/
+
+
+
+/*!
+	\file dspl.h
+	\brief DSPL header file.
+*/
+
+
+
+/*!
+	\file cconv.c
+	\brief Circular convolution functions. 
+*/
+
+
+/*!
+	\file dspl_compos.c
+	\brief Rational composition
+	
+*/
+
+
+/*!
+	\file dspl_conv.c
+	\brief Linear convolution
+	
+*/
+
+
+
+/*!
+	\file dspl_dft.c
+	\brief Naive DFT realisation 
+	
+*/
+
+
+/*!
+	\file dspl_fft.c
+	\brief Fast Fourier Transform (FFT). 
+	
+	DSPL uses FFTW. FFTW is most faster library for FFT calculation.
+
+*/
+
+
+/*!
+	\file dspl_filter_ap.c
+	\brief Low-pass analog prototype transfer functions calculation.
+	
+*/
+
+
+
+/*!
+	\file dspl_filter_iir.c
+	\brief IIR-filter
+	
+*/
+
+
+
+/*!
+	\file dspl_filter_transform.c
+	\brief Analog filter frequency transform
+	
+*/
+
+
+
+
+/*!
+	\file dspl_freqs.c
+	\brief Analog filter frequency response \f$ H(j \omega)\f$ calculation
+	
+*/
+
+
+
+/*!
+	\file dspl_freqz.c
+	\brief Digital filter frequency response \f$ H \left(e^{j \omega} \right)\f$ calculation
+	
+*/
+
+
+
+/*!
+	\file dspl_goertzel.c
+	\brief Goertzel algorithm for DFT calculation
+	
+*/
+
+
+
+/*!
+	\file dspl_hilbert.c
+	\brief Analytic extension  of a real valued signal by using Hilbert transform
+	
+*/
+
+
+
+/*!
+	\file dspl_histogram.c
+	\brief Probability density estimation by using the histogram
+	
+*/
+
+
+
+/*!
+	\file dspl_inout.c
+	\brief Input-output functions
+*/
+
+
+
+
+/*!
+	\file dspl_linspace.c
+	\brief Linspace filling of the array
+*/
+
+
+
+
+/*!
+	\file dspl_logspace.c
+	\brief Logspace filling of the array
+*/
+
+
+
+
+/*!
+	\file dspl_main.c
+	\brief DSPL main file
+*/
+
+
+
+/*!
+	\file dspl_main.h
+	\brief Internal DSPL types header file
+*/
+
+
+
+/*!
+	\file dspl_math_basic.c
+	\brief Basic math functions of a real and complex arguments
+*/
+
+
+
+/*!
+	\file dspl_math_ellip.c
+	\brief Jacobi elliptic functions
+*/
+
+
+
+
+/*!
+	\file dspl_math_hyperbolic.c
+	\brief Hyperbolic functions of a real and complex arguments
+*/
+
+
+
+/*!
+	\file dspl_math_stat.c
+	\brief Random signals statistics estimation
+*/
+
+
+
+/*!
+	\file dspl_polyval.c
+	\brief Polynomial calculation of a real and complex arguments
+*/
+
+
+
+/*!
+	\file dspl_pwelch.c
+	\brief PSD estimation by using Welch method
+*/
+
+
+
+/*!
+	\file dspl_rand_gen.c
+	\brief Pseudo-random numbers generation
+*/
+
+
+
+/*!
+	\file dspl_resample.c
+	\brief Digital resampling
+*/
+
+
+
+/*!
+	\file dspl_unwrap.c
+	\brief Corrects the radian phase angles in a vector
+*/
+
+
+
+/*!
+	\file dspl_win.c
+	\brief Window functions collection
+*/

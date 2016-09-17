@@ -1,0 +1,72 @@
+/*!
+	\ingroup DFT_GROUP
+	\fn int dspl_pwelch(double *xR, double *xI, int n, 
+						int win_type, double win_param, 
+						int npsd, int noverlap, void *pdspl, 
+						double fs, double *ppsd, double *pfrq)
+						
+	Estimate two-side  power spectral density (PSD) by the Welch periodogram/FFT method.
+
+	The PSD is the mean of the periodograms, scaled so that
+	area under the spectrum is the same as the mean square of the data.
+	
+	\param[in]	xR		Input signal real part pointer. 
+						Vector size is `[n x 1]`. 						
+	
+	\param[in]	xI  	Input signal vector image part pointer. 
+						Vector size is `[n x 1]`.		
+						This pointer can be `NULL` if PSD is calculated for a real signal.
+	
+	\param[in]	 n		Input signal size (input and output vectors size).
+	
+	\param [in]	win_type	Bit string for set window function type.<BR>
+							This parameter is bit masks combination
+							`DSPL_WIN_MASK | DSPL_WIN_SYM_MASK`.<BR>
+							Bit mask `DSPL_WIN_MASK` sets window function type:<BR>
+							Value `DSPL_WIN_MASK` 	| Description
+							----------------------------|----------------------------
+							`DSPL_WIN_BARTLETT`			|Non-parametric Bartlett window		
+							`DSPL_WIN_BARTLETT_HANN`	|Non-parametric Bartlett-Hann window		
+							`DSPL_WIN_BLACKMAN`			|Non-parametric Blackman window		
+							`DSPL_WIN_BLACKMAN_HARRIS`	|Non-parametric Blackman-Harris window			
+							`DSPL_WIN_BLACKMAN_NUTTALL`	|Non-parametric Blackman-Nuttall window		
+							`DSPL_WIN_COS`				|Non-parametric cosine window		
+							`DSPL_WIN_FLAT_TOP`			|Non-parametric flat top window		
+							`DSPL_WIN_GAUSSIAN`			|Parametric Gaussian window		
+							`DSPL_WIN_HAMMING`			|Non-parametric Hamming window		
+							`DSPL_WIN_HANN`				|Non-parametric Hann window		
+							`DSPL_WIN_LANCZOS`			|Non-parametric Lanczos window		
+							`DSPL_WIN_NUTTALL`			|Non-parametric Nuttall window		
+	                        `DSPL_WIN_RECT`				|Non-parametric rectangular window		
+							Bit mask `DSPL_WIN_SYM_MASK` sets symmetric or periodic window:<BR>
+							Value `DSPL_WIN_SYM_MASK` 	| Description
+							--------------------------------|----------------------------
+							`DSPL_WIN_SYMMETRIC`			|Symmetric window (by default)	
+							`DSPL_WIN_PERIODIC`				|Periodic window
+							
+	\param [in]	win_param	Window function parameter (for parametric windows only). <BR>
+							This parameter is ignored for non-parametric windows.
+							
+	\param [in]	npsd		PSD size.
+
+	\param [in]	noverlap	PSD overlap size. This number must be from 1 to `npsd`.
+	
+	\param [in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
+						This object can be created by `dspl_obj_create` function before using
+						and should be destroyed by `dspl_obj_free` before exit.
+						
+	\param [in]	fs		Input signal sample rate (Hz).
+	
+	\param [out] ppsd	PSD vector pointer.
+						Vector size is `[npsd x 1]`.
+						Memory should be allocated.
+
+	\param [out] pfrq	PSD frequency vector pointer.
+						Vector size is `[npsd x 1]`.
+						Memory should be allocated.
+	
+	
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

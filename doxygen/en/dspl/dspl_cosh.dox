@@ -1,0 +1,20 @@
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_cosh(double x)
+	\brief Hyperbolic cosine of real argument
+	
+	Function calculates hyperbolic cosine. 
+	\f[
+		\text{cosh}(x) = \frac{\exp(x) + \exp(-x)}{2}
+	\f]
+	
+	\param[in]	x	Hyperbolic cosine
+					real argument.
+					
+	\return	
+		Hyperbolic cosine for real argument `x`.
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/

@@ -1,0 +1,53 @@
+/*!
+	\ingroup FILTER_ANALYSIS_GROUP
+	\fn int dspl_freqz(double* b, double* a, int ord, 
+						double* w, int n, 
+						double* hR, double* hI)
+	
+	\brief Digital filter frequency response \f$ H \left(e^{j \omega} \right)\f$ calculation.
+	
+	Function calculates frequency response \f$ H \left(e^{j \omega} \right)\f$ of a digital filter 
+	with transfer function \f$H(z)\f$:
+	\f[
+	H(z) = \frac{\sum_{k = 0}^{N} b_k \cdot z^{-k}}{\sum_{m = 0}^{N} a_m \cdot z^{-m}},
+	\f]
+	here \f$N\f$ - filter order (parameter `ord`).
+		
+	\param[in]	b	Transfer function \f$H(z)\f$ numerator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					
+	\param[in]	a 	Transfer function \f$H(z)\f$ denominator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					
+	\param[in]	ord Filter order
+					
+	\param[in]	w	Normalized angular frequency (rad/s) vector pointer for 
+					transfer function \f$ H \left(e^{j \omega} \right)\f$ calculation.
+					Vector size is `[n x 1]`.
+					
+	\param[in]	n	Normalized angular frequency vector size.
+					
+					
+	\param[out]	hR 	Frequency response \f$ H \left(e^{j \omega} \right)\f$ real part pointer. 
+					Frequency response is calculated corresponds to the angular frequency `w`.
+					Vector size is `[n x 1]`.
+					Memory must be allocated.
+					
+	\param[out]	hI 	Frequency response \f$ H \left(e^{j \omega} \right)\f$ image part pointer. 
+					Frequency response is calculated corresponds to the angular frequency `w`.
+					Vector size is `[n x 1]`.
+					Memory must be allocated.
+					
+	\return
+		`DSPL_OK`				Frequency response vector is calculated successfully.<BR>
+		`DSPL_ERROR_FILTER_ORD`	Filter order must be positive.<BR>
+		`DSPL_ERROR_PTR`		Pointer error. Pointers `b`, `a`, `w`, `hR` and `hI`
+								cannot to be as `NULL`.<BR>
+		`DSPL_ERROR_SIZE`		Parameter `n` must be positive.<BR>
+
+	\author
+		Sergey Bakhurin. 
+		www.dsplib.org	
+
+*/
+

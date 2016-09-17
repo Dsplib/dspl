@@ -1,0 +1,34 @@
+
+/*!
+	\ingroup SPEC_MATH_ELLIP_GROUP
+	\fn int dspl_ellipk(double *pk, int k, double *pK)
+	\breif Complete elliptic integral of the firs kind.
+	
+	Function calculated the complete elliptic integral of the firs kind
+	
+	\f[
+	\displaystyle K(k)=\int _{0}^{\tfrac {\pi }{2}}{\frac {d\theta }{\sqrt {1-k\sin ^{2}\theta }}},
+	\f]
+	here \f$ 0 \leq k < 1\f$ is elliptic modulus.
+	
+	\param[in] pk	Elliptic modulus vector pointer.<BR>
+					Vector size is `[k x 1]`.<BR><BR>
+					
+	\param[in] k	Elliptic modulus vector size.<BR><BR>
+					
+	\param[in,out]	pK	Complete elliptic integral vector pointer.<BR>
+					Vector size is `[k x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+					
+	\return
+		`DSPL_OK` 			if complete elliptic integral has been calculated successfully,<BR>
+							else \ref ERROR_CODE_GROUP "error code":<BR><BR>
+		`DSPL_ERROR_PTR` 	Pointer error. 
+							Pointers `pk` and `pK` cannot be as `NULL`.<BR>
+		`DSPL_ERROR_SIZE` 	Vector size `k` must be more than 0.<BR>
+		`DSPL_ERROR_ELLIP_K` Elliptic modulus values must satisfy the condition  \f$ 0 \leq k < 1.\f$<BR><BR>
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

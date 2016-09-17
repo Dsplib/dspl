@@ -1,0 +1,54 @@
+/*!
+	\ingroup WIN_GROUP
+	\fn int dspl_window(double* w, int n, int win_type, double param)
+	\brief Window function calculation
+	
+	This function calculates periodic or symmetric window according to `win_type` parameter.
+	
+	Periodic window function can be used for a spectral analysis,
+	Symmetric window is most useful for FIR filters synthesis. 
+	
+	\param [in,out] w		Window function vector pointer.
+					 		Vector size is `[n x 1]`.
+					 		Memory must be allocated.
+					 		
+	\param [in]		n		Window function vector size.
+	
+	\param [in]	win_type	Bit string for set window function type.<BR>
+							This parameter is bit masks combination
+							`DSPL_WIN_MASK | DSPL_WIN_SYM_MASK`.<BR>
+							Bit mask `DSPL_WIN_MASK` sets window function type:<BR>
+							Value `DSPL_WIN_MASK` 	| Description
+							----------------------------|----------------------------
+							`DSPL_WIN_BARTLETT`			|Non-parametric Bartlett window		
+							`DSPL_WIN_BARTLETT_HANN`	|Non-parametric Bartlett-Hann window		
+							`DSPL_WIN_BLACKMAN`			|Non-parametric Blackman window		
+							`DSPL_WIN_BLACKMAN_HARRIS`	|Non-parametric Blackman-Harris window			
+							`DSPL_WIN_BLACKMAN_NUTTALL`	|Non-parametric Blackman-Nuttall window		
+							`DSPL_WIN_COS`				|Non-parametric cosine window		
+							`DSPL_WIN_FLAT_TOP`			|Non-parametric flat top window		
+							`DSPL_WIN_GAUSSIAN`			|Parametric Gaussian window		
+							`DSPL_WIN_HAMMING`			|Non-parametric Hamming window		
+							`DSPL_WIN_HANN`				|Non-parametric Hann window		
+							`DSPL_WIN_LANCZOS`			|Non-parametric Lanczos window		
+							`DSPL_WIN_NUTTALL`			|Non-parametric Nuttall window		
+	                        `DSPL_WIN_RECT`				|Non-parametric rectangular window		
+							Bit mask `DSPL_WIN_SYM_MASK` sets symmetric or periodic window:<BR>
+							Value `DSPL_WIN_SYM_MASK` 	| Description
+							--------------------------------|----------------------------
+							`DSPL_WIN_SYMMETRIC`			|Symmetric window (by default)	
+							`DSPL_WIN_PERIODIC`				|Periodic window
+							
+	\param [in]	param		Window function parameter. This parameter for parametric windows only.
+							
+	\return
+			`DSPL_OK` window function is calculated successfully.<BR>
+			Errors:<BR>
+	        `DSPL_ERROR_PTR`	Pointer error. Pointer `w` cannot be `NULL`.<BR>		
+			`DSPL_ERROR_SIZE`	Size error. Window function vector size `w` cannot be less than two.<BR>
+			`DSPL_ERROR_WIN_TYPE`  `win_type` parameter error. Unknown window function.
+
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

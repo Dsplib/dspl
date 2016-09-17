@@ -1,0 +1,20 @@
+
+
+/*!
+	\ingroup DSPL_OBJECT
+	\fn int dspl_obj_free(void **obj)
+	Очищает DSPL object.
+	
+	Данная функция очищает созданный функией `#dspl_obj_create` объект DSPL.
+		
+	\param[in, out]	obj	ссылка на указатель на объект DSPL..
+						
+	\return 
+		`DSPL_OK` если объект очищен успешно.
+		`DSPL_ERROR_PTR` если входной указатель `NULL`.
+
+	\author
+		Бахурин Сергей.
+ 		www.dsplib.org	
+
+*/

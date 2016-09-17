@@ -1,0 +1,50 @@
+
+/*!
+	\ingroup IN_OUT_GROUP
+	\fn	int dspl_writebin(double* x, double *y, int n,  char* fn)
+	\brief Save real or complex вектор to a bin-file `fn`
+ 
+	This function writes real or complex vector `[n x 1]` to a bin-file `fn`. <BR>
+	File structure supports 1D and 2D arrays (vectors and matrices). File structure:
+	
+	type   4 bytes type int. 
+		This parameter value can be `DSPL_DAT_COMPLEX`, 
+		if pointer `y` is not `NULL`, or `DSPL_DAT_REAL`, 
+		if pointer `y` is `NULL`.<BR>
+	
+	`n`		4 bytes type int. Input array rows number. <BR>
+	
+	`m`		4 bytes type int. Input array rows number. This parameter is 1 for 1D input array.<BR>
+	
+	`pR`	`n*m*sizeof(double)` Real part data.<BR
+	
+	`pI`	`n*m*sizeof(double)` Image part data if `y` is not `NULL`.<BR>
+	
+	Writed file can be used for algorithm verification by 
+	an external program like GNU Octave or Matlab.
+	
+	\param[in] x	First array pointer. 
+					Vector size is `[n x 1]`.
+ 
+	\param[in] y	Second array pointer. 
+					Vector size is `[n x 1]`. 
+					Can be `NULL`. 
+					bin file will contain only x vector if `y == NULL`
+
+	\param[in] n	Input vector size
+
+	\param[in] fn 	File name
+ 
+	\return
+		`DSPL_OK`			if file has been saved successfully.
+		`DSPL_ERROR_PTR`	if `x==NULL`.
+		`DSPL_ERROR_SIZE`	if `n<1`.
+		`DSPL_ERROR_FNAME`	if `fn==NULL`.
+		`DSPL_ERROR_FOPEN`	if file `fn` cannot be created.
+
+	\author
+		Sergey Bakhurin.
+		www.dsplib.org	
+	
+
+*/

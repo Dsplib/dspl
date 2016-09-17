@@ -1,0 +1,45 @@
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_ap2low(double* b, double* a, int n, 
+						   double wp, double* beta, double* alpha)
+	\brief  Analog low-pass prototype frequency transformation to a low-pass 
+			filter with `wp` cutoff. 
+
+	Function transforms analog prototype filter transfer function \f$ H_{\text{ap}}(s) \f$ 
+	to  a low-pass  filter transfer function \f$ H(s) \f$:
+
+	\f[
+		 H(s) = H_{\text{ap}} \left(\frac{s}{w_p}  \right), 
+	\f]
+ 
+    Result low-pass filter order is `n`.
+
+    \param[in]	b 		Analog prototype \f$ H_{\text{ap}}(s) \f$ numerator
+    					coefficients vector pointer.
+    					Vector size is `[n+1 x 1]`.	
+
+    \param[in]	a 		Analog prototype \f$ H_{\text{ap}}(s) \f$ denominator
+    					coefficients vector pointer.
+    					Vector size is `[n+1 x 1]`.
+
+ 	\param[in]	n		Analog prototype filter order
+
+
+	\param[in]	wp		Low-pass cutoff frequency  (rad/s) after transformation
+
+
+	\param[out]	beta 	Analog low-pass filter \f$ H(s) \f$ numerator
+    					coefficients vector pointer after transformation.
+    					Vector size is `[n+1 x 1]`.	
+
+    \param[out]	alpha 	Analog low-pass filter \f$ H(s) \f$ denominator
+    					coefficients vector pointer after transformation.
+    					Vector size is `[n+1 x 1]`.
+	\return
+		`DSPL_OK` if filter has been transformed  successfully or code of error otherwise. 
+			
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

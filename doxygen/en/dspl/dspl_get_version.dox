@@ -1,0 +1,20 @@
+/*!
+	\ingroup IN_OUT_GROUP
+	\fn  int dspl_get_version(int printFlag)
+	\brief Get DSPL version.
+	
+	This function return DSPL version
+	
+	\param[in]	printFlag	Print DSPL version to console. 
+							DSPL version will be printed if `printFlag` is 1. 
+		
+	
+	\return
+		DSPL version in format 0x0000YYMM, here YY - year, 
+		MM - month of DSPL compilation.
+		For example 0x00000F0B corresponds to 15.11
+	
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

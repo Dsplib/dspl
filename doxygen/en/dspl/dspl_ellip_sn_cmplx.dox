@@ -1,0 +1,51 @@
+
+/*!
+	\ingroup SPEC_MATH_ELLIP_GROUP
+	\fn int dspl_ellip_sn_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
+	\brief Jacobian elliptic  function \f$ \operatorname{sn}(u \cdot K(k), k)\f$ 
+	of a real or complex vector argument \f$ u\f$.
+	
+	Function calculates the Jacobian elliptic function \f$ \operatorname{sn}(u \cdot K(k), k)\f$ of a real or complex argument 
+	\f$ u\f$ and elliptic modulus \f$ k \f$, 
+	here  \f$  K(k)\f$ &mdash; complete elliptic integral of the first kind value.
+	
+	\param[in] uR	Pointer to the real part of the argument vector \f$ u\f$.<BR>
+					Vector size is `[nu x 1]`.<BR><BR>
+					
+	\param[in] uI	Pointer to the real part of the argument vector \f$ u\f$.<BR>
+					Vector size is `[nu x 1]`.<BR>
+					This pointer can be `NULL` if the argument \f$ u\f$ is real.<BR><BR>
+					
+	\param[in] nu	Size of the argument vector \f$ u\f$.<BR><BR>
+	
+	\param[in] k	Elliptic modulus \f$  k \f$ value.<BR><BR>
+					
+	\param[out]	cdR	Pointer to the real part of the Jacobian elliptic  function 
+					\f$ \operatorname{sn}(u \cdot K(k), k)\f$.<BR>
+					Vector size is `[k x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+	
+	\param[out]	cdI	Pointer to the real part of the Jacobian elliptic  function
+					\f$ \operatorname{sn}(u \cdot K(k), k)\f$.<BR>
+					Vector size is`[k x 1]`.<BR>
+					This pointer can be `NULL` if the argument \f$ u\f$ is real.<BR><BR>
+					
+	\note
+	This function uses normalization of the argument \f$ u\f$ 
+	to the complete elliptic integral value \f$  K(k) \f$. 
+	As result \f$ \operatorname{sn}(u \cdot K(k), k)\f$ has period equal 8 for any 
+	elliptic modulus \f$  k \f$ values.
+
+	
+	\return
+		`DSPL_OK` 			if function has been calculated successfully,
+							else \ref ERROR_CODE_GROUP "code error":<BR><BR>
+		`DSPL_ERROR_PTR` 	Pointer is wrong.<BR>
+		`DSPL_ERROR_SIZE` 	Vector size `nu` is wrong.<BR>
+		`DSPL_ERROR_ELLIP_K` Elliptic modulus values must satisfy the condition   \f$ 0 \leq k < 1.\f$
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 		
+	
+*/

@@ -1,0 +1,39 @@
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+	\brief Inverse sine of a complex arguments
+	
+	Function calculates inverse sine function of a complex vector argument \f$ x \f$. 
+	
+	\f[
+		\arcsin(x)=-j\ln \left(j \cdot x+{\sqrt {1-x^{2}}} \right).
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector  \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$ image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
+					
+	\param[in]	n	Input vector size.<BR><BR>
+	
+	\param[out]	yR	Pointer to the inverse sine real part values vector.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+	
+	\param[out]	yI	Pointer to the inverse sine image part values vector.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR>
+		
+	\return	
+		`DSPL_OK` if complex function has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
+
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/

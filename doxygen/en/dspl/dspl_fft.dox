@@ -1,0 +1,41 @@
+
+/*!
+	\ingroup DFT_GROUP
+	\fn int dspl_fft(double* xR, double* xI, int n, void* psdpl, double* yR, double* yI)
+
+
+	\brief Fast Fourier Transform.
+	
+	This function calculates DFT by using Cooley - Tukey decimation in time algorithm.
+
+	\param[in]	xR		Input signal vector real  part pointer. 
+						Vector size is `[n x 1]`. 
+
+	\param[in]	xI  	Input signal vector image part pointer. 
+						Vector size is `[n x 1]`.		
+						This pointer can be `NULL` if FFT is calculated for a real signal
+
+	\param[in]	 n		FFT size (input and output vectors size).
+
+	\param[in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
+						This object can be created by `dspl_obj_create` function before using
+						and should be destroyed by `dspl_obj_free` before exit.
+
+	\param[out]	yR  	FFT vector real  part pointer. 
+						Vector size is `[n x 1]`. 
+						Memory must be allocated.
+	 
+	\param[out]	yI 		FFT vector image part pointer. 
+						Vector size is `[n x 1]`. 
+						Memory must be allocated.
+
+	\return
+		`DSPL_OK  				if FFT is calculated successfully <BR>
+		`DSPL_ERROR_PTR` 		if `xR == NULL` or `yR == NULL` or `yI == NULL`<BR>
+		`DSPL_ERROR_SIZE` 		if `n<1`.<BR>
+		`DSPL_ERROR_FFT_SIZE`	if `n` is not radix-2<BR>
+	\author	
+		Sergey Bakhurin
+		dsplib.org
+	
+*/

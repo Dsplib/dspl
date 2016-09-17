@@ -1,0 +1,39 @@
+
+/*!
+	\ingroup SPEC_MATH_COMMON_GROUP
+	\fn int dspl_sqrt_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
+	\brief Square root of complex arguments
+	
+	Function calculates square root function of a complex vector argument\f$ x \f$. 
+	
+	\f[
+		\sqrt {x}={\sqrt {\frac {|x|+\Re (x)}{2}}} + \operatorname {sign} \left(\Im (x) \right) \cdot j\ {\sqrt {\frac {|x|-\Re (x)}{2}}}.
+	\f]
+	
+	\param[in]	xR	Pointer to the complex vector \f$ x \f$ real part.<BR>
+					Vector size is `[n x 1]`.<BR><BR>
+	
+	
+	\param[in]	xI	Pointer to the complex vector \f$ x \f$ image part.<BR>
+					Vector size is `[n x 1]`.<BR>
+					This pointer can be a `NULL` if function uses real argument only.<BR><BR>
+					
+	\param[in]	n	Input vector size.<BR><BR>
+	
+	\param[out]	yR	Pointer to the square root real part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated.<BR><BR>
+	
+	\param[out]	yI	Pointer to the square root image part values.<BR>
+					Vector size is `[n x 1]`.<BR>
+					Memory must be allocated (even if `xI` is `NULL`).<BR>
+		
+	\return	
+		`DSPL_OK` if complex square root has been calculated successfully, 
+		else \ref ERROR_CODE_GROUP "error code".<BR>
+
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/

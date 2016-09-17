@@ -1,0 +1,20 @@
+
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_sinh(double x)
+	\brief Hyperbolic sine of real argument
+	
+	Function calculates hyperbolic sine. 
+	\f[
+		\text{sinh}(x) = \frac{\exp(x) - \exp(-x)}{2}
+	\f]
+	
+	\param[in]	x	Hyperbolic sine
+					real argument.
+					
+	\return	
+		Hyperbolic sine for real argument `x`.
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/

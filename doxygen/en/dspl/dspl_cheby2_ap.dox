@@ -1,0 +1,35 @@
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_cheby2_ap(double Rs, int ord, double* b, double* a)
+	
+	\brief Analog Chebyshev type 2 filter prototype.
+	
+	Function calculates Analog Chebyshev type 2 filter transfer function \f$H(s)\f$ coefficients.
+	Filter has order `ord`  stopband frequency 1 rad/s with suppression level `-Rs` dB in stopband. 
+	
+	\param[in]	Rs	Filter stopband suppression dB.
+					Must be positive.
+					
+	\param[in]	ord Filter order. 
+					Transfer function  \f$H(s)\f$ numerator and denominator 
+					coefficients number is `ord+1`.
+					
+	\param[out]	b 	Transfer function  \f$H(s)\f$ numerator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					Memory must be allocated.
+										
+	\param[out]	a 	Transfer function  \f$H(s)\f$ denominator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					Memory must be allocated.
+					
+	\return
+		`DSPL_OK`				Filter is calculated successfully .<BR>
+		`DSPL_ERROR_FILTER_RS`	Parameter `Rs` must be positive. <BR>
+		`DSPL_ERROR_FILTER_ORD`	Filter order must be positive.<BR>
+		`DSPL_ERROR_PTR`		Pointers `b` and `a` cannot be as `NULL`.<BR>
+
+	\author
+		Sergey Bakhurin. 
+		www.dsplib.org	
+*/

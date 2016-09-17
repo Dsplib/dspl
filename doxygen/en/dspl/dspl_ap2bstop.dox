@@ -1,0 +1,51 @@
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_ap2bstop(double* b, double* a, int n, 
+						   double wp0, double wp1, 
+						   double* beta, double* alpha)
+	\brief  Analog low-pass prototype frequency transformation to a band-stop 
+			filter with `[wp0 ... wp1]` stop-band.
+
+	Function transforms analog prototype filter transfer function \f$ H_{\text{ap}}(s) \f$ 
+	to  a band-stop  filter transfer function \f$ H(s) \f$:
+
+	\f[
+		 H(s) = H_{\text{ap}} \left(\frac{B \cdot s}{s^2 + w^2_0}  \right), 
+	\f]
+ 
+    here \f$w^2_0 =  \f$ `wp0 * wp1`, \f$wB =  \f$`wp1 - wp0`.
+
+    Result band-stop filter order is `2*n`.
+
+    \param[in]	b 		Analog prototype \f$ H_{\text{ap}}(s) \f$ numerator
+    					coefficients vector pointer.
+    					Vector size is `[n+1 x 1]`.	
+
+    \param[in]	a 		Analog prototype \f$ H_{\text{ap}}(s) \f$ denominator
+    					coefficients vector pointer.
+    					Vector size is `[n+1 x 1]`.
+
+ 	\param[in]	n		Analog prototype filter order
+
+
+	\param[in]	wp0		Band-stop low frequency  (rad/s) after transformation
+
+
+	\param[in]	wp1		Band-stop hight frequency  (rad/s) after transformation
+
+
+	\param[out]	beta 	Analog band-stop filter \f$ H(s) \f$ numerator
+    					coefficients vector pointer after transformation.
+    					Vector size is `[2n+1 x 1]`.	
+
+    \param[out]	alpha 	Analog band-stop filter \f$ H(s) \f$ denominator
+    					coefficients vector pointer after transformation.
+    					Vector size is `[2n+1 x 1]`.
+	\return
+		`DSPL_OK` if filter has been transformed  successfully or code of error otherwise. 
+			
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

@@ -1,0 +1,47 @@
+/*!
+	\ingroup DFT_GROUP
+	\fn int dspl_goertzel(double *xR, double *xI, int n, int *ind, int k, double *yR, double *yI)
+	\brief Goertzel algorithm of discrete Fourier transform
+	
+	Goertzel algorithm calculates `k` spectral samples of `n`-points DFT 
+	corresponds to indexes `ind`.
+	
+	
+	\param[in]	xR		Input signal real part vector pointer.
+						Vector size is `[n x 1]`.
+	
+	\param[in]	xI		Input signal image part vector pointer.
+						Vector size is `[n x 1]`. 
+						This pointer can be `NULL` if input signal is real.
+	
+	\param[in]	n		Input signal vector size.
+	
+	\param[in]	ind		Spectral samples indexes vector pointer 
+						Vector size is `[k x 1]`.
+						
+	\param[in]	k		Spectral samples indexes vector size.
+	
+	
+	\param[out]	yR		DFT spectral samples real part vector pointer 
+						corresponds to indexes `ind`.
+						Vector size is `[k x 1]`.
+						Memory must be allocated.
+						
+	
+	\param[out]	yI		DFT spectral samples image part vector pointer 
+						corresponds to indexes `ind`.
+						Vector size is `[k x 1]`.
+						Memory must be allocated.
+	
+	\return
+			DSPL_OK			Function has be finished successfully . <BR>
+			DSPL_ERROR_PTR	Pointer is wrong. Pointers `xR`, `ind`, `yR` and `yI` 
+							cannot be as `NULL`. <BR>
+			DSPL_ERROR_SIZE Vector size is wrong. Parameters `n` ans `k` must be more than zero.
+		
+
+		
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/

@@ -1,0 +1,29 @@
+/*!
+	\mainpage DSPL - Digital Signal Processing Library
+	
+	DSPL - Open source library for digital signal processing. DSPL includes follow algorithm groups: <BR>
+	
+	
+	\ref DFT_GROUP <BR>
+	\ref WIN_GROUP <BR>
+	\ref FILTER_CONV_GROUP <BR>
+	\ref IIR_FILTER_DESIGN_GROUP <BR>
+	\ref FIR_FILTER_DESIGN_GROUP <BR>
+	\ref FILTER_ANALYSIS_GROUP <BR>
+	\ref SPEC_MATH_GROUP <BR>
+	\ref IN_OUT_GROUP <BR>
+	
+	
+	
+	<BR>
+	
+	DSPL is dynamic link library (dspl.dll) 
+	under <a href = "http://www.gnu.org/licenses/lgpl.html">LGPL v3</a>  license and can be used in an open source and commercial software.
+	
+	<BR>
+	<BR>
+	
+	DSPL is open source C - library. <BR>
+	You can get DSPL source code  on <a href = "https://github.com/Dsplib/dspl">GitHub</a>.<BR>
+		
+*/

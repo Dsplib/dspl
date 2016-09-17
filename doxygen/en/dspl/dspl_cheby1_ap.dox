@@ -1,0 +1,38 @@
+
+/*!
+	\ingroup IIR_FILTER_DESIGN_GROUP
+	\fn int dspl_cheby1_ap(double Rp, int ord, double* b, double* a)
+	
+	\brief Analog Chebyshev type 1 filter prototype.
+	
+	Function calculates Analog Chebyshev type 1 filter transfer function \f$H(s)\f$ coefficients.
+	Filter has order `ord`  cutoff frequency 1 rad/s with distortion level `-Rp` dB in passband 
+	(from 0 rad/s to 1 rad/s). Chebyshev type 1 filter magnitude is equiripple in passband.
+	
+	\param[in]	Rp	Filter passband distortions dB.
+					Distortions level from 0 rad/s to 1 rad/s. 
+					Must be positive.
+					
+	\param[in]	ord Filter order. 
+					Transfer function  \f$H(s)\f$ numerator and denominator 
+					coefficients number is `ord+1`.
+					
+	\param[out]	b 	Transfer function  \f$H(s)\f$ numerator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					Memory must be allocated.
+										
+	\param[out]	a 	Transfer function  \f$H(s)\f$ denominator coefficients vector pointer.
+					Vector size is `[ord+1 x 1]`.
+					Memory must be allocated.
+					
+	\return
+		`DSPL_OK`				Filter is calculated successfully .<BR>
+		`DSPL_ERROR_FILTER_RP`	Parameter `Rp` must be positive. <BR>
+		`DSPL_ERROR_FILTER_ORD`	Filter order must be positive.<BR>
+		`DSPL_ERROR_PTR`		Pointers `b` and `a` cannot be as `NULL`.<BR>
+
+	\author
+		Sergey Bakhurin. 
+		www.dsplib.org	
+
+*/

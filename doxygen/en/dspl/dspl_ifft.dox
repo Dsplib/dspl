@@ -1,0 +1,42 @@
+/*!
+	\ingroup DFT_GROUP
+	\fn int dspl_ifft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)
+	
+	
+	\brief Inverse Fast Fourier Transform.
+	This function calculates IFFT by using Cooley - Tukey decimation in time algorithm.
+	
+	\param[in]	xR		Input spectrum vector real  part pointer. 
+						Vector size is `[n x 1]`. 
+	
+	\param[in]	xI  	Input spectrum vector image part pointer. 
+						Vector size is `[n x 1]`.
+						This pointer can be `NULL` if IFFT is calculated for a real spectrum.
+	
+	\param[in]	 n		FFT size (input and output vectors size).
+	
+	
+	\param[in]	pdspl	DSPL object pointer. DSPL object keeps some internal DSPL data. 
+						This object can be created by `dspl_obj_create` function before using
+						and should be destroyed by `dspl_obj_free` before exit.
+
+	\param[out]	yR  	IFFT vector real  part pointer. 
+						Vector size is `[n x 1]`. 
+						Memory must be allocated.
+	
+	\param[out]	yI 		IFFT vector image part pointer. 
+						Vector size is `[n x 1]`. 
+						This pointer can be `NULL`. 
+						Function will return only IFFT real part in this case
+	
+	\return
+		`DSPL_OK  if FFT is calculated successfully
+		`DSPL_ERROR_PTR`  if `xR == NULL` or `yR == NULL`.
+		`DSPL_ERROR_SIZE` if `n<1`.
+		`DSPL_ERROR_FFT_SIZE`	if `n` is not radix-2.
+		
+	\author	
+		Sergey Bakhurin
+		dsplib.org
+	
+*/

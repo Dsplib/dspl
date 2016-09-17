@@ -1,0 +1,87 @@
+/*!
+	\defgroup MAIN_GROUP	DSPL library structure
+	
+	\defgroup GETTING_START Getting Start
+	\ingroup MAIN_GROUP
+	
+	\defgroup DSPL_OBJECT DSPL object description 
+	\ingroup MAIN_GROUP
+	
+	\defgroup SPECTRAL_GROUP	Spectral Analysis
+	\ingroup MAIN_GROUP
+		
+	This group includes algorithms for Discrete Fourier Transform (DFT),
+	Fast Fourier Transform (FFT), window functions calculation and 
+	Power Spectrum Density (PSD) calculation.
+	
+	\defgroup DFT_GROUP	Discrete and Fast Fourier Transform algorithms
+	\ingroup SPECTRAL_GROUP
+		
+	This group includes algorithms for Discrete Fourier Transform (DFT) and 
+	Fast Fourier Transform (FFT).
+
+	\defgroup WIN_GROUP	Window functions collection
+	\ingroup SPECTRAL_GROUP	
+	
+	\defgroup HILBERT_GROUP	Hilbert Transform
+	\ingroup MAIN_GROUP
+	
+
+	
+	\defgroup FILTER_GROUP	Convolution, digital filtration and filter design.
+	\ingroup MAIN_GROUP
+	
+			
+	\defgroup FILTER_CONV_GROUP	Convolution and digital filtration
+	\ingroup FILTER_GROUP
+	
+	Functions for digital convolution and digital filtration. 
+	
+	
+	\defgroup IIR_FILTER_DESIGN_GROUP	IIR Filters Design
+	\ingroup FILTER_GROUP
+	
+	Functions for digital IIR filter design. 
+	
+	
+	\defgroup FIR_FILTER_DESIGN_GROUP	FIR Filters Design
+	\ingroup FILTER_GROUP
+	
+	Functions for digital FIR filter design.
+
+	\defgroup FILTER_ANALYSIS_GROUP Digital and analog filters analysis
+	\ingroup FILTER_GROUP	
+	Digital and analog filters analysis
+	
+	\defgroup RESAMPLING_GROUP Digital sample-rate conversion
+	\ingroup MAIN_GROUP
+		
+	\defgroup SPEC_MATH_GROUP	Special math functions
+	\ingroup MAIN_GROUP
+	
+	\defgroup SPEC_MATH_COMMON_GROUP	Basic functions of real and complex arguments.
+	\ingroup SPEC_MATH_GROUP
+	
+	\defgroup SPEC_MATH_TRIG_GROUP Trigonometric and hyperbolic functions.
+	\ingroup SPEC_MATH_GROUP
+	
+	\defgroup SPEC_MATH_ELLIP_GROUP Elliptic functions of real and complex arguments.
+	\ingroup SPEC_MATH_GROUP
+
+	\defgroup SPEC_MATH_RAND_GEN_GROUP	Random numbers generation group
+	\ingroup SPEC_MATH_GROUP
+   
+
+	\defgroup SPEC_MATH_STAT_GROUP Math statistic functions group
+	\ingroup SPEC_MATH_GROUP
+	
+	\defgroup IN_OUT_GROUP Input - output functions
+	\ingroup MAIN_GROUP
+
+		
+	\defgroup MACRO_DEFINE_GROUP Macro defines
+	\ingroup MAIN_GROUP
+	
+	\defgroup ERROR_CODE_GROUP  Error codes
+	\ingroup MACRO_DEFINE_GROUP	
+*/

@@ -1,0 +1,19 @@
+/*!
+	\ingroup SPEC_MATH_TRIG_GROUP
+	\fn double dspl_asinh(double x)
+	\brief Inverse hyperbolic sine of real argument
+	
+	Function calculates inverse hyperbolic sine. 
+	\f[
+		\text{asinh}(x) = \log \left(x +\sqrt{x^2+1}\right)
+	\f]
+	
+	\param[in]	x	Inverse hyperbolic sine
+					real argument.
+					
+	\return	
+		Inverse hyperbolic sine for real argument `x`.
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org 
+*/

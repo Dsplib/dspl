@@ -1,0 +1,19 @@
+
+
+/*!
+	\ingroup DSPL_OBJECT
+	\fn int dspl_obj_free(void **obj)
+	Clear DSPL object.
+	
+
+		
+	\param[in, out]	obj	DSPL object pointer.
+						
+	\return 
+		`DSPL_OK` DSPL object has been cleared successfully.
+		`DSPL_ERROR_PTR` object `obj` is `NULL`.
+
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org
+*/

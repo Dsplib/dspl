@@ -1,0 +1,33 @@
+/*!
+	\ingroup FILTER_CONV_GROUP
+	\fn int dspl_conv(double* a, int na, double* b,  int nb, double *c)
+	\brief Linear convolution for real input vectors.
+	
+	This function calculates a linear convolution of two real vectors. 
+	
+	
+	\param[in] 	a		First input vector pointer. <BR>
+						Vector size is `[na x 1]`. <BR><BR>
+		
+	\param[in]	na		First vector length.<BR><BR>
+		
+	\param[in] 	b		Second input vector pointer. <BR>
+						Vector size is `[nb x 1]`. <BR><BR>
+		
+	\param[in]	nb		Second vector length.<BR><BR>
+																
+	\param[out]	c		Linear convolution vector real  part pointer. <BR>
+						Vector size is `[na + nb - 1  x  1]`.	<BR>
+						Memory must be allocated.<BR><BR>
+																		
+	\return
+	`DSPL_OK` 			if convolution is calculated successfully; <br>	<BR>
+	`DSPL_ERROR_PTR`	if pointer are wrong. <BR>
+						This situation can be if `a` is `NULL` or `b` is `NULL` or `c` is `NULL`.<br><BR>	
+	`DSPL_ERROR_SIZE`	if `na<1` or `nb < 1`.<br><BR>
+	
+	\author
+		Sergey Bakhurin. 
+		www.dsplib.org	
+	
+*/

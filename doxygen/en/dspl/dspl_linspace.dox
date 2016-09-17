@@ -1,0 +1,60 @@
+/*!
+	\ingroup SPEC_MATH_COMMON_GROUP
+	\fn int dspl_linspace(double x0, double x1, int n, int type, double* x)
+	\brief Linspace filling of the array `x` from `x0` to `x1`  
+	
+	Function supports two kind of filling according to parameter `type`:
+	
+	Symmetric filling corresponds to equation
+	
+	\f$x(k) = x_0 + k \cdot dx\f$, here \f$dx = \frac{x_1 - x_0}{n-1}\f$, \f$k = 0 \ldots n-1.\f$
+	
+	Periodic filling corresponds to equation
+	
+	\f$x(k) = x_0 + k \cdot dx\f$, here \f$dx = \frac{x_1 - x_0}{n}\f$, \f$k = 0 \ldots n-1.\f$
+	
+	\param[in]	x0 		Initial value \f$x_0\f$.
+	
+	\param[in]	x1 		Stop value \f$x_1\f$.
+	
+	\param[in]	n		Array `x` number of points.
+	
+	\param[in]	type	Filling type `DSPL_SYMMETRIC` - symmetric filling,
+						`DSPL_PERIODIC` - periodic filling.
+					
+	\param[in,out]	x	Linspace array pointer.
+						Vector size is `[n x 1]`.
+						Memory must be allocated.
+						
+	\return
+			`DSPL_OK` - Function has been finished successfully . <BR>
+			`DSPL_ERROR_PTR` - pointer `x` cannot be `NULL`.<BR>
+			`DSPL_ERROR_SIZE` - Vector `x` size must be more than 1.<BR>
+			
+	\note
+		We can understand a difference between periodic and a 
+		symmetric types from the examples below. <BR>
+		Example 1. Periodic filling.
+		\code
+			double x[5];
+			dspl_linspace(0, 5, 5, DSPL_PERIODIC, x);
+		\endcode
+		Vector `x` will keep follow values:
+		\code
+			0,    1,    2,    3,    4
+		\endcode
+		<BR><BR>
+		Examples 2. Symmetric filling.
+		\code
+			double x[5];
+			dspl_linspace(0, 5, 5, DSPL_SYMMETRIC, x);
+		\endcode
+		Vector `x` will keep follow values:
+		\code
+			0,  1.25,  2.5,  3.75,  5
+		\endcode
+	
+	\author
+		Sergey Bakhurin.                                                         
+		www.dsplib.org    
+*/
