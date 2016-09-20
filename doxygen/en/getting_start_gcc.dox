@@ -1,5 +1,148 @@
+/*! 
+	\page page_begin_use 
+	\ingroup GETTING_START
 
-/*!
+
+
+	\section page_begin_use_dll Fast start of the library usage dspl.dll
+	\tableofcontents
+
+	\subsection sec_mingw Compiler Usage GCC	
+	\subsubsection subsection_mingw_prep GCC Compiler Installation in the Windows system.
+	Compiler <a href = "http://mingw-w64.org/doku.php">Mingw64</a> 
+	is used for working with GCC in the Windows system. 
+	Mingw64 maintains either 32-bit or 64-bit Windows systems.
+	
+	Mingw64 Installation is easy enough.
+	
+	1) It is necessary to download the archive with the ready compiler build.
+	
+	<a href = "https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/i686-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">
+	The link to download the 32-bit compiler version 
+	</a>
+	
+	
+	<a href ="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/5.3.0/threads-posix/sjlj/x86_64-5.3.0-release-posix-sjlj-rt_v4-rev0.7z/download">
+	The link to download the 64-bit compiler version 
+	</a>
+	
+	
+	2) To unzip the archive into the directory `C:\mingw32`. 
+	To unzip the archive it is recommended to use the packet <a href = "http://www.7-zip.org/">7-zip</a>. 
+	As a result there will be executive compiler utility software in the directory `C:\mingw32\bin`.
+	
+	3) It is necessary to add a path to the directory `C:\mingw32\bin` in the system variable `PATH`.
+	For this purpose it is necessary:
+	
+	In the <B>Start</B> Menu right-click <B>Computer</B>.
+	
+	Select <B>Properties</B> in the quick menu.
+	
+	Select <B>Additional System Parameters</B> in the dialog box <B>System</B>.
+	
+	Press the button <B>Environment Variables</B> in the property page <B>More</B> 
+	in the dialog box <B>System Properties</B>.
+
+	Scroll the list to the variable <B>Path</B> in the field <B>System Variables</B> in the dialog box <B>Environment Variables</B> and then select it.
+	
+	Press the lower one of two buttons <B>Change</B> in this dialog box.
+	
+	Scroll the line in the field <B>Variable Value</B> up to the end in the dialog box <B>Changing the System Variable</B>
+	and add a semicolon (;).
+	
+	Add the new path `C:\mingw32\bin` after the semicolon.
+	
+	Press the button <B>ОК</B> in three sequential dialog boxes, and then close the dialog box <B>System</B>.
+	
+	So, Mingw64 installation is over. However, to operate it is required to install additional utility software and the file manager <a href = "https://www.farmanager.com/index.php?l=ru">Far Manager</a>.
+	
+	
 		
+	
+	
+	
+	\subsubsection subsection_mingw_utils Installing additional utility software and the file manager Far manager
+	
+	Besides the compiler it is necessary to install the additional set <a href="https://sourceforge.net/projects/unxutils/">UnxUtils</a>. For this purpose it is necessary: 
+	
+	1) To download the archive  
+	<a href = "https://sourceforge.net/projects/unxutils/files/latest/download">UnxUtils.zip</a>
+	
+	2) To unzip it into the directory `C:\unxutils`. As a result there will be many different useful utility software in the directory`C:\unxutils\usr\local\wbin`.
+	
+	3) To register the path `C:\unxutils\usr\local\wbin` in the system variable `PATH` similar to the compiler path Mingw64.
+	
+	For convenience in operation it is recommended to install the file manager <a href = "https://www.farmanager.com/index.php?l=ru">Far Manager</a>. The installer can be downloaded from the developer’s website.
+
+	Thus, we have the set compiler, a set of additional utility software and the file manager to operate the command line.
+	
+	
+	\subsubsection subsection_mingw_compile Usage of dspl.dll
+
+	After the compiler and all necessary utility software are set, it is possible to use them to compile programs of digital signal processing.
+
+  	For this purpose you can download the minimum project which uses dspl.dll.
+	
+	<a href = "http://ru.dsplib.org/dspl32.zip">
+	The link to download the 32-bit version 
+	</a>
+	
+	<a href = "http://ru.dsplib.org/dspl64.zip">
+	The link to download the 64-bit version 
+	</a>
+	
+	
+	
+	After archive extraction you receive the following file structure for 32-bit (a) and 64-bit (b) versions:
+
+	\image html dspl_gcc_structure.png	
+
+	The directory `bin` supports the library `dspl.dll`and the library 
+	<a href = "http://fftw.org"> FFTW </a> of FFT algorithms. The executed `.exe` file will be posted in the same directory after the project compilation.
+	
+	The data directory `bin/dat` is still empty, but operation result files of program examples will be saved there.
+
+	The directory of the object files `obj`. Object `.o` files after the project compilation will be posted in this directory.
+	
+	The directory `src` contains three files: `dspl.h` which is the header file with description of all functions imported from `dspl.dll`; `dspl.c` which is the source code to import all functions from `dspl.dll` and `main.c` which is the source code of the most rudimentary program using the library `dspl.dll`.
+	
+	`LICENSE` is the license text LGPL v3.
+	
+	 `Makefile` is the file for the project compilation using the GCC compiler.
+	
+	To compile the program it is necessary to click the directory `dspl32` or `dspl64` and to run the following command in the console:
+	
+	\verbatim
+	mingw32-make
+	\endverbatim
+	
+	The console result is:
+	
+	\verbatim
+	
+	dspl64>mingw32-make
+	gcc -c -Wall -O3 -Isrc  src/main.c -o obj/main.o
+	gcc -c -Wall -O3 -Isrc  src/dspl.c -o obj/dspl.o
+	gcc obj/main.o obj/dspl.o   -o bin/main.exe
+	\endverbatim
+	
+	In the directory `bin` there will be the compiled program `main.exe`,	
+	after running it you will see
+	
+	
+	\verbatim
+
+     D S P L
+     version 16.09 (Sep 11 2016)
+     Copyright (c) 2015, 2016  Sergey Bakhurin
+     home page: www.dsplib.org
+
+	\endverbatim
+	
+	It means that everything is installed in a correct way and now you can compile your own programs using functions `dspl.dll`.
+	
+	So you can change the source file `main.c` to the <a href = "examples.html">any example</A> source file and compile and run program .
 */
+	
+	
 

@@ -1,76 +1,46 @@
 ﻿
-#ifdef DOXYGEN_EN
-
-/*!
-		
-*/
-
-#elseif DOXYGEN_RU
-
-/*! 
-
-\example resample_lagrange_interp.c  
-Данная программа производит интерполяцию на основе 
-кубического полинома Лагранжа.
-*/
-
-#endif
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include "dspl.h"
 
-
 #define P 	10
 #define Q	1
 
-#define	N	20
-#define K	P*N 
-
+#define	N	8
 
 int main()
 {
 
-//	HINSTANCE hDSPL;	/* dspl handle 					*/
+	HINSTANCE hDSPL;	/* dspl handle 					*/
 	
-//	double s[N];		
-//	double ts[N];		/* time 						*/
-//	double *y = NULL;		/* Normalized Angular frequency	*/
-//	double ty[K];		/* Filter frequency response real part	*/
-//	double z[K];
-//	double e[K];
-//	int  k, ny;
-//
-//    /* Load dspl.dll */
-//	hDSPL = dspl_load();
-//	if(!hDSPL)
-//	{
-//		printf("dspl.dll loading ERROR!\n");
-//		return 0;
-//	}
-//
-//	dspl_linspace(0, N, N, DSPL_PERIODIC, ts);
-//	for(k = 0; k < N; k++)
-//		s[k] = sin(M_2PI * ts[k] * 0.31);
-//	dspl_linspace(0, N, K, DSPL_PERIODIC, ty);
-//	dspl_resample_lagrange(s, N, P, Q, 0, &y, &ny);
-//	
-//	for(k = 0; k < ny; k++)
-//	{
-//		z[k] = sin(M_2PI * ty[k]*0.31);
-//		e[k] = z[k] - y[k];
-//	}
-//	
-//	dspl_writetxt(ts,s,N,"dat/resample/lagrange_interp_s.txt");
-//	dspl_writetxt(ty,y,K,"dat/resample/lagrange_interp_y.txt");
-//	dspl_writetxt(ty,z,K,"dat/resample/lagrange_interp_z.txt");
-//	dspl_writetxt(ty,e,K,"dat/resample/lagrange_interp_e.txt");
-//		
-//	/* clear dspl handle */	
-//	FreeLibrary(hDSPL);
-//	
+	double s[N] = {1.0, 2.0, 2.0, 1.0, -0.5, -1.0, -2.0, -0.5};		
+	double *y = NULL;
+	double *t = NULL;
+	int n;
+	
+	/* Load dspl.dll */
+	hDSPL = dspl_load();
+	if(!hDSPL)
+	{
+		printf("dspl.dll loading ERROR!\n");
+		return 0;
+	}
+	
+	dspl_resample_lagrange(s, N, P, Q, 0, &y, &n);
+	t = (double*)malloc(n*sizeof(double));
+	
+	dspl_linspace(0, N-1, N, DSPL_SYMMETRIC, t);
+	dspl_writetxt(t, s, N, "dat/resample_lagrange_interp_s.txt");
+	
+	dspl_linspace(0, N-1, n, DSPL_SYMMETRIC, t);
+	dspl_writetxt(t, y, n, "dat/resample_lagrange_interp_y.txt");
+
+	free(y);
+	free(t);
+		
+	/* clear dspl handle */	
+	FreeLibrary(hDSPL);
+	
 	return 0;
 }

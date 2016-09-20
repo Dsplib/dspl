@@ -15,6 +15,7 @@ typedef struct
 	int    xauto;
 	double ymin;
 	double ymax;
+	double yshift;
 	int    yauto;
 	double w;
 	double h;
@@ -109,6 +110,17 @@ int read_arg(char* arg, char* val, data_t *d)
 		}
 		else
 			printf("ERROR! Parameter [h] is wrong!\n");		
+	}
+	
+	if(!strcmp(arg, "-dy"))
+	{
+		if(sscanf(val, "%E", &t))
+		{
+			d->yshift = t;
+			return 1;
+		}
+		else
+			printf("ERROR! Parameter [dy] is wrong!\n");		
 	}
 	
 	printf("ERROR! Unknown parameter [%s]\n", arg);
@@ -239,7 +251,7 @@ int transform(data_t *d)
 
 	for(n = 0; n < d->n; n++)
 	{
-		d->y[n] = ky*(d->y[n] - d->ymin);
+		d->y[n] = ky*(d->y[n] - d->ymin) + d->yshift;
 		d->x[n] = kx*(d->x[n] - d->xmin);
 	}
 	return 1;

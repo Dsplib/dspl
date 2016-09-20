@@ -46,5 +46,7 @@ dat2cm.exe -i ../dat/resample_lagrange_filter_fd_time_0.7.txt -o ../dat/cm/resam
 dat2cm.exe -i ../dat/resample_lagrange_filter_fd_time_0.8.txt -o ../dat/cm/resample_lagrange_filter_fd_time_0.8.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
 dat2cm.exe -i ../dat/resample_lagrange_filter_fd_time_0.9.txt -o ../dat/cm/resample_lagrange_filter_fd_time_0.9.cm  -ymin 0 -ymax 1 -xmin 0 -xmax 3 -w 2.4 -h 2
 
+dat2cm.exe -i ../dat/resample_lagrange_interp_y.txt -o ../dat/cm/resample_lagrange_interp_y.cm  -ymin -2 -ymax 2 -xmin 0 -xmax 7 -w 14 -h 4 -dy -2
+
 
 mingw32-make

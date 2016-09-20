@@ -121,7 +121,7 @@ $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
 	cp	$(FFTW_DIR)/libfftw3-3.dll		$(REL_DIR)/bin/libfftw3-3.dll
 	cp	$(INC_DIR)/dspl.h				$(REL_DIR)/src/dspl.h
 	cp	$(INC_DIR)/dspl.c				$(REL_DIR)/src/dspl.c
-    cp 	$(EXE_BIN_DIR)/dspl.dll 		$(VC_DIR)/bin/dspl.dll 	
+	cp 	$(EXE_BIN_DIR)/dspl.dll 		$(VC_DIR)/bin/dspl.dll 	
 	cp	$(FFTW_DIR)/libfftw3-3.dll		$(VC_DIR)/bin/libfftw3-3.dll
 	cp	$(INC_DIR)/dspl.h				$(VC_DIR)/src/dspl.h
 	cp	$(INC_DIR)/dspl.c				$(VC_DIR)/src/dspl.c
