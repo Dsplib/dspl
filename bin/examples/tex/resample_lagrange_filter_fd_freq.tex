@@ -9,8 +9,8 @@
 \definecolor{colorLine}{RGB}{100,100,100}
 
 
-\begin{tikzpicture}[baseline,  >=latex]
-	\begin{axis}[xlabel={$\omega$},
+\begin{tikzpicture}[>=latex]
+	\begin{axis}[xshift = 1cm, xlabel={$\omega$},
 		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
 		ymin = -20,
 		ymax = 2,
@@ -59,10 +59,9 @@
 		
 		
 	\end{axis}
-\end{tikzpicture}
-\hspace{0.15cm}
-\begin{tikzpicture}[baseline,  >=latex]
-	\begin{axis}[xlabel={$\omega$},
+
+	
+	\begin{axis}[xshift = 12cm, xlabel={$\omega$},
 		ylabel={$\tau( \omega)$},
 		ymin = 0,
 		ymax = 3,
