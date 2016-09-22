@@ -32,6 +32,7 @@ FIG	=	fig/dft_fig1.pdf\
 		fig/goertzel_fig2.pdf\
 		fig/goertzel_fig3.pdf\
 		fig/hilbert_fft.pdf\
+		fig/resample_lagrange_ex_fs.pdf\
 		fig/resample_lagrange_ex_time_recalc.pdf\
 		fig/resample_lagrange_horner.pdf\
 		fig/resample_lagrange_farrow.pdf\

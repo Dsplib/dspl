@@ -1,16 +1,21 @@
 \documentclass{standalone}
 \input{fig_header.tex}
-\pgfplotsset{width=10cm,compat=1.12}
+\pgfplotsset{width=10cm, height = 8.5cm}
+\definecolor{colorLine}{RGB}{100,100,100}
+
 
 \begin{document}
 
 
 
-\definecolor{colorLine}{RGB}{100,100,100}
+
 
 
 \begin{tikzpicture}[>=latex]
-	\begin{axis}[xshift = 1cm, xlabel={$\omega$},
+
+\draw[white] (-2,-1) rectangle (20,7.5);
+
+	\begin{axis}[xshift = 0cm, xlabel={$\omega$},
 		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
 		ymin = -20,
 		ymax = 2,
@@ -61,7 +66,7 @@
 	\end{axis}
 
 	
-	\begin{axis}[xshift = 12cm, xlabel={$\omega$},
+	\begin{axis}[xshift = 11cm, xlabel={$\omega$},
 		ylabel={$\tau( \omega)$},
 		ymin = 0,
 		ymax = 3,

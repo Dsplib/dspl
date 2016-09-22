@@ -1,23 +1,15 @@
 \documentclass{standalone}
-\usepackage[T2A,T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian]{babel}
+\input{fig_header.tex}
+\pgfplotsset{width=10cm, height = 8.5cm}
 
 
-\usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{enumerate}
-\usepackage{float}
-\usepackage{color}
 
-
-\usepackage{pgfplots}
-\pgfplotsset{width=10cm,compat=1.12}
-\usetikzlibrary{backgrounds}
 \begin{document}
 \begin{tikzpicture}
-	\begin{axis}[xshift = 1cm, xlabel={$n$},
+
+\draw[white] (-2,-1) rectangle (20,7.5);
+
+	\begin{axis}[xshift = 0cm, xlabel={$n$},
 		ylabel={$h(n)$},
 		xmin = 0,
 		xmax = 40,
@@ -31,7 +23,7 @@
 		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/resample_lagrange_filter_time.txt};
 	\end{axis}
 
-	\begin{axis}[xshift = 12cm, xlabel={$\omega$},
+	\begin{axis}[xshift = 11cm, xlabel={$\omega$},
 		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
 		ymin = -80,
 		ymax = 25,
