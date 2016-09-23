@@ -1,0 +1,30 @@
+/*!
+\file resample_lagrange_filter_interp.c  
+\brief \ref resample_lagrange_filter_interp.c  "Расчет характеристик фильтра Фарроу цифровой интерполяции сигнала"		
+*/
+
+
+
+/*! 
+\example resample_lagrange_filter_interp.c  
+Данная программа производит расчет импульсной характеристики и АЧХ 
+фильтра Фарроу цифровой интерполяции сигнала.
+
+Производится расчет реакции фильтра-интерполятора (коэффициента интерполяции \f$P=10\f$)
+на единичный импульс и построение АЧХ полученного фильтра-интерполятора.<BR>
+
+Результаты работы программы сохраняются в файлы:<BR><BR>
+
+`dat/resample_lagrange_filter_time.txt` - отсчеты импульсной характеристики фильтра интерполятора.<BR>
+
+`dat/resample_lagrange_filter_freq.txt` - АЧХ.<BR><BR>
+
+Импульсная характеристика \f$h(n)\f$ и АЧХ фильтра 
+\f$\left| H\left( \operatorname{e}^{j \cdot \omega}\right)\right|^2\f$, 
+построенные по данным из сохраненных файлов показаны на рисунке:<BR>
+
+\image html resample_lagrange_ex_filter_interp.png
+
+ 
+ 
+*/

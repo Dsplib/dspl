@@ -50,6 +50,6 @@ dat2cm.exe -i ../dat/resample_lagrange_interp_y.txt -o ../dat/cm/resample_lagran
 
 dat2cm.exe -i ../dat/resample_lagrange_ex_fs_s.txt -o ../dat/cm/resample_lagrange_ex_fs_s.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
 dat2cm.exe -i ../dat/resample_lagrange_ex_fs_y.txt -o ../dat/cm/resample_lagrange_ex_fs_y.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
-
+dat2cm.exe -i ../dat/resample_lagrange_ex_fs_c.txt -o ../dat/cm/resample_lagrange_ex_fs_c.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
 
 mingw32-make

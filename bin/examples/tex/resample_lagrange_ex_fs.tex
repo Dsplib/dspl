@@ -16,12 +16,15 @@
 	\draw 	 (-0.5cm,	-2.2cm)	   rectangle (16.5cm, 2.2cm);
 	\draw 	 (-0.5cm,	0cm)	   -- (16.5cm, 0cm);	
 
+	\draw[blue!50!white] plot[solid, mark=none, xshift =  0cm, yshift =  0cm] file {../dat/cm/resample_lagrange_ex_fs_c.cm};
 	\draw[blue] plot[ycomb, mark=*, mark options={fill=blue},mark size = 0.5mm, xshift =  0cm, yshift =  0cm] file {../dat/cm/resample_lagrange_ex_fs_s.cm};
-
+    
 	
 	\draw 	 (-0.5cm,	-7.2cm)	   rectangle (16.5cm, -2.8cm);
 	\draw 	 (-0.5cm,	-5cm)	   -- (16.5cm, -5cm);	
+	\draw[red!50!white] plot[solid, mark=none, xshift =  0cm, yshift =  -5cm] file {../dat/cm/resample_lagrange_ex_fs_c.cm};
 	\draw[red] plot[ycomb, mark=*, mark options={fill=red},mark size = 0.5mm, xshift =  0cm, yshift =  -5cm] file {../dat/cm/resample_lagrange_ex_fs_y.cm};
+	
 	
 	\draw (0,  -7.6) node[below]{$0$} -- (0, -7.4) -- (16, -7.4) -- (16, -7.6) node[below]{2};
 	\draw (8,  -7.6) node[below]{$1$} -- (8, -7.4);
