@@ -1,22 +1,20 @@
 /*!
 \file resample_lagrange_filter_frac_delay.c 
-\brief \ref resample_lagrange_filter_frac_delay.c "Расчет характеристик фильтра Фарроу компенсации дробной задержки"		
+\brief \ref resample_lagrange_filter_frac_delay.c "Calculating characteristics of Farrow filter to compensate the fractional delay"		
 */
 
 
 
 /*! 
 \example resample_lagrange_filter_frac_delay.c  
-Данная программа производит расчет семейства характеристик фильтра Фарроу компенсации дробной задержки от 0 до 1.
-Использует фильтр Фарроу на основе полиномиальной интерполяции Лагранжа.
+This program calculates the characteristics family of Farrow filter to compensate the fractional delay from 0 to 1. 
+It uses Farrow filter on the basis of Lagrange polynomial interpolation.
 
-Производится расчет реакции фильтра
-на единичный импульс и построение амплитудно-частотной характеристике (АЧХ) и 
-группового времени запаздывания (ГВЗ) полученных  фильтров.
+It calculates the filter reaction to one shot signal and plots the amplitude frequency response (AFR) and the group delay (GD) of received filters.
 
-Результаты работы программы сохраняются в файлы.<BR><BR>
+Operation results of the program are saved in files.<BR><BR>
 
-Файлы хранящие отсчеты импульсной характеристики фильтров<BR>
+Files saving samples of filter pulse response characteristic<BR>
 
 \verbatim
 
@@ -29,12 +27,12 @@ dat/resample_lagrange_filter_fd_time_0.9.txt
  \endverbatim
  
  
-Импульсные характеристики построенные по рассчитанным данным показаны на рисунке:
+Pulse response characteristics plotted according to the calculated data are shown in the figure:
 
 \image html resample_lagrange_ex_filter_fd.png
  
 
- Файлы данных АЧХ фильтров:<BR>
+ AFR datafiles of filters:<BR>
  
  \verbatim
  
@@ -47,7 +45,7 @@ dat/resample_lagrange_filter_fd_mag_0.9.txt
  \endverbatim
  
 
- Файлы данных ГВЗ фильтро:<BR>
+ GD datafiles of filters:<BR>
  
  \verbatim
 dat/resample_lagrange_filter_fd_mag_0.0.txt
@@ -59,7 +57,7 @@ dat/resample_lagrange_filter_fd_mag_0.9.txt
  \endverbatim
  
  
-АЧХ и ГВЗ построенные по сохранённым данным показаны на рисунке:
+AFR and GD plotted according to the saved data are shown in the figure:
 
 \image html resample_lagrange_ex_filter_fd_freq.png
 

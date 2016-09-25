@@ -1,7 +1,7 @@
 /*!
 	\ingroup SPEC_MATH_TRIG_GROUP
 	\fn int dspl_acos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
-	\brief Арккосинус комплексного векторного аргумента
+	\brief Арккосинус комплексного векторного аргумента.
 	
 	Функция рассчитывает значения арккосинуса для комплексного векторного аргумента \f$ x \f$:
 	

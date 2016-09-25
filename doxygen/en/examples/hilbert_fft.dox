@@ -1,33 +1,29 @@
 /*!
 \file hilbert_fft.c 
-\brief \ref hilbert_fft.c "Блочное преобразование Гильберта на основе БПФ".		
+\brief \ref hilbert_fft.c "Block Hilbert transform on the basis of the FFT".		
 */
 
 
 
 /*! 
 \example hilbert_fft.c 
-\brief Блочное преобразование Гильберта на основе БПФ.
+\brief Block Hilbert transform on the basis of the FFT.
 
 
-Данная программа производит расчёт блочного преобразования Гильберта и построение 
-спектральной плотности мощности полученного аналитического сигнала.<BR>
+This program calculates the block Hilbert transform and plots the spectrum power density of the received analytical signal.<BR>
 
-В качестве входного сигнала используется белый гауссовский случайный процесс. <BR>
+The white Gauss casual process is used as an input signal. <BR>
 
-В результате выполнения программы, в директории `dat` будет создан текстовый файл
-`hilbert_fft.txt` который хранит отсчёты спектральной плотности мощности (СПМ) полученного аналитического сигнала.<BR>
+As a result of running the program, the text file `hilbert_fft.txt` where samples of the spectrum power density (SPD) of the received analytical signal are saved will be created in the directory `dat`.<BR>
 
-График СПМ, построенный по отсчётам из файла `hilbert_fft.txt` показан на рисунке ниже.<BR>
+The SPD chart plotted according to samples from `hilbert_fft.txt` is shown in the figure below.<BR>
 
 \image html hilbert_fft.png
 
-Можно видеть высокий уровень боковых лепестков СПМ в отрицательной области частот.<BR>
-Данный эффект обусловлен тем, что размер блока преобразования Гильберта `NFFT` меньше размера вектора СПМ `NPSD`. <BR>
+It is possible to see the high level of SPD side lobes in the negative frequency area.<BR>
+This effect is caused by the fact that the size of the block Hilbert transform `NFFT` is less than the size of the SPD vector `NPSD`. <BR>
 
-Данный пример наглядно иллюстрирует, что  используя преобразование Гильберта на основе FFT мы 
-обнуляем значения фиксированных частот в отрицательной области, но никак не контролируем поведение
-СПМ между обнулёнными спектральными отсчётами.<BR> 
+This example visually illustrates that using the Hilbert transform on the basis of the FFT we reset to zero values of fixed frequencies in the negative area, but we do not control the SPM way between spectrum samples which are reset to zero.<BR> 
 
-Данный эффект носит название эффекта Гиббса и проявляется при построении фильтров на основе частотной выборки.   
+This effect bears the name of Gibb’s effect and it is visualized upon plotting filters on the basis of frequency capture.   
 */

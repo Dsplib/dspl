@@ -18,10 +18,10 @@
 раз.<BR>
 
 Исходный сигнал сохраняется в файл `dat/resample_lagrange_interp_s.txt`.<BR>
-Интерполированный сигнала на выходе фильтра Фарроу сохраняется в файл `dat/resample_lagrange_interp_y.txt`.<BR>
+Интерполированный сигнал на выходе фильтра Фарроу сохраняется в файл `dat/resample_lagrange_interp_y.txt`.<BR>
 
-Исходный и интерполированный сигналы, сохраненные в файлы `dat/resample_lagrange_interp_s.txt` и `dat/resample_lagrange_interp_y.txt` 
-показана на следующем рисунке. 
+Исходный и интерполированный сигналы, сохраненные в файлы `dat/resample_lagrange_interp_s.txt` и `dat/resample_lagrange_interp_y.txt`, 
+показаны на следующем рисунке. 
 	
 
 \image html resample_lagrange_ex_interp.png

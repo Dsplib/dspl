@@ -1,28 +1,25 @@
 /*!
 \file resample_lagrange_ex_frac_delay.c 
-\brief \ref resample_lagrange_ex_frac_delay.c "Пример использования фильтра Фарроу 
-на основе полиномиальной интерполяции для компенсации дробной задержки сигнала"		
+\brief \ref resample_lagrange_ex_frac_delay.c "Example of using Farrow filter on the basis of polynomial interpolation to compensate the signal fractional delay"		
 */
 
 
 
 /*! 
 \example resample_lagrange_ex_frac_delay.c 
-\brief Пример использования фильтра Фарроу 
-на основе полиномиальной интерполяции для компенсации дробной задержки сигнала.
+\brief Example of using Farrow filter on the basis of polynomial interpolation to compensate the signal fractional delay.
 
 
-Исходный сигнал \f$ s(n), \f$ \f$ n = 0 \ldots 7, \f$ содержит 8 отсчетов, как это показано на 
-следующем рисунке.<BR>
+The pickup signal \f$ s(n), \f$ \f$ n = 0 \ldots 7, \f$ contains 8 samples as it is shown in the figure below.<BR>
 
 \image html resample_lagrange_frac_delay_in.png
 
 
-Данная программа производит пересчет исходного сигнала \f$ s(n) \f$ в сигнал \f$ y(k), \f$
-\f$ k = 0 \ldots 7, \f$ задержанный относительно \f$ s(n) \f$ на величину \f$ x_0 = 0.25 \f$
-периода дискретизации.<BR>
+This program recalculates the pickup signal \f$ s(n) \f$ into the signal \f$ y(k), \f$
+\f$ k = 0 \ldots 7, \f$ which is delayed concerning \f$ s(n) \f$ by the value \f$ x_0 = 0.25 \f$
+of the sampling period.<BR>
 
-Процесс передискретизации выводится в таблицу:<BR>
+The resampling process is read out in the table:<BR>
 
 \verbatim
 
@@ -42,7 +39,7 @@
  \endverbatim
 	
 
-Таким образом, сигнал после передискретизации показан на рисунке ниже
+Thus, the signal after resampling is shown in the figure below
  
 \image html resample_lagrange_frac_delay_out.png
  

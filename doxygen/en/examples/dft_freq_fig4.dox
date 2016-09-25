@@ -1,27 +1,26 @@
 /*!
 	\file dft_freq_fig4.c  
-	\brief \ref dft_freq_fig4.c   "Расчет данных для рисунка 4 раздела &laquo;Индексация и перестановка спектральных отсчетов дискретного преобразования Фурье&raquo;".	
+	\brief \ref dft_freq_fig4.c   "Calculating the data for Figure 4 of Section &laquo;Indexation and shifting of discrete Fourier transform spectrum samples &raquo;".	
 */
 
 
 /*! 
 	\example dft_freq_fig4.c                                        
-	Данная программа рассчитывает данные для построения рисунка 4 раздела 
+	The program calculates the data for plotting Figure 4 of Section
 	<a href = "http://ru.dsplib.org/content/dft_freq.html">
-	Индексация и перестановка спектральных отсчетов дискретного преобразования Фурье
+	Indexation and shifting of discrete Fourier transform spectrum samples
 	</a>.<BR>
 	
-	Программа рассчитывает ДПФ \f$S(k)\f$ сигнала
+	The program calculates the DFT of the \f$S(k)\f$ signal
 	\f[ 
 		s(n) = \exp \left( j \cdot 2\pi \cdot n \cdot \frac{f_0}{F_\textrm{s}} \right),
 	\f]
 	
-	где \f$f_0 = -20\f$ Гц, \f$F_\textrm{s} = 120\f$ Гц,  \f$n = 0\ldots N-1\f$, 
+	where \f$f_0 = -20\f$ Hz, \f$F_\textrm{s} = 120\f$ Hz,  \f$n = 0\ldots N-1\f$, 
 	\f$N = 30\f$. <BR>
 	
-	Рассчитанное ДПФ подвергается перестановке спектральных отсчетов для 
-	корректного отображения отрицательных частот.<BR>
-	После этого рассчитывается амплитудный спектр \f$|S(k)|\f$, 
-	который сохраняется в файл `dat/dft_freq_fig4.txt` 
-	для построения графика.<BR>	
+	The calculated DFT is subject to shifting of spectrum samples to display negative frequencies in a correct way.<BR>
+	Then the amplitude spectrum \f$|S(k)|\f$ 
+	which is saved in `dat/dft_freq_fig4.txt` 
+	is calculated for plotting the chart.<BR>	
 */

@@ -1,27 +1,26 @@
 /*!
 \file resample_lagrange_ex_interp.c 
-\brief \ref resample_lagrange_ex_interp.c "Пример использования фильтра Фарроу для цифровой интерполяции сигнала."		
+\brief \ref resample_lagrange_ex_interp.c "Example of using Farrow filter for digital signal interpolation."		
 */
 
 
 
 /*! 
 \example resample_lagrange_ex_interp.c 
-\brief Пример использования фильтра Фарроу для цифровой интерполяции сигнала.
+\brief Example of using Farrow filter for digital signal interpolation.
 
 
-Исходный сигнал \f$ s(n), \f$ \f$ n = 0 \ldots 7, \f$ содержит 8 отсчетов, как это показано на 
-рисунке ниже.<BR>
+The pickup signal \f$ s(n), \f$ \f$ n = 0 \ldots 7, \f$ contains 8 samples as it is shown in the figure below.<BR>
 
-Данная программа производит пересчет исходного сигнала \f$ s(n) \f$ в сигнал \f$ y(k), \f$
-\f$ k = 0 \ldots 70, \f$ интерполированного относительно \f$ s(n) \f$ в \f$ P = 10 \f$
-раз.<BR>
+This program recalculates the pickup signal \f$ s(n) \f$ into the signal \f$ y(k), \f$
+\f$ k = 0 \ldots 70, \f$ which is interpolated concerning \f$ s(n) \f$ into \f$ P = 10 \f$
+times.<BR>
 
-Исходный сигнал сохраняется в файл `dat/resample_lagrange_interp_s.txt`.<BR>
-Интерполированный сигнала на выходе фильтра Фарроу сохраняется в файл `dat/resample_lagrange_interp_y.txt`.<BR>
+The pickup signal is saved in `dat/resample_lagrange_interp_s.txt`.<BR>
+The interpolated signal at the output of Farrow filter is saved in `dat/resample_lagrange_interp_y.txt`.<BR>
 
-Исходный и интерполированный сигналы, сохраненные в файлы `dat/resample_lagrange_interp_s.txt` и `dat/resample_lagrange_interp_y.txt` 
-показана на следующем рисунке. 
+The pickup and interpolated signals saved in `dat/resample_lagrange_interp_s.txt` and `dat/resample_lagrange_interp_y.txt` 
+are shown in the following figure.
 	
 
 \image html resample_lagrange_ex_interp.png

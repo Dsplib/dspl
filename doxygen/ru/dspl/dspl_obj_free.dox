@@ -7,11 +7,12 @@
 	
 	Данная функция очищает созданный функией `#dspl_obj_create` объект DSPL.
 		
-	\param[in, out]	obj	ссылка на указатель на объект DSPL..
+	\param[in, out]	obj	ссылка на указатель на объект DSPL.<BR><BR>
 						
 	\return 
-		`DSPL_OK` если объект очищен успешно.
-		`DSPL_ERROR_PTR` если входной указатель `NULL`.
+		`DSPL_OK` если объект очищен успешно.<BR>
+		В противном случае \ref ERROR_CODE_GROUP "код ошибки": <BR>
+		`DSPL_ERROR_PTR` если входной указатель `NULL`.<BR>
 
 	\author
 		Бахурин Сергей.
