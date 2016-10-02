@@ -101,6 +101,7 @@
 extern "C" {
 #endif
 
+
 /* Arccosine  for complex argument (dspl_math_basic.c) */
 DSPL_API int dspl_acos_cmplx(double *xR, double *xI, int n,
 							 double *yR, double *yI);
@@ -166,6 +167,17 @@ DSPL_API double dspl_cosh(double x);
 					 
 /* Discrete Fourier Transform  (dspl_dft.c) */
 DSPL_API int dspl_dft (double* xR, double* xI, int n, double* yR, double* yI);
+
+/* inverse elliptic CD function (dspl_math_ellip.c)*/
+DSPL_API int dspl_ellip_acd_cmplx(double *wR, double *wI, int nw, 
+								  double k, 
+								  double *acdR, double *acdI);
+
+
+/* inverse elliptic SN function (dspl_math_ellip.c)*/
+DSPL_API int dspl_ellip_asn_cmplx(	double *wR, double *wI, 
+									int nw, double k, 
+									double *asnR, double *asnI);								  
 
 /* elliptic CD function (dspl_math_ellip.c)*/
 DSPL_API int dspl_ellip_cd_cmplx(double *uR, double *uI, int nu, 
@@ -363,6 +375,19 @@ typedef double (*p_dspl_cosh)(double x);
 /* Discrete Fourier Transform  (dspl_dft.c) */
 typedef int (*p_dspl_dft) 			(double* xR, double* xI, int n, double* yR, double* yI);
 
+
+/* inverse elliptic CD function (dspl_math_ellip.c)*/
+typedef int (*p_dspl_ellip_acd_cmplx)(double *wR, double *wI, int nw, 
+								  double k, 
+								  double *acdR, double *acdI);
+
+
+/* inverse elliptic SN function (dspl_math_ellip.c)*/
+typedef int (*p_dspl_ellip_asn_cmplx)(	double *wR, double *wI, 
+									int nw, double k, 
+									double *asnR, double *asnI);
+
+
 /* Elliptic CD function (dspl_math_ellip.c)*/
 typedef int (*p_dspl_ellip_cd_cmplx)(double *uR, double *uI, int nu, double k, double *cdR, double *cdI);
 
@@ -503,6 +528,8 @@ extern p_dspl_conv_cmplx   				dspl_conv_cmplx     	;   /* ru, en */
 extern p_dspl_cos_cmplx					dspl_cos_cmplx			;	/* ru, en */
 extern p_dspl_cosh 						dspl_cosh 				;   /* ru, en */			
 extern p_dspl_dft 						dspl_dft 				;   /* ru, en */ 
+extern p_dspl_ellip_acd_cmplx			dspl_ellip_acd_cmplx	;	/* --, -- */
+extern p_dspl_ellip_asn_cmplx			dspl_ellip_asn_cmplx	;	/* --, -- */		
 extern p_dspl_ellip_cd_cmplx			dspl_ellip_cd_cmplx		;   /* --, -- */
 extern p_dspl_ellip_sn_cmplx 			dspl_ellip_sn_cmplx		;	/* --, -- */
 extern p_dspl_ellipk					dspl_ellipk				;	/* ru, -- */
@@ -512,7 +539,7 @@ extern p_dspl_filter_iir				dspl_filter_iir	    	;	/* ru, en */
 extern p_dspl_freqs						dspl_freqs		    	;	/* ru, en */
 extern p_dspl_freqz						dspl_freqz		    	;	/* ru, en */
 extern p_dspl_get_version 				dspl_get_version 		;	/* ru, en */
-extern p_dspl_freqz_resp				dspl_freqz_resp			;
+extern p_dspl_freqz_resp				dspl_freqz_resp			;	/* --, -- */
 extern p_dspl_goertzel					dspl_goertzel			;	/* ru, en */
 extern p_dspl_hilbert					dspl_hilbert			;	/* ru, en */
 extern p_dspl_histogram					dspl_histogram			;	/* ru, -- */

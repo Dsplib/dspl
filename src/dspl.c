@@ -43,6 +43,8 @@ p_dspl_conv_cmplx   			dspl_conv_cmplx     	;
 p_dspl_cos_cmplx				dspl_cos_cmplx			;
 p_dspl_cosh 					dspl_cosh 				;
 p_dspl_dft 						dspl_dft 				;
+p_dspl_ellip_acd_cmplx			dspl_ellip_acd_cmplx	;
+p_dspl_ellip_asn_cmplx			dspl_ellip_asn_cmplx	;
 p_dspl_ellip_cd_cmplx			dspl_ellip_cd_cmplx		;
 p_dspl_ellip_sn_cmplx 			dspl_ellip_sn_cmplx		;
 p_dspl_ellipk					dspl_ellipk				;
@@ -190,6 +192,18 @@ HINSTANCE	dspl_load()
 	if(!dspl_dft)
 		goto error_proc;
 	
+	
+	func_name = "dspl_ellip_acd_cmplx";	
+	dspl_ellip_acd_cmplx = (p_dspl_ellip_acd_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_ellip_acd_cmplx)
+		goto error_proc;
+
+	
+	func_name = "dspl_ellip_asn_cmplx";	
+	dspl_ellip_asn_cmplx = (p_dspl_ellip_asn_cmplx) GetProcAddress(hDSPL, func_name);
+	if(!dspl_ellip_asn_cmplx)
+		goto error_proc;
+
 		
 	func_name = "dspl_ellip_cd_cmplx";	
 	dspl_ellip_cd_cmplx = (p_dspl_ellip_cd_cmplx) GetProcAddress(hDSPL, func_name);

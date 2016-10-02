@@ -27,7 +27,7 @@
 #include "dspl_main.h"
 
 
-#define DSPL_VERSION 0x00001009
+#define DSPL_VERSION 0x0000100A
 
 
 

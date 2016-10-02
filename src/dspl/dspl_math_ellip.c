@@ -30,6 +30,168 @@
 
 
 
+DSPL_API int dspl_ellip_acd_cmplx(double *wR, double *wI, int nw, double k, double *acdR, double *acdI)
+{
+	int n, m;
+	double ktmp[DSPL_ELLIP_ITER];
+	double uR, uI, tR, tI, tmp, mag;
+	int res;
+	
+	if(!wR || !acdR || (wI && !acdI))
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
+	if(nw < 1)
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
+	if(k < 0.0 || k > 1.0)
+	{
+		res = DSPL_ERROR_ELLIP_K;
+		goto exit_label;	
+	}
+	
+	ktmp[0] = k;
+	for(n = 1; n <  DSPL_ELLIP_ITER; n++)
+	{
+		ktmp[n]  = ktmp[n-1]/(1.0+sqrt(1.0-ktmp[n-1]*ktmp[n-1]));
+		ktmp[n] *= ktmp[n];
+	}
+	
+	
+	for(m = 0; m < nw; m++)
+	{
+		uR = wR[m];
+		uI = wI ? wI[m] : 0.0;
+		
+		for(n = 1; n < DSPL_ELLIP_ITER; n++)
+		{
+			mag = ktmp[n-1]*ktmp[n-1];
+			tR = 1.0  -  mag * (uR * uR - uI * uI);
+			tI = -2.0 *  mag * uR * uI;
+			
+			res = dspl_sqrt_cmplx(&tR, &tI, 1, &tR, &tI);
+			if(res != DSPL_OK)
+				goto exit_label;
+			
+			tR += 1.0;
+			tR *= 1.0+ktmp[n];
+			tI *= 1.0+ktmp[n];
+			
+			mag = tR * tR + tI * tI;			
+			mag = 1.0/mag;
+			
+			uR*=2.0;
+			uI*=2.0;
+			
+			tmp = mag * (uR * tR + uI * tI);
+			uI  = mag * (uR * tI - uR * tI);
+			uR = tmp;
+		}
+		
+		res = dspl_acos_cmplx(&uR, &uI, 1, acdR+m, acdI+m);
+		if(res != DSPL_OK)
+			goto exit_label;
+	}
+	
+	for(m = 0; m < nw; m++)
+	{
+		acdR[m] *= M_PI_2;
+		acdI[m] *= M_PI_2;
+	}
+
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_ellip_asn_cmplx");
+	return res;
+}
+
+
+
+DSPL_API int dspl_ellip_asn_cmplx(double *wR, double *wI, int nw, double k, double *asnR, double *asnI)
+{
+	int n, m;
+	double ktmp[DSPL_ELLIP_ITER];
+	double uR, uI, tR, tI, tmp, mag;
+	int res;
+	
+	if(!wR || !asnR || (wI && !asnI))
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
+	if(nw < 1)
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
+	if(k < 0.0 || k > 1.0)
+	{
+		res = DSPL_ERROR_ELLIP_K;
+		goto exit_label;	
+	}
+	
+	ktmp[0] = k;
+	for(n = 1; n <  DSPL_ELLIP_ITER; n++)
+	{
+		ktmp[n]  = ktmp[n-1]/(1.0+sqrt(1.0-ktmp[n-1]*ktmp[n-1]));
+		ktmp[n] *= ktmp[n];
+	}
+	
+	
+	for(m = 0; m < nw; m++)
+	{
+		uR = wR[m];
+		uI = wI ? wI[m] : 0.0;
+		
+		for(n = 1; n < DSPL_ELLIP_ITER; n++)
+		{
+			mag = ktmp[n-1]*ktmp[n-1];
+			tR = 1.0  -  mag * (uR * uR - uI * uI);
+			tI = -2.0 *  mag * uR * uI;
+			
+			res = dspl_sqrt_cmplx(&tR, &tI, 1, &tR, &tI);
+			if(res != DSPL_OK)
+				goto exit_label;
+			
+			tR += 1.0;
+			tR *= 1.0+ktmp[n];
+			tI *= 1.0+ktmp[n];
+			
+			mag = tR * tR + tI * tI;			
+			mag = 1.0/mag;
+			
+			uR*=2.0;
+			uI*=2.0;
+			
+			tmp = mag * (uR * tR + uI * tI);
+			uI  = mag * (uR * tI - uR * tI);
+			uR = tmp;
+		}
+		
+		res = dspl_asin_cmplx(&uR, &uI, 1, asnR+m, asnI+m);
+		if(res != DSPL_OK)
+			goto exit_label;
+	}
+	
+	for(m = 0; m < nw; m++)
+	{
+		asnR[m] *= M_PI_2;
+		asnI[m] *= M_PI_2;
+	}
+
+	res = DSPL_OK;		
+exit_label:
+	dspl_print_err(res, "dspl_ellip_asn_cmplx");
+	return res;
+}
+
+
+
+
+
 
 DSPL_API int dspl_ellip_cd_cmplx(double *uR, double *uI, int nu, double k, double *cdR, double *cdI)
 {
@@ -100,6 +262,7 @@ exit_label:
 	dspl_print_err(res, "dspl_ellip_cd_cmplx");
 	return res;
 }
+
 
 
 

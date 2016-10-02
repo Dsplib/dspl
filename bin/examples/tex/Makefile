@@ -2,7 +2,9 @@ LATEX      = pdflatex
 FIG_DIR    = fig
 
 
-FIG	=	fig/dft_fig1.pdf\
+FIG	=	fig/complex_plane.pdf\
+		fig/complex_plane_quater.pdf\
+		fig/dft_fig1.pdf\
 		fig/dft_fig2.pdf\
 		fig/dft_fig3.pdf\
 		fig/dft_fig4.pdf\

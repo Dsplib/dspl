@@ -1,0 +1,169 @@
+\documentclass [tikz, border=3mm] {standalone}
+\input{fig_header.tex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+
+	
+\begin{scope}[xshift = 0cm, yshift = 0cm]
+
+ 
+	\def \vphi{40}
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[below left]{$0$} -- (0,3) node [left] {$\Im(z)$};
+	
+	\node at (1.5, 3) {четверть I};
+	\node at (1.5, 2.5) {$\Phi(a,b) = 0$};
+	
+	
+	\draw[->, rotate = \vphi] (0,0) -- (2.5, 0) coordinate(z) node[above]{$z_0$};
+
+	\path[name path=xz] (z) -- +(0, -3);	
+	\draw[dashed, name intersections={of=xz and xaxis, by=x}, thin] (z) -- (x);
+	
+	\path[name path=yz] (z) -- +(-3, 0);	
+	\draw[dashed, name intersections={of=yz and yaxis, by=y}, thin] (z) -- (y);	
+	
+	\draw [thin] (x) -- +(0, -0.1) node[below]{$a>0$};
+	\draw [thin] (y) -- +(-0.1, 0) node[left]{$b>0$};
+	
+	
+	
+	
+	\draw[->, blue, thin] (0.75, 0) arc (0:\vphi:0.75);	
+	\draw[blue] ({\vphi*0.5}:0.5cm) node {$\phi$};
+	\draw[red] ({\vphi*0.5}:1cm) node {$\alpha$};
+	
+	
+	\fill(z) circle(0.05cm);
+	\node at (0, -3.5) {a)};
+\end{scope}	
+
+
+
+
+
+\begin{scope}[xshift = 8cm, yshift = 0cm]
+
+ 
+	\def \vphi{140}
+	\def \vxi{-40}
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[below left]{$0$} -- (0,3) node [right] {$\Im(z)$};
+	
+	\node at (-1.5, 3) {четверть II};
+	\node at (-1.5, 2.5) {$\Phi(a,b) = \pi$};
+	
+	
+	\draw[->, rotate = \vphi] (0,0) -- (2.5, 0) coordinate(z) node[above]{$z_0$};
+	\draw[red, dotted, rotate = \vxi] (0,0) -- (2.5, 0) node [below] {$\alpha = \arctan \left( \frac{b}{a}\right)$};
+
+	\path[name path=xz] (z) -- +(0, -3);	
+	\draw[dashed, name intersections={of=xz and xaxis, by=x}, thin] (z) -- (x);
+	
+	\path[name path=yz] (z) -- +(3, 0);	
+	\draw[dashed, name intersections={of=yz and yaxis, by=y}, thin] (z) -- (y);	
+	
+	\draw [thin] (x) -- +(0, -0.1) node[below]{$a<0$};
+	\draw [thin] (y) -- +(0.1, 0) node[right]{$b>0$};
+	
+	
+	
+	\draw[->, blue, thin] (0.75, 0) arc (0:\vphi:0.75);	
+	\draw[blue] ({\vphi*0.5}:0.5cm) node {$\phi$};
+	
+	
+	\draw[red] ({\vxi*0.5}:0.5cm) node{$\alpha$};
+	\draw[->, red, thin] (0.75, 0) arc (0:\vxi:0.75);
+
+	\draw[->, thin, rotate = \vxi] (1,0) arc (0:180:1);
+	\draw (45:1cm) node[right] {$\Phi(a,b) = \pi$};
+	\fill(z) circle(0.05cm);
+	\node at (0, -3.5) {b)};
+\end{scope}	
+
+
+
+
+\begin{scope}[xshift = 0cm, yshift = -8cm]
+
+ 
+	\def \vphi{-140}
+	\def \vxi{40}
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[above left]{$0$} -- (0,3) node [right] {$\Im(z)$};
+	
+	\node at (-1.5, -2.5) {четверть III};
+	\node at (-1.5, -3) {$\Phi(a,b) = -\pi$};
+	
+	
+	\draw[->, rotate = \vphi] (0,0) -- (2.5, 0) coordinate(z) node[below]{$z_0$};
+	\draw[red, dotted, rotate = \vxi] (0,0) -- (2.5, 0) node [above] {$\alpha = \arctan \left( \frac{b}{a}\right)$};
+
+	\path[name path=xz] (z) -- +(0, 3);	
+	\draw[dashed, name intersections={of=xz and xaxis, by=x}, thin] (z) -- (x);
+	
+	\path[name path=yz] (z) -- +(3, 0);	
+	\draw[dashed, name intersections={of=yz and yaxis, by=y}, thin] (z) -- (y);	
+	
+	\draw [thin] (x) -- +(0, 0.1) node[above]{$a<0$};
+	\draw [thin] (y) -- +(0.1, 0) node[right]{$b<0$};
+	
+	
+	
+	\draw[->, blue, thin] (0.75, 0) arc (0:\vphi:0.75);	
+	\draw[blue] ({\vphi*0.5}:0.5cm) node {$\phi$};
+	
+	
+	\draw[red] ({\vxi*0.5}:0.5cm) node{$\alpha$};
+	\draw[->, red, thin] (0.75, 0) arc (0:\vxi:0.75);
+
+	\draw[->, thin, rotate = \vxi] (1,0) arc (0:-180:1);
+	\draw (-45:1cm) node[right] {$\Phi(a,b) = -\pi$};
+	\fill(z) circle(0.05cm);
+	\node at (0, -3.5) {c)};
+\end{scope}	
+
+
+
+
+\begin{scope}[xshift = 8cm, yshift = -8cm]
+
+ 	\def \vphi{-40}
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[below left]{$0$} -- (0,3) node [left] {$\Im(z)$};
+	
+	\node at (1.5, -2.5) {четверть IV};
+	\node at (1.5, -3) {$\Phi(a,b) = 0$};
+	
+	
+	\draw[->, rotate = \vphi] (0,0) -- (2.5, 0) coordinate(z) node[below]{$z_0$};
+
+	\path[name path=xz] (z) -- +(0, 3);	
+	\draw[dashed, name intersections={of=xz and xaxis, by=x}, thin] (z) -- (x);
+	
+	\path[name path=yz] (z) -- +(-3, 0);	
+	\draw[dashed, name intersections={of=yz and yaxis, by=y}, thin] (z) -- (y);	
+	
+	\draw [thin] (x) -- +(0, 0.1) node[above]{$a>0$};
+	\draw [thin] (y) -- +(-0.1, 0) node[left]{$b<0$};
+	
+	
+	
+	
+	\draw[->, blue, thin] (0.75, 0) arc (0:\vphi:0.75);	
+	\draw[blue] ({\vphi*0.5}:0.5cm) node {$\phi$};
+	\draw[red] ({\vphi*0.5}:1cm) node {$\alpha$};
+
+	\fill(z) circle(0.05cm);
+	\node at (0, -3.5) {d)};
+\end{scope}	
+
+	
+\end{tikzpicture}
+
+\end {document}
+
