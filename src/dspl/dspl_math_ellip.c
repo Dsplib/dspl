@@ -24,7 +24,7 @@
 #include "dspl.h"
 
 
-#define DSPL_ELLIP_ITER	24
+#define DSPL_ELLIP_ITER	12
 
 
 
@@ -87,7 +87,7 @@ DSPL_API int dspl_ellip_acd_cmplx(double *wR, double *wI, int nw, double k, doub
 			uI*=2.0;
 			
 			tmp = mag * (uR * tR + uI * tI);
-			uI  = mag * (uR * tI - uR * tI);
+			uI  = mag * (uI * tR - uR * tI);
 			uR = tmp;
 		}
 		
@@ -96,10 +96,12 @@ DSPL_API int dspl_ellip_acd_cmplx(double *wR, double *wI, int nw, double k, doub
 			goto exit_label;
 	}
 	
+	tmp = 2.0/M_PI;
+	
 	for(m = 0; m < nw; m++)
 	{
-		acdR[m] *= M_PI_2;
-		acdI[m] *= M_PI_2;
+		acdR[m] *= tmp;
+		acdI[m] *= tmp;
 	}
 
 	res = DSPL_OK;		
@@ -167,7 +169,7 @@ DSPL_API int dspl_ellip_asn_cmplx(double *wR, double *wI, int nw, double k, doub
 			uI*=2.0;
 			
 			tmp = mag * (uR * tR + uI * tI);
-			uI  = mag * (uR * tI - uR * tI);
+			uI  = mag * (uI * tR - uR * tI);
 			uR = tmp;
 		}
 		
@@ -176,10 +178,11 @@ DSPL_API int dspl_ellip_asn_cmplx(double *wR, double *wI, int nw, double k, doub
 			goto exit_label;
 	}
 	
+	tmp = 2.0/M_PI;
 	for(m = 0; m < nw; m++)
 	{
-		asnR[m] *= M_PI_2;
-		asnI[m] *= M_PI_2;
+		asnR[m] *= tmp;
+		asnI[m] *= tmp;
 	}
 
 	res = DSPL_OK;		

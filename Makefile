@@ -38,7 +38,7 @@ PRF_BIN_DIR  = bin/performance
 BIN_DIR = bin
 OBJ_DIR = obj
 
-DLL_CFLAGS  = -c -Wall -O3 -D DLL_EXPORT -I$(INC_DIR) -I$(FFTW_DIR)
+DLL_CFLAGS  = -c -Wall -O3 -D DLL_EXPORT -I$(INC_DIR) -I$(FFTW_DIR) -fopenmp
 EXE_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 VER_CFLAGS  = -c -Wall -O3 -I$(INC_DIR)
 
@@ -90,7 +90,8 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_filter_interp.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_filter_frac_delay.exe\
 		
-VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
+VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipj.exe\
+			$(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\
 		    $(VER_BIN_DIR)/ver_dspl_hilbert.exe\
 		    $(VER_BIN_DIR)/ver_dspl_histogram_norm.exe\
@@ -98,7 +99,8 @@ VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 		    $(VER_BIN_DIR)/ver_dspl_pwelch.exe\
 			
 
-PRF_FILES = $(PRF_BIN_DIR)/fft_performance.exe\
+PRF_FILES = $(PRF_BIN_DIR)/conv_performance.exe\
+			$(PRF_BIN_DIR)/fft_performance.exe\
 				 
  
 
@@ -115,7 +117,7 @@ all:	$(EXE_BIN_DIR)/dspl.dll\
 		
 # DSPL.DLL compile	
 $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
+	$(CC) -o $(EXE_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm -fopenmp
 	echo "$(date) $(ls -1 | wc -l)"
 	cp 	$(FFTW_DIR)/libfftw3-3.dll   	$(EXE_BIN_DIR)/libfftw3-3.dll
 	cp 	$(EXE_BIN_DIR)/dspl.dll 		$(REL_DIR)/bin/dspl.dll 	
@@ -129,11 +131,11 @@ $(EXE_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
                   
 
 $(VER_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
+	$(CC) -o $(VER_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm -fopenmp
 	cp	$(FFTW_DIR)/libfftw3-3.dll   $(VER_BIN_DIR)/libfftw3-3.dll
 
 $(PRF_BIN_DIR)/dspl.dll:$(DLL_OBJS) $(RES_OBJ)
-	$(CC) -o $(PRF_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm
+	$(CC) -o $(PRF_BIN_DIR)/dspl.dll -s -shared $(DLL_OBJS) $(RES_OBJ) -Wl,--subsystem,windows  -L$(FFTW_DIR) -llibfftw3-3 -lm -fopenmp
 	cp	$(FFTW_DIR)/libfftw3-3.dll   $(PRF_BIN_DIR)/libfftw3-3.dll
 
 

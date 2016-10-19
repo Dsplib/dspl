@@ -1,0 +1,187 @@
+\documentclass [tikz, border=3mm] {standalone}
+\input{fig_header.tex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+
+	
+\begin{scope}[xshift = 0cm, yshift = 0cm]
+
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -1) -- (0,0) node[below left]{$0$} -- (0,3) node [right] {$\Im(z)$};
+	
+	
+	\draw [gray, dashed, thin] (1.5, 0.5) -- (1.5, 0);
+	\draw [gray, dashed, thin] (1.5, 0.5) -- (0, 0.5);
+	
+	\draw [gray, dashed, thin] (0.7, 2) -- (0.7, 0);
+	\draw [gray, dashed, thin] (0.7, 2) -- (0, 2);
+	
+	\draw [gray, dashed, thin] (2.2, 2.5) -- (2.2, 0);
+	\draw [gray, dashed, thin] (2.2, 2.5) -- (0, 2.5);
+	
+	
+	\draw[thin] (1.5, 0) -- (1.5, -0.1) node[below] {$a_1$};	
+	\draw[thin] (0, 0.5) -- (-0.1, 0.5) node[left] {$b_1$};
+	
+	\draw[thin] (0.7, 0) -- (0.7, -0.1) node[below] {$a_0$};	
+	\draw[thin] (0, 2) -- (-0.1, 2) node[left] {$b_0$};
+	
+	\draw[thin] (2.2, 0) -- (2.2, -0.1) node[below] {$a$};	
+	\draw[thin] (0, 2.5) -- (-0.1, 2.5) node[left] {$b$};
+	
+	
+	\draw [gray,thin] (1.5, 0.5) -- (2.2, 2.5);
+	\draw [gray,thin] (0.7, 2) -- (2.2, 2.5);
+	
+	
+	\draw[blue, ->]  (0,0)  -- (1.5, 0.5) node[right] {$z_1$};
+	\draw[red,  ->]  (0,0) --  (0.7, 2) node[above] {$z_0$};
+	
+	\draw[green,  ->]  (0,0) --  (2.2, 2.5) node[above right] {$z = z_0 + z_1$};;
+	
+
+	
+	
+	%\fill(z) circle(0.05cm);
+	\node at (0, -1.5) {a)};
+\end{scope}	
+
+
+
+
+\begin{scope}[xshift = 8cm, yshift = 0cm]
+
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -1) -- (0,0) node[below right]{$0$} -- (0,3) node [right] {$\Im(z)$};
+	
+	
+	\draw [gray, dashed, thin] (2, 0.5) -- (2, 0);
+	\draw [gray, dashed, thin] (2, 0.5) -- (0, 0.5);
+	
+	\draw [gray, dashed, thin] (0.7, 2) -- (0.7, 0);
+	\draw [gray, dashed, thin] (0.7, 2) -- (0, 2);
+	
+	\draw [gray, dashed, thin] (-1.3, 1.5) -- (-1.3, 0);
+	\draw [gray, dashed, thin] (-1.3, 1.5) -- (0, 1.5);
+
+	\draw [gray, dashed, thin] (-2.0, -0.5) -- (-2.0, 0);
+	\draw [gray, dashed, thin] (-2.0, -0.5) -- (0, -0.5);
+	
+	
+	\draw[thin] (2, 0) -- (2, -0.1) node[below] {$a_1$};	
+	\draw[thin] (0, 0.5) -- (-0.1, 0.5) node[above left, xshift = 0.2cm] {$b_1$};
+	
+	\draw[thin] (0.7, 0) -- (0.7, -0.1) node[below] {$a_0$};	
+	\draw[thin] (0, 2) -- (-0.1, 2) node[left] {$b_0$};
+	
+	\draw[thin] (-1.3, 0) -- (-1.3, 0.1) node[above, fill = white] {$a$};	
+	\draw[thin] (0, 1.5) -- (-0.1, 1.5) node[left, fill = white] {$b$};
+	
+	
+	\draw[thin] (-2.0, 0) -- (-2.0, 0.1) node[above, fill = white, xshift = -0.1cm] {$-a_1$};
+	\draw[thin] (0, -0.5) -- (-0.1, -0.5) node[left, fill = white] {$-b_1$};
+	
+	
+	\draw [gray,thin] (0.7, 2) -- (-1.3, 1.5);
+	\draw [gray,thin] (-2.0, -0.5) -- (-1.3, 1.5);
+	
+	
+	\draw[blue, ->]  (0,0)  -- (2.0, 0.5) node[right] {$z_1$};
+	\draw[red,  ->]  (0,0) --  (0.7, 2) node[above] {$z_0$};
+	\draw[dashed, blue,  ->]  (0,0) --  (-2.0, -0.5) node[left] {$-z_1$};
+	\draw[green,  ->]  (0,0) --  (-1.3, 1.5) node[above left] {$z = z_0 - z_1$};;
+	
+
+	
+	
+	%\fill(z) circle(0.05cm);
+	\node at (0, -1.5) {b)};
+\end{scope}	
+
+
+
+
+\begin{scope}[xshift = 0cm, yshift = -6cm]
+
+
+	\draw[blue, thin] (0.5, 0) arc (0:125:0.5);	
+	\draw[blue] ({62}:0.7cm) node[fill = white]{$\phi_1$};
+
+	
+	\draw[green, thin] (1, 0) arc (0:155:1);
+	\draw[green] ({77}:1.2cm) node[fill = white]{$\phi$};	
+	
+	
+	\draw[red, thin] (1.3, 0) arc (0:30:1.3);
+	\draw[red] ({15}:1.6cm) node[]{$\phi_0$};
+	
+	
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[below left]{$0$} -- (0,3) node [right] {$\Im(z)$};
+	
+	
+	\draw[red, ->, rotate = 30] (0,0) -- (2.0, 0) coordinate(z0) node[above]{$z_0$};
+	\draw[blue, ->, rotate = 125] (0,0) -- (1.5, 0) coordinate(z1) node[above]{$z_1$};
+	\draw[green, ->, rotate = 155] (0,0) -- (3.0, 0) coordinate(z) node[above]{$z = z_0 \cdot z_1$};
+	
+		
+	\node[below] at (0, -3.2) {c)};
+	
+	
+	
+
+\end{scope}	
+
+
+
+
+
+\begin{scope}[xshift = 8cm, yshift = -6cm]
+
+
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[below left]{$0$} -- (0,3) node [right] {$\Im(z)$};
+	
+	
+	
+	
+	\draw[red, ->, rotate = 40] (0,0) -- (2.5, 0) coordinate(z0) node[above]{$z_0$};
+	
+	\path[name path=yz] (z0) -- +(-3, 0);	
+	\draw[gray, dashed, name intersections={of=yz and yaxis, by=y}, thin] (z0) -- (y);	
+	\draw[] (y) -- +(-0.1, 0) node[left] {$b_0$};
+	
+	\draw[blue, ->, rotate = -40] (0,0) -- (2.5, 0) coordinate(zc) node[below]{$z_0^{*}$};
+	
+	\path[name path=yz] (zc) -- +(-3, 0);	
+	\draw[gray, dashed, name intersections={of=yz and yaxis, by=y}, thin] (zc) -- (y);
+	\draw[] (y) -- +(-0.1, 0) node[left] {$-b_0$};
+	
+	
+
+	\draw[gray, dashed, thin] (zc) -- (z0);	
+	\node[fill = white] at (1.9, -0.3) {$a_0$};
+	
+	\draw[red, thin] (0.5, 0) arc (0:40:0.5);	
+	\draw[red] ({20}:0.9cm) node[]{$\phi_0$};
+	
+	\draw[blue, thin] (0.5, 0) arc (0:-40:0.5);	
+	\draw[blue] ({-20}:0.9cm) node[]{$-\phi_0$};
+	
+	\node[below] at (0, -3.2) {d)};
+\end{scope}	
+
+
+
+
+
+
+	
+\end{tikzpicture}
+
+\end {document}
+

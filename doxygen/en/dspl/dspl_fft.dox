@@ -1,7 +1,7 @@
 
 /*!
 	\ingroup DFT_GROUP
-	\fn int dspl_fft(double* xR, double* xI, int n, void* psdpl, double* yR, double* yI)
+	\fn int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI)
 
 
 	\brief Fast Fourier Transform.

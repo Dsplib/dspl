@@ -3,6 +3,7 @@ FIG_DIR    = fig
 
 
 FIG	=	fig/complex_plane.pdf\
+		fig/complex_plane_op.pdf\
 		fig/complex_plane_quater.pdf\
 		fig/dft_fig1.pdf\
 		fig/dft_fig2.pdf\

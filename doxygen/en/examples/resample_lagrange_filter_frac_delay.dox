@@ -7,14 +7,14 @@
 
 /*! 
 \example resample_lagrange_filter_frac_delay.c  
-This program calculates the characteristics family of Farrow filter to compensate the fractional delay from 0 to 1. 
+This program calculates the characteristics of Farrow filter to compensate the fractional delay from 0 to 1. 
 It uses Farrow filter on the basis of Lagrange polynomial interpolation.
 
-It calculates the filter reaction to one shot signal and plots the amplitude frequency response (AFR) and the group delay (GD) of received filters.
+It calculates the filter reaction to one delta-impulse and plots the filter magnitude and the group delay.
 
 Operation results of the program are saved in files.<BR><BR>
 
-Files saving samples of filter pulse response characteristic<BR>
+Files saving samples of filter impulse response characteristic<BR>
 
 \verbatim
 
@@ -27,12 +27,12 @@ dat/resample_lagrange_filter_fd_time_0.9.txt
  \endverbatim
  
  
-Pulse response characteristics plotted according to the calculated data are shown in the figure:
+Impulse response characteristics plotted according to the calculated data are shown in the figure:
 
 \image html resample_lagrange_ex_filter_fd.png
  
 
- AFR datafiles of filters:<BR>
+ Filter magnitude datafiles:<BR>
  
  \verbatim
  
@@ -45,7 +45,7 @@ dat/resample_lagrange_filter_fd_mag_0.9.txt
  \endverbatim
  
 
- GD datafiles of filters:<BR>
+Filter groupdelay datafiles:<BR>
  
  \verbatim
 dat/resample_lagrange_filter_fd_mag_0.0.txt
@@ -57,7 +57,7 @@ dat/resample_lagrange_filter_fd_mag_0.9.txt
  \endverbatim
  
  
-AFR and GD plotted according to the saved data are shown in the figure:
+Filter magntudes and group delays plotted according to the saved data are shown in the figure:
 
 \image html resample_lagrange_ex_filter_fd_freq.png
 

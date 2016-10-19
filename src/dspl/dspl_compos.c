@@ -22,6 +22,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <omp.h>
+
 #include "dspl.h"
 
 
