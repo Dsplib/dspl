@@ -160,9 +160,9 @@ void dspl_conv_cmplx_krn(double* aR, double* aI, int na,
 	int k;
 	int n;
 
-	#pragma omp parallel shared(cR,cI,aR,aI,bR,bI) private(k)
-	{
-		#pragma omp for schedule(dynamic) nowait
+	//#pragma omp parallel shared(cR,cI,aR,aI,bR,bI) private(k)
+	//{
+	//	#pragma omp for schedule(dynamic) nowait
 		for(k = 0; k < na; k++)
 		{
 			for(n = 0; n < nb; n++)
@@ -171,7 +171,7 @@ void dspl_conv_cmplx_krn(double* aR, double* aI, int na,
 				cI[k+n] += aR[k]*bI[n] + aI[k]*bR[n];
 			}
 		}
-	}
+	//}
 }
 
 
@@ -184,9 +184,9 @@ void dspl_conv_mix_krn(double* aR, double* aI, int na,
 	int k;
 	int n;
 	
-	#pragma omp parallel shared(cR,cI,aR,aI,b) private(k)
-	{
-		#pragma omp for schedule(dynamic) nowait
+	//#pragma omp parallel shared(cR,cI,aR,aI,b) private(k)
+	//{
+	//	#pragma omp for schedule(dynamic) nowait
 		for(k = 0; k < na; k++)
 		{
 			for(n = 0; n < nb; n++)
@@ -195,7 +195,7 @@ void dspl_conv_mix_krn(double* aR, double* aI, int na,
 				cI[k+n] += aI[k]*b[n];
 			}
 		}
-	}
+	//}
 }
 
 
@@ -207,13 +207,13 @@ void dspl_conv_real_krn(double* a, int na, double* b, int nb, double* c)
 	int k;
 	int n;
 	
-	#pragma omp parallel shared(c,a,b) private(k)
-	{
-		#pragma omp for schedule(dynamic) nowait
+	//#pragma omp parallel shared(c,a,b) private(k)
+	//{
+	//	#pragma omp for schedule(dynamic) nowait
 		for(k = 0; k < na; k++)
 			for(n = 0; n < nb; n++)
 				c[k+n] += a[k]*b[n];
-	}
+	//}
 }
 
 
