@@ -1,6 +1,8 @@
 clear all; close all; clc;
 delete('../../../verification.log');
 
+ver_dspl_ellipj;
+ver_dspl_ellipj_inv;
 ver_dspl_ellipk;
 ver_dspl_fft;
 ver_dspl_hilbert;

@@ -107,7 +107,7 @@ exit_label:
 
 DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *yI)
 {
-	double t, wn, wp;
+	long double t, wn, wp;
 	int k;
 	int res;
 	
@@ -133,12 +133,12 @@ DSPL_API int dspl_cos_cmplx(double *xR, double *xI, int n, double *yR, double *y
 	}
 	for(k =0; k < n; k++)
 	{
-		wn = exp(-xI[k]);
-		wp = exp( xI[k]);
+		wn = expl(-(long double)xI[k]);
+		wp = expl( (long double)xI[k]);
 		
-		t     = 0.5*cos(xR[k])*(wn+wp);
-		yI[k] = 0.5*sin(xR[k])*(wn-wp);
-		yR[k] = t;
+		t     = 0.5*cos((long double)xR[k])*(wn+wp);
+		yI[k] = (double)0.5*sin((long double)xR[k])*(wn-wp);
+		yR[k] = (double)t;
 	}
 	
 	res = DSPL_OK;		
@@ -235,7 +235,7 @@ exit_label:
 
 DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double * yI)
 {
-	double t, tI, tR, a;
+	long double t, tI, tR, a;
 	int k;
 	int res;
 	
@@ -254,12 +254,12 @@ DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double 
 	
 	for(k = 0; k < n; k++)
 	{
-		tI = xI ? xI[k] : 0.0;
-		tR = xR[k];
-		a = xI ? sqrt(tR*tR + tI*tI) : fabs(tR);
-		yR[k] = sqrt(0.5 * (a+tR));
-		t = sqrt(0.5*(a-tR));
-		yI[k] = (tI > 0) ? t : -t;
+		tI = xI ? (long double) xI[k] : 0.0;
+		tR = (long double) xR[k];
+		a = xI ? sqrtl(tR*tR + tI*tI) : fabs(tR);
+		yR[k] = (double)sqrtl(0.5 * (a+tR));
+		t = sqrtl(0.5*(a-tR));
+		yI[k] = (tI > 0) ? (double)t : -(double)t;
 		
 	}
 	

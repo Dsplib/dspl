@@ -26,3 +26,5 @@ else
 	fprintf('ERROR  err = %10.6E\n', err);
 	fprintf(fid, 'ERROR  err = %10.6E\n', err);
 end	
+
+fclose(fid);

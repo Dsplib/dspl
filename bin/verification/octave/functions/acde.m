@@ -48,10 +48,10 @@ u = 2/pi * acos(w);                                   % gives positive Re(u)
 
 u(w==1)=0;				      % set exactly u=0 when w=1
 
-[K,Kprime] = ellipk(k,tol);  R = Kprime/K; 
-
-u = srem(real(u),4) + j*srem(imag(u),2*R);            % -R<Im(u)<R, and because Re(u)>0 ==> 0<Re(u)<2
-
+%[K,Kprime] = ellipk(k,tol);  R = Kprime/K; 
+%
+%u = srem(real(u),4) + j*srem(imag(u),2*R);            % -R<Im(u)<R, and because Re(u)>0 ==> 0<Re(u)<2
+%
 %%
 function Z = srem(X,Y)
 %srem - symmetrized rem
