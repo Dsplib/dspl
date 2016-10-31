@@ -90,18 +90,24 @@ DSPL_API int dspl_ellip_acd_cmplx(double *wR, double *wI, int nw, double k, doub
 			uI*=mag;
 		}
 		
-		res = dspl_acos_cmplx(&uR, &uI, 1, acdR+m, acdI+m);
+		res = dspl_acos_cmplx(&uR, &uI, 1, acdR+m, &tI);
+		
 		if(res != DSPL_OK)
 			goto exit_label;
+		
+		if(acdI)
+			acdI[m] = tI;
 	}
 	
-	tmp = 2.0/M_PI;
+	tmp = 2.0/M_PI;	
 	
 	for(m = 0; m < nw; m++)
-	{
 		acdR[m] *= tmp;
-		acdI[m] *= tmp;
-	}
+
+	if(acdI)
+		for(m = 0; m < nw; m++)
+			acdI[m] *= tmp;
+
 
 	res = DSPL_OK;		
 exit_label:
@@ -169,18 +175,24 @@ DSPL_API int dspl_ellip_asn_cmplx(double *wR, double *wI, int nw, double k, doub
 			uI*=mag;
 		}
 		
-		res = dspl_asin_cmplx(&uR, &uI, 1, asnR+m, asnI+m);
+		res = dspl_asin_cmplx(&uR, &uI, 1, asnR+m, &tI);
+		
 		if(res != DSPL_OK)
 			goto exit_label;
+		
+		if(asnI)
+			asnI[m] = tI;
+		
 	}
 	
 	tmp = 2.0/M_PI;
 	
 	for(m = 0; m < nw; m++)
-	{
 		asnR[m] *= tmp;
-		asnI[m] *= tmp;
-	}
+
+	if(asnI)
+		for(m = 0; m < nw; m++)
+			asnI[m] *= tmp;
 
 	res = DSPL_OK;		
 exit_label:

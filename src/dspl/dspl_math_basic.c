@@ -235,7 +235,7 @@ exit_label:
 
 DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double * yI)
 {
-	long double t, tI, tR, a;
+	double t, tI, tR, a, phi;
 	int k;
 	int res;
 	
@@ -254,12 +254,15 @@ DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double 
 	
 	for(k = 0; k < n; k++)
 	{
-		tI = xI ? (long double) xI[k] : 0.0;
-		tR = (long double) xR[k];
-		a = xI ? sqrtl(tR*tR + tI*tI) : fabs(tR);
-		yR[k] = (double)sqrtl(0.5 * (a+tR));
-		t = sqrtl(0.5*(a-tR));
-		yI[k] = (tI > 0) ? (double)t : -(double)t;
+		tI = xI ?  xI[k] : 0.0;
+		tR =  xR[k];
+		a = xI ? sqrt(tR*tR + tI*tI) : fabs(tR);
+		
+		phi = atan2(tI, tR)*0.5;		
+		a = sqrt(a);
+		
+		yR[k] = a*cos(phi);
+		yI[k] = a*sin(phi);
 		
 	}
 	

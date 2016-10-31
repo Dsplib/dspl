@@ -1,31 +1,31 @@
-dspl_ellip_cd k = 0.999.........................OK     err = 1.615073E-015
-dspl_ellip_cd k = 0.990.........................OK     err = 7.069116E-016
-dspl_ellip_cd k = 0.900.........................OK     err = 2.064566E-015
-dspl_ellip_cd k = 0.700.........................OK     err = 3.947078E-015
-dspl_ellip_sn k = 0.999.........................OK     err = 1.492704E-015
-dspl_ellip_sn k = 0.990.........................OK     err = 7.308727E-016
-dspl_ellip_sn k = 0.900.........................OK     err = 1.572406E-015
-dspl_ellip_sn k = 0.700.........................OK     err = 1.767429E-015
-dspl_ellip_acd k = 0.999........................OK     err = 3.350964E-012
-dspl_ellip_acd k = 0.990........................OK     err = 2.366701E-011
-dspl_ellip_acd k = 0.900........................OK     err = 3.824455E-012
-dspl_ellip_acd k = 0.700........................OK     err = 1.977540E-011
-dspl_ellip_asn k = 0.999........................OK     err = 1.064373E-011
-dspl_ellip_asn k = 0.990........................OK     err = 5.704846E-011
-dspl_ellip_asn k = 0.900........................OK     err = 6.820827E-012
-dspl_ellip_asn k = 0.700........................OK     err = 3.115993E-011
+dspl_ellip_cd k = 0.999.........................OK     err = 1.550557E-015
+dspl_ellip_cd k = 0.990.........................OK     err = 1.338811E-015
+dspl_ellip_cd k = 0.900.........................OK     err = 7.699657E-016
+dspl_ellip_cd k = 0.700.........................OK     err = 6.885496E-016
+dspl_ellip_sn k = 0.999.........................OK     err = 4.709660E-015
+dspl_ellip_sn k = 0.990.........................OK     err = 1.132239E-015
+dspl_ellip_sn k = 0.900.........................OK     err = 1.787932E-015
+dspl_ellip_sn k = 0.700.........................OK     err = 3.190714E-015
+dspl_ellip_acd k = 0.999........................OK     err = 3.562768E-016
+dspl_ellip_acd k = 0.990........................OK     err = 3.798350E-016
+dspl_ellip_acd k = 0.900........................OK     err = 3.806158E-016
+dspl_ellip_acd k = 0.700........................OK     err = 4.611153E-016
+dspl_ellip_asn k = 0.999........................OK     err = 1.021660E-015
+dspl_ellip_asn k = 0.990........................OK     err = 8.361208E-016
+dspl_ellip_asn k = 0.900........................OK     err = 5.969140E-016
+dspl_ellip_asn k = 0.700........................OK     err = 6.495838E-016
 dspl_ellipk.....................................OK     err = 2.646065E-016
 dspl_fft........................................OK     err = 6.781666E-017
 dspl_ifft.......................................OK     err = 8.082546E-016
-dspl_hilbert (even length)......................OK     err = 3.930300E-016
-dspl_hilbert (odd length).......................OK     err = 4.165522E-016
-dspl_histogram_norm for rand....................OK     err = 9.566726E-016
-dspl_histogram_norm for randn...................OK     err = 1.858729E-016
-dspl_acos_cmplx.................................OK     err = 1.156809E-014
-dspl_asin_cmplx.................................OK     err = 8.990381E-015
+dspl_hilbert (even length)......................OK     err = 2.821699E-016
+dspl_hilbert (odd length).......................OK     err = 3.744500E-016
+dspl_histogram_norm for rand....................OK     err = 4.486347E-016
+dspl_histogram_norm for randn...................OK     err = 8.947571E-016
+dspl_acos_cmplx.................................OK     err = 1.377699E-014
+dspl_asin_cmplx.................................OK     err = 1.000208E-014
 dspl_cos_cmplx..................................OK     err = 6.451718E-019
 dspl_sin_cmplx..................................OK     err = 1.651640E-016
-dspl_sqrt_cmplx.................................OK     err = 1.682700E-016
+dspl_sqrt_cmplx.................................OK     err = 2.379698E-016
 dspl_log_cmplx..................................OK     err = 1.593233E-016
-dspl_pwelch (psd even length)...................ERROR  err = 4.958816E-003
+dspl_pwelch (psd even length)...................ERROR  err = 7.504231E-003
 dspl_pwelch (freq even length)..................OK     err = 0.000000E+000
