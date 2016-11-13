@@ -199,6 +199,11 @@ DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* y
 /* IIR filter output for real IIR filter and real signal (dspl_filter_iir.c) */
 DSPL_API int dspl_filter_iir	(double* b, double* a, int ord, double* x, int n, double* y);
 
+
+/* LPF FIR filter design (dspl_filter_fir.c) */
+DSPL_API int dspl_fir_lpf(int ord, double wp, int win_type, double win_param, double *h);
+
+
 /* Analog filter complex transfer function H(jw) (dspl_freqs.c) */
 DSPL_API int dspl_freqs(double* b, double* a, int ord, 
 						double* w, int n, 
@@ -285,6 +290,10 @@ DSPL_API int dspl_resample_lagrange(double *x, int n, int p, int q,
 
 /* Sine for complex argument (dspl_math_basic.c) */					 
 DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI);
+
+/* Sinc for real argument (dspl_math_basic.c) */	
+DSPL_API int dspl_sinc(double *x, int n, double alpha, double *y);
+
 
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 DSPL_API double dspl_sinh(double x);
@@ -406,6 +415,9 @@ typedef int(*p_dspl_fft_shift)(double* xR, double* xI, int n, double* yR, double
 /* IIR filter output for real IIR filter and real signal (dspl_filter_iir.c) */
 typedef int (*p_dspl_filter_iir)	(double* b, double* a, int ord, double* x, int n, double* y);
 
+/* LPF FIR filter design (dspl_filter_fir.c) */
+typedef int (*p_dspl_fir_lpf)(int ord, double wp, int win_type, double win_param, double *h);
+
 /* Analog filter complex transfer function H(jw) (dspl_freqs.c) */
 typedef int (*p_dspl_freqs)(double* b, double* a, int ord, 
 							double* w, int n, 
@@ -492,6 +504,9 @@ typedef int (*p_dspl_resample_lagrange)(double *x, int n, int p, int q,
 /* Cosine for complex argument (dspl_math_basic.c) */					 
 typedef int (*p_dspl_sin_cmplx)(double *xR, double *xI, int n, double *yR, double *yI); 	
 
+/* Sinc for real argument (dspl_math_basic.c) */	
+typedef int (*p_dspl_sinc)(double *x, int n, double *y);
+
 /* Hyperbolic sine for real argument (dspl_math_hyperbolic.c) */
 typedef double (*p_dspl_sinh)		(double x);
 
@@ -536,6 +551,7 @@ extern p_dspl_ellipk					dspl_ellipk				;	/* ru, -- */
 extern p_dspl_fft						dspl_fft		    	;   /* ru, en */ 
 extern p_dspl_fft_shift					dspl_fft_shift			;	/* ru, -- */
 extern p_dspl_filter_iir				dspl_filter_iir	    	;	/* ru, en */
+extern p_dspl_fir_lpf					dspl_fir_lpf			;	/* --, -- */
 extern p_dspl_freqs						dspl_freqs		    	;	/* ru, en */
 extern p_dspl_freqz						dspl_freqz		    	;	/* ru, en */
 extern p_dspl_get_version 				dspl_get_version 		;	/* ru, en */
@@ -560,6 +576,7 @@ extern p_dspl_rand						dspl_rand				;	/* ru, en */
 extern p_dspl_randn						dspl_randn				;	/* --, -- */ 
 extern p_dspl_resample_lagrange			dspl_resample_lagrange	;	/* ru, -- */	
 extern p_dspl_sin_cmplx					dspl_sin_cmplx			;	/* ru, en */
+extern p_dspl_sinc						dspl_sinc				;	/* --, -- */
 extern p_dspl_sinh						dspl_sinh				;	/* ru, en */
 extern p_dspl_sqrt_cmplx				dspl_sqrt_cmplx			;	/* ru, en */
 extern p_dspl_unwrap					dspl_unwrap				;	/* ru, en */

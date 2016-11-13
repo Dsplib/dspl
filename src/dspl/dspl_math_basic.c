@@ -67,7 +67,7 @@ DSPL_API int dspl_asin_cmplx(double *xR, double *xI, int n, double *yR, double *
 	}
 	if(n<1)
 	{
-		res = DSPL_ERROR_SIZE;
+		res = DSPL_ERROR_SIZE;    
 		goto exit_label;	
 	}
 
@@ -230,12 +230,45 @@ exit_label:
 
 
 
+DSPL_API int dspl_sinc(double *x, int n, double alpha, double *y)
+{
+	int k;
+	int res;
+	
+	if(!x || !y)
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
+	if(n<1)
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
+		
+	
+	for(k =0; k < n; k++)
+	{     
+		
+		y[k] = x[k] ? sin(alpha*x[k]) / (alpha*x[k]) : 1.0;
+   	}
+	
+	res = DSPL_OK;	
+	
+exit_label:
+	dspl_print_err(res, "dspl_sinc");
+	return res;
+	
+}
+
+
+
 
 
 
 DSPL_API int dspl_sqrt_cmplx(double *xR, double *xI, int n, double * yR, double * yI)
 {
-	double t, tI, tR, a, phi;
+	double tI, tR, a, phi;
 	int k;
 	int res;
 	

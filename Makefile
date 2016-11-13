@@ -50,6 +50,7 @@ DLL_OBJS=	$(DLL_OBJ_DIR)/dspl_cconv.o\
 			$(DLL_OBJ_DIR)/dspl_fft.o\
 			$(DLL_OBJ_DIR)/dspl_filter_ap.o\
 			$(DLL_OBJ_DIR)/dspl_filter_iir.o\
+			$(DLL_OBJ_DIR)/dspl_filter_fir.o\
 			$(DLL_OBJ_DIR)/dspl_filter_transform.o\
 			$(DLL_OBJ_DIR)/dspl_freqs.o\
 			$(DLL_OBJ_DIR)/dspl_freqz.o\
@@ -94,6 +95,7 @@ VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipj.exe\
 			$(VER_BIN_DIR)/ver_dspl_ellipj_inv.exe\
 			$(VER_BIN_DIR)/ver_dspl_ellipk.exe\
 			$(VER_BIN_DIR)/ver_dspl_fft.exe\
+			$(VER_BIN_DIR)/ver_dspl_fir_lpf.exe\
 		    $(VER_BIN_DIR)/ver_dspl_hilbert.exe\
 		    $(VER_BIN_DIR)/ver_dspl_histogram_norm.exe\
 			$(VER_BIN_DIR)/ver_dspl_math_basic.exe\

@@ -101,11 +101,6 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 		
 		res = dspl_polyval(a, 3, &x, 1, (*y)+k);
 		
-		/*
-		printf("%f  %f   %f   %f\n", z[0], z[1], z[2], z[3]);
-		printf("%f  %f   %f   %f\n", a[0], a[1], a[2], a[3]);
-		printf("%f %f\n\n", t, (*y)[k]);
-		*/
 		if(res != DSPL_OK)
 			goto exit_label;
 		t+=dt;

@@ -51,6 +51,7 @@ p_dspl_ellipk					dspl_ellipk				;
 p_dspl_fft						dspl_fft		    	;
 p_dspl_fft_shift				dspl_fft_shift			;
 p_dspl_filter_iir				dspl_filter_iir	    	;
+p_dspl_fir_lpf					dspl_fir_lpf			;
 p_dspl_freqs					dspl_freqs		    	;
 p_dspl_freqz					dspl_freqz		    	;
 p_dspl_freqz_resp				dspl_freqz_resp			;
@@ -75,6 +76,7 @@ p_dspl_rand						dspl_rand				;
 p_dspl_randn					dspl_randn				;
 p_dspl_resample_lagrange		dspl_resample_lagrange	;	
 p_dspl_sin_cmplx				dspl_sin_cmplx			;
+p_dspl_sinc						dspl_sinc				;
 p_dspl_sinh						dspl_sinh				;
 p_dspl_sqrt_cmplx				dspl_sqrt_cmplx			;
 p_dspl_unwrap					dspl_unwrap				;
@@ -242,6 +244,12 @@ HINSTANCE	dspl_load()
 		goto error_proc;
 	
 	
+	func_name = "dspl_fir_lpf";
+	dspl_fir_lpf = (p_dspl_fir_lpf) GetProcAddress(hDSPL, func_name);
+	if(!dspl_fir_lpf)
+		goto error_proc;
+	
+	
 	func_name = "dspl_freqs";
 	dspl_freqs = (p_dspl_freqs) GetProcAddress(hDSPL, func_name);
 	if(!dspl_freqs)
@@ -386,7 +394,11 @@ HINSTANCE	dspl_load()
 	dspl_sin_cmplx = (p_dspl_sin_cmplx) GetProcAddress(hDSPL, func_name);
 	if(!dspl_sin_cmplx)
 		goto error_proc;
-	
+
+	func_name = "dspl_sinc";
+	dspl_sinc = (p_dspl_sinc) GetProcAddress(hDSPL, func_name);
+	if(!dspl_sinc)
+		goto error_proc;	
 	
 	
 	func_name = "dspl_sinh";
