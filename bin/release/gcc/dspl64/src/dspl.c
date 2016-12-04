@@ -75,6 +75,7 @@ p_dspl_pwelch					dspl_pwelch				;
 p_dspl_rand						dspl_rand				;
 p_dspl_randn					dspl_randn				;
 p_dspl_resample_lagrange		dspl_resample_lagrange	;	
+p_dspl_resample_spline			dspl_resample_spline	;	/* --, -- */ 
 p_dspl_sin_cmplx				dspl_sin_cmplx			;
 p_dspl_sinc						dspl_sinc				;
 p_dspl_sinh						dspl_sinh				;
@@ -388,6 +389,11 @@ HINSTANCE	dspl_load()
 	func_name = "dspl_resample_lagrange";
 	dspl_resample_lagrange = (p_dspl_resample_lagrange) GetProcAddress(hDSPL, func_name);
 	if(!dspl_resample_lagrange)
+		goto error_proc;
+	
+	func_name = "dspl_resample_spline";
+	dspl_resample_spline = (p_dspl_resample_spline) GetProcAddress(hDSPL, func_name);
+	if(!dspl_resample_spline)
 		goto error_proc;
 	
 	func_name = "dspl_sin_cmplx";

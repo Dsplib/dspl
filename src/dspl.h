@@ -287,6 +287,10 @@ DSPL_API int dspl_randn(double* x, int n, double mu, double sigma);
 /* resampling by using Farrow structure (dspl_resample.c) */
 DSPL_API int dspl_resample_lagrange(double *x, int n, int p, int q, 
 									double frd, double **y, int *ny);
+									
+/* resampling by using Farrow structure and spline interpolation (dspl_resample.c) */									
+DSPL_API int dspl_resample_spline(double *s, int n, int p, int q, 
+									double frd, double **y, int *ny);
 
 /* Sine for complex argument (dspl_math_basic.c) */					 
 DSPL_API int dspl_sin_cmplx(double *xR, double *xI, int n, double *yR, double *yI);
@@ -501,6 +505,10 @@ typedef int (*p_dspl_randn)(double* x, int n, double mu, double sigma);
 typedef int (*p_dspl_resample_lagrange)(double *x, int n, int p, int q, 
 										double frd, double **y, int *ny);
 
+/* resampling by using Farrow structure and spline interpolation (dspl_resample.c) */
+typedef int (*p_dspl_resample_spline)(double *x, int n, int p, int q, 
+										double frd, double **y, int *ny);										
+										
 /* Cosine for complex argument (dspl_math_basic.c) */					 
 typedef int (*p_dspl_sin_cmplx)(double *xR, double *xI, int n, double *yR, double *yI); 	
 
@@ -575,6 +583,7 @@ extern p_dspl_pwelch					dspl_pwelch				;	/* ru, en */
 extern p_dspl_rand						dspl_rand				;	/* ru, en */ 
 extern p_dspl_randn						dspl_randn				;	/* --, -- */ 
 extern p_dspl_resample_lagrange			dspl_resample_lagrange	;	/* ru, -- */	
+extern p_dspl_resample_spline			dspl_resample_spline	;	/* --, -- */ 
 extern p_dspl_sin_cmplx					dspl_sin_cmplx			;	/* ru, en */
 extern p_dspl_sinc						dspl_sinc				;	/* --, -- */
 extern p_dspl_sinh						dspl_sinh				;	/* ru, en */

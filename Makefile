@@ -90,6 +90,7 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_ex_interp.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_filter_interp.exe\
 			$(EXE_BIN_DIR)/resample_lagrange_filter_frac_delay.exe\
+			$(EXE_BIN_DIR)/resample_spline_filter_frac_delay.exe\
 		
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipj.exe\
 			$(VER_BIN_DIR)/ver_dspl_ellipj_inv.exe\

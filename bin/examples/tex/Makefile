@@ -50,7 +50,9 @@ FIG	=	fig/complex_plane.pdf\
 		fig/resample_lagrange_interp_y.pdf\
 		fig/resample_lagrange_opt.pdf\
         fig/resample_lagrange_table_frac_delay.pdf\
-
+		fig/resample_spline_filter_fd_freq.pdf\
+        fig/resample_spline_opt.pdf\
+		fig/resample_spline_polynomials.pdf\
 
 		
 
