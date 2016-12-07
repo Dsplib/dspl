@@ -52,4 +52,11 @@ dat2cm.exe -i ../dat/resample_lagrange_ex_fs_s.txt -o ../dat/cm/resample_lagrang
 dat2cm.exe -i ../dat/resample_lagrange_ex_fs_y.txt -o ../dat/cm/resample_lagrange_ex_fs_y.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
 dat2cm.exe -i ../dat/resample_lagrange_ex_fs_c.txt -o ../dat/cm/resample_lagrange_ex_fs_c.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
 
+dat2cm.exe -i ../dat/resample_spline_ex_fs_s.txt -o ../dat/cm/resample_spline_ex_fs_s.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
+dat2cm.exe -i ../dat/resample_spline_ex_fs_y.txt -o ../dat/cm/resample_spline_ex_fs_y.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
+dat2cm.exe -i ../dat/resample_spline_ex_fs_c.txt -o ../dat/cm/resample_spline_ex_fs_c.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
+dat2cm.exe -i ../dat/resample_spline_ex_fs_z.txt -o ../dat/cm/resample_spline_ex_fs_z.cm  -ymin -1 -ymax 1 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
+dat2cm.exe -i ../dat/resample_spline_ex_fs_el.txt -o ../dat/cm/resample_spline_ex_fs_el.cm  -ymin -0.2 -ymax 0.2 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
+dat2cm.exe -i ../dat/resample_spline_ex_fs_es.txt -o ../dat/cm/resample_spline_ex_fs_es.cm  -ymin -0.2 -ymax 0.2 -xmin 0 -xmax 2 -w 16 -h 4 -dy -2
 mingw32-make
+

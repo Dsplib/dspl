@@ -1,0 +1,82 @@
+\documentclass{standalone}
+\input{fig_header.tex}
+\pgfplotsset{width=10cm, height = 8.5cm}
+
+
+
+\begin{document}
+\begin{tikzpicture}
+
+\draw[white] (-2,-1) rectangle (20,7.5);
+
+	\begin{axis}[xshift = 0cm, xlabel={$n$},
+		ylabel={$h(n)$},
+		xmin = 0,
+		xmax = 40,
+		ymin = -0.1,
+		ymax = 1.1,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=3]
+		\addplot + [solid,draw=blue, mark=none] table {../dat/resample_lagrange_filter_time.txt};
+		\addplot + [solid,draw=red, mark=none] table {../dat/resample_spline_filter_time.txt};
+		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/resample_lagrange_filter_time.txt};
+		\addplot + [ycomb,draw=red, mark = o, mark options={scale=0.5}] table {../dat/resample_spline_filter_time.txt};
+		
+		%\draw[draw=blue, -] (axis cs:27,0.975) -- (axis cs:31,0.975) node[right] {Лагранж};		
+		%\draw[draw=red, -] (axis cs:27,0.825) -- (axis cs:31,0.825) node[right] {Сплайн};
+		\legend{Лагранж,Сплайн};
+		
+	\end{axis}
+
+	\begin{axis}[xshift = 11cm, xlabel={$\omega$},
+		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
+		ymin = -80,
+		ymax = 25,
+		xmin = 0,
+		xmax = 3.141590,
+		grid = both,
+		xtick={0,  0.628318, 1.256636,  1.884954,  2.513272,  3.141590},
+		xticklabels={$0$, $0.2\pi$, $0.4\pi$, $0.6\pi$,	$0.8\pi$, $\pi$},
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=3]
+		\addplot + [draw=blue, mark=none] table {../dat/resample_lagrange_filter_freq.txt};
+		\addplot + [draw=red, mark=none] table {../dat/resample_spline_filter_freq.txt};
+		
+		%\draw[draw=blue, -] (axis cs:1.8,17.5) -- (axis cs:2.1,17.5) node[right] {Лагранж};		
+		%\draw[draw=red, -]  (axis cs:1.8,2.5) -- (axis cs:2.1,2.5) node[right] {Сплайн};
+	
+		\legend{Лагранж,Сплайн};
+		
+	\end{axis}
+
+	
+%		xtick={0,
+%		0.31415926535897932384626433832795,
+%		0.6283185307179586476925286766559,
+%		0.94247779607693797153879301498385,
+%		1.2566370614359172953850573533118,
+%		1.5707963267948966192313216916398,
+%		1.8849555921538759430775860299677,
+%		2.1991148575128552669238503682957,
+%		2.5132741228718345907701147066236,
+%		2.8274333882308139146163790449516},
+%	xticklabels={$0$,
+%		${\pi}\frac{10}$,
+%		${2\pi}\frac{10}$,
+%		${3\pi}\frac{10}$,
+%		${4\pi}\frac{10}$,
+%		${\pi}\frac{2}$,
+%		${6\pi}\frac{10}$,
+%		${7\pi}\frac{10}$,
+%		${8\pi}\frac{10}$,
+%		${9\pi}\frac{10}$},
+	
+	
+	
+	
+	
+	\end{tikzpicture}
+\end{document}

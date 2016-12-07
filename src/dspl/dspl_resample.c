@@ -57,7 +57,7 @@ DSPL_API int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, 
 	}
 	dt = (double)q/(double)p;
 	
-	if((*ny) != (int)((double)(n-1)/dt)+1)
+	if((*ny) != (int)((double)(n-1)/dt)+1 || !(*y))
 	{
 		
 		*ny = (int)((double)(n-1)/dt)+1;
@@ -146,7 +146,7 @@ DSPL_API int dspl_resample_spline(double *s, int n, int p, int q, double frd, do
 	}
 	dt = (double)q/(double)p;
 	
-	if((*ny) != (int)((double)(n-1)/dt)+1)
+	if((*ny) != (int)((double)(n-1)/dt)+1 || !(*y))
 	{
 		
 		*ny = (int)((double)(n-1)/dt)+1;
