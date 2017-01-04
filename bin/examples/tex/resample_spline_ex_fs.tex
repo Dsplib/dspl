@@ -22,27 +22,31 @@
 	
 	\draw 	 (-0.5cm,	-7.2cm)	   rectangle (16.5cm, -2.8cm);
 	\draw 	 (-0.5cm,	-5cm)	   -- (16.5cm, -5cm);	
-	\draw[red!50!white] plot[solid, mark=none, xshift =  0cm, yshift =  -5cm] file {../dat/cm/resample_lagrange_ex_fs_c.cm};
-	
+	\draw[blue!50!white] plot[solid, mark=none, xshift =  0cm, yshift =  -5cm] file {../dat/cm/resample_lagrange_ex_fs_c.cm};	
 	\draw[blue] plot[ycomb, mark=*, mark options={fill=blue},mark size = 0.5mm, xshift =  0cm, yshift =  -5cm] file {../dat/cm/resample_lagrange_ex_fs_y.cm};
-	\draw[red] plot[ycomb, mark=*, mark options={fill=red},mark size = 0.5mm, xshift =  0cm, yshift =  -5cm] file {../dat/cm/resample_spline_ex_fs_y.cm};
+
 	
 	
 	\draw 	 (-0.5cm,	-12.2cm)	   rectangle (16.5cm, -7.8cm);
-	\draw[blue]  plot[ycomb, mark=*, mark options={fill=blue},mark size = 0.5mm, xshift =  0cm, yshift =  -10cm] file {../dat/cm/resample_spline_ex_fs_el.cm};
-	\draw[red] plot[ycomb, mark=*, mark options={fill=red},mark size = 0.5mm, xshift =  0cm, yshift =  -10cm] file {../dat/cm/resample_spline_ex_fs_es.cm};
+	\draw 	 (-0.5cm,	-10cm)	   -- (16.5cm, -10cm);
+	\draw[red!50!white] plot[solid, mark=none, xshift =  0cm, yshift =  -10cm] file {../dat/cm/resample_lagrange_ex_fs_c.cm};
+	\draw[red] plot[ycomb, mark=*, mark options={fill=red},mark size = 0.5mm, xshift =  0cm, yshift =  -10cm] file {../dat/cm/resample_spline_ex_fs_y.cm};
 	
 	
+	\draw 	 (-0.5cm,	-17.2cm)	   rectangle (16.5cm, -12.8cm);
+	\draw 	 (-0.5cm,	-15cm)	   -- (16.5cm, -15cm);
+	\draw[blue]  plot[ycomb, mark=*, mark options={fill=blue},mark size = 0.5mm, xshift =  0cm, yshift =  -15cm] file {../dat/cm/resample_spline_ex_fs_el.cm};
+	\draw[red] plot[ycomb, mark=*, mark options={fill=red},mark size = 0.5mm, xshift =  0cm, yshift =  -15cm] file {../dat/cm/resample_spline_ex_fs_es.cm};
 	
-	\draw (0,  -12.6) node[below]{$0$} -- (0, -12.4) -- (16, -12.4) -- (16, -12.6) node[below]{2};
-	\draw (8,  -12.6) node[below]{$1$} -- (8, -12.4);
-	\draw (4,  -12.6) node[below]{$0.5$} -- (4, -12.4);
-	\draw (12, -12.6) node[below]{$1.5$} -- (12, -12.4);
 	
-	\draw (2 , -12.6) node[below]{$0.25$} -- (2 , -12.4);
-	\draw (6 , -12.6) node[below]{$0.75$} -- (6 , -12.4);
-	\draw (10, -12.6) node[below]{$1.25$} -- (10, -12.4);
-	\draw (14, -12.6) node[below]{$1.75$} -- (14, -12.4);
+	\draw (0,  -17.6) node[below]{$0$} --     (0, -17.4) -- (16, -17.4) -- (16, -17.6) node[below]{2};
+	\draw (8,  -17.6) node[below]{$1$} --     (8, -17.4);
+	\draw (4,  -17.6) node[below]{$0.5$}   -- (4, -17.4);
+	\draw (12, -17.6) node[below]{$1.5$}  -- (12, -17.4);	
+	\draw (2 , -17.6) node[below]{$0.25$} -- (2 , -17.4);
+	\draw (6 , -17.6) node[below]{$0.75$} -- (6 , -17.4);
+	\draw (10, -17.6) node[below]{$1.25$} -- (10, -17.4);
+	\draw (14, -17.6) node[below]{$1.75$} -- (14, -17.4);
 	
 	
 	\draw (-0.9, 2) node[left]{$1$} -- (-0.7, 2) -- (-0.7, -2) -- (-0.9, -2) node[left]{$-1$};
@@ -56,16 +60,27 @@
 	\draw (-0.9, -4)  node[left]{$0.5$} -- (-0.7,  -4);
 	\draw (-0.9, -6) node[left]{$-0.5$} -- (-0.7,  -6);
 	
+	
+	\draw (-0.9, -8) node[left]{$1$}    -- (-0.7,  -8) -- (-0.7, -12) -- (-0.9, -12) node[left]{$-1$};
+	\draw (-0.9, -10)  node[left]{$0$}   -- (-0.7,  -10);
+	\draw (-0.9, -9)  node[left]{$0.5$} -- (-0.7,  -9);
+	\draw (-0.9, -11) node[left]{$-0.5$} -- (-0.7,  -11);
+	
 		
-	\draw (-0.9, -8) node[left]{$0.2$}    -- (-0.7,  -8) -- (-0.7, -12) -- (-0.9, -12) node[left]{$-0.2$};
-	\draw (-0.9, -10) node[left]{$0$}   -- (-0.7,  -10);
+	\draw (-0.9, -13) node[left]{$0.15$}    -- (-0.7,  -13) -- (-0.7, -17) -- (-0.9, -17) node[left]{$-0.15$};
+	\draw (-0.9, -15) node[left]{$0$}   -- (-0.7,  -15);
 
 	
-	\node at (8, -13.5) {время, мc};
+	\node at (8, -18.5) {время, мc};
+	
+	
+	\node at (2, -13.5) {$ \textrm{NMSE} \big[ e_L(k) \big] = 0.088989$};
+	\node at (8, -13.5) {$ \textrm{NMSE} \big[ e_S(k) \big] = 0.089870$};
 	
 	\node[rotate=90] at (-2, 0)  {$s(n)$};
-	\node[rotate=90] at (-2, -5) {$y(k)$}; 
-	\node[rotate=90] at (-2, -10) {$e(k)$}; 
+	\node[rotate=90] at (-2, -5) {$y_L(k)$}; 
+	\node[rotate=90] at (-2, -10) {$y_S(k)$}; 
+	\node[rotate=90] at (-2, -15) {$e_L(k)$, $e_S(k)$}; 
 	
 \end{tikzpicture}
 

@@ -1,0 +1,53 @@
+% \begin{figure}[ht!]
+%\begin{center}
+\documentclass [tikz, border = 2mm] {standalone}
+
+%common figure styles
+\input{fig_header.tex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+
+
+
+	\draw[->] 	 (-1cm,	6cm)	   -- (16cm, 6cm)	node[below] {$n$};
+	\draw[->] 	 (0cm,	6cm)	   -- (0cm,  8cm)	node[left] {$s(n)$};
+	
+	\draw[-]  (0, 6)  node[below] {\color{black}$0$} -- (0,   1  +6)  node[left]    {$s(0)$};   \fill (0,1    +6) circle(0.07cm) ;
+	\draw[-]  (2, 6)  node[below] {\color{black}$1$} -- (2,   2  +6)  node[above, yshift=1mm]    {$s(1)$};   \fill (2,2    +6) circle(0.07cm) ;
+	\draw[-]  (4, 6)  node[below] {\color{black}$2$} -- (4,   2  +6)  node[above, yshift=1mm]    {$s(2)$};   \fill (4,2    +6) circle(0.07cm) ;
+	\draw[-]  (6, 6)  node[below] {\color{black}$3$} -- (6,   1  +6)  node[above, yshift=1mm]    {$s(3)$};   \fill (6,1    +6) circle(0.07cm) ;
+	\draw[-]  (8, 6)  node[above] {\color{black}$4$} -- (8,-0.5  +6)  node[below, yshift=-1mm]   {$s(4)$};   \fill (8,-0.5 +6) circle(0.07cm) ;
+	\draw[-]  (10,6) node[above]  {\color{black}$5$} -- (10, -1  +6)  node[below, yshift=-1mm]   {$s(5)$};   \fill (10,-1  +6) circle(0.07cm) ;
+	\draw[-]  (12,6) node[above]  {\color{black}$6$} -- (12, -2  +6)  node[below, yshift=-1mm]   {$s(6)$};	 \fill (12,-2  +6) circle(0.07cm) ;
+	\draw[-]  (14,6) node[above]  {\color{black}$7$} -- (14, -0.5+6)  node[below, yshift=-1mm]   {$s(7)$};   \fill (14,-0.5+6) circle(0.07cm) ;
+
+	\node at (7.5, 4) {a)};
+	
+	
+	\draw[->] 	 (0cm,	0cm)	   -- (0cm, 3cm)	node[left] {$y(k)$};
+	\draw[->] 		(-1cm,	0cm)	   -- (16cm, 0cm)	node[below] {$k$};
+	\draw[red] plot[ycomb, mark=*, mark options={fill=red},mark size = 0.5mm, xshift =  0cm, yshift =  0cm] file {../dat/cm/resample_spline_interp_y.cm};
+
+	
+	\draw  (0,0)  node[below] {\color{black}$0$} -- (0,1)      node[left]{$y(0)$};	\fill (0,1) circle(0.07cm) ;
+	\draw  (2,0)  node[below] {\color{black}$10$} -- (2,2)     node[above left]{$y(P)$};	\fill (2,2) circle(0.07cm) ;
+	\draw  (4,0)  node[below] {\color{black}$20$} -- (4,2) 	   node[above right]{$y(2 \cdot P)$};	\fill (4,2) circle(0.07cm) ;
+	\draw  (6,0)  node[below] {\color{black}$30$} -- (6,1) 	   node[above right]{$y(3 \cdot P)$};	\fill (6,1) circle(0.07cm) ;
+	\draw  (8,0)  node[above] {\color{black}$40$} -- (8,-0.5)  node[below left]{$y(4 \cdot P)$};	\fill (8,-0.5) circle(0.07cm) ;
+	\draw  (10,0) node[above] {\color{black}$50$} -- (10,-1)   node[below left]{$y(5 \cdot P)$};	\fill (10,-1) circle(0.07cm) ;
+	\draw  (12,0) node[above] {\color{black}$60$} -- (12,-2)   node[below right]{$y(6 \cdot P)$};	\fill (12,-2) circle(0.07cm) ;
+	\draw  (14,0) node[above] {\color{black}$70$} -- (14,-0.5) node[below right]{$y(7 \cdot P)$};	\fill (14,-0.5) circle(0.07cm) ;
+	
+	\node at (7.5, -2) {b)};
+	
+	\node at (11, 2) {$P = 10$, $Q = 1$, $x_0 = 0$, $N = 8$, $K = 71$};
+	
+\end{tikzpicture}
+
+\end {document}
+
+

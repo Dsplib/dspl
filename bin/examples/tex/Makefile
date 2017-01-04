@@ -53,9 +53,10 @@ FIG	=	fig/complex_plane.pdf\
 		fig/resample_spline_ex_fs.pdf\
 		fig/resample_spline_filter_interp.pdf\
 		fig/resample_spline_filter_fd_freq.pdf\
+		fig/resample_spline_interp_y.pdf\
         fig/resample_spline_opt.pdf\
 		fig/resample_spline_polynomials.pdf\
-
+        fig/resample_spline_table_frac_delay.pdf\
 		
 
 all: figures clean

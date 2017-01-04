@@ -5,7 +5,7 @@ mingw32-make
 
 Cd bin/examples
 
-for  %%i in (*.exe) do start /wait "" "%%i"
+for  %%i in (*.exe) do  "%%i"
 
 
 Cd tex

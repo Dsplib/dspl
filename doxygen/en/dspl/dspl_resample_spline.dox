@@ -1,7 +1,7 @@
 /*!
 	\ingroup RESAMPLING_GROUP
-	\fn	int dspl_resample_lagrange(double *s, int n, int p, int q, double frd, double **z, int *nz)
-	\brief Real signal digital resampling by using polynomial Lagrange interpolation.
+	\fn	int dspl_resample_spline(double *s, int n, int p, int q, double frd, double **z, int *nz)
+	\brief Real signal digital resampling by using polynomial spline interpolation.
 	
 	Function convert input signal `s` samplerate  `p/q` times and adds fractional delay from 0 to 1.	
 	

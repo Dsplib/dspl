@@ -1,0 +1,65 @@
+/*!
+\file resample_spline_filter_frac_delay.c 
+\brief \ref resample_spline_filter_frac_delay.c "Расчет характеристик фильтра Фарроу компенсации дробной задержки на основе сплайнов Эрмита"		
+*/
+
+
+
+/*! 
+\example resample_spline_filter_frac_delay.c  
+Данная программа производит расчет семейства характеристик фильтра Фарроу компенсации дробной задержки от 0 до 1.
+Использует фильтр Фарроу на основе кубической сплайн-интерполяции.
+
+Производится расчет реакции фильтра
+на единичный импульс и построение амплитудно-частотной характеристики (АЧХ) и 
+группового времени запаздывания (ГВЗ) полученных  фильтров.
+
+Результаты работы программы сохраняются в файлы.<BR><BR>
+
+Файлы хранящие отсчеты импульсной характеристики фильтров<BR>
+
+\verbatim
+
+dat/resample_spline_filter_fd_time_0.0.txt
+dat/resample_spline_filter_fd_time_0.1.txt
+dat/resample_spline_filter_fd_time_0.2.txt
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+dat/resample_spline_filter_fd_time_0.9.txt
+ 
+\endverbatim
+ 
+ 
+
+
+ Файлы данных АЧХ фильтров:<BR>
+ 
+ \verbatim
+ 
+dat/resample_spline_filter_fd_mag_0.0.txt
+dat/resample_spline_filter_fd_mag_0.1.txt
+dat/resample_spline_filter_fd_mag_0.2.txt
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  
+dat/resample_spline_filter_fd_mag_0.9.txt
+  
+ \endverbatim
+ 
+
+ Файлы данных ГВЗ фильтров:<BR>
+ 
+ \verbatim
+dat/resample_spline_filter_fd_mag_0.0.txt
+dat/resample_spline_filter_fd_mag_0.1.txt
+dat/resample_spline_filter_fd_mag_0.2.txt
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  
+dat/resample_spline_filter_fd_mag_0.9.txt
+  
+ \endverbatim
+ 
+ 
+АЧХ и ГВЗ построенные по сохранённым данным показаны на рисунке красным цветом (синим показаны АЧХ и ГВЗ фильтров на основе полиномиальной интерполяции Лагранжа).
+
+\image html resample_spline_ex_filter_fd_freq.png
+
+ 
+ 
+*/
