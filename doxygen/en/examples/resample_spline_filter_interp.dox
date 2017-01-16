@@ -1,0 +1,31 @@
+/*!
+\file resample_spline_filter_interp.c  
+\brief \ref resample_spline_filter_interp.c  "The impulse response and magnitude calculation for the Farrow filter interpolator on the basis of cubic splines "		
+*/
+
+
+
+/*! 
+\example resample_spline_filter_interp.c  
+This program is example of the impulse response and magnitude calculation for the Farrow 
+filter interpolator on the basis of piecewise cubic splines. 
+
+Result filter impulse response and magnitude is saved to files:<BR><BR>
+
+
+`dat/resample_spline_filter_time.txt` - the Farrow filter interpolator impulse response.<BR>
+
+`dat/resample_spline_filter_freq.txt` - the Farrow filter magnitude.<BR><BR>
+
+Farrow filter impulse response \f$h(n)\f$ and magnitude
+\f$\left| H\left( \operatorname{e}^{j \cdot \omega}\right)\right|^2\f$, 
+can be plotted as its showed on the follow figure:<BR>
+
+\image html resample_spline_ex_filter_interp.png
+
+ Red curve  - Farrow filter on the basis of spline interpolation.<BR>
+ Blue curve - Farrow filter on the basis of Lagrange interpolation.<BR>
+
+ 
+ 
+*/

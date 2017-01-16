@@ -1,0 +1,62 @@
+/*!
+\file resample_spline_filter_frac_delay.c 
+\brief \ref resample_spline_filter_frac_delay.c "Calculating characteristics of Farrow filter on the basis of spline interpolation to compensate the fractional delay."		
+*/
+
+
+
+/*! 
+\example resample_spline_filter_frac_delay.c  
+This program calculates the characteristics of Farrow filter to compensate the fractional delay from 0 to 1. 
+It uses Farrow filter on the basis of spline interpolation.
+
+It calculates the filter reaction to one delta-impulse and plots the filter magnitude and the group delay.
+
+Operation results of the program are saved in files.<BR><BR>
+
+Files saving samples of filter impulse response characteristic<BR>
+
+\verbatim
+
+dat/resample_spline_filter_fd_time_0.0.txt
+dat/resample_spline_filter_fd_time_0.1.txt
+dat/resample_spline_filter_fd_time_0.2.txt
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+dat/resample_spline_filter_fd_time_0.9.txt
+ 
+\endverbatim
+ 
+
+ Filter magnitude datafiles:<BR>
+ 
+ \verbatim
+ 
+dat/resample_spline_filter_fd_mag_0.0.txt
+dat/resample_spline_filter_fd_mag_0.1.txt
+dat/resample_spline_filter_fd_mag_0.2.txt
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  
+dat/resample_spline_filter_fd_mag_0.9.txt
+  
+ \endverbatim
+ 
+
+Filter groupdelay datafiles:<BR>
+ 
+ \verbatim
+dat/resample_spline_filter_fd_mag_0.0.txt
+dat/resample_spline_filter_fd_mag_0.1.txt
+dat/resample_spline_filter_fd_mag_0.2.txt
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  
+dat/resample_spline_filter_fd_mag_0.9.txt
+  
+ \endverbatim
+ 
+ 
+Filter magntudes and group delays plotted according to the saved data are shown in the figure:
+
+\image html resample_spline_ex_filter_fd_freq.png
+
+ Red curve  - Farrow filter on the basis of spline interpolation.<BR>
+ Blue curve - Farrow filter on the basis of Lagrange interpolation.<BR>
+ 
+*/

@@ -1,0 +1,37 @@
+/*!
+\file resample_spline_ex_fs.c 
+\brief \ref resample_spline_ex_fs.c "Fractional sample rate conversion by using the Farrow Filter based on piecewise cubic and spline interpolation"		
+*/
+
+
+
+/*! 
+\example resample_spline_ex_fs.c 
+\brief Fractional sample rate conversion by using the Farrow Filter based on piecewise cubic interpolation and spline interpolation.
+
+The input signal has frequency \f$ f = 6\f$ kHz
+
+ \f[ s(n) = \sin \left(2\pi \cdot \frac{n}{F_{\textrm{s}}}  \cdot f_0\right),  n = 0 \ldots N-1\f]
+
+ 
+contains  \f$ N = 54\f$ samples, with sample rate \f$F_{\textrm{s}} = 26.4\f$ kHz.<BR>
+
+This program converts input signal sample rate to  \f$ \frac{P}{Q}\f$ times, 
+\f$ P = 20\f$, \f$ Q = 11\f$.<BR>
+
+Input signal and signal after resampling are saved to files:<BR>
+
+`dat/resample_spline_ex_fs_c.txt`   - continuous input signal (sample rate 264 kHz);
+`dat/resample_spline_ex_fs_s.txt`   - input signal (sample rate 26.4 kHz);<BR>
+`dat/resample_spline_ex_fs_z.txt`   - output signal $y_L(k)$ by using piecewise cubic Lagrange interpolation (sample rate 48 kHz);<BR>
+`dat/resample_spline_ex_fs_y.txt`   - output signal $y_S(k)$ by using spline interpolation (sample rate 48 kHz);<BR>
+`dat/resample_spline_ex_fs_es.txt`  - error signal $e_L(k)$ by using piecewise cubic Lagrange interpolation (sample rate 48 kHz);<BR>
+`dat/resample_spline_ex_fs_el.txt`  - error signal $e_S(k)$ by using piecewise cubic Lagrange interpolation (sample rate 48 kHz);<BR>
+
+
+Signals we can see on the follow plot: <BR>
+ 
+\image html resample_spline_ex_fs.png
+ 
+
+*/

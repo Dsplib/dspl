@@ -1,0 +1,28 @@
+/*!
+\file resample_spline_ex_interp.c 
+\brief \ref resample_spline_ex_interp.c "Example of using Farrow filter based on spline interpolation for digital signal interpolation."		
+*/
+
+
+
+/*! 
+\example resample_spline_ex_interp.c 
+\brief Example of using Farrow filter based on spline interpolation for digital signal interpolation.
+
+
+The pickup signal \f$ s(n), \f$ \f$ n = 0 \ldots 7, \f$ contains 8 samples as it is shown in the figure below.<BR>
+
+This program recalculates the pickup signal \f$ s(n) \f$ into the signal \f$ y(k), \f$
+\f$ k = 0 \ldots 70, \f$ which is interpolated concerning \f$ s(n) \f$ into \f$ P = 10 \f$
+times.<BR>
+
+The pickup signal is saved in `dat/resample_spline_interp_s.txt`.<BR>
+The interpolated signal at the output of Farrow filter is saved in`dat/resample_spline_interp_y.txt`.<BR>
+
+The pickup and interpolated signals saved in `dat/resample_spline_interp_s.txt` and  `dat/resample_spline_interp_y.txt`, 
+are shown in the following figure.
+	
+
+\image html resample_spline_ex_interp.png
+ 
+*/

@@ -68,10 +68,11 @@ figures: $(FIG)
 #DFT
 fig/%.pdf:%.tex fig_header.tex 	
 	$(LATEX)  $< -output-directory=$(FIG_DIR) $@
-  
+	cp  $< $@
 	
 
 clean:
+	rm -f *.pdf
 	rm -f *.aux
 	rm -f *.bbl
 	rm -f *.log

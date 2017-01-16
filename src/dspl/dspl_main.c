@@ -27,7 +27,7 @@
 #include "dspl_main.h"
 
 
-#define DSPL_VERSION 0x0000100A
+#define DSPL_VERSION 0x00001101
 
 
 
@@ -47,7 +47,7 @@ DSPL_API int dspl_get_version(int printFlag)
 		vl = (DSPL_VERSION & 0x000000FF); 
 		printf("\n\n     D S P L\n");                          
 		printf("     version %.2d.%.2d (%s)\n", vh, vl,  __DATE__);
-		printf("     Copyright (c) 2015, 2016  Sergey Bakhurin\n");
+		printf("     Copyright (c) 2015, 2016, 2017  Sergey Bakhurin\n");
 		printf("     home page: www.dsplib.org\n\n");		
 	}
 	return DSPL_VERSION;

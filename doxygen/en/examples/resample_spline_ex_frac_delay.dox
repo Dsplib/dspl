@@ -1,0 +1,46 @@
+/*!
+\file resample_spline_ex_frac_delay.c 
+\brief \ref resample_spline_ex_frac_delay.c "Example of using Farrow filter on the basis of spline interpolation to compensate the signal fractional delay"		
+*/
+
+
+
+/*! 
+\example resample_spline_ex_frac_delay.c 
+\brief Example of using Farrow filter on the basis of spline interpolation to compensate the signal fractional delay.
+
+
+The pickup signal \f$ s(n), \f$ \f$ n = 0 \ldots 7, \f$ contains 8 samples as it is shown in the figure below.<BR>
+
+\image html resample_lagrange_frac_delay_in.png
+
+
+This program recalculates the pickup signal \f$ s(n) \f$ into the signal \f$ y(k), \f$
+\f$ k = 0 \ldots 7, \f$ which is delayed concerning \f$ s(n) \f$ by the value \f$ x_0 = 0.25 \f$
+of the sampling period.<BR>
+
+The resampling process is read out in the table:<BR>
+
+
+\verbatim
+
+ ----------------------------------------------------------------------------------------------------------
+ | k     xk    n   delta | s(n-3)  s(n-2)  s(n-1)  s(n) |     a0       a1       a2        a3   |   y(k)   |
+ ----------------------------------------------------------------------------------------------------------
+ | 0   -0.25   1    0.25 |    0.0     0.0    1.0    2.0 |   1.0000    1.0000  -0.5000  -0.5000 |   0.7266 |
+ | 1    0.75   2    0.25 |    0.0     1.0    2.0    2.0 |   2.0000    0.5000  -1.0000  -0.5000 |   1.8203 |
+ | 2    1.75   3    0.25 |    1.0     2.0    2.0    1.0 |   2.0000   -0.5000  -0.5000   0.0000 |   2.0938 |
+ | 3    2.75   4    0.25 |    2.0     2.0    1.0   -0.5 |   1.0000   -1.2500   0.0000   0.2500 |   1.3086 |
+ | 4    3.75   5    0.25 |    2.0     1.0   -0.5   -1.0 |  -0.5000   -1.0000   1.2500   0.7500 |  -0.1836 |
+ | 5    4.75   6    0.25 |    1.0    -0.5   -1.0   -2.0 |  -1.0000   -0.7500  -1.0000  -0.7500 |  -0.8633 |
+ | 6    5.75   7    0.25 |   -0.5    -1.0   -2.0   -0.5 |  -2.0000    0.2500   2.7500   1.5000 |  -1.9141 |
+ | 7    6.75   8    0.25 |   -1.0    -2.0   -0.5    0.0 |  -0.5000    1.0000  -2.2500  -1.7500 |  -0.8633 |
+ ----------------------------------------------------------------------------------------------------------
+ 
+ \endverbatim
+	
+ 
+*/
+
+
+
