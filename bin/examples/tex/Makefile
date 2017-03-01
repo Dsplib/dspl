@@ -53,11 +53,12 @@ FIG	=	fig/complex_plane.pdf\
 		fig/resample_spline_ex_fs.pdf\
 		fig/resample_spline_filter_interp.pdf\
 		fig/resample_spline_filter_fd_freq.pdf\
+		fig/resample_spline_frac_delay_out.pdf\
 		fig/resample_spline_interp_y.pdf\
         fig/resample_spline_opt.pdf\
 		fig/resample_spline_polynomials.pdf\
         fig/resample_spline_table_frac_delay.pdf\
-		
+		fig/win_spectral_leakage.pdf\
 
 all: figures clean
 
@@ -67,12 +68,11 @@ figures: $(FIG)
 
 #DFT
 fig/%.pdf:%.tex fig_header.tex 	
-	$(LATEX)  $< -output-directory=$(FIG_DIR) $@
-	cp  $< $@
+	$(LATEX)   -output-directory=$(FIG_DIR) $<
+	
 	
 
 clean:
-	rm -f *.pdf
 	rm -f *.aux
 	rm -f *.bbl
 	rm -f *.log

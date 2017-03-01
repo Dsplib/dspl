@@ -1,0 +1,95 @@
+\documentclass[tikz, border = 3mm]{standalone}
+\input{fig_header.tex}
+\pgfplotsset{width=10cm, height = 5.5cm}
+
+
+
+\begin{document}
+\begin{tikzpicture}
+
+%\draw[white] (-2,-1) rectangle (20,7.5);
+
+	\begin{axis}[xshift = 0cm, xlabel={$n$},
+		ylabel={$s_0(n)$},
+		xmin =  0,
+		xmax =  50,
+		ymin = -1.1,
+		ymax =  1.1,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=3]
+		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_lekage_s0_time.txt};	
+		
+		\addplot + [draw=blue!50!white, mark=none] table {../dat/win_spectral_lekage_s0c_time.txt};
+	\end{axis}
+
+	\begin{axis}[xshift = 11cm, xlabel={$f(k),$ Гц},
+		ylabel={$\left| S_0\left( k \right) \right|$},
+		ymin = 0,
+		ymax = 28,
+		xmin = 0,
+		xmax = 500,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=4]
+		\addplot + [ycomb, draw=blue,  mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_lekage_s0_freq.txt};
+	\end{axis}
+	
+	
+	\begin{axis}[xshift = 0cm, yshift = -6cm, xlabel={$n$},
+		ylabel={$s_1(n)$},
+		xmin =  0,
+		xmax =  50,
+		ymin = -1.1,
+		ymax =  1.1,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=3]
+		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_lekage_s1_time.txt};
+		\addplot + [draw=blue!50!white, mark=none] table {../dat/win_spectral_lekage_s1c_time.txt};
+	\end{axis}
+
+	\begin{axis}[xshift = 11cm, yshift = -6cm, xlabel={$f(k),$ Гц},
+		ylabel={$\left| S_1\left( k \right) \right|$},
+		ymin = 0,
+		ymax = 28,
+		xmin = 0,
+		xmax = 500,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=4]
+		\addplot + [ycomb, draw=blue,  mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_lekage_s1_freq.txt};
+	\end{axis}
+
+	
+%		xtick={0,
+%		0.31415926535897932384626433832795,
+%		0.6283185307179586476925286766559,
+%		0.94247779607693797153879301498385,
+%		1.2566370614359172953850573533118,
+%		1.5707963267948966192313216916398,
+%		1.8849555921538759430775860299677,
+%		2.1991148575128552669238503682957,
+%		2.5132741228718345907701147066236,
+%		2.8274333882308139146163790449516},
+%	xticklabels={$0$,
+%		${\pi}\frac{10}$,
+%		${2\pi}\frac{10}$,
+%		${3\pi}\frac{10}$,
+%		${4\pi}\frac{10}$,
+%		${\pi}\frac{2}$,
+%		${6\pi}\frac{10}$,
+%		${7\pi}\frac{10}$,
+%		${8\pi}\frac{10}$,
+%		${9\pi}\frac{10}$},
+	
+	
+	
+	
+	
+	\end{tikzpicture}
+\end{document}

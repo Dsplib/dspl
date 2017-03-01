@@ -37,28 +37,63 @@
 
 #define DSPL_OK						0
 
-/* Error codes */
-#define DSPL_ERROR_ELLIP_K				0x00008000
+/* Error codes 									*/
+/* A									0x0001XXXX*/
+/* B									0x0002XXXX*/
+/* C									0x0003XXXX*/
+/* D									0x0004XXXX*/
+/* E									0x0005XXXX*/
+#define DSPL_ERROR_ELLIP_K				0x00050100
+/* F									0x0006XXXX*/
+#define	DSPL_ERROR_FFT_SIZE				0x00060100	
+#define DSPL_ERROR_FILTER_A0			0x00060200
+#define	DSPL_ERROR_FILTER_ORD			0x00060300
+#define	DSPL_ERROR_FILTER_RP			0x00060400	
+#define	DSPL_ERROR_FILTER_RS			0x00060500 
+#define	DSPL_ERROR_FILTER_WP			0x00060600 
+#define DSPL_ERROR_FNAME				0x00060700	
+#define DSPL_ERROR_FOPEN				0x00060800
+#define DSPL_ERROR_FS					0x00060900
+/* G									0x0007XXXX*/
+/* H									0x0008XXXX*/
+/* I									0x0009XXXX*/
+/* J									0x0010XXXX*/
+/* K									0x0011XXXX*/
+/* L									0x0012XXXX*/
+/* M									0x0013XXXX*/
+/* N									0x0014XXXX*/
+/* O									0x0015XXXX*/
+#define DSPL_ERROR_OVERLAP				0x00150100
+/* P									0x0016XXXX*/
+#define DSPL_ERROR_POLY_ORD				0x00160100
+#define DSPL_ERROR_PTR					0x00160200
+/* Q									0x0017XXXX*/
+/* R									0x0018XXXX*/
+#define DSPL_ERROR_RAND_SIGMA			0x00180100
+#define DSPL_ERROR_RESAMPLE_FRAC_DELAY	0x00180200
+#define	DSPL_ERROR_RESAMPLE_RATIO		0x00180300
+#define	DSPL_ERROR_RESAMPLE_SIZE		0x00180400
+/* S									0x0019XXXX*/
+#define DSPL_ERROR_SIZE					0x00190100
+/* T									0x0020XXXX*/
+/* U									0x0021XXXX*/
+#define DSPL_ERROR_UNWRAP				0x00210100
+/* V									0x0022XXXX*/
+/* W									0x0023XXXX*/
+#define	DSPL_ERROR_WIN_TYPE				0x00230100
+/* X									0x0024XXXX*/
+/* Y									0x0025XXXX*/
+/* Z									0x0026XXXX*/
+
+
 //#define	DSPL_ERROR_FFT_NTHREADS		0x00008800	
-#define	DSPL_ERROR_FFT_SIZE				0x00009000	
-#define DSPL_ERROR_FILTER_A0			0x00010000
-#define	DSPL_ERROR_FILTER_ORD			0x00012000
-#define	DSPL_ERROR_FILTER_RP			0x00012500	
-#define	DSPL_ERROR_FILTER_RS			0x00012550 
-#define	DSPL_ERROR_FILTER_WP			0x00012560 
-#define DSPL_ERROR_FNAME				0x00020000	
-#define DSPL_ERROR_FOPEN				0x00025000
-#define DSPL_ERROR_FS					0x00026000
-#define DSPL_ERROR_OVERLAP				0x00070000
-#define DSPL_ERROR_POLY_ORD				0x00090000
-#define DSPL_ERROR_PTR					0x00100000
-#define DSPL_ERROR_RAND_SIGMA			0x00110000
-#define DSPL_ERROR_RESAMPLE_FRAC_DELAY	0x00120000
-#define	DSPL_ERROR_RESAMPLE_RATIO		0x00102100
-#define	DSPL_ERROR_RESAMPLE_SIZE		0x00102200
-#define DSPL_ERROR_SIZE					0x00400000
-#define DSPL_ERROR_UNWRAP				0x00450000
-#define	DSPL_ERROR_WIN_TYPE				0x00500000
+
+
+
+
+
+
+
 	
 	
 /* data */	
@@ -535,7 +570,7 @@ typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
 
 
 
-extern p_dspl_acos_cmplx				dspl_acos_cmplx			;	/* ru, en */
+extern p_dspl_acos_cmplx				dspl_acos_cmplx			;	/* ru, en, v_ */
 extern p_dspl_ap2bpass					dspl_ap2bpass			;	/* ru, en */
 extern p_dspl_ap2bstop					dspl_ap2bstop			;	/* ru, en */
 extern p_dspl_ap2high					dspl_ap2high			;	/* ru, en */
