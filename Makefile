@@ -95,7 +95,9 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/resample_spline_ex_interp.exe\
 			$(EXE_BIN_DIR)/resample_spline_filter_interp.exe\
 			$(EXE_BIN_DIR)/resample_spline_filter_frac_delay.exe\
-		    $(EXE_BIN_DIR)/win_spectral_leakage.exe\
+			$(EXE_BIN_DIR)/win_dtft.exe\
+			$(EXE_BIN_DIR)/win_dtft_conv.exe\
+		    	$(EXE_BIN_DIR)/win_spectral_leakage.exe\
 		
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipj.exe\
 			$(VER_BIN_DIR)/ver_dspl_ellipj_inv.exe\

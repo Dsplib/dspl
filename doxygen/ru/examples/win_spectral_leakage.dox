@@ -1,0 +1,50 @@
+/*!
+\file win_spectral_leakage.c  
+\brief \ref win_spectral_leakage.c  "Иллюстрация эффекта растекания спектра"		
+*/
+
+
+
+/*! 
+\example win_spectral_leakage.c  
+Данная программа иллюстрирует эффект растекания спектра ДПФ.
+
+Имеется два синусоидальных сигнала с частотами \f$f_0 = 200\f$ Гц и \f$f_1 = 210\f$ Гц. 
+Произведем дискретизацию данных сигналов с частотой \f$F_\textrm{s} = 1000\f$ Гц и возьмем две выборки \f$s_0(n)\f$ и \f$s_1(n),\f$ \f$n = 0 \ldots N-1\f$ по \f$N=50\f$ отсчетов:
+
+\f[
+s_0(n) = \sin \left( 2\pi\cdot\frac{f_0}{F_{\textrm{s}} } \cdot n \right),\textrm{ } n = 0\ldots N-1;
+\f]
+\f[
+s_1(n) = \sin \left( 2\pi\cdot\frac{f_1}{F_{\textrm{s}}} \cdot n \right),\textrm{ } n = 0\ldots N-1.
+\f]
+
+
+
+Программа моделирует сигналы \f$s_0(n)\f$ и \f$s_1(n)\f$, рассчитывает \f$N=50-\f$точечные ДПФ сигналов \f$s_0(n)\f$ и \f$s_1(n),\f$ и сохраняет в файлы амплитудные спектры \f$\left|S_0(k)\right|\f$ и \f$\left|S_1(k)\right|\f$, \f$k = 0 \ldots N-1\f$. 
+
+Результаты работы программы:<BR><BR>
+
+
+`dat/win_spectral_lekage_s0_time.txt` - отсчеты сигнала \f$s_0(n)\f$ (частота дискретизации \f$F_{\textrm{s}} = 1000\f$ Гц).<BR>
+
+`dat/win_spectral_lekage_s1_time.txt` - отсчеты сигнала \f$s_1(n)\f$  (частота дискретизации \f$F_{\textrm{s}} = 1000\f$ Гц).<BR>
+	
+`dat/win_spectral_lekage_s0c_time.txt` - отсчеты  "непрерывного сигнала" \f$s_0\f$ (частота дискретизации \f$F_{\textrm{s}} = 6000\f$ Гц).<BR>
+	
+`dat/win_spectral_lekage_s1c_time.txt` - отсчеты  "непрерывного сигнала" \f$s_1\f$ (частота дискретизации \f$F_{\textrm{s}} = 6000\f$ Гц).<BR>
+	
+`dat/win_spectral_lekage_s0_freq.txt` - амплитудный спектр \f$\left|S_0(k)\right|\f$ сигнала \f$s_0(n)\f$.<BR>
+
+`dat/win_spectral_lekage_s1_freq.txt` - амплитудный спектр \f$\left|S_1(k)\right|\f$ сигнала \f$s_1(n)\f$.<BR>
+
+Рассчитанные данные приведены на рисунке 
+
+
+\image html win_spectral_leakage_introduction.png
+
+
+
+ 
+ 
+*/

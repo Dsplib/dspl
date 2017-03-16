@@ -49,6 +49,7 @@ p_dspl_ellip_cd_cmplx			dspl_ellip_cd_cmplx		;
 p_dspl_ellip_sn_cmplx 			dspl_ellip_sn_cmplx		;
 p_dspl_ellipk					dspl_ellipk				;
 p_dspl_fft						dspl_fft		    	;
+p_dspl_fft_abs					dspl_fft_abs			;
 p_dspl_fft_shift				dspl_fft_shift			;
 p_dspl_filter_iir				dspl_filter_iir	    	;
 p_dspl_fir_lpf					dspl_fir_lpf			;
@@ -231,6 +232,11 @@ HINSTANCE	dspl_load()
 	if(!dspl_fft)
 		goto error_proc;
 	
+	
+	func_name = "dspl_fft_abs";
+	dspl_fft_abs = (p_dspl_fft_abs) GetProcAddress(hDSPL, func_name);
+	if(!dspl_fft_abs)
+		goto error_proc;
 	
 	
 	func_name = "dspl_fft_shift";

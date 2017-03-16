@@ -228,6 +228,9 @@ DSPL_API int dspl_ellipk(double *pk, int k, double *pK);
 /* Fast Fourier Transform  (dspl_fft.c)*/
 DSPL_API int dspl_fft(	double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
 
+/* DFT Amplitude  (dspl_fft.c)*/
+DSPL_API int dspl_fft_abs(double* xR, double *xI, int n, void *pdspl,  double *S, int shift_flag);
+
 /* DFT shift  (dspl_fft.c)*/
 DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* yI);
 
@@ -448,6 +451,9 @@ typedef int (*p_dspl_ellipk)(double *pk, int k, double *pK);
 /* Fast Fourier Transform  (dspl_fft.c)*/
 typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
 
+/* DFT Amplitude  (dspl_fft.c)*/
+typedef int (*p_dspl_fft_abs)(double* xR, double *xI, int n, void *pdspl,  double *S, int shift_flag);
+
 /* DFT shift  (dspl_fft.c)*/
 typedef int(*p_dspl_fft_shift)(double* xR, double* xI, int n, double* yR, double* yI);
 
@@ -592,6 +598,7 @@ extern p_dspl_ellip_cd_cmplx			dspl_ellip_cd_cmplx		;   /* --, -- */
 extern p_dspl_ellip_sn_cmplx 			dspl_ellip_sn_cmplx		;	/* --, -- */
 extern p_dspl_ellipk					dspl_ellipk				;	/* ru, -- */
 extern p_dspl_fft						dspl_fft		    	;   /* ru, en */ 
+extern p_dspl_fft_abs					dspl_fft_abs			;
 extern p_dspl_fft_shift					dspl_fft_shift			;	/* ru, -- */
 extern p_dspl_filter_iir				dspl_filter_iir	    	;	/* ru, en */
 extern p_dspl_fir_lpf					dspl_fir_lpf			;	/* --, -- */

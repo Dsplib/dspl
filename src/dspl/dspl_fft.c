@@ -140,6 +140,7 @@ DSPL_API int dspl_fft(double* xR, double* xI, int n, void* pdspl, double* yR, do
     fftw_execute(pfft->plan); /* repeat as needed */
   
 	t = (double*)pfft->out;
+	
 	//#pragma omp parallel for shared(yR, yI, t) private(k)
 	for(k = 0; k < n; k++)
 	{
@@ -152,6 +153,81 @@ exit_label:
 	dspl_print_err(res, "dspl_fft");
 	return res;
 }
+
+
+
+
+
+
+DSPL_API int dspl_fft_abs(double* xR, double *xI, int n, void *pdspl,  double *S, int shift_flag)
+{
+	int k, res;
+	double *t;
+	
+	fft_t *pfft = ((dspl_t*)pdspl)->pfft;
+	
+	if(!xR || !S || !pdspl)
+	{
+		res = DSPL_ERROR_PTR;
+		goto exit_label;	
+	}
+	if(n<1)
+	{
+		res = DSPL_ERROR_SIZE;
+		goto exit_label;	
+	}
+	
+	//omp_set_dynamic(1);      // запретить библиотеке openmp менять число потоков во время исполнения
+  //omp_set_num_threads(2); // установить число потоков в 10
+	
+	//fftw_plan_with_nthreads(8);
+	res = dspl_fft_create(n, pfft);
+	if(res!=DSPL_OK)
+		goto exit_label;
+	
+	
+	t = (double*)(pfft->in);
+	if(xI)
+	{	
+		
+		for(k = 0; k < n; k++)
+		{			
+			t[2*k]   = xR[k];
+			t[2*k+1] = xI[k];
+		}
+	}
+	else
+	{
+		//#pragma omp parallel for shared(xR, xI, t) private(k)
+		for(k = 0; k < n; k++)
+		{
+			t[2*k]   = xR[k];
+			t[2*k+1] = 0.0;
+		}
+	}
+
+    fftw_execute(pfft->plan); /* repeat as needed */
+  
+	t = (double*)pfft->out;
+	
+	//#pragma omp parallel for shared(yR, yI, t) private(k)
+	for(k = 0; k < n; k++)
+	{
+		S[k] = sqrt(t[2*k]*t[2*k] + t[2*k+1]*t[2*k+1]);
+	}
+	
+	if(shift_flag)
+		dspl_fft_shift(S, NULL, n, S, NULL);
+	
+	res = DSPL_OK;
+	
+exit_label:
+	dspl_print_err(res, "dspl_fft_abs");
+	return res;	
+	
+}
+
+
 
 
 

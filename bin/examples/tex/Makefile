@@ -49,15 +49,21 @@ FIG	=	fig/complex_plane.pdf\
 		fig/resample_lagrange_frac_delay_out.pdf\
 		fig/resample_lagrange_interp_y.pdf\
 		fig/resample_lagrange_opt.pdf\
-        fig/resample_lagrange_table_frac_delay.pdf\
+        	fig/resample_lagrange_table_frac_delay.pdf\
 		fig/resample_spline_ex_fs.pdf\
 		fig/resample_spline_filter_interp.pdf\
 		fig/resample_spline_filter_fd_freq.pdf\
 		fig/resample_spline_frac_delay_out.pdf\
 		fig/resample_spline_interp_y.pdf\
-        fig/resample_spline_opt.pdf\
+        	fig/resample_spline_opt.pdf\
 		fig/resample_spline_polynomials.pdf\
-        fig/resample_spline_table_frac_delay.pdf\
+        	fig/resample_spline_table_frac_delay.pdf\
+		fig/win_dtft_conv_s0_freq.pdf\
+		fig/win_dtft_conv_s0_time.pdf\
+		fig/win_dtft_conv_s1_freq.pdf\
+		fig/win_dtft_conv_s1_time.pdf\
+		fig/win_dtft_s0.pdf\
+		fig/win_dtft_s1.pdf\
 		fig/win_spectral_leakage.pdf\
 
 all: figures clean
