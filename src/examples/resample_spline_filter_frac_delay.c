@@ -54,7 +54,7 @@ int main()
 		dspl_writetxt(t,h,nh,fn);
 	
 		/* current fractional delay filter magnitude (dB) and group delay  */
-		dspl_freqz_resp(h, NULL, nh-1, w, K, H, NULL, GD);
+		dspl_freqz_resp(h, NULL, nh-1, w, K, DSPL_FLAG_LOG, H, NULL, GD);
 		
 		/*  save magnitude to file  */
 		memset(fn, 0, FN_LEN);

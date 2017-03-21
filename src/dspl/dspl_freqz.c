@@ -27,7 +27,7 @@
 /* freqz function */
 
 DSPL_API int dspl_freqz(double* b, double* a, int ord, 
-						double* w, int n, 
+						double* w, int n,
 						double *hR, double* hI)
 {
 
@@ -88,7 +88,7 @@ exit_label:
 
 
 DSPL_API int dspl_freqz_resp(double* b, double* a, int ord, 
-							 double* w, int n, 
+							 double* w, int n, int flag,
 							 double *h, double* phi, double* gd)
 {
 
@@ -126,32 +126,38 @@ DSPL_API int dspl_freqz_resp(double* b, double* a, int ord,
 
 	if(h)
 	{
-		for(k = 0; k < n; k++)
-			h[k] = 10.0 * log10(hR[k]*hR[k] + hI[k]*hI[k]);
+		if(flag & DSPL_FLAG_LOG)
+			for(k = 0; k < n; k++)
+				h[k] = 10.0 * log10(hR[k]*hR[k] + hI[k]*hI[k]);
+		else
+			for(k = 0; k < n; k++)
+				h[k] = sqrt(hR[k]*hR[k] + hI[k]*hI[k]);
 	}
 
 
 	if(phi)
 	{
-		phi0 = phi;
+		//phi0 = phi;
+		for(k = 0; k < n; k++)
+			phi[k] = atan2(hI[k], hR[k]);
+		
+		if(flag & DSPL_FLAG_UNWRAP)
+		{
+			res = dspl_unwrap(phi,  n, M_2PI, 0.7); 
+			if(res!=DSPL_OK)
+				goto  exit_label;
+		}
+	}
+
+	if(gd)
+	{
+		phi0 = (double*)malloc(n*sizeof(double));            
 		for(k = 0; k < n; k++)
 			phi0[k] = atan2(hI[k], hR[k]);
 		res = dspl_unwrap(phi0,  n, M_2PI, 0.7); 
 		if(res!=DSPL_OK)
 			goto  exit_label;
-	}
-
-	if(gd)
-	{
-		if(!phi0)
-		{
-			phi0 = (double*)malloc(n*sizeof(double));            
-			for(k = 0; k < n; k++)
-				phi0[k] = atan2(hI[k], hR[k]);
-			res = dspl_unwrap(phi0,  n, M_2PI, 0.7); 
-			if(res!=DSPL_OK)
-				goto  exit_label;
-		}
+		
 
 		dw = (double*)malloc(n*sizeof(double));
 		phi1 = (double*)malloc(n*sizeof(double));

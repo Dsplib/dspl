@@ -159,7 +159,7 @@ exit_label:
 
 
 
-DSPL_API int dspl_fft_abs(double* xR, double *xI, int n, void *pdspl,  double *S, int shift_flag)
+DSPL_API int dspl_fft_abs(double* xR, double *xI, int n, void *pdspl,  double *S, int flag)
 {
 	int k, res;
 	double *t;
@@ -211,12 +211,23 @@ DSPL_API int dspl_fft_abs(double* xR, double *xI, int n, void *pdspl,  double *S
 	t = (double*)pfft->out;
 	
 	//#pragma omp parallel for shared(yR, yI, t) private(k)
-	for(k = 0; k < n; k++)
+	
+	if(flag & DSPL_FLAG_LOG)
 	{
-		S[k] = sqrt(t[2*k]*t[2*k] + t[2*k+1]*t[2*k+1]);
+		for(k = 0; k < n; k++)
+		{
+			S[k] = 10.0*log10(t[2*k]*t[2*k] + t[2*k+1]*t[2*k+1]);
+		}
+	}
+	else
+	{
+		for(k = 0; k < n; k++)
+		{
+			S[k] = sqrt(t[2*k]*t[2*k] + t[2*k+1]*t[2*k+1]);
+		}
 	}
 	
-	if(shift_flag)
+	if(flag & DSPL_FLAG_FFT_SHIFT)
 		dspl_fft_shift(S, NULL, n, S, NULL);
 	
 	res = DSPL_OK;

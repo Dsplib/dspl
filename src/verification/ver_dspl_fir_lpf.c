@@ -35,14 +35,14 @@ int main()
 	ord = 131;
 	wp = 0.125;	
 	dspl_fir_lpf(ord, wp, DSPL_WIN_HAMMING, 0, h);
-	dspl_freqz_resp(h, NULL, ord, w, N, H, NULL, NULL);
+	dspl_freqz_resp(h, NULL, ord, w, N, DSPL_FLAG_LOG, H, NULL, NULL);
 	dspl_writebin(w, H, N, "dat/fir_lpf_odd_freq.bin");
 	dspl_writebin(h, NULL, ord+1, "dat/fir_lpf_odd_time.bin");
 	
 	ord = 132;
 	wp = 0.125;	
 	dspl_fir_lpf(ord, wp, DSPL_WIN_HAMMING, 0, h);
-	dspl_freqz_resp(h, NULL, ord, w, N, H, NULL, NULL);
+	dspl_freqz_resp(h, NULL, ord, w, N, DSPL_FLAG_LOG, H, NULL, NULL);
 	dspl_writebin(w, H, N, "dat/fir_lpf_even_freq.bin");
 	dspl_writebin(h, NULL, ord+1, "dat/fir_lpf_even_time.bin");
 

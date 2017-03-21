@@ -80,7 +80,8 @@ RES_OBJ = $(DLL_OBJ_DIR)/resource.o
 
 
 
-EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
+EXE_FILES =	        $(EXE_BIN_DIR)/cic_freqresp.exe\
+			$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/dft_freq_fig4.exe\
 			$(EXE_BIN_DIR)/hilbert_fft.exe\
 			$(EXE_BIN_DIR)/goertzel_dtmf.exe\
@@ -98,6 +99,7 @@ EXE_FILES =	$(EXE_BIN_DIR)/dft_freq_fig1.exe\
 			$(EXE_BIN_DIR)/win_dtft.exe\
 			$(EXE_BIN_DIR)/win_dtft_conv.exe\
 		    	$(EXE_BIN_DIR)/win_spectral_leakage.exe\
+			$(EXE_BIN_DIR)/win_spectral_leakage_time.exe\
 		
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipj.exe\
 			$(VER_BIN_DIR)/ver_dspl_ellipj_inv.exe\
@@ -112,7 +114,7 @@ VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipj.exe\
 
 PRF_FILES = $(PRF_BIN_DIR)/conv_performance.exe\
 			$(PRF_BIN_DIR)/fft_performance.exe\
-				 
+				                  
  
 
 COMMON_OBJS = $(OBJ_DIR)/dspl.o\

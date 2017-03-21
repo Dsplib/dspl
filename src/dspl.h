@@ -106,27 +106,31 @@
 
 
 /* window types */
-#define DSPL_WIN_MASK				0x0000FFFF
-#define	DSPL_WIN_BARTLETT			0x00000010
-#define	DSPL_WIN_BARTLETT_HANN		0x00000020
-#define	DSPL_WIN_BLACKMAN			0x00000030	
-#define	DSPL_WIN_BLACKMAN_HARRIS	0x00000040
-#define	DSPL_WIN_BLACKMAN_NUTTALL	0x00000050
-#define	DSPL_WIN_FLAT_TOP			0x00000060		
-#define	DSPL_WIN_GAUSSIAN			0x00000070
-#define	DSPL_WIN_HAMMING			0x00000080
-#define	DSPL_WIN_HANN				0x00000090
-#define	DSPL_WIN_LANCZOS			0x00000100
-#define	DSPL_WIN_NUTTALL			0x00000110	
-#define	DSPL_WIN_RECT				0x00000120		
-#define	DSPL_WIN_COS				0x00000130							
+#define DSPL_WIN_MASK				0x000000FF
+#define	DSPL_WIN_BARTLETT			0x00000005
+#define	DSPL_WIN_BARTLETT_HANN		0x00000006
+#define	DSPL_WIN_BLACKMAN			0x0000000A	
+#define	DSPL_WIN_BLACKMAN_HARRIS	0x00000010
+#define	DSPL_WIN_BLACKMAN_NUTTALL	0x00000014
+#define	DSPL_WIN_FLAT_TOP			0x00000020		
+#define	DSPL_WIN_GAUSSIAN			0x00000025
+#define	DSPL_WIN_HAMMING			0x00000030
+#define	DSPL_WIN_HANN				0x00000035
+#define	DSPL_WIN_LANCZOS			0x00000040
+#define	DSPL_WIN_NUTTALL			0x00000045	
+#define	DSPL_WIN_RECT				0x00000050		
+#define	DSPL_WIN_COS				0x00000055							
 
-#define DSPL_WIN_SYM_MASK			0x000F0000
+#define DSPL_WIN_SYM_MASK			0x00000100
 #define DSPL_SYMMETRIC				0x00000000
-#define DSPL_PERIODIC				0x00010000
+#define DSPL_PERIODIC				0x00000100
 #define DSPL_WIN_SYMMETRIC			DSPL_SYMMETRIC
 #define DSPL_WIN_PERIODIC			DSPL_PERIODIC
-				
+	
+
+#define DSPL_FLAG_FFT_SHIFT			0x00000200
+#define DSPL_FLAG_LOG				0x00000400
+#define DSPL_FLAG_UNWRAP			0x00000800
 
 #ifdef DLL_EXPORT
 
@@ -229,7 +233,7 @@ DSPL_API int dspl_ellipk(double *pk, int k, double *pK);
 DSPL_API int dspl_fft(	double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
 
 /* DFT Amplitude  (dspl_fft.c)*/
-DSPL_API int dspl_fft_abs(double* xR, double *xI, int n, void *pdspl,  double *S, int shift_flag);
+DSPL_API int dspl_fft_abs(double* xR, double *xI, int n, void *pdspl,  double *S, int flag);
 
 /* DFT shift  (dspl_fft.c)*/
 DSPL_API int dspl_fft_shift(double* xR, double* xI, int n, double* yR, double* yI);
@@ -254,7 +258,7 @@ DSPL_API int dspl_freqz(double* b, double* a, int ord,
                                                 
 /* IIR digital filter frequency_response (dspl_freqz.c) */
 DSPL_API int dspl_freqz_resp(double* b, double* a, int ord, 
-							 double* w, int n, 
+							 double* w, int n, int flag,
 							 double *h, double* phi, double* gd);
 
 
@@ -452,7 +456,7 @@ typedef int (*p_dspl_ellipk)(double *pk, int k, double *pK);
 typedef int (*p_dspl_fft)			(double* xR, double* xI, int n, void* pdspl, double* yR, double* yI);
 
 /* DFT Amplitude  (dspl_fft.c)*/
-typedef int (*p_dspl_fft_abs)(double* xR, double *xI, int n, void *pdspl,  double *S, int shift_flag);
+typedef int (*p_dspl_fft_abs)(double* xR, double *xI, int n, void *pdspl,  double *S, int flag);
 
 /* DFT shift  (dspl_fft.c)*/
 typedef int(*p_dspl_fft_shift)(double* xR, double* xI, int n, double* yR, double* yI);
@@ -475,7 +479,7 @@ typedef int (*p_dspl_freqz)(double* b, double* a, int ord,
 
 /* IIR digital filter frequency_response (dspl_freqz.c) */
 typedef int (*p_dspl_freqz_resp)(double* b, double* a, int ord, 
-							 double* w, int n, 
+							 double* w, int n,  int flag,
 							 double *h, double* phi, double* gd); 
 
 /* Get DSPL version  (dspl_inout.c) */

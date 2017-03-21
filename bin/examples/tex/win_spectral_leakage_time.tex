@@ -1,0 +1,63 @@
+\documentclass[tikz, border = 3mm]{standalone}
+\input{fig_header.tex}
+\pgfplotsset{width=20cm, height = 5.5cm}
+
+
+
+\begin{document}
+\begin{tikzpicture}
+
+%\draw[white] (-2,-1) rectangle (20,7.5);
+
+
+\draw[green, fill=green!20!white] (5.8, 4) rectangle (6.5,-0.05) ;
+\draw[green, fill=green!20!white] (5.8,-2) rectangle (6.5,-6.05) ;
+\draw[green, fill=green!20!white] (5.8+6.1, 4) rectangle (6.5+6.1,-0.05) ;
+\draw[green, fill=green!20!white] (5.8+6.1,-2) rectangle (6.5+6.1,-6.05) ;
+
+	\begin{axis}[xshift = 0cm, 
+		xlabel={$n$},
+		ylabel={$s_0(n)$},
+		xmin =  -50,
+		xmax =  100,
+		ymin = -1.2,
+		ymax =  1.2,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=4]
+		\addplot[ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_lekage_s0_time_0n.txt};		
+		\addplot  [draw=blue!50!white, mark=none] table {../dat/win_spectral_lekage_s0c_time_0n.txt};
+		
+		\addplot[ycomb,draw=red, mark = *, mark options={scale=0.5, fill = red}] table {../dat/win_spectral_lekage_s0_time_pn.txt};		
+		\addplot  [draw=red!50!white, mark=none] table {../dat/win_spectral_lekage_s0c_time_pn.txt};
+		
+		\addplot[ycomb,draw=red, mark = *, mark options={scale=0.5, fill = red}] table {../dat/win_spectral_lekage_s0_time_mn.txt};		
+		\addplot  [draw=red!50!white, mark=none] table {../dat/win_spectral_lekage_s0c_time_mn.txt};
+	\end{axis}
+	
+	\begin{axis}[yshift = -6cm, 
+		xlabel={$n$},
+		ylabel={$s_1(n)$},
+		xmin =  -50,
+		xmax =  100,
+		ymin = -1.2,
+		ymax =  1.2,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=4]
+		\addplot[ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_lekage_s1_time_0n.txt};		
+		\addplot  [draw=blue!50!white, mark=none] table {../dat/win_spectral_lekage_s1c_time_0n.txt};
+		
+		\addplot[ycomb,draw=red, mark = *, mark options={scale=0.5, fill = red}] table {../dat/win_spectral_lekage_s1_time_pn.txt};		
+		\addplot  [draw=red!50!white, mark=none] table {../dat/win_spectral_lekage_s1c_time_pn.txt};
+		
+		\addplot[ycomb,draw=red, mark = *, mark options={scale=0.5, fill = red}] table {../dat/win_spectral_lekage_s1_time_mn.txt};		
+		\addplot [draw=red!50!white, mark=none] table {../dat/win_spectral_lekage_s1c_time_mn.txt};
+	\end{axis}
+
+	
+	
+	\end{tikzpicture}
+\end{document}
