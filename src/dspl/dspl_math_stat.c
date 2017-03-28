@@ -30,7 +30,7 @@ DSPL_API int dspl_minmax(double* x, int n, double *xmin, double *xmax)
 	double min, max;
 	int res;
 	
-	if(!x || !xmin || !xmax)
+	if(!x)
 	{
 		res = DSPL_ERROR_PTR;
 		goto exit_label;	
@@ -47,9 +47,10 @@ DSPL_API int dspl_minmax(double* x, int n, double *xmin, double *xmax)
 		min = x[k] < min ? x[k] : min;
 		max = x[k] > max ? x[k] : max;
 	}
-	
-	*xmin = min;
-	*xmax = max;
+	if(xmin)
+		*xmin = min;
+	if(xmax)
+		*xmax = max;
 	
 	res = DSPL_OK;		
 exit_label:

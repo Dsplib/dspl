@@ -99,6 +99,7 @@ EXE_FILES =	        $(EXE_BIN_DIR)/cic_freqresp.exe\
 			$(EXE_BIN_DIR)/win_dtft.exe\
 			$(EXE_BIN_DIR)/win_dtft_conv.exe\
 		    	$(EXE_BIN_DIR)/win_spectral_leakage.exe\
+			$(EXE_BIN_DIR)/win_spectral_leakage_comb.exe\
 			$(EXE_BIN_DIR)/win_spectral_leakage_time.exe\
 		
 VER_FILES = $(VER_BIN_DIR)/ver_dspl_ellipj.exe\

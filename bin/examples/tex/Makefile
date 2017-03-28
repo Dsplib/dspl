@@ -67,19 +67,23 @@ FIG	=	fig/cic_comb.pdf\
 		fig/win_dtft_s0.pdf\
 		fig/win_dtft_s1.pdf\
 		fig/win_spectral_leakage.pdf\
+		fig/win_spectral_leakage_comb.pdf\
 		fig/win_spectral_leakage_time.pdf\
+		
+	
 
 all: figures clean
 
 	
 figures: $(FIG)	
-		
+	
 
 #DFT
 fig/%.pdf:%.tex fig_header.tex 	
-	$(LATEX)   -output-directory=$(FIG_DIR) $<
-	
-	
+	$(LATEX) --output-directory=$(FIG_DIR) $< --shell-escape 
+	$(LATEX) --output-directory=$(FIG_DIR) $< --shell-escape 
+
+		
 
 clean:
 	rm -f *.aux
