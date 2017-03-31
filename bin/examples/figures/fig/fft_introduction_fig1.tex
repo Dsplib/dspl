@@ -1,0 +1,75 @@
+\documentclass [tikz] {standalone}
+
+\input{header.htex}
+
+\begin {document}
+		
+		\begin{tikzpicture}
+				
+		\draw 		(7, 0) rectangle (9, -3);
+		\draw[red] 	(7, -4.5) rectangle (9, -6.25);
+		\draw[blue] (7, -6.75) rectangle (9, -8.5);		
+		\draw		(4.5, -4.5) rectangle (5.5, -8.5);	
+		\draw		(10.5, -4.5) rectangle (11.5, -8.5);
+		
+		\draw(8, -1.5) node[align = center] {$N-$точ. \\ ДПФ};	
+		\draw(8, -5.475) node[red, align = center] {$\frac{N}{2}-$точ. \\ ДПФ};	
+		\draw(8, -7.625) node[blue, align = center] {$\frac{N}{2}-$точ. \\ ДПФ};	
+		
+		\draw(5, -6.5) node[rotate =90] {Разделение};
+		\draw(11, -6.5) node[rotate =90] {Объединение};
+		
+		\draw(6, -2.25) node {$\vdots$};
+		\draw(10, -2.25) node {$\vdots$};
+		\draw(3.5, -7.5) node {$\vdots$};
+		\draw(12.25, -7.5) node {$\vdots$};
+		\draw[red](6.25, -5.5) node {$\vdots$};
+		\draw[red](9.75, -5.5) node {$\vdots$};
+		\draw[blue](6.25, -7.75) node {$\vdots$};
+		\draw[blue](9.75, -7.75) node {$\vdots$};
+		
+		\draw(4.5, -1.5) node[rotate=90] {$s(n)$, $n = 0 \dots N-1$};
+		\draw(2.5, -6.5) node[rotate=90] {$s(n)$, $n = 0 \dots N-1$};
+		\draw(11.5, -1.5) node[rotate=90] {$S(k)$, $k = 0 \dots N-1$};
+		\draw(13.5, -6.5) node[rotate=90] {$S(k)$, $k = 0 \dots N-1$};
+		
+		\foreach \z in {0, 1, 2, 3, 5}
+		{
+			\draw[->](5, -\z * 0.5 - 0.25) --	(7, -\z * 0.5 - 0.25);
+			\draw[->](9, -\z * 0.5 - 0.25) --	(11, -\z * 0.5 - 0.25);
+			
+		}
+		
+		
+		\foreach \z in {0, 1, 2, 3, 4, 7}
+		{
+			\draw[->](3, -\z * 0.5 - 4.75) --	(4.5, -\z * 0.5 - 4.75);
+			\draw[->](11.5, -\z * 0.5 - 4.75) --	(13, -\z * 0.5 - 4.75);
+				
+		}
+		
+		\foreach \z in {0, 1, 2.5}
+		{
+			\draw[red, ->](5.5, -\z * 0.5 - 4.75) --	(7, -\z * 0.5 - 4.75);
+			\draw[red, ->](9, -\z * 0.5 - 4.75) --	(10.5, -\z * 0.5 - 4.75);
+			
+			\draw[blue, ->](5.5, -\z * 0.5 - 7) --	(7, -\z * 0.5 - 7);
+			\draw[blue, ->](9, -\z * 0.5 - 7) --	(10.5, -\z * 0.5 - 7);
+			
+			
+		}
+		
+		\draw(7.75,-3.25) -- (8.25,-3.25) -- (8.25, -3.75) --
+		(8.5, -3.75) -- (8,-4.25) --(7.5, -3.75) --
+		(7.75, -3.75) -| cycle;
+		
+		
+		
+		\end{tikzpicture}
+\end {document}
+		
+%		\caption{Замена $N-$точечного ДПФ двумя $\frac{N}{2}-$точечными ДПФ }\label{fft_introduction:fig1}
+%	\end{center}
+%\end{figure}
+
+

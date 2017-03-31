@@ -1,0 +1,26 @@
+% \begin{figure}[ht!]
+%\begin{center}
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{header.htex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+	\draw[->] 		(-1cm,	0cm)		-- (16cm, 0cm)	node[below] {$n$};
+	\draw[-]  (0,0)  node[below] {$0$} -- (0,1)      node[above] {$s(0) = 1$};  \fill (0,1) circle(0.07cm) ;
+	\draw[-]  (2,0)  node[below] {$1$} -- (2,2)      node[above] {$s(1) = 2$};  \fill (2,2) circle(0.07cm) ;
+	\draw[-]  (4,0)  node[below] {$2$} -- (4,2) 	 node[above] {$s(2) = 2$};  \fill (4,2) circle(0.07cm) ;
+	\draw[-]  (6,0)  node[below] {$3$} -- (6,1) 	 node[above] {$s(3) = 1$};  \fill (6,1) circle(0.07cm) ;
+	\draw[-]  (8,0)  node[above] {$4$} -- (8,-0.5)  node[below] {$s(4) = -0.5$};  \fill (8,-0.5) circle(0.07cm) ;
+	\draw[-]  (10,0) node[above] {$5$} -- (10,-1)    node[below] {$s(5) = -1$};  \fill (10,-1) circle(0.07cm) ;
+	\draw[-]  (12,0) node[above] {$6$} -- (12,-2)    node[below] {$s(6) = -2$};  \fill (12,-2) circle(0.07cm) ;
+	\draw[-]  (14,0) node[above] {$7$} -- (14,-0.5)  node[below] {$s(7) = -0.5$};  \fill (14,-0.5) circle(0.07cm) ;
+\end{tikzpicture}
+
+\end {document}
+
+

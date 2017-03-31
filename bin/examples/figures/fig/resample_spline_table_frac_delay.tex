@@ -1,0 +1,41 @@
+\documentclass[border=3mm]{standalone}
+\usepackage{siunitx, array, booktabs, stackengine, etoolbox}
+\usepackage [table]{xcolor}
+\setlength{\extrarowheight}{1.5mm}
+\begin{document}
+
+\rowcolors{1}{}{black!7!white}
+\begin{tabular}{
+		*{1}{S[table-format = 2.0]}
+		*{1}{S[table-format = 2.2]}
+		*{1}{S[table-format = 2.0]}
+		*{1}{S[table-format = 2.2]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.1]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.3]}
+		*{1}{S[table-format = 3.4]}
+		*{1}{S[table-format = 3.4]}
+	}
+	
+\toprule
+{$k$} & {$x_k$}  &   {$n$}  &   {$\Delta_k$}  & {$s(n-3)$} &  {$s(n-2)$} &  {$s(n-1)$} &  {$s(n)$} & {$a_0$}  &  {$a_1$} & {$a_2$} & {$a_3$} & {$y_S(k)$} & \color{gray}{$y_L(k)$}\\  
+\midrule 
+  0 & -0.25 &  1 &  0.25  &	\color{red} 0.0	& \color{red} 0.0	&  1.0 &   2.0 				&   1.00 &   1.00 & -0.50 & -0.50 &  0.7266  &\color{gray}  0.7109 \\
+  1 &  0.75 &  2 &  0.25  &	\color{red} 0.0	&  1.0  			&  2.0 &   2.0 				&   2.00 &   0.50 & -1.00 & -0.50 &  1.8203  &\color{gray}  1.8047 \\
+  2 &  1.75 &  3 &  0.25  &   1.0   		&  2.0  			&  2.0 &   1.0 				&   2.00 &  -0.50 & -0.50 &  0.00 &  2.0938  &\color{gray}  2.0938 \\
+  3 &  2.75 &  4 &  0.25  &   2.0   		&  2.0  			&  1.0 &  -0.5 				&   1.00 &  -1.25 &  0.00 &  0.25 &  1.3086  &\color{gray}  1.3164 \\
+  4 &  3.75 &  5 &  0.25  &   2.0   		&  1.0  			& -0.5 &  -1.0 				&  -0.50 &  -1.00 &  1.25 &  0.75 & -0.1836  &\color{gray} -0.1602 \\
+  5 &  4.75 &  6 &  0.25  &   1.0   		& -0.5  			& -1.0 &  -2.0 				&  -1.00 &  -0.75 & -1.00 & -0.75 & -0.8633  &\color{gray} -0.8867 \\
+  6 &  5.75 &  7 &  0.25  &  -0.5   		& -1.0  			& -2.0 &  -0.5 				&  -2.00 &   0.25 &  2.75 &  1.50 & -1.9141  &\color{gray} -1.8672 \\
+  7 &  6.75 &  8 &  0.25  &  -1.0   		& -2.0  			& -0.5 &  \color{red} 0.0	&  -0.50 &   1.00 & -2.25 & -1.75 & -0.8633  &\color{gray} -0.9180 \\
+\bottomrule
+
+\end{tabular}
+
+\end{document}
+

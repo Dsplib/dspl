@@ -1,0 +1,69 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{filecontents}
+\usepackage{animate}
+\usepackage{multido}
+\usetikzlibrary{lindenmayersystems}
+\pgfdeclarelindenmayersystem{A}{%
+  \symbol{F}{\pgflsystemstep=0.6\pgflsystemstep\pgflsystemdrawforward}
+  \rule{A->F[+A][-A]}
+}
+\pgfplotsset{filter discard warning=false}
+
+% Style to select only points from #1 to #2 (inclusive)
+\pgfplotsset{select coords between index/.style 2 args={
+		x filter/.code={
+			\ifnum\coordindex<#1\def\pgfmathresult{}\fi
+			\ifnum\coordindex>#2\def\pgfmathresult{}\fi
+		}
+}}
+\pgfplotsset{width=20cm, height = 7.5cm}
+
+
+\begin{document}
+
+ 
+
+\begin{animateinline}[loop]{10}
+\multiframe{250}{n=1+1}{
+\begin{tikzpicture}
+	\begin{axis}[xlabel={$f_k$, Гц},
+	ylabel={$\left|S(k)\right| $},
+	xmin =  0,
+	xmax =  500,
+	ymin =  0,
+	ymax =  28,
+	grid = both,
+	every major grid/.style={black!30, opacity=0.5},
+	every minor grid/.style={black!10, opacity=0.5},
+	xtick={0,100,...,500},
+	minor tick num=4]
+	
+		\pgfmathtruncatemacro{\Result}{2*\n-2};
+	
+		\draw[red,dashed] 
+		(axis cs:2*\n-2,0) -- (axis cs:2*\n-2,25) node[above] {$f = $\Result Hz};
+	
+		\addplot[ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table [x=i0, y=i\n, col sep=comma] {../dat/win_spectral_leakage_comb.csv};
+		
+		\addplot[draw=green!50!black, mark = no, select coords between index={1}{\n}]  table {../dat/win_spectral_leakage_comb_smax.csv};
+		
+		
+		
+		
+		
+	\end{axis}
+\end{tikzpicture}
+}
+
+
+\end{animateinline}
+
+
+
+
+\end{document}
+
+% please compile it with pdflatex -shell-escape main.tex
+% Filename for this code is main.tex
+

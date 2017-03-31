@@ -1,0 +1,58 @@
+\documentclass [tikz, border=3mm] {standalone}
+\input{header.htex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+	\draw [->] (-12,0) -- (-6,0) node[below]{$x$};
+	\draw [thin] (-9,0) -- (-9,-0.1) node[below] {$0$};
+	\node at (-9,-1) {Числовая прямая};
+	
+	\draw [thin] (-8,0) -- (-8,-0.1) node[below] {$1$};
+	\draw [thin] (-10,0) -- (-10,-0.1) node[below] {$-1$};
+	\node[below] at (-7,-0.1) {$y=\sqrt{2}$};
+	\fill(-7,0) circle(0.05cm);
+ 
+	\def \vphi{40}
+	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
+	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[below left]{$0$} -- (0,3) node [left] {$\Im(z)$};
+	
+	\node at (2.5,   2.5) {Четверть I};
+	\node at (2.5,  -2.5) {Четверть IV};
+	\node at (-2.5,  2.5) {Четверть II};
+	\node at (-2.5, -2.5) {Четверть III};
+	
+	
+	\node at (0,-3.5) {Комплексная плоскость};
+	
+	\draw[->, rotate = \vphi] (0,0) -- (2.5, 0) coordinate(z) node[above]{$z_0 = a+j\cdot b$};
+
+	\path[name path=xz] (z) -- +(0, -3);	
+	\draw[dashed, name intersections={of=xz and xaxis, by=x}, thin] (z) -- (x);
+	
+	\path[name path=yz] (z) -- +(-3, 0);	
+	\draw[dashed, name intersections={of=yz and yaxis, by=y}, thin] (z) -- (y);	
+	
+	\draw [thin] (x) -- +(0, -0.1) node[below]{$a$};
+	\draw [thin] (y) -- +(-0.1, 0) node[left]{$b$};
+	
+	
+	\draw [thin] (1, 0) -- +(0, -0.1) node[below]{$1$};
+	\draw [thin] (-1,0) -- +(0, -0.1) node[below]{$-1$};
+	
+	\draw [thin] (0, 1) -- +(-0.1, 0) node[left]{$j$};
+	\draw [thin] (0,-1) -- +(-0.1, 0) node[left]{$-j$};
+	
+	\coordinate (z2) at($(z)!0.5!(0,0)$); 
+	\node[above, rotate = \vphi] at(z2) {$|z_0|$};
+	
+	\draw ({\vphi*0.55}:0.55cm) node{$\phi$};
+	\draw[thin] (0.75, 0) arc (0:\vphi:0.75);	
+
+	\fill(z) circle(0.05cm);
+\end{tikzpicture}
+
+\end {document}
+

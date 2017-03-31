@@ -1,0 +1,29 @@
+\documentclass{standalone}
+\input{header.htex}
+\pgfplotsset{width=9cm,compat=1.12}
+
+\begin{document}
+\begin{tikzpicture}[]
+\begin{axis}[
+xlabel={$k$},
+ylabel={$|S(k)|$},
+xmin = 0,
+xmax = 30,
+ymin = 0,
+ymax = 32,
+grid = both,
+every major grid/.style={black!30, opacity=0.5},
+every minor grid/.style={black!10, opacity=0.5},
+minor tick num=4]
+
+\addplot + [ycomb, mark options={scale=0.5}] table {../dat/dft_freq_fig1.txt};
+\node[right, fill=white] at (5,25){$ s(n) = \exp \left(j \cdot 2\pi \cdot n \cdot \frac{f_0}{F_{\textrm{s}}} \right)$};
+\node[right, fill=white] at (5,22){$ n = 0 \ldots N-1$};
+\node[right, fill=white] at (5,19){$ N = 30$};
+\node[right, fill=white] at (5,16){$ F_{\textrm{s}}=120$ Гц};
+\node[right, fill=white] at (5,13){$ f_0=-20$ Гц};
+\end{axis}
+
+
+\end{tikzpicture}
+\end{document}

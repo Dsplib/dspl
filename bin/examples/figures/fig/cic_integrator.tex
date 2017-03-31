@@ -1,0 +1,82 @@
+\documentclass [tikz, border = 3mm] {standalone}
+
+%common figure styles
+\input{header.htex}
+
+
+
+\begin {document}
+%\begin{figure}[ht!]
+%	\begin{center}
+		
+		\begin{tikzpicture}		
+
+\node(x0) at (0, 2)    [none, left] {$x(n)$};
+\node(y0) at (5.5, 2)  [none, right] {$y(n)$};	
+\node(int0) at (3.0,2)  [delay, fill = yellow!50!white] {I}; 	
+\draw[->] (x0) -- (int0) --(y0);
+
+		
+		
+\draw[fill = yellow!50!white] (0.5, 0) rectangle  (5.0, -2.5);		
+
+\node(x) at (0, -0.5)  [none, left] {$x(n)$};
+\node(y) at (5.5, -0.5)  [none, right] {$y(n)$};
+
+
+\node[none] at (3.0, 1)   {\LARGE{$\Downarrow$}};
+ 
+\node(sum0) at ( 1.5, -0.5) [sum ] {$+$};
+\node(pnt0) at ( 4.5, -0.5)  [pnt, fill = black] {};  
+  
+\node(del0) at (3.0,-2)  [delay] {$z^{-1}$}; 
+
+\draw[->] (x) -- (sum0);
+\draw[->] (sum0) -- (y);
+\draw[->] (pnt0) |- (del0);
+\draw[->] (del0) -| (sum0);
+
+\draw[->]  (8,0) -- (14,0) node[below] {$\Re[z]$};
+\draw[->]  (11,-3) -- (11,3) node[right] {$\Im[z]$};
+
+\draw (11,0) circle (2cm);
+
+\node[none, below left] at (11, 0)   {$0$};
+\node[none, below right] at (13, 0)   {$1$};
+\node[none, below left]  at (9, 0)   {$-1$};
+\node[none, above left] at (11, 2)   {$1$};
+\node[none,below left]  at (11, -2)   {$-1$};
+
+
+\draw[-, red]  (12.9, 0.1) -- (13.1,-0.1);
+\draw[-, red]  (12.9,-0.1) -- (13.1, 0.1);
+\node[none,above right] at (13, 0)   {$z_p = 1$};
+
+\node[none] at (3, -3.5)   {а)};
+\node[none] at (11, -3.5)   {б)};
+
+%
+% 
+ 
+% \draw[->] (sum0) -- (wb0);
+% \draw[->] (wb0) -- (sum1);
+% \draw[->] (sum1) -- (yk);
+% \draw[->] (pnt0) -- (del0); 
+% \draw[->] (del0) -- (del1); 
+% \draw[->] (del1) -- (4.5, -4) -- (wa2); 
+%\draw[->] (pnt1)  -- (wa1); 
+%\draw[->] (wa2)  -- (1.5, -4) -- (sum0); 
+%\draw[->] (wa1)  -- (2.25, -2) -- (sum0); 
+%
+%\draw[->] (pnt1)  -- (wb1); 
+%\draw[->] (wb1)  -- (7.5, -2) -- (sum1); 	
+
+
+	
+		\end{tikzpicture}
+\end {document}
+
+		
+%		\caption{Граф «бабочка»}\label{fft_dec_in_time:fig2}
+%	\end{center}
+%\end{figure}

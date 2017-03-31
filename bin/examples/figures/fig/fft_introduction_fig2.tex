@@ -1,0 +1,103 @@
+\documentclass [tikz] {standalone}
+
+\input{header.htex}
+
+\begin {document}
+		
+		\begin{tikzpicture}
+		
+		\draw 		(1.5, 0) rectangle (2.5, -5.75);
+		\draw 		(12.5, 0) rectangle (13.5, -5.75);
+		
+		\draw 		(3.25, 0) rectangle (4.25, -2.75);
+		\draw 		(3.25, -3) rectangle (4.25, -5.75);
+		
+		\draw 		(10.75, 0) rectangle (11.75, -2.75);
+		\draw 		(10.75, -3) rectangle (11.75, -5.75);
+		
+		\draw 		(5, 0) rectangle (6, -1.25);
+		\draw 		(5, -1.5) rectangle (6, -2.75);
+		\draw 		(5, -3) rectangle (6, -4.25);
+		\draw 		(5, -4.5) rectangle (6, -5.75);
+		
+		\draw 		(6.75, 0) rectangle (8.25, -1.25);
+		\draw 		(6.75, -1.5) rectangle (8.25, -2.75);
+		\draw 		(6.75, -3) rectangle (8.25, -4.25);
+		\draw 		(6.75, -4.5) rectangle (8.25, -5.75);
+		
+		\draw 		(9, 0) rectangle (10, -1.25);
+		\draw 		(9, -1.5) rectangle (10, -2.75);
+		\draw 		(9, -3) rectangle (10, -4.25);
+		\draw 		(9, -4.5) rectangle (10, -5.75);
+		
+		\draw		(2, -2.875) node[rotate  = 90] {Разделение};
+		\draw		(13, -2.875) node[rotate  = 90] {Объединение};
+		
+		\draw		(3.75, -1.375) node[rotate  = 90] {Разделение};
+		\draw		(11.25, -1.375) node[rotate  = 90] {Объединение};
+		
+		\draw		(3.75, -4.375) node[rotate  = 90] {Разделение};
+		\draw		(11.25, -4.375) node[rotate  = 90] {Объединение};	
+		
+		
+		\draw		(5.5, -0.625) node[rotate  = 90] {Разд.};
+		\draw		(9.5, -0.625) node[rotate  = 90] {Объед.};
+		
+		\draw		(5.5, -2.125) node[rotate  = 90] {Разд.};
+		\draw		(9.5, -2.125) node[rotate  = 90] {Объед.};
+		
+		\draw		(5.5, -3.675) node[rotate  = 90] {Разд.};
+		\draw		(9.5, -3.675) node[rotate  = 90] {Объед.};
+		
+		\draw		(5.5, -5.125) node[rotate  = 90] {Разд.};
+		\draw		(9.5, -5.125) node[rotate  = 90] {Объед.};
+		
+		
+		\draw		(7.5, -0.625) node[align = center] {ДПФ \\ $N=2$};
+		\draw		(7.5, -2.125) node[align = center] {ДПФ \\ $N=2$};
+		\draw		(7.5, -3.675) node[align = center] {ДПФ \\ $N=2$};
+		\draw		(7.5, -5.125) node[align = center] {ДПФ \\ $N=2$};
+		
+		\foreach \z in {0,1,...,7}
+		{
+			\draw[->] (0.75, -\z * 0.75 -0.25) node [left] {$s(\z)$} -- (1.5, -\z * 0.75 -0.25) ;
+			\draw[->] (13.5, -\z * 0.75 -0.25)  -- (14.25, -\z * 0.75 -0.25) node [right] {$S(\z)$};	
+		}
+		
+		\foreach \z in {0,1,2,3}
+		{
+			\draw[red, ->] (2.5, -\z * 0.75 -0.25) -- (3.25, -\z * 0.75 -0.25) ;
+			\draw[red, ->] (11.75, -\z * 0.75 -0.25)  -- (12.5, -\z * 0.75 -0.25);			
+			
+			\draw[blue, ->] (2.5, -\z * 0.75 -3.25) -- (3.25, -\z * 0.75 -3.25) ;
+			\draw[blue, ->] (11.75, -\z * 0.75 -3.25)  -- (12.5, -\z * 0.75 -3.25);
+			
+			
+			\draw[red, ->] (6, -\z * 1.5 -0.25) -- (6.75, -\z * 1.5 -0.25) ;
+			\draw[blue, ->] (6, -\z * 1.5 -1)  -- (6.75, -\z * 1.5 -1);
+			\draw[red, ->] (8.25, -\z * 1.5 -0.25) -- (9, -\z * 1.5 -0.25) ;
+			\draw[blue, ->] (8.25, -\z * 1.5 -1)  -- (9, -\z * 1.5 -1);
+		}
+		
+		\foreach \q in {0, 3}
+		{
+			\foreach \z in {0,1}
+			{
+				\draw[red, ->] (4.25, -\z * 0.75 -0.25 -\q) -- (5, -\z * 0.75 -0.25 -\q) ;
+				\draw[red, ->] (10, -\z * 0.75 -0.25  -\q)  -- (10.75, -\z * 0.75 -0.25 -\q);			
+			
+				\draw[blue, ->] (4.25, -\z * 0.75 -1.75 -\q) -- (5, -\z * 0.75 -1.75 -\q) ;
+				\draw[blue, ->] (10, -\z * 0.75 -1.75 -\q)  -- (10.75, -\z * 0.75 -1.75 -\q);
+			
+
+			}
+		}
+		
+		\end{tikzpicture}
+\end {document}
+		
+%		\caption{Разбиение и объединение последовательностей для $N = 8$}\label{fft_introduction:fig2}
+%	\end{center}
+%\end{figure}
+
+

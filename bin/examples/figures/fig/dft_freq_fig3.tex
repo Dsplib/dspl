@@ -1,0 +1,221 @@
+% \begin{figure}[ht!]
+%\begin{center}
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{header.htex}
+
+
+\begin {document}
+
+\begin{tikzpicture}
+
+
+
+\foreach \z in {0, 0.5, ...,3.5}
+{ 	
+	\draw[->, thin, vlgray] (\z, 0) -- (\z+4, -6) ;	
+	\draw[->, thin, vlgray] (\z+4, 0) -- (\z, -6) ;	
+}
+
+
+
+
+\draw[->,thick] (-0.5cm,	0cm)		-- (9cm, 0cm)	node[below] {$k$};
+\draw[->,thick] (-0.5cm,	-1cm)		-- (9cm, -1cm)	node[below] {$f$, Гц};
+
+\draw[->,thick] ( 0cm,	0cm)		-- (0cm, 3cm)	node[below right] {$S(k)$};
+
+\draw [-, thin] (0cm, -0.2cm) node[below]{$0$}             -- (0cm, 0cm);
+\draw [-, thin] (4cm, -0.2cm) node[below]{$\frac{N}{2}$}     -- (4cm, 0cm)  ; 
+\draw [-, thin] (7.5cm, -0.2cm) node[below]{$N-1$} -- (7.5cm, 0cm);
+
+\draw [-, thin] (0cm, -1.2cm) node[below]{$0$}             -- (0cm, -1cm);
+\draw [-, thin] (4cm, -1.2cm) node[below]{$\frac{F_{\textrm{s}}}{2}$}     -- (4cm, -1cm)  ; 
+\draw [-, thin] (7.5cm, -1.2cm) node[below]{$F_{\textrm{s}} - \frac{F_{\textrm{s}}}{N}$} -- (7.5cm, -1cm);
+
+
+
+ 
+\draw[red] (0.0cm, 0 cm) --(0.0cm, 2.0cm) node {\textbullet} node[above left]{$S(0)$}; 
+\draw[red] (0.5cm, 0 cm) --(0.5cm, 1.6cm) node {\textbullet}; 
+\draw[red] (1.0cm, 0 cm) --(1.0cm, 1.0cm) node {\textbullet}; 
+\draw[red] (1.5cm, 0 cm) --(1.5cm, 0.6cm) node {\textbullet};
+\draw[red] (2.0cm, 0 cm) --(2.0cm, 0.5cm) node {\textbullet}; 
+\draw[red] (2.5cm, 0 cm) --(2.5cm, 0.36cm) node {\textbullet}; 
+\draw[red] (3.0cm, 0 cm) --(3.0cm, 0.24cm) node {\textbullet}; 
+\draw[red] (3.5cm, 0 cm) --(3.5cm, 0.2cm) node {\textbullet};
+
+\draw[blue] (4.0cm, 0 cm) --(4.0cm, 0.2cm) node {\textbullet} node[above]{$S\left( \frac{N}{2}\right)$};
+\draw[blue] (4.5cm, 0 cm) --(4.5cm, 2.0cm) node {\textbullet};
+\draw[blue] (5.0cm, 0 cm) --(5.0cm, 0.22cm) node {\textbullet};
+\draw[blue] (5.5cm, 0 cm) --(5.5cm, 0.6cm) node {\textbullet};
+\draw[blue] (6.0cm, 0 cm) --(6.0cm, 2.2cm) node {\textbullet};
+\draw[blue] (6.5cm, 0 cm) --(6.5cm, 1.6cm) node {\textbullet};
+\draw[blue] (7.0cm, 0 cm) --(7.0cm, 1.9cm) node {\textbullet};
+\draw[blue] (7.5cm, 0 cm) --(7.5cm, 2.0cm) node {\textbullet} node[above right]{$S\left(  N-1 \right)$};
+
+
+
+
+
+
+
+
+
+\draw[->,thick] (-0.5cm,	-6cm)		-- (9cm, -6cm)	node[below] {$k$};
+\draw[->,thick] (-0.5cm,	-7cm)		-- (9cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Гц};
+
+\draw[->,thick] ( 0cm,	-6cm)		-- (0cm, -3cm)	node[below right] {$S_{\textrm{sh}}(k)$};
+
+\draw [-, thin] (0cm, -6.2cm) node[below]{$0$}             -- (0cm, -6cm);
+\draw [-, thin] (4cm, -6.2cm) node[below]{$\frac{N}{2}$}     -- (4cm, -6cm)  ; 
+\draw [-, thin] (7.5cm, -6.2cm) node[below]{$N-1$} -- (7.5cm, -6cm);
+
+\draw [-, thin] (0cm, -7.2cm) node[below]{$-\frac{F_{\textrm{s}}}{2}$}             -- (0cm, -7cm);
+\draw [-, thin] (4cm, -7.2cm) node[below]{$0$}     -- (4cm, -7cm)  ; 
+\draw [-, thin] (7.5cm, -7.2cm) node[below]{$\frac{F_{\textrm{s}}}{2} - \frac{F_{\textrm{s}}}{N}$} -- (7.5cm, -7cm);
+
+
+
+
+\draw[blue] (0.0cm, -6 cm) --(0.0cm, 0.2 -6) node {\textbullet} node[above left]{$S_{\textrm{sh}}(0)$};
+\draw[blue] (0.5cm, -6 cm) --(0.5cm, 2.0 -6) node {\textbullet};
+\draw[blue] (1.0cm, -6 cm) --(1.0cm, 0.22-6) node {\textbullet};
+\draw[blue] (1.5cm, -6 cm) --(1.5cm, 0.6 -6) node {\textbullet};
+\draw[blue] (2.0cm, -6 cm) --(2.0cm, 2.2 -6) node {\textbullet};
+\draw[blue] (2.5cm, -6 cm) --(2.5cm, 1.6 -6) node {\textbullet};
+\draw[blue] (3.0cm, -6 cm) --(3.0cm, 1.9 -6) node {\textbullet};
+\draw[blue] (3.5cm, -6 cm) --(3.5cm, 2.0 -6) node {\textbullet};
+
+
+\draw[red] (4.0cm, -6 cm) --(4.0cm, 2.0 -6) node {\textbullet} node[above right]{$S_{\textrm{sh}}\left( \frac{N}{2}\right)$}; 
+\draw[red] (4.5cm, -6 cm) --(4.5cm, 1.6 -6) node {\textbullet}; 
+\draw[red] (5.0cm, -6 cm) --(5.0cm, 1.0 -6) node {\textbullet}; 
+\draw[red] (5.5cm, -6 cm) --(5.5cm, 0.6 -6) node {\textbullet};
+\draw[red] (6.0cm, -6 cm) --(6.0cm, 0.5 -6) node {\textbullet}; 
+\draw[red] (6.5cm, -6 cm) --(6.5cm, 0.36-6) node {\textbullet}; 
+\draw[red] (7.0cm, -6 cm) --(7.0cm, 0.24-6) node {\textbullet}; 
+\draw[red] (7.5cm, -6 cm) --(7.5cm, 0.2 -6) node {\textbullet} node[above right]{$S_{\textrm{sh}}\left( N-1 \right)$};
+
+
+
+
+
+
+
+
+
+
+
+
+\foreach \z in {12, 12.5, ...,15.5}
+{ 	
+	\draw[->, thin, vlgray] (\z, 0) -- (\z+3.5, -6) ;	
+}
+
+
+\foreach \z in {16, 16.5, ...,19}
+{ 	
+	\draw[->, thin, vlgray] (\z, 0) -- (\z-4, -6) ;	
+}
+
+
+
+\draw[->,thick] (11.5 cm,	0cm)		    -- (21cm,  0cm)	node[below] {$k$};
+\draw[->,thick] (11.5cm,	   -1cm)		-- (21cm, -1cm)	node[below] {$f$, Гц};
+
+\draw[->,thick] ( 12cm,	0cm)		-- (12cm, 3cm)	node[below right] {$S(k)$};
+
+\draw [-, thin] (12cm, -0.2cm) node[below]{$0$}             -- (12cm, 0cm);
+\draw [-, thin] (15.5cm, -0.2cm) node[below left]{$\frac{N-1}{2}$}     -- (15.5cm, 0cm)  ; 
+\draw [-, thin] (16cm, -0.2cm) node[below right]{$\frac{N+1}{2}$}     -- (16cm, 0cm)  ; 
+\draw [-, thin] (19cm, -0.2cm) node[below]{$N-1$} -- (19cm, 0cm);
+
+\draw [-, thin] (12cm, -1.2cm) node[below]{$0$}             -- (12cm, -1cm);
+\draw [-, thin] (15.75cm, -1.2cm) node[below]{$\frac{F_{\textrm{s}}}{2}$}     -- (15.75cm, -1cm)  ; 
+\draw [-, thin] (19cm, -1.2cm) node[below]{$F_{\textrm{s}} - \frac{F_{\textrm{s}}}{N}$} -- (19cm, -1cm);
+
+
+
+ 
+\draw[red] (12.0cm, 0 cm) -- (12.0cm,       2.0cm) node {\textbullet} node[above left]{$S(0)$}; 
+\draw[red] (12.5cm, 0 cm) -- (12.5cm,       1.6cm) node {\textbullet}; 
+\draw[red] (13.0cm, 0 cm) -- (13.0cm,       1.0cm) node {\textbullet}; 
+\draw[red] (13.5cm, 0 cm) -- (13.5cm,       0.6cm) node {\textbullet};
+\draw[red] (14.0cm, 0 cm) -- (14.0cm,       0.5cm) node {\textbullet}; 
+\draw[red] (14.5cm, 0 cm) -- (14.5cm,       0.36cm) node {\textbullet}; 
+\draw[red] (15.0cm, 0 cm) -- (15.0cm,       0.24cm) node {\textbullet}; 
+\draw[red] (15.5cm, 0 cm) -- (15.5cm,       0.36cm) node {\textbullet}; 
+                                            
+                                            
+\draw[blue] (16.0cm, 0 cm) --((16.0cm,     0.2cm) node {\textbullet};
+
+\node[blue] at (14.5, 2) {$S\left( \frac{N+1}{2}\right)$};
+\draw[blue, thin] (13.8, 1.7) --  (15, 1.7) -- (16,0.2);
+
+\node[red]  at (14.5, 1) {$S\left( \frac{N-1}{2}\right)$};
+\draw[red, thin]  (13.8, 0.7) --  (15, 0.7)--(15.5, 0.36);
+
+
+\draw[blue] (16.5cm, 0 cm) --((16.5cm,     2.0cm) node {\textbullet};
+\draw[blue] (17.0cm, 0 cm) --((17.0cm,     0.22cm) node {\textbullet};
+\draw[blue] (17.5cm, 0 cm) --((17.5cm,     0.6cm) node {\textbullet};
+\draw[blue] (18.0cm, 0 cm) --((18.0cm,     2.2cm) node {\textbullet};
+\draw[blue] (18.5cm, 0 cm) --((18.5cm,     1.6cm) node {\textbullet};
+\draw[blue] (19.0cm, 0 cm) --((19.0cm,     1.9cm) node {\textbullet} node[above right]{$S\left(  N-1 \right)$};;
+
+
+
+
+
+
+
+
+
+
+\draw[->,thick] (11.5cm,	-6cm)		-- (21cm, -6cm)	node[below] {$k$};
+\draw[->,thick] (11.5cm,	-7cm)		-- (21cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Гц};
+%
+\draw[->,thick] ( 12cm,	-6cm)		-- (12cm, -3cm)	node[below right] {$S_{\textrm{sh}}(k)$};
+%
+\draw [-, thin] (0cm, -6.2cm) node[below]{$0$}             -- (0cm, -6cm);
+\draw [-, thin] (4cm, -6.2cm) node[below]{$\frac{N}{2}$}     -- (4cm, -6cm)  ; 
+
+\draw [-, thin] (12cm, -6.2cm) node[below]{$0$}             -- (12cm, -6cm);
+\draw [-, thin] (15.5cm, -6.2cm) node[below left]{$\frac{N-1}{2}$}     -- (15.5cm, -6cm)  ; 
+\draw [-, thin] (16cm, -6.2cm) node[below right]{$\frac{N+1}{2}$}     -- (16cm, -6cm)  ; 
+\draw [-, thin] (19cm, -6.2cm) node[below]{$N-1$} -- (19cm, -6cm);
+\draw [-, thin] (12cm, -7.2cm) node[below]{$-\frac{F_{\textrm{s}}}{2} + \frac{F_{\textrm{s}}}{2 \cdot N}$}             -- (12cm, -7cm);
+
+\draw [-, thin] (15.5cm, -7.2cm) node[below]{$0$}     -- (15.5cm, -7cm)  ; 
+\draw [-, thin] (19.0cm, -7.2cm) node[below]{$\frac{F_{\textrm{s}}}{2} - \frac{F_{\textrm{s}}}{2 \cdot N}$} -- (19cm, -7cm);
+
+
+
+
+\draw[blue] (12.0cm, -6 cm) --(12.0cm, 0.2 -6) node {\textbullet} node[above left]{$S_{\textrm{sh}}(0)$};
+\draw[blue] (12.5cm, -6 cm) --(12.5cm, 2.0 -6) node {\textbullet};
+\draw[blue] (13.0cm, -6 cm) --(13.0cm, 0.22-6) node {\textbullet};
+\draw[blue] (13.5cm, -6 cm) --(13.5cm, 0.6 -6) node {\textbullet};
+\draw[blue] (14.0cm, -6 cm) --(14.0cm, 2.2 -6) node {\textbullet};
+\draw[blue] (14.5cm, -6 cm) --(14.5cm, 1.6 -6) node {\textbullet};
+\draw[blue] (15.0cm, -6 cm) --(15.0cm, 1.9 -6) node {\textbullet};
+
+%
+%
+\draw[red] (15.5cm, -6 cm) --(15.5cm, 2.0 -6) node {\textbullet} node[above right]{$S_{\textrm{sh}}\left( \frac{N-1}{2}\right)$}; 
+\draw[red] (16.0cm, -6 cm) --(16.0cm, 1.6 -6) node {\textbullet}; 
+\draw[red] (16.5cm, -6 cm) --(16.5cm, 1.0 -6) node {\textbullet}; 
+\draw[red] (17.0cm, -6 cm) --(17.0cm, 0.6 -6) node {\textbullet};
+\draw[red] (17.5cm, -6 cm) --(17.5cm, 0.5 -6) node {\textbullet}; 
+\draw[red] (18.0cm, -6 cm) --(18.0cm, 0.36-6) node {\textbullet}; 
+\draw[red] (18.5cm, -6 cm) --(18.5cm, 0.24-6) node {\textbullet}; 
+\draw[red] (19.0cm, -6 cm) --(19.0cm, 0.2 -6) node {\textbullet} node[above right]{$S_{\textrm{sh}}\left( N-1 \right)$};
+
+
+\end{tikzpicture}
+\end {document}
+
+
+  

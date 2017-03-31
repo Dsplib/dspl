@@ -1,0 +1,218 @@
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{header.htex}
+
+
+\begin {document}
+%\begin{figure}[ht!]
+%	\begin{center}
+		
+		\begin{tikzpicture}		
+		
+
+ \node(s0) at (0,  0)  [none, left] {$s(0)$};
+ \node(s1) at (0, -1)  [none, left] {$s(1)$};
+ \node(s2) at (0, -2)  [none, left] {$s(2)$};
+ \node(s3) at (0, -3)  [none, left] {$s(3)$};
+ \node(s4) at (0, -4)  [none, left] {$s(4)$};
+ \node(s5) at (0, -5)  [none, left] {$s(5)$};
+ \node(s6) at (0, -6)  [none, left] {$s(6)$};
+ \node(s7) at (0, -7)  [none, left] {$s(7)$};
+  
+
+ \node(z0) at (2,  0)  [none, left] {$s(0)$};
+ \node(z1) at (2, -1)  [none, left] {$s(2)$};
+ \node(z2) at (2, -2)  [none, left] {$s(4)$};
+ \node(z3) at (2, -3)  [none, left] {$s(6)$};
+ \node(z4) at (2, -4)  [none, left] {$s(1)$};
+ \node(z5) at (2, -5)  [none, left] {$s(3)$};
+ \node(z6) at (2, -6)  [none, left] {$s(5)$};
+ \node(z7) at (2, -7)  [none, left] {$s(7)$}; 
+ 
+ 
+ 
+ \draw[->] (s0.east) -- (z0.west);
+ \draw[->] (s2.east) -- (z1.west);
+ \draw[->] (s4.east) -- (z2.west);
+ \draw[->] (s6.east) -- (z3.west);
+ \draw[->] (s1.east) -- (z4.west);
+ \draw[->] (s3.east) -- (z5.west);
+ \draw[->] (s5.east) -- (z6.west);
+ \draw[->] (s7.east) -- (z7.west);
+ 
+ 
+ 
+ \draw[->] (z0) -- (3,  0);
+ \draw[->] (z1) -- (3, -1);
+ \draw[->] (z2) -- (3, -2);
+ \draw[->] (z3) -- (3, -3);
+ \draw[->] (z4) -- (3, -4);
+ \draw[->] (z5) -- (3, -5);
+ \draw[->] (z6) -- (3, -6);
+ \draw[->] (z7) -- (3, -7);
+ 
+ 
+ 
+ \draw (3,0.25) rectangle  (5, -3.25);
+ \draw (4, -1.5) node[align = center] { $4-$точ.\\ ДПФ};
+ 
+ \draw (3,-3.75) rectangle  (5, -7.25);
+ \draw (4, -5.5) node[align = center] { $4-$точ.\\ ДПФ};
+ 
+ 
+ 
+ \node(x0) at (6,  0)  [none, right] {$S_0(0)$};
+ \node(x1) at (6, -1)  [none, right] {$S_0(1)$};
+ \node(x2) at (6, -2)  [none, right] {$S_0(2)$};
+ \node(x3) at (6, -3)  [none, right] {$S_0(3)$};
+ \node(x4) at (6, -4)  [none, right] {$S_1(0)$};
+ \node(x5) at (6, -5)  [none, right] {$S_1(1)$};
+ \node(x6) at (6, -6)  [none, right] {$S_1(2)$};
+ \node(x7) at (6, -7)  [none, right] {$S_1(3)$};
+ 
+ 
+ 
+ \draw[->] (5,  0) -- (x0);
+ \draw[->] (5, -1) -- (x1);
+ \draw[->] (5, -2) -- (x2);
+ \draw[->] (5, -3) -- (x3);
+ \draw[->] (5, -4) -- (x4);
+ \draw[->] (5, -5) -- (x5);
+ \draw[->] (5, -6) -- (x6);
+ \draw[->] (5, -7) -- (x7);
+ 
+ 
+ 
+ 
+ 
+ 
+ \node(pnt0) at (9.5,  0) [pnt]  {};
+ \node(pnt1) at (9.5, -1) [pnt]  {};
+ \node(pnt2) at (9.5, -2) [pnt]  {};
+ \node(pnt3) at (9.5, -3) [pnt]  {};
+ \node(pnt4) at (9.5, -4) [pnt]  {};
+ \node(pnt5) at (9.5, -5) [pnt]  {};
+ \node(pnt6) at (9.5, -6) [pnt]  {};
+ \node(pnt7) at (9.5, -7) [pnt]  {};
+ 
+ 
+ \draw[->, blue] (x0) -- (pnt0);
+ \draw[->, blue] (x1) -- (pnt1);
+ \draw[->, blue] (x2) -- (pnt2);
+ \draw[->, blue] (x3) -- (pnt3);
+ \draw[->, red ] (x4.east) node[above right]{$W_8^0$} -- (pnt4);
+ \draw[->, red ] (x5.east) node[above right]{$W_8^1$} -- (pnt5);
+ \draw[->, red ] (x6.east) node[above right]{$W_8^2$} -- (pnt6);
+ \draw[->, red ] (x7.east) node[above right]{$W_8^3$} -- (pnt7);
+ 
+ 
+ \draw[->, blue ] (8, 0) -- (pnt4);
+ \draw[->, blue ] (8,-1) -- (pnt5);
+ \draw[->, blue ] (8,-2) -- (pnt6);
+ \draw[->, blue ] (8,-3) -- (pnt7); 
+ \draw[->, red  ] (8,-4) -- (pnt0);
+ \draw[->, red  ] (8,-5) -- (pnt1);
+ \draw[->, red  ] (8,-6) -- (pnt2);
+ \draw[->, red  ] (8,-7) -- (pnt3);
+ 
+ \draw[blue] node at (8, 0) {\textbullet} ;
+ \draw[blue] node at (8,-1) {\textbullet} ;
+ \draw[blue] node at (8,-2) {\textbullet} ;
+ \draw[blue] node at (8,-3) {\textbullet} ;
+ \draw[red ] node at (8,-4) {\textbullet} ;
+ \draw[red ] node at (8,-5) {\textbullet} ;
+ \draw[red ] node at (8,-6) {\textbullet} ;
+ \draw[red ] node at (8,-7) {\textbullet} ;
+ 
+ 
+ \node(q0) at (10,  0)  [none, right] {$S(0)$};
+ \node(q2) at (10, -1)  [none, right] {$S(2)$};
+ \node(q4) at (10, -2)  [none, right] {$S(4)$};
+ \node(q6) at (10, -3)  [none, right] {$S(6)$};
+ \node(q1) at (10, -4)  [none, right] {$S(1)$};
+ \node(q3) at (10, -5)  [none, right] {$S(3)$};
+ \node(q5) at (10, -6)  [none, right] {$S(5)$};
+ \node(q7) at (10, -7)  [none, right] {$S(7)$}; 
+ 
+ 
+ 
+ 
+ \draw[->] (pnt0) -- (q0);
+ \draw[->] (pnt1) -- (q2);
+ \draw[->] (pnt2) -- (q4);
+ \draw[->] (pnt3) -- (q6);
+ \draw[->] (pnt4) -- (q1);
+ \draw[->] (pnt5) -- (q3);
+ \draw[->] (pnt6) -- (q5);
+ \draw[->] (pnt7) -- (q7);
+% 
+% \draw[->] (pnt0) -- (x0);
+% \draw[->] (pnt1) -- (x1);
+% \draw[->] (pnt2) -- (x2);
+% \draw[->] (pnt3) -- (x3);
+% \draw[->] (pnt4) node[above right]{$W_8^0$} -- (x4);
+% \draw[->] (pnt5) node[above right]{$W_8^1$}  -- (x5);
+% \draw[->] (pnt6) node[above right]{$W_8^2$}  -- (x6);
+% \draw[->] (pnt7) node[above right]{$W_8^3$}  -- (x7);
+% 
+%
+%  
+% \draw[->] (x0) -- (5, -0);
+% \draw[->] (x1) -- (5, -1);
+% \draw[->] (x2) -- (5, -2);
+% \draw[->] (x3) -- (5, -3);
+% \draw[->] (x4) -- (5, -4);
+% \draw[->] (x5) -- (5, -5);
+% \draw[->] (x6) -- (5, -6);
+% \draw[->] (x7) -- (5, -7);
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% \draw[->] (7, -0) -- (q0);
+% \draw[->] (7, -1) -- (q2);
+% \draw[->] (7, -2) -- (q4);
+% \draw[->] (7, -3) -- (q6);
+% \draw[->] (7, -4) -- (q1);
+% \draw[->] (7, -5) -- (q3);
+% \draw[->] (7, -6) -- (q5);
+% \draw[->] (7, -7) -- (q7);
+% 
+% 
+% \node(z0) at (10,  0)  [none, right] {$S(0)$};
+% \node(z1) at (10, -1)  [none, right] {$S(1)$};
+% \node(z2) at (10, -2)  [none, right] {$S(2)$};
+% \node(z3) at (10, -3)  [none, right] {$S(3)$};
+% \node(z4) at (10, -4)  [none, right] {$S(4)$};
+% \node(z5) at (10, -5)  [none, right] {$S(5)$};
+% \node(z6) at (10, -6)  [none, right] {$S(6)$};
+% \node(z7) at (10, -7)  [none, right] {$S(7)$}; 
+%
+%\draw[->] (q0.east) -- (z0.west); 
+%\draw[->] (q1.east) -- (z1.west); 
+%\draw[->] (q2.east) -- (z2.west); 
+%\draw[->] (q3.east) -- (z3.west); 
+%\draw[->] (q4.east) -- (z4.west); 
+%\draw[->] (q5.east) -- (z5.west); 
+%\draw[->] (q6.east) -- (z6.west); 
+%\draw[->] (q7.east) -- (z7.west); 
+
+
+ 
+		
+		\end{tikzpicture}
+\end {document}
+
+		
+%		\caption{Граф «бабочка»}\label{fft_dec_in_time:fig2}
+%	\end{center}
+%\end{figure}

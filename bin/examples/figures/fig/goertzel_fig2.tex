@@ -1,0 +1,71 @@
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{header.htex}
+
+
+
+\begin {document}
+%\begin{figure}[ht!]
+%	\begin{center}
+		
+		\begin{tikzpicture}		
+		
+
+ \node(sr) at (0,0)  [none, left] {$s(r)$};
+
+
+ 
+ \node(sum0) at ( 1.5,0) [sum ] {$+$};
+  
+  
+
+ \node(wb0) at ( 6, 0) [gain, rotate = -90]  {};
+ \node at (6, 0.6){$W_N^{-k}$};
+ 
+ 
+ \node(wb1) at ( 6, -2) [gain, rotate = -90]  {};
+ \node at (6, -1.4){$-1$};
+ 
+ 
+  \node(wa1) at ( 3, -2) [gain, rotate = 90]  {};
+ \node at (3, -1.4){$\alpha$};
+ 
+ 
+ \node(wa2) at ( 3, -4) [gain, rotate = 90]  {};
+ \node at (3, -3.4){$-1$};
+ 
+ 
+
+  \node(sum1) at ( 7.5,0) [sum ] {$+$};
+ 
+ 
+  \node(yk) at (9,0)  [none, right] {$y_r(k)$};
+ 
+ \node(del0) at (4.5,-1)  [delay] {$z^{-1}$};
+ \node(del1) at (4.5,-3)  [delay] {$z^{-1}$};
+ 
+ \node(pnt0) at (4.5, 0)  [pnt, fill = black] {};
+ \node(pnt1) at (4.5, -2) [pnt, fill = black]  {};
+ \node(vr) at (4.5,0.3) [none] {$v(r)$}; 
+ 
+ \draw[->] (sr) -- (sum0);
+ \draw[->] (sum0) -- (wb0);
+ \draw[->] (wb0) -- (sum1);
+ \draw[->] (sum1) -- (yk);
+ \draw[->] (pnt0) -- (del0); 
+ \draw[->] (del0) -- (del1); 
+ \draw[->] (del1) -- (4.5, -4) -- (wa2); 
+\draw[->] (pnt1)  -- (wa1); 
+\draw[->] (wa2)  -- (1.5, -4) -- (sum0); 
+\draw[->] (wa1)  -- (2.25, -2) -- (sum0); 
+
+\draw[->] (pnt1)  -- (wb1); 
+\draw[->] (wb1)  -- (7.5, -2) -- (sum1); 		
+		\end{tikzpicture}
+\end {document}
+
+		
+%		\caption{Граф «бабочка»}\label{fft_dec_in_time:fig2}
+%	\end{center}
+%\end{figure}
