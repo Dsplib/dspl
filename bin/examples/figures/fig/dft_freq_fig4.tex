@@ -6,12 +6,18 @@
 \begin{tikzpicture}[]
 
  % extra x axis
-    \begin{axis}[ 
+     \ru{\begin{axis}[ 
       xticklabels={{$-80$}, {$-60$}, {$-40$}, {$-20$}, {$0$}, {$20$}, {$40$}, {$60$}},
 	  hide y axis,
 	  minor tick num=4,
-	  xlabel={$f_{\textrm{sh}}(k),$ Гц},
-    ]
+	 xlabel={$f_{\textrm{sh}}(k),$ Гц},
+    ]}
+	\en{\begin{axis}[ 
+      xticklabels={{$-80$}, {$-60$}, {$-40$}, {$-20$}, {$0$}, {$20$}, {$40$}, {$60$}},
+	  hide y axis,
+	  minor tick num=4,
+	 xlabel={$f_{\textrm{sh}}(k),$ Hz},
+    ]}
     \addplot[draw=none]{1};
     \end{axis}
 
@@ -34,8 +40,10 @@ minor tick num=4]
 \node[right, fill=white] at (11,25){$ s(n) = \exp \left(j \cdot 2\pi \cdot n \cdot \frac{f_0}{F_{\textrm{s}}} \right)$};
 \node[right, fill=white] at (11,22){$ n = 0 \ldots N-1$};
 \node[right, fill=white] at (11,19){$ N = 30$};
-\node[right, fill=white] at (11,16){$ F_{\textrm{s}}=120$ Гц};
-\node[right, fill=white] at (11,13){$ f_0=-20$ Гц};
+\ru{\node[right, fill=white] at (11,16){$ F_{\textrm{s}}=120$ Гц};}
+\en{\node[right, fill=white] at (11,16){$ F_{\textrm{s}}=120$ Hz};}
+\ru{\node[right, fill=white] at (11,13){$ f_0=-20$ Гц};}
+\en{\node[right, fill=white] at (11,13){$ f_0=-20$ Hz};}
 
 
 

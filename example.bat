@@ -8,7 +8,7 @@ Cd bin/examples
 for  %%i in (*.exe) do  "%%i"
 
 
-Cd tex
+Cd figures
 
 dat2cm.bat
 

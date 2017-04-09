@@ -26,6 +26,7 @@ $(RU_PDF_DIR)/%.pdf:$(TEX_DIR)/%.tex $(RU_TEX_DIR)/header.htex
 	$(LATEX) --output-directory=$(RU_PDF_DIR) $< --shell-escape 
 	$(LATEX) --output-directory=$(RU_PDF_DIR) $< --shell-escape 
 	
+	
 $(RU_SVG_DIR)/%.svg:$(RU_PDF_DIR)/%.pdf
 	pdf2svg $< $@
 
@@ -35,7 +36,10 @@ $(EN_PDF_DIR)/%.pdf:$(TEX_DIR)/%.tex $(EN_TEX_DIR)/header.htex
 	$(LATEX) --output-directory=$(EN_PDF_DIR) $< --shell-escape 
 	$(LATEX) --output-directory=$(EN_PDF_DIR) $< --shell-escape 
 
-
+$(EN_SVG_DIR)/%.svg:$(EN_PDF_DIR)/%.pdf
+	pdf2svg $< $@
+	
+	
 clean:
 	rm -f $(RU_PDF_DIR)/*.aux
 	rm -f $(RU_PDF_DIR)/*.bbl

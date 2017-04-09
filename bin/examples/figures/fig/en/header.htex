@@ -3,6 +3,20 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
 
+%% Set the values 'en' and 'ru' values
+\newif\ifru
+\newif\ifen
+
+%% ONE and ONLY ONE should be un-commented.
+%%
+\entrue  %% ENglish
+%%\rutrue  %% RUssian
+
+%% Setup babel to work with us
+%%
+\newcommand{\ru}[1]{\ifru\selectlanguage{russian}#1\fi}
+\newcommand{\en}[1]{\ifen\selectlanguage{english}#1\fi}
+
 
 \usepackage{amssymb}
 \usepackage{amsfonts}

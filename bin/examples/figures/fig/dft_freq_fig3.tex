@@ -22,7 +22,10 @@
 
 
 \draw[->,thick] (-0.5cm,	0cm)		-- (9cm, 0cm)	node[below] {$k$};
-\draw[->,thick] (-0.5cm,	-1cm)		-- (9cm, -1cm)	node[below] {$f$, Гц};
+
+\ru{\draw[->,thick] (-0.5cm,	-1cm)		-- (9cm, -1cm)	node[below] {$f$, Гц};}
+\en{\draw[->,thick] (-0.5cm,	-1cm)		-- (9cm, -1cm)	node[below] {$f$, Hz};}
+
 
 \draw[->,thick] ( 0cm,	0cm)		-- (0cm, 3cm)	node[below right] {$S(k)$};
 
@@ -64,7 +67,8 @@
 
 
 \draw[->,thick] (-0.5cm,	-6cm)		-- (9cm, -6cm)	node[below] {$k$};
-\draw[->,thick] (-0.5cm,	-7cm)		-- (9cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Гц};
+\ru{\draw[->,thick] (-0.5cm,	-7cm)		-- (9cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Гц};}
+\en{\draw[->,thick] (-0.5cm,	-7cm)		-- (9cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Hz};}
 
 \draw[->,thick] ( 0cm,	-6cm)		-- (0cm, -3cm)	node[below right] {$S_{\textrm{sh}}(k)$};
 
@@ -123,7 +127,8 @@
 
 
 \draw[->,thick] (11.5 cm,	0cm)		    -- (21cm,  0cm)	node[below] {$k$};
-\draw[->,thick] (11.5cm,	   -1cm)		-- (21cm, -1cm)	node[below] {$f$, Гц};
+\ru{\draw[->,thick] (11.5cm,	   -1cm)		-- (21cm, -1cm)	node[below] {$f$, Гц};}
+\en{\draw[->,thick] (11.5cm,	   -1cm)		-- (21cm, -1cm)	node[below] {$f$, Hz};}
 
 \draw[->,thick] ( 12cm,	0cm)		-- (12cm, 3cm)	node[below right] {$S(k)$};
 
@@ -175,7 +180,8 @@
 
 
 \draw[->,thick] (11.5cm,	-6cm)		-- (21cm, -6cm)	node[below] {$k$};
-\draw[->,thick] (11.5cm,	-7cm)		-- (21cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Гц};
+\ru{\draw[->,thick] (11.5cm,	-7cm)		-- (21cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Гц};}
+\en{\draw[->,thick] (11.5cm,	-7cm)		-- (21cm, -7cm)	node[below] {$f_{\textrm{sh}}$, Hz};}
 %
 \draw[->,thick] ( 12cm,	-6cm)		-- (12cm, -3cm)	node[below right] {$S_{\textrm{sh}}(k)$};
 %
@@ -212,6 +218,13 @@
 \draw[red] (18.0cm, -6 cm) --(18.0cm, 0.36-6) node {\textbullet}; 
 \draw[red] (18.5cm, -6 cm) --(18.5cm, 0.24-6) node {\textbullet}; 
 \draw[red] (19.0cm, -6 cm) --(19.0cm, 0.2 -6) node {\textbullet} node[above right]{$S_{\textrm{sh}}\left( N-1 \right)$};
+
+\en{\draw (4,    -8.3) node {a)};}
+\en{\draw (15.5, -8.3) node {b)};}
+
+\ru{\draw (4,    -8.3) node {а)};}
+\ru{\draw (15.5, -8.3) node {б)};}
+
 
 
 \end{tikzpicture}
