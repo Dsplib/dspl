@@ -8,7 +8,9 @@
 
 	\draw [->] (-12,0) -- (-6,0) node[below]{$x$};
 	\draw [thin] (-9,0) -- (-9,-0.1) node[below] {$0$};
-	\node at (-9,-1) {Числовая прямая};
+	
+	\ru{\node at (-9,-1) {Числовая прямая};}
+	\en{\node at (-9,-1) {Real number line};}
 	
 	\draw [thin] (-8,0) -- (-8,-0.1) node[below] {$1$};
 	\draw [thin] (-10,0) -- (-10,-0.1) node[below] {$-1$};
@@ -19,13 +21,20 @@
 	\draw[->, name path = xaxis] (-3, 0) -- (3,0) node [below] {$\Re(z)$};
 	\draw[->, name path = yaxis] (0, -3) -- (0,0) node[below left]{$0$} -- (0,3) node [left] {$\Im(z)$};
 	
-	\node at (2.5,   2.5) {Четверть I};
-	\node at (2.5,  -2.5) {Четверть IV};
-	\node at (-2.5,  2.5) {Четверть II};
-	\node at (-2.5, -2.5) {Четверть III};
+	\ru{\node at (2.5,   2.5) {Четверть I};}
+	\ru{\node at (2.5,  -2.5) {Четверть IV};}
+	\ru{\node at (-2.5,  2.5) {Четверть II};}
+	\ru{\node at (-2.5, -2.5) {Четверть III};}
+	
+	\en{\node at (2.5,   2.5) {Quadrant I};}
+	\en{\node at (2.5,  -2.5) {Quadrant IV};}
+	\en{\node at (-2.5,  2.5) {Quadrant II};}
+	\en{\node at (-2.5, -2.5) {Quadrant III};}
 	
 	
-	\node at (0,-3.5) {Комплексная плоскость};
+	\ru{\node at (0,-3.5) {Комплексная плоскость};}
+	\en{\node at (0,-3.5) {Complex plane};}
+	
 	
 	\draw[->, rotate = \vphi] (0,0) -- (2.5, 0) coordinate(z) node[above]{$z_0 = a+j\cdot b$};
 

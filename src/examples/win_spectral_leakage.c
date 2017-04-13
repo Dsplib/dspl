@@ -53,10 +53,10 @@ int main()
 	}
 		
 	/* DFT of s0 signal*/
-	dspl_fft_abs(s0, NULL, N, pdspl, S0, 1);
+	dspl_fft_abs(s0, NULL, N, pdspl, S0, DSPL_FLAG_FFT_SHIFT);
 	
 	/* DFT of s1 signal*/
-	dspl_fft_abs(s1, NULL, N, pdspl, S1, 1);
+	dspl_fft_abs(s1, NULL, N, pdspl, S1, DSPL_FLAG_FFT_SHIFT);
 	
 	/* frequency vector */ 
 	dspl_linspace(-FS/2.0, FS/2.0, N, DSPL_PERIODIC, frq);

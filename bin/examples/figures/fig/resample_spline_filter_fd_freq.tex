@@ -15,19 +15,36 @@
 
 \draw[white] (-2,-1) rectangle (20,7.5);
 
-	\begin{axis}[xshift = 0cm, xlabel={$\omega$},
-		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
-		ymin = -20,
-		ymax = 2,
-		xmin = 0,
-		xmax = 3.141590,
-		grid = both,
-		xtick={0,  0.628318, 1.256636,  1.884954,  2.513272,  3.141590},
-		xticklabels={$0$, $0.2\pi$, $0.4\pi$, $0.6\pi$,	$0.8\pi$, $\pi$},
-		every major grid/.style={black!30, opacity=0.5},
-		every minor grid/.style={black!10, opacity=0.5},
-		minor x tick num=3,
-		minor y tick num=4]		
+	\ru{
+		\begin{axis}[xshift = 0cm, xlabel={$\omega$},
+			ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, дБ},
+			ymin = -20,
+			ymax = 2,
+			xmin = 0,
+			xmax = 3.141590,
+			grid = both,
+			xtick={0,  0.628318, 1.256636,  1.884954,  2.513272,  3.141590},
+			xticklabels={$0$, $0.2\pi$, $0.4\pi$, $0.6\pi$,	$0.8\pi$, $\pi$},
+			every major grid/.style={black!30, opacity=0.5},
+			every minor grid/.style={black!10, opacity=0.5},
+			minor x tick num=3,
+			minor y tick num=4]
+	}	
+	\en{
+		\begin{axis}[xshift = 0cm, xlabel={$\omega$},
+			ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
+			ymin = -20,
+			ymax = 2,
+			xmin = 0,
+			xmax = 3.141590,
+			grid = both,
+			xtick={0,  0.628318, 1.256636,  1.884954,  2.513272,  3.141590},
+			xticklabels={$0$, $0.2\pi$, $0.4\pi$, $0.6\pi$,	$0.8\pi$, $\pi$},
+			every major grid/.style={black!30, opacity=0.5},
+			every minor grid/.style={black!10, opacity=0.5},
+			minor x tick num=3,
+			minor y tick num=4]
+	}	
 		%\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample_lagrange_filter_fd_mag_0.0.txt};
 		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample_lagrange_filter_fd_mag_0.1.txt};
 		\addplot + [solid, draw=blue, mark=none] 	table {../dat/resample_lagrange_filter_fd_mag_0.2.txt};

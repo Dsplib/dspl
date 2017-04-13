@@ -23,7 +23,7 @@
 		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/resample_lagrange_filter_time.txt};
 	\end{axis}
 
-	\begin{axis}[xshift = 11cm, xlabel={$\omega$},
+	\en{\begin{axis}[xshift = 11cm, xlabel={$\omega$},
 		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, dB},
 		ymin = -80,
 		ymax = 25,
@@ -35,6 +35,20 @@
 		every major grid/.style={black!30, opacity=0.5},
 		every minor grid/.style={black!10, opacity=0.5},
 		minor tick num=3]
+		}
+	\ru{\begin{axis}[xshift = 11cm, xlabel={$\omega$},
+		ylabel={$\left| H\left( \textrm{e} ^{j \cdot \omega} \right) \right|^2$, дБ},
+		ymin = -80,
+		ymax = 25,
+		xmin = 0,
+		xmax = 3.141590,
+		grid = both,
+		xtick={0,  0.628318, 1.256636,  1.884954,  2.513272,  3.141590},
+		xticklabels={$0$, $0.2\pi$, $0.4\pi$, $0.6\pi$,	$0.8\pi$, $\pi$},
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=3]
+		}	
 		\addplot + [draw=blue, mark=none] table {../dat/resample_lagrange_filter_freq.txt};
 	
 
