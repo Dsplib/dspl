@@ -17,6 +17,10 @@
 			\ifnum\coordindex>#2\def\pgfmathresult{}\fi
 		}
 }}
+
+\pgfplotstableread[col sep=comma]{../dat/win_spectral_leakage_comb.csv}\datatable
+\pgfplotstableread[]{../dat/win_spectral_leakage_comb_smax.csv}\smaxtable
+
 \pgfplotsset{width=20cm, height = 7.5cm}
 
 
@@ -43,14 +47,20 @@
 	
 		\draw[red,dashed] 
 		(axis cs:2*\n-2,0) -- (axis cs:2*\n-2,25) node[above] {$f = $\Result Hz};
+		
+		\pgfplotstablegetelem{\n}{[index]1}\of\smaxtable ;
+		
+		\pgfmathtruncatemacro{\yval}{\pgfplotsretval};
+		
+		\draw[red,dashed] 
+		(axis cs:0,\yval) -- (axis cs:500,\yval) node[above left] {\yval};
 	
-		\addplot[ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table [x=i0, y=i\n, col sep=comma] {../dat/win_spectral_leakage_comb.csv};
+		\addplot[ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table [x=i0, y=i\n] {\datatable};
 		
-		\addplot[draw=green!50!black, mark = no, select coords between index={1}{\n}]  table {../dat/win_spectral_leakage_comb_smax.csv};
-		
-		
+		\addplot[draw=green!50!black, mark = no, select coords between index={1}{\n}]  table {\smaxtable};
 		
 		
+			
 		
 	\end{axis}
 \end{tikzpicture}

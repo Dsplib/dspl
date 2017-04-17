@@ -1,6 +1,6 @@
 LATEX				= pdflatex
 TEX_DIR				= fig
-ANIM_TEX_DIR		= anim	
+ANIM_TEX_DIR		= anim
 	
 RU_PDF_DIR			= fig/ru/pdf
 RU_SVG_DIR			= fig/ru/svg
@@ -58,6 +58,11 @@ $(RU_ANIM_PDF_DIR)/%.pdf:$(ANIM_TEX_DIR)/%.tex
 	
 	
 clean:
+	rm -f $(RU_ANIM_PDF_DIR)/*.aux
+	rm -f $(RU_ANIM_PDF_DIR)/*.bbl
+	rm -f $(RU_ANIM_PDF_DIR)/*.log
+	rm -f $(RU_ANIM_PDF_DIR)/*.toc
+	rm -f $(RU_ANIM_PDF_DIR)/*.blg
 	rm -f $(RU_PDF_DIR)/*.aux
 	rm -f $(RU_PDF_DIR)/*.bbl
 	rm -f $(RU_PDF_DIR)/*.log
