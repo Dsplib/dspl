@@ -84,6 +84,7 @@ p_dspl_sqrt_cmplx				dspl_sqrt_cmplx			;
 p_dspl_unwrap					dspl_unwrap				;
 p_dspl_window					dspl_window         	;
 p_dspl_writebin					dspl_writebin			;
+p_dspl_writecsv					dspl_writecsv			;
 p_dspl_writetxt					dspl_writetxt       	;
 
 #endif
@@ -442,7 +443,13 @@ HINSTANCE	dspl_load()
 	dspl_writebin = (p_dspl_writebin) GetProcAddress(hDSPL, func_name);
 	if(!dspl_writebin)
 		goto error_proc;
+		
 	
+	func_name = "dspl_writecsv";	
+	dspl_writecsv = (p_dspl_writecsv) GetProcAddress(hDSPL, func_name);
+	if(!dspl_writecsv)
+		goto error_proc;
+		
 	
 	func_name = "dspl_writetxt";	
 	dspl_writetxt = (p_dspl_writetxt) GetProcAddress(hDSPL, func_name);

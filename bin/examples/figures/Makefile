@@ -31,6 +31,7 @@ all: figures clean
 figures:	$(RU_PDF_FILES) $(EN_PDF_FILES)\
 			$(RU_SVG_FILES) $(EN_SVG_FILES)\
 			$(RU_ANIM_PDF_FILES)\
+			$(EN_ANIM_PDF_FILES)\
 	
 #DFT
 $(RU_PDF_DIR)/%.pdf:$(TEX_DIR)/%.tex $(RU_TEX_DIR)/header.htex 
@@ -52,10 +53,14 @@ $(EN_SVG_DIR)/%.svg:$(EN_PDF_DIR)/%.pdf
 	pdf2svg $< $@
 	
 $(RU_ANIM_PDF_DIR)/%.pdf:$(ANIM_TEX_DIR)/%.tex
+	cp $(RU_ANIM_TEX_DIR)/header.htex	header.htex
 	$(LATEX) --output-directory=$(RU_ANIM_PDF_DIR) $< --shell-escape 
 	$(LATEX) --output-directory=$(RU_ANIM_PDF_DIR) $< --shell-escape
 	
-	
+$(EN_ANIM_PDF_DIR)/%.pdf:$(ANIM_TEX_DIR)/%.tex
+	cp $(EN_ANIM_TEX_DIR)/header.htex	header.htex
+	$(LATEX) --output-directory=$(EN_ANIM_PDF_DIR) $< --shell-escape 
+	$(LATEX) --output-directory=$(EN_ANIM_PDF_DIR) $< --shell-escape	
 	
 clean:
 	rm -f $(RU_ANIM_PDF_DIR)/*.aux
@@ -63,6 +68,11 @@ clean:
 	rm -f $(RU_ANIM_PDF_DIR)/*.log
 	rm -f $(RU_ANIM_PDF_DIR)/*.toc
 	rm -f $(RU_ANIM_PDF_DIR)/*.blg
+	rm -f $(EN_ANIM_PDF_DIR)/*.aux
+	rm -f $(EN_ANIM_PDF_DIR)/*.bbl
+	rm -f $(EN_ANIM_PDF_DIR)/*.log
+	rm -f $(EN_ANIM_PDF_DIR)/*.toc
+	rm -f $(EN_ANIM_PDF_DIR)/*.blg
 	rm -f $(RU_PDF_DIR)/*.aux
 	rm -f $(RU_PDF_DIR)/*.bbl
 	rm -f $(RU_PDF_DIR)/*.log

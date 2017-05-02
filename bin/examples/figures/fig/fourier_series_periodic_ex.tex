@@ -1,0 +1,34 @@
+\documentclass [tikz] {standalone}
+
+%common figure styles
+\input{header.htex}
+
+
+\begin {document}
+
+		\begin{tikzpicture}		
+
+			\draw[->] (-8,0) -- (8,0) node[below]{$t$};
+			\draw[->] (0,-0.5) -- (0,3) node[left]{$s(t)$};
+			
+
+			\draw[red] (0, 2) -- (1, 2) -- (1, 0) -- (3, 0) -- (3,2) -- (5,2) -- (5,0)--(7,0) -- (7,2) -- (8,2);
+			
+			\draw[red] (0, 2) -- (-1, 2) -- (-1, 0) -- (-3, 0) -- (-3,2) -- (-5,2) -- (-5,0)--(-7,0) -- (-7,2) -- (-8,2);
+			
+			\draw[-](2,0)  -- (2,-0.2) node[below] { $\frac{T}{2}$};
+			\draw[-](-2,0) -- (-2,-0.2) node[below] {$-\frac{T}{2}$};
+
+			\draw[-](4,0)  -- (4,-0.2) node[below] { $T$};
+			\draw[-](-4,0) -- (-4,-0.2) node[below] {$-T$};
+			
+			\draw[-](6,0)  -- (6,-0.2) node[below] { $\frac{3T}{2}$};
+			\draw[-](-6,0) -- (-6,-0.2) node[below] {$-\frac{3T}{2}$};
+			
+			\node[below left] at(0,0) {$0$};
+			
+			
+						
+	\end{tikzpicture}
+\end {document}
+

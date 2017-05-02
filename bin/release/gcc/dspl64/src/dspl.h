@@ -356,6 +356,9 @@ DSPL_API int dspl_window(double* w, int n, int win_type, double param);
 /* save vectors to text file (dspl_inout.c) */
 DSPL_API int dspl_writebin (double* x, double *y, int n, char* fn);
 
+/* save table to csv file (dspl_inout.c) */
+DSPL_API int dspl_writecsv(double* x, int r, int c, char* fn);
+
 /* save vectors to text file (dspl_inout.c) */
 DSPL_API int dspl_writetxt (double* x, double *y, int n, char* fn);
 
@@ -575,6 +578,9 @@ typedef int (*p_dspl_window)		(double* w, int n, int win_type, double param);
 /* save vectors to a binary file (dspl_inout.c) */
 typedef int (*p_dspl_writebin) 		(double* x, double *y, int n, char* fn);
 
+/* save table to csv file (dspl_inout.c) */
+typedef int (*p_dspl_writecsv)(double* x, int r, int c, char* fn);
+
 /* save vectors to text file (dspl_inout.c) */
 typedef int (*p_dspl_writetxt) 		(double* x, double *y, int n, char* fn);
 
@@ -637,6 +643,7 @@ extern p_dspl_sqrt_cmplx				dspl_sqrt_cmplx			;	/* ru, en */
 extern p_dspl_unwrap					dspl_unwrap				;	/* ru, en */
 extern p_dspl_window					dspl_window         	;	/* ru, en */
 extern p_dspl_writebin					dspl_writebin     		;	/* ru, en */
+extern p_dspl_writecsv					dspl_writecsv			;
 extern p_dspl_writetxt					dspl_writetxt       	;	/* ru, en */
 
 HINSTANCE dspl_load();

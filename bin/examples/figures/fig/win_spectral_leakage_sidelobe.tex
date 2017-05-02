@@ -1,0 +1,49 @@
+\documentclass[tikz, border = 3mm]{standalone}
+\input{header.htex}
+\pgfplotsset{width=10cm, height = 5.5cm}
+
+
+
+\begin{document}
+\begin{tikzpicture}
+
+%\draw[white] (-2,-1) rectangle (20,7.5);
+
+	\begin{axis}[xshift = 0cm, 
+		xlabel={$f(k),$ Гц},
+		ylabel={$\left|S_0(k)\right|^2$, дБ},
+		xmin =  0,
+		xmax =  500,
+		ymin =  0,
+		ymax =  60,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=4]
+		\addplot+[ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_leakage_sidelobe_s0.txt};		
+	\end{axis}
+	
+
+	\begin{axis}[xshift = 11cm, xlabel={$f(k),$ Гц},
+		ylabel={$\left| S_1\left( k \right) \right|^2$, дБ},
+		ymin = 0,
+		ymax = 60,
+		xmin = 0,
+		xmax =  500,
+		grid = both,
+		every major grid/.style={black!30, opacity=0.5},
+		every minor grid/.style={black!10, opacity=0.5},
+		minor tick num=4]
+		\addplot+[ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_leakage_sidelobe_s1.txt};
+	\end{axis}
+	
+    
+	
+	
+\node[] at (4.2, -1.5) {а)};
+\node[] at (15.2, -1.5) {б)};
+
+	
+	
+	\end{tikzpicture}
+\end{document}

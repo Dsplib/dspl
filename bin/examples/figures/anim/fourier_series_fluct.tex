@@ -1,0 +1,65 @@
+\documentclass[border = 5mm]{standalone}
+\input{header.htex}
+
+
+
+\begin{document}
+
+ 
+
+\begin{animateinline}[loop]{8}
+\multiframe{72}{n=0+5}{	
+	
+	\begin{tikzpicture}	
+	
+		\pgfmathsetmacro\cx{6.7+3*cos(\n)}
+		\pgfmathsetmacro\dx{1.5*cos(\n)}
+		\pgfmathsetmacro\yp{1.5*sin(\n)}
+		\pgfmathsetmacro\yn{-1.5*sin(\n)}
+		\pgfmathsetmacro\sl{0.5*\cx}
+		
+		\draw[gray, ->] (0,0) -- (11,0) node[below]{$\Re$}; 
+		\draw[gray, ->] (7,-2) -- (7,2) node[left]{$\Im$};
+		\node[below right] at (7,0) {$0$};
+		\draw[gray] (5.5,0) -- (5.5, -0.1) node[below] {$-0.5$};
+		\draw[gray] (8.5,0) -- (8.5, -0.1) node[below] {$0.5$};
+		\draw[gray] (4,0) -- (4, -0.1) node[below] {$-1$};
+		\draw[gray] (10,0) -- (10, -0.1) node[below] {$1$};
+		
+		\draw[decorate,decoration={coil, amplitude=0.15cm, segment length=\sl}] (0,0)   -- (\cx,0);
+		\draw[] (\cx,0)   -- (\cx+0.3,0); 
+		\draw[fill=white]  (\cx+0.3,0) circle (0.2cm);
+	
+		
+		
+		
+		
+		
+		\draw[fill =gray](0,-2) rectangle (-0.3, 2);
+		\draw[-] (0,-2) -- (0,2);
+
+		\begin{scope}[xshift = 7cm]
+		
+			\draw[gray]  (0,0) circle (1.5cm);
+			\draw[-,line width=1mm, red,cap=round,] (0,0) -- (\dx, \yp);
+			\draw[-,line width=1mm, red,cap=round,] (\dx, \yp)--(2*\dx, 0);
+			\draw[-, line width=1mm, blue,cap=round] (0,0) -- (\dx, \yn);
+			\draw[-, line width=1mm, blue,cap=round] (\dx, \yn)--(2*\dx, 0);
+		\end{scope}
+
+
+		
+	\end{tikzpicture}
+}
+
+
+\end{animateinline}
+
+
+
+
+\end{document}
+
+% please compile it with pdflatex -shell-escape main.tex
+% Filename for this code is main.tex
+

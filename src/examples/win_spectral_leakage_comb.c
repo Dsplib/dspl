@@ -5,6 +5,7 @@
 
 
 #define N		50
+#define P		10
 #define K		251
 #define FS		1000.0
 #define DF		2.0
@@ -20,62 +21,13 @@ void dspl_write_csv_line(FILE* pFile, int *ind, double *x, int n)
 	*ind = *ind+1;
 }
 
-int dspl_writecsv(double* x, int r, int c, char* fn)
-{
-	int k, n;
-	int res;
-	FILE* pFile = NULL;
-	
-	if(!x)
-	{
-		res =DSPL_ERROR_PTR;
-		goto exit_label;
-	}
-	if(r < 1 || c < 1)
-	{
-		res =DSPL_ERROR_SIZE;
-		goto exit_label;
-	}
-	if(!fn)
-	{
-		res =DSPL_ERROR_FNAME;
-		goto exit_label;
-	}
-	
-	pFile = fopen(fn, "w+");
-	if(pFile == NULL)
-	{
-		res =DSPL_ERROR_FOPEN;
-		goto exit_label;
-	}
-	
-	for(k = 0; k < c-1; k++)
-		fprintf(pFile, "i%d,", k);	
-	fprintf(pFile, "i%d\n", c-1);
-	
-	for(n = 0; n < r; n++)
-	{
-		for(k = 0; k < c-1; k++)
-		{
-			fprintf(pFile, "%+.4E,", x[k*r + n]);	
-		}
-		fprintf(pFile, "%+.4E\n", x[k*r+c-1]);
-	}
-	
-	
-	res = DSPL_OK;
-exit_label:
-	dspl_print_err(res, "dspl_writecsv");
-	if(pFile)
-		fclose(pFile);
-	return res;	
 
-}
 
 int main()
 {
 	/* input signals */
 	double t[N],  s[N],  S[N*K], SMAX[K], fmax[K];
+	double sdtft[N*P], SDTFT[N*K*P];
 	double  f = 0.0;
 		
 	int n, ind;
@@ -101,19 +53,24 @@ int main()
 	/* time vector */ 
 	dspl_linspace(0, N,  N, DSPL_PERIODIC, t); 
 	dspl_linspace(0, FS, N, DSPL_PERIODIC, S); 
-
+	dspl_linspace(0, FS, N*P, DSPL_PERIODIC, SDTFT);
+	
 	memset(SMAX,0,K*sizeof(double));
+	memset(sdtft, 0, N*P*sizeof(double));
 	for(ind = 1; ind < K; ind++) 
 	{
 		for(n = 0; n < N; n++)			
-			s[n] = sin(M_2PI*t[n]*f/FS);
+			s[n] = sdtft[n] = sin(M_2PI*t[n]*f/FS);
+		
 		dspl_fft_abs(s, NULL, N, pdspl, S+ind*N, 0);
+		dspl_fft_abs(sdtft, NULL, N*P, pdspl, SDTFT+ind*N*P, 0);
 		dspl_minmax(S+ind*N, N, NULL,  SMAX+ind);
 		fmax[ind] = f;
 		f+=DF;
 	}
 		
 	dspl_writecsv(S, N, K, "dat/win_spectral_leakage_comb.csv");
+	dspl_writecsv(SDTFT, N*P, K, "dat/win_spectral_leakage_comb_dtft.csv");
 	dspl_writetxt(fmax, SMAX, K, "dat/win_spectral_leakage_comb_smax.csv");
 	
 	/* Free DSPL object */

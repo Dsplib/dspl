@@ -21,8 +21,8 @@
 		every major grid/.style={black!30, opacity=0.5},
 		every minor grid/.style={black!10, opacity=0.5},
 		minor tick num=3]
-		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_dtft_s1_time.txt};
-		\addplot + [draw=blue!50!white, mark=none] table {../dat/win_dtft_s1c_time.txt};
+		\addplot + [ycomb,draw=blue, mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_leakage_dtft_z1_time.txt};
+		\addplot + [draw=blue!50!white, mark=none] table {../dat/win_spectral_leakage_dtft_z1c_time.txt};
 	\end{axis}
 
 	\begin{axis}[xshift = 0cm, yshift = -6cm, xlabel={$f(k),$ Гц},
@@ -35,8 +35,8 @@
 		every major grid/.style={black!30, opacity=0.5},
 		every minor grid/.style={black!10, opacity=0.5},
 		minor tick num=4]
-		\addplot + [draw=blue!50!white, mark=none] table {../dat/win_dtft_s1c_freq.txt};
-		\addplot + [ycomb, draw=blue,  mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_dtft_s1_freq.txt};
+		\addplot + [draw=blue!50!white, mark=none] table {../dat/win_spectral_leakage_dtft_z1c_freq.txt};
+		\addplot + [ycomb, draw=blue,  mark = *, mark options={scale=0.5, fill = blue}] table {../dat/win_spectral_leakage_dtft_z1_freq.txt};
 		\addplot + [ycomb, draw=red,  mark = *, mark options={scale=0.7, fill = red}] table {../dat/win_spectral_lekage_s1_freq.txt};
 	\end{axis}
 %\node[] at (4.2, -7.5) {а)};

@@ -195,6 +195,61 @@ exit_label:
 
 
 
+
+
+DSPL_API int dspl_writecsv(double* x, int r, int c, char* fn)
+{
+	int k, n;
+	int res;
+	FILE* pFile = NULL;
+	
+	if(!x)
+	{
+		res =DSPL_ERROR_PTR;
+		goto exit_label;
+	}
+	if(r < 1 || c < 1)
+	{
+		res =DSPL_ERROR_SIZE;
+		goto exit_label;
+	}
+	if(!fn)
+	{
+		res =DSPL_ERROR_FNAME;
+		goto exit_label;
+	}
+	
+	pFile = fopen(fn, "w+");
+	if(pFile == NULL)
+	{
+		res =DSPL_ERROR_FOPEN;
+		goto exit_label;
+	}
+	
+	//for(k = 0; k < c-1; k++)
+	//	fprintf(pFile, "i%d,", k);	
+	//fprintf(pFile, "i%d\n", c-1);
+	
+	for(n = 0; n < r; n++)
+	{
+		for(k = 0; k < c-1; k++)
+		{
+			fprintf(pFile, "%+.4E,", x[k*r + n]);	
+		}
+		fprintf(pFile, "%+.4E\n", x[k*r+c-1]);
+	}
+	
+	
+	res = DSPL_OK;
+exit_label:
+	dspl_print_err(res, "dspl_writecsv");
+	if(pFile)
+		fclose(pFile);
+	return res;	
+
+}
+
+
 /*
  Save data to text file.
 */
