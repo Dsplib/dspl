@@ -6,11 +6,12 @@
 
 /* DFT size */
 #define K 13
-#define Q 120
-#define P 1200
+#define Q 200
+#define P 2000
+#define L 8000
 
 /* sample rate */
-#define T	5.0
+#define T	4.0
 
 
 
@@ -32,13 +33,13 @@ int main()
 	HINSTANCE hDSPL;		/* dspl handle 				*/
 	
 	/* DTMF frequency vector 	*/
-	int N[K] = {2, 3, 4, 6, 9, 12, 16, 20, 25, 40, 60, 80, Q};
+	int N[K] = {1, 3, 5, 10, 15, 20, 30, 50, 70, 90, 120, 150, Q};
 	int m, k, n;
 	/* DTMF DFT indexes (N = 205)	*/
 	double    t[P];
-	double    s[P];
-	double    sa[P], sb[P];
-	double    tp[3*P], S[3*P];
+	double    s[P], sa[P], sb[P];
+
+	double    tp[L], S[L];
 	
 	double a[Q+1], b[Q+1], w;
 	char fn[500];
@@ -55,20 +56,20 @@ int main()
 	
 	memset(s, 0, P*sizeof(double));
 	dspl_linspace(-T/2,   T/2,    P,  DSPL_PERIODIC,   t);
-	dspl_linspace(-3*T/2, 3*T/2,  3*P, DSPL_PERIODIC,   tp);
+	dspl_linspace(-2*T, 2*T,  L, DSPL_PERIODIC,   tp);
 	
 	for(k = P/4; k < 3*P/4; k++)
-		s[k] = 1.0;
+		s[k] = 2.0;
 	
 	
 	
 	memcpy(S,        s, P*sizeof(double));
 	memcpy(S+P,      s, P*sizeof(double));
 	memcpy(S+2*P,    s, P*sizeof(double));
-	dspl_writetxt(tp, S, 3*P, "dat/fourier_series_lim.csv");
+	dspl_writetxt(tp, S, L, "dat/fourier_series_lim.csv");
 	
-	memset(S,    0, 3*P*sizeof(double));
-	dspl_writetxt(tp, S, 3*P, "dat/fourier_series_lim_0.csv");
+	memset(S,    0, L*sizeof(double));
+	dspl_writetxt(tp, S, L, "dat/fourier_series_lim_0.csv");
 	
 	a[0] = trapz(t,s,P)/T;
 	b[0] = 0.0;
@@ -89,23 +90,19 @@ int main()
     
 	for(m = 0; m < K; m++)
 	{
-		for(k = 0; k < P; k++)
-			sa[k] = a[0];
+		for(k = 0; k < L; k++)
+			S[k] = a[0];
 		
-		for(n = 1; n<N[m]; n++)
+		for(n = 1; n<=N[m]; n++)
 		{
 			w = M_2PI / T * (double)n;
-			for(k = 0; k < P; k++)
-				sa[k] += a[n] * cos(w*t[k]) + b[n] * sin(w*t[k]);
+			for(k = 0; k < L; k++)
+				S[k] += a[n] * cos(w*tp[k]) + b[n] * sin(w*tp[k]);
 		}
-		
-		memcpy(S,        sa, P*sizeof(double));
-		memcpy(S+P,      sa, P*sizeof(double));
-		memcpy(S+2*P,    sa, P*sizeof(double));
 		memset(fn, 0, 500);
 		sprintf(fn,"dat/fourier_series_lim_%d.csv", m+1);
 		
-		dspl_writetxt(tp, S, 3*P, fn);
+		dspl_writetxt(tp, S, L, fn);
 	}
 	
 	

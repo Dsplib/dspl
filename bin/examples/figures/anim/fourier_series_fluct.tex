@@ -21,8 +21,8 @@
 		\draw[gray, ->] (0,0) -- (11,0) node[below]{$\Re$}; 
 		\draw[gray, ->] (7,-2) -- (7,2) node[left]{$\Im$};
 		\node[below right] at (7,0) {$0$};
-		\draw[gray] (5.5,0) -- (5.5, -0.1) node[below] {$-0.5$};
-		\draw[gray] (8.5,0) -- (8.5, -0.1) node[below] {$0.5$};
+		\draw[gray] (5.5,0) -- (5.5, -0.1) node[below left] {$-0.5$};
+		\draw[gray] (8.5,0) -- (8.5, -0.1) node[below right] {$0.5$};
 		\draw[gray] (4,0) -- (4, -0.1) node[below] {$-1$};
 		\draw[gray] (10,0) -- (10, -0.1) node[below] {$1$};
 		
@@ -31,7 +31,7 @@
 		\draw[fill=white]  (\cx+0.3,0) circle (0.2cm);
 	
 		
-		
+		\node[] at (3,1.3) {$\cos \left( \omega_0 \cdot t \right) = \frac{\exp\left( j \cdot \omega_0 \cdot t \right) + \exp\left( -j \cdot \omega_0 \cdot t\right)}{2}$};
 		
 		
 		
@@ -41,10 +41,11 @@
 		\begin{scope}[xshift = 7cm]
 		
 			\draw[gray]  (0,0) circle (1.5cm);
-			\draw[-,line width=1mm, red,cap=round,] (0,0) -- (\dx, \yp);
-			\draw[-,line width=1mm, red,cap=round,] (\dx, \yp)--(2*\dx, 0);
-			\draw[-, line width=1mm, blue,cap=round] (0,0) -- (\dx, \yn);
-			\draw[-, line width=1mm, blue,cap=round] (\dx, \yn)--(2*\dx, 0);
+			\draw[->, red,cap=round,] (0,0) -- (\dx, \yp);
+			\draw[dashed, red,cap=round,] (\dx, \yp)--(2*\dx, 0);
+			\draw[->, blue,cap=round] (0,0) -- (\dx, \yn);
+			\draw[dashed, blue,cap=round] (\dx, \yn)--(2*\dx, 0);
+			\draw[->, green,cap=round] (0,0) -- (2*\dx, 0);
 		\end{scope}
 
 

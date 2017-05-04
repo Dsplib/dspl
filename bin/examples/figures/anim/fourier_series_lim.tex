@@ -5,15 +5,41 @@
 
 \begin{document}
 
+\def\datan{{0, 1, 3, 5, 10, 15, 20, 30, 50, 70, 90, 120, 150, 200}}
  
 
-\begin{animateinline}[loop]{2}
-\multiframe{14}{n=0+1}{
+\begin{animateinline}[loop]{1}
+\multiframe{13}{n=0+1}{
 	\begin{tikzpicture}	
-		\draw[blue] plot[] file {../dat/fourier_series_lim.csv};
+		%\draw[blue] plot[] file {../dat/fourier_series_lim.csv};
+		
+		\draw[->] (-8,0) -- (8,0) node[below]{$t$};
+		
+		
+		\pgfmathparse{\datan[\n]}
+		\edef\curn{\pgfmathresult}
+		\draw[->] (0,-0.5) -- (0,3) node[left]{$s(t)$};
+		\node[right] at(0,3) {$N = $\curn};
+		
+		\draw[-](2,0)  -- (2,-0.2) node[below] { $\frac{T}{2}$};
+		\draw[-](-2,0) -- (-2,-0.2) node[below] {$-\frac{T}{2}$};
+
+		\draw[-](4,0)  -- (4,-0.2) node[below] { $T$};
+		\draw[-](-4,0) -- (-4,-0.2) node[below] {$-T$};
+		
+		\draw[-](6,0)  -- (6,-0.2) node[below] { $\frac{3T}{2}$};
+		\draw[-](-6,0) -- (-6,-0.2) node[below] {$-\frac{3T}{2}$};
+		
+		\node[below left] at(0,0) {$0$};
+
+		\draw[blue] (0, 2) -- (1, 2) -- (1, 0) -- (3, 0) -- (3,2) -- (5,2) -- (5,0)--(7,0) -- (7,2) -- (8,2);
+		
+		\draw[blue] (0, 2) -- (-1, 2) -- (-1, 0) -- (-3, 0) -- (-3,2) -- (-5,2) -- (-5,0)--(-7,0) -- (-7,2) -- (-8,2);
 		\draw[red]  plot[] file {../dat/fourier_series_lim_\n.csv};
-		\draw[->] (-8, 0) -- (8, 0) node[below]{$t$};
-		\draw[->] (0, -0.5) -- (0, 2) node[left]{$s(t)$};		
+		
+
+
+		
 	\end{tikzpicture}
 }
 
